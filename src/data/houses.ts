@@ -94,14 +94,14 @@ export const houseData: HouseType[] = [
   {
     name: "SKANDY-NORDY SN-42",
     inStock: true,
-    imageUrl: "/Копія-Nordy-42-3D-1.jpg",
+    imageUrl: "/nordy-42-3d-1.jpg",
     squareFeet: 1507,
     squareMeters: 140,
     price: 295000,
     type: "BUNGALOWS",
     category: "SKANDY-NORDY",
     description: "Scandinavian-Nordic inspired minimalist design with natural materials",
-    additionalImages: ["/Копія-Nordy-42-3D-1.jpg", "/Nordy-65-3D-2.jpg", "/Копія-Skandy-120-3D-1.jpg"]
+    additionalImages: ["/nordy-42-3d-1.jpg", "/Nordy-65-3D-2.jpg", "/skandy-120-3d-1.jpg"]
   },
   {
     name: "SKANDY-NORDY SN-65",
@@ -113,7 +113,7 @@ export const houseData: HouseType[] = [
     type: "1.5-STOREY",
     category: "SKANDY-NORDY",
     description: "Nordic elegance with sustainable materials and contemporary comfort",
-    additionalImages: ["/Nordy-65-3D-2.jpg", "/Копія-Skandy-120-3D-1.jpg", "/Копія-Nordy-42-3D-1.jpg"]
+    additionalImages: ["/Nordy-65-3D-2.jpg", "/skandy-120-3d-1.jpg", "/nordy-42-3d-1.jpg"]
   },
   {
     name: "SKANDY-NORDY SN-120",
@@ -167,14 +167,14 @@ export const houseData: HouseType[] = [
   // Modular Houses
   {
     name: "MODULAR MOD-40",
-    imageUrl: "/Глеваха_1.jpg",
+    imageUrl: "/modular-home-1.jpg",
     squareFeet: 1400,
     squareMeters: 130,
     price: 275000,
     type: "BUNGALOWS",
     category: "MODULAR",
     description: "Flexible modular construction with contemporary design and adaptable layouts",
-    additionalImages: ["/Глеваха_1.jpg", "/photo_2022-10-03-12.44.26.jpeg", "/IMG_0015.jpg"]
+    additionalImages: ["/modular-home-1.jpg", "/photo_2022-10-03-12.44.26.jpeg", "/IMG_0015.jpg"]
   },
   {
     name: "MODULAR MOD-55",
@@ -185,7 +185,7 @@ export const houseData: HouseType[] = [
     type: "BUNGALOWS",
     category: "MODULAR",
     description: "Advanced modular system with premium materials and flexible configurations",
-    additionalImages: ["/photo_2022-10-03-12.44.26.jpeg", "/Глеваха_1.jpg", "/IMG_0015.jpg"]
+    additionalImages: ["/photo_2022-10-03-12.44.26.jpeg", "/modular-home-1.jpg", "/IMG_0015.jpg"]
   },
   {
     name: "MODULAR MOD-70",
@@ -196,7 +196,7 @@ export const houseData: HouseType[] = [
     type: "1.5-STOREY",
     category: "MODULAR",
     description: "Spacious modular home with expandable design and modern amenities",
-    additionalImages: ["/IMG_0015.jpg", "/Глеваха_1.jpg", "/photo_2022-10-03-12.44.26.jpeg"]
+    additionalImages: ["/IMG_0015.jpg", "/modular-home-1.jpg", "/photo_2022-10-03-12.44.26.jpeg"]
   }
 ];
 

@@ -30,7 +30,7 @@ const ModularPage: React.FC = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
-            backgroundImage: "url('/Глеваха_1.jpg')" 
+            backgroundImage: "url('/modular-home-1.jpg')" 
           }}
         ></div>
         
