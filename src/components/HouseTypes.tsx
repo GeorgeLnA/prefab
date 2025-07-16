@@ -137,7 +137,7 @@ const HouseTypes: React.FC = () => {
             </div>
             <div className="flex-1 flex justify-center">
               <img
-                src="/Глеваха_1.jpg"
+                src="/modular-home-1.jpg"
                 alt="Design Your Own Modular Home"
                 className="w-full max-w-xl rounded-2xl shadow-2xl border-8 border-black object-cover"
               />

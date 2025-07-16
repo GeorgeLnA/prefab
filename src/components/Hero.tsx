@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 const SLIDES = [
   {
-    imageUrl: '/Skandy 120 front-1 2.png',
+    imageUrl: '/Skandy%20120%20front-1%202.png',
     name: 'Engineered for Efficiency Built in Days',
     description: 'High-performance prefab homes with precision craftsmanship.'
   },

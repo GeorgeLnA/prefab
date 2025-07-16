@@ -30,7 +30,7 @@ const SkandyNordyPage: React.FC = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
-            backgroundImage: "url('/Skandy 120 front-1 2.png')" 
+            backgroundImage: "url('/Skandy%20120%20front-1%202.png')" 
           }}
         ></div>
         
