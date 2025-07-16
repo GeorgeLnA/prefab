@@ -185,4 +185,4 @@ const DesignYourselfPage: React.FC = () => {
   );
 };
 
-export default DesignYourselfPage; 
+export default DesignYourselfPage;
