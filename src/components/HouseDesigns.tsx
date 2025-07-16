@@ -33,6 +33,7 @@ const HouseDesigns: React.FC = () => {
         <button className="mt-4 bg-primary hover:bg-primary-hover text-white px-8 py-3 font-medium rounded transition-colors duration-200 text-lg">
           Reserve Your 7 Day House Now
         </button>
+        <div className="mt-16"></div>
       </div>
     </section>
   );
