@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const houses = [
   {
     name: 'Nordy',
-    image: '/Копія-Nordy-42-3D-1.jpg',
+    image: '/nordy-42-3d-1.jpg',
     subtext: 'Modular, compact, and flexible',
     explanation: 'Exempt from standard building permits due to size and modular design.'
   },

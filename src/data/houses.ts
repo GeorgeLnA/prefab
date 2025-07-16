@@ -117,14 +117,14 @@ export const houseData: HouseType[] = [
   },
   {
     name: "SKANDY-NORDY SN-120",
-    imageUrl: "/Skandy 120 front-1 2.png",
+    imageUrl: "/Skandy%20120%20front-1%202.png",
     squareFeet: 2200,
     squareMeters: 204,
     price: 395000,
     type: "2-STOREY",
     category: "SKANDY-NORDY",
     description: "Scandinavian design with enhanced features and luxury finishes in a natural forest setting",
-    additionalImages: ["/Skandy 120 front-1 2.png", "/Skandy 120 front-1 Medium.png", "/Nordy-65-3D-2.jpg"]
+    additionalImages: ["/Skandy%20120%20front-1%202.png", "/Skandy%20120%20front-1%20Medium.png", "/Nordy-65-3D-2.jpg"]
   },
   
   // Modern-B Houses

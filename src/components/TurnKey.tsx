@@ -91,7 +91,7 @@ const SmartChoice: React.FC = () => {
                 muted
                 playsInline
                 className="w-full h-[500px] md:h-[700px] object-cover bg-black"
-                poster="/Skandy 120 front-1 2.png"
+                poster="/Skandy%20120%20front-1%202.png"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             </div>

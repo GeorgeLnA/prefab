@@ -78,6 +78,7 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
               loop={currentVideo === 1}
               onEnded={handleVideoEnd}
               className="absolute inset-0 w-full h-full object-cover z-0"
+              poster="/Skandy%20120%20front-1%202.png"
             />
             
             {/* Text and Button Overlay */}

@@ -12,11 +12,11 @@ const HouseDesigns: React.FC = () => {
           These homes are <span className="text-primary font-bold">in stock</span> and can be delivered, assembled, and finished on your site fast.
         </p>
         <div className="text-yellow-400 text-sm uppercase tracking-wider mb-4 font-body font-bold text-left w-full flex justify-start">
-          {houseData.slice(0, 4).length} DAY HOUSES IN STOCK
+          {houseData.filter(house => house.inStock).slice(0, 4).length} DAY HOUSES IN STOCK
         </div>
         {/* Row of Houses in Stock */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-10">
-          {houseData.slice(0, 4).map((house, idx) => (
+          {houseData.filter(house => house.inStock).slice(0, 4).map((house, idx) => (
             <div key={idx} className="bg-gray-800 rounded-xl shadow-lg overflow-hidden flex flex-col hover:scale-105 transition-transform duration-300">
               <img src={house.imageUrl} alt={house.name} className="w-full h-48 object-cover" />
               <div className="p-4 flex-1 flex flex-col justify-between">
