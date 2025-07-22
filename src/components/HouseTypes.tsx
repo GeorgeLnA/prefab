@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { houseData } from '../data/houses';
 
 const HouseTypes: React.FC = () => {
   const houseTypes = [
@@ -52,6 +53,9 @@ const HouseTypes: React.FC = () => {
       path: '/bungalow'
     }
   ];
+
+  // Get modular houses from data
+  const modularHouses = houseData.filter(house => house.category === 'MODULAR');
 
   return (
     <section className="py-20 bg-white">
@@ -120,27 +124,41 @@ const HouseTypes: React.FC = () => {
           ))}
         </div>
 
-        {/* Design Yourself Section */}
+        {/* Modular Homes Section */}
         <div className="w-full my-20">
-          <div className="relative bg-primary rounded-3xl shadow-2xl flex flex-col md:flex-row items-center justify-between px-8 md:px-24 py-16 md:py-24 overflow-hidden">
-            <div className="flex-1 text-center md:text-left mb-10 md:mb-0">
-              <h2 className="text-5xl md:text-6xl font-extrabold text-black mb-6 drop-shadow-lg">Design Yourself</h2>
-              <p className="text-2xl text-black/90 mb-8 max-w-2xl mx-auto md:mx-0">
-                Want something truly unique? Use our interactive tools to design your own modular home, tailored to your lifestyle and vision.
+          <div className="bg-gray-900 rounded-3xl shadow-2xl px-8 md:px-16 py-16 overflow-hidden">
+            {/* Header */}
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-light text-white mb-6">MODULAR HOMES</h2>
+              <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+                Want something truly unique? Use our modular system to design your own home, 
+                tailored to your lifestyle and vision. Expandable, customizable, and built to grow with you.
               </p>
+            </div>
+
+            {/* Modular Houses Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              {modularHouses.map((house, index) => (
+                <div key={index} className="bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">
+                  <img src={house.imageUrl} alt={house.name} className="w-full h-48 object-cover" />
+                  <div className="p-6">
+                    <div className="text-lg text-primary font-bold mb-2">{house.name}</div>
+                    <div className="text-gray-300 text-sm mb-3">{house.squareMeters} m² • {house.type}</div>
+                    <div className="text-gray-400 text-xs mb-4 line-clamp-2">{house.description}</div>
+                    <div className="text-white text-lg font-semibold">From £{house.price.toLocaleString()}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA Button */}
+            <div className="text-center">
               <Link
                 to="/design-yourself"
-                className="inline-block bg-black text-primary font-bold text-xl px-10 py-5 rounded-lg shadow-lg hover:bg-white hover:text-black transition-colors duration-200"
+                className="inline-block bg-primary hover:bg-primary-hover text-white font-bold text-xl px-12 py-4 rounded-lg shadow-lg transition-colors duration-200"
               >
-                Start Designing &rarr;
+                See More →
               </Link>
-            </div>
-            <div className="flex-1 flex justify-center">
-              <img
-                src="/modular-home-1.jpg"
-                alt="Design Your Own Modular Home"
-                className="w-full max-w-xl rounded-2xl shadow-2xl border-8 border-black object-cover"
-              />
             </div>
           </div>
         </div>

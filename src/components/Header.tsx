@@ -6,6 +6,7 @@ const Header: React.FC = () => {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileHouseTypesOpen, setMobileHouseTypesOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +16,12 @@ const Header: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Close mobile menu when location changes
+  useEffect(() => {
+    setMobileMenuOpen(false);
+    setMobileHouseTypesOpen(false);
+  }, [location.pathname]);
 
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -32,23 +39,30 @@ const Header: React.FC = () => {
     { name: 'Modern', path: '/modern' },
     { name: 'Mobile', path: '/mobile' },
     { name: 'Smart', path: '/smart' },
-    { name: 'Bungalow', path: '/bungalow' }
+    { name: 'Bungalow', path: '/bungalow' },
+    { name: 'Modular', path: '/modular' }
   ];
 
-  // Determine text color based on scroll state and current page
-  const isHomePage = location.pathname === '/';
-  const isTechnologyPage = location.pathname === '/technology';
-  const isHeroPage = isHomePage || isTechnologyPage;
-  const textColor = isHeroPage && !scrolled ? 'text-white' : 'text-white';
-  const hoverColor = 'hover:text-primary';
+  // Determine header styling based on page and scroll
+  const isHeroPage = location.pathname === '/';
+  const shouldBeTransparent = isHeroPage && !scrolled;
+  
+  const headerBgClass = shouldBeTransparent ? 'bg-transparent' : 'bg-white';
+  const headerShadowClass = shouldBeTransparent ? '' : 'shadow-md';
+  const textColor = shouldBeTransparent ? 'text-white' : 'text-black';
+  const hoverColor = shouldBeTransparent ? 'hover:text-primary' : 'hover:text-primary';
 
   const navLinkClassName = (currentPath: string, targetPath: string, neverBold = false) => {
     const isActive = currentPath === targetPath;
     return `${textColor} ${hoverColor} transition-colors duration-200${isActive && !neverBold ? ' font-bold' : ''}`;
   };
 
+  const handleMobileHouseTypesToggle = () => {
+    setMobileHouseTypesOpen(!mobileHouseTypesOpen);
+  };
+
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled || !isHeroPage ? 'bg-[#101A2C] shadow-md py-4' : 'bg-transparent py-6'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 ${headerBgClass} ${headerShadowClass} py-4 transition-all duration-300`}>
       <div className="container mx-auto px-4 flex items-center justify-between">
         <div className="flex items-center">
           <Link to="/" className="flex items-center group" onClick={handleLogoClick}>
@@ -101,10 +115,10 @@ const Header: React.FC = () => {
                 ))}
                 <div className="border-t my-1"></div>
                 <Link
-                  to="/design-yourself"
+                  to="/design-form"
                   className="block px-4 py-3 text-primary font-bold bg-primary/10 hover:bg-primary hover:text-white transition-colors duration-200 text-center rounded-b"
                 >
-                  Design Yourself
+                  Modular Houses
                 </Link>
               </div>
             </li>
@@ -143,23 +157,45 @@ const Header: React.FC = () => {
               <li><Link to="/technology" className="block text-gray-800 hover:text-primary transition-colors">Technology</Link></li>
               <li><Link to="/designs" className="block text-gray-800 hover:text-primary transition-colors">Designs</Link></li>
               
-              {/* Mobile House Types */}
+              {/* Mobile House Types with Nested Dropdown */}
               <li>
-                <div className="text-gray-600 font-medium mb-2">House Types:</div>
-                <ul className="ml-4 space-y-2">
-                  {houseTypes.map((type) => (
-                    <li key={type.name}>
-                      <Link to={type.path} className="block text-gray-700 hover:text-primary transition-colors">
-                        {type.name}
+                <button 
+                  onClick={handleMobileHouseTypesToggle}
+                  className="flex items-center justify-between w-full text-gray-800 hover:text-primary transition-colors"
+                >
+                  <span className="font-medium">House Types</span>
+                  <svg 
+                    className={`w-4 h-4 transition-transform duration-200 ${mobileHouseTypesOpen ? 'rotate-180' : ''}`} 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                
+                {mobileHouseTypesOpen && (
+                  <ul className="ml-4 mt-2 space-y-2 border-l-2 border-gray-200 pl-4">
+                    {houseTypes.map((type) => (
+                      <li key={type.name}>
+                        <Link 
+                          to={type.path} 
+                          className="block text-gray-700 hover:text-primary transition-colors py-1"
+                        >
+                          {type.name}
+                        </Link>
+                      </li>
+                    ))}
+                    <li className="mt-3 pt-2 border-t border-gray-200">
+                      <Link 
+                        to="/design-form" 
+                        className="block text-primary font-bold bg-primary/10 px-4 py-2 rounded hover:bg-primary hover:text-white transition-colors text-center"
+                      >
+                        Modular Houses
                       </Link>
                     </li>
-                  ))}
-                  <li className="mt-2">
-                    <Link to="/design-yourself" className="block text-primary font-bold bg-primary/10 px-4 py-2 rounded hover:bg-primary hover:text-white transition-colors text-center">
-                      Design Yourself
-                    </Link>
-                  </li>
-                </ul>
+                  </ul>
+                )}
               </li>
               
               <li><Link to="/gallery" className="block text-gray-800 hover:text-primary transition-colors">Gallery</Link></li>

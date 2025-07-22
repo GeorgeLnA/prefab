@@ -8,7 +8,6 @@ import SmartHouse from '../SmartHouse';
 import ProcessSimple from '../ProcessSimple';
 import TurnKey from '../TurnKey';
 import ReadyToStartSection from '../ReadyToStartSection';
-import StatsSection from '../StatsSection';
 import NoBuildPermissionSection from '../NoBuildPermissionSection';
 
 const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
@@ -18,7 +17,7 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
   const [isFirstSlideSticky, setIsFirstSlideSticky] = useState(true);
   const [showOverlayVideo, setShowOverlayVideo] = useState(false);
   const videos = [
-    "/Family_Enters_New_House_Video.mp4",
+    "/Now_make_a_202507222209.mp4",
     "/Begin_with_an_202507080107.mp4"
   ];
 
@@ -78,7 +77,6 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
               loop={currentVideo === 1}
               onEnded={handleVideoEnd}
               className="absolute inset-0 w-full h-full object-cover z-0"
-              poster="/Skandy%20120%20front-1%202.png"
             />
             
             {/* Text and Button Overlay */}
@@ -102,52 +100,70 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
           <section className='text-black'>
             <div className="relative z-10 w-full">
               {/* Strengths Section */}
-              <section className="bg-gray-900 py-8 strengths-section">
+              <section className="bg-white py-8 strengths-section">
                 <div className="w-full flex flex-col items-center">
                   <div className="flex flex-col md:flex-row gap-8 max-w-screen-2xl w-full mx-auto justify-center mt-24">
                     <div className="flex-1 text-center">
                       <h3 className="text-2xl font-heading font-light text-primary mb-1 uppercase">Energy Efficiency</h3>
-                      <p className="text-white text-lg font-body font-light max-w-sm mx-auto">A+++ rated, sustainable, and cost-saving performance.</p>
+                      <p className="text-black text-lg font-body font-light max-w-sm mx-auto">A+++ rated, sustainable, and cost-saving performance.</p>
                     </div>
                     <div className="flex-1 text-center">
                       <h3 className="text-2xl font-heading font-light text-primary mb-1 uppercase">Speed</h3>
-                      <p className="text-white text-lg font-body font-light max-w-sm mx-auto">Move-in ready in record time.</p>
+                      <p className="text-black text-lg font-body font-light max-w-sm mx-auto">Move-in ready in record time.</p>
                     </div>
                     <div className="flex-1 text-center">
                       <h3 className="text-2xl font-heading font-light text-primary mb-1 uppercase">Speed in Building</h3>
-                      <p className="text-white text-lg font-body font-light max-w-sm mx-auto">Move in within days thanks to precision engineering and rapid assembly.</p>
+                      <p className="text-black text-lg font-body font-light max-w-sm mx-auto">Move in within days thanks to precision engineering and rapid assembly.</p>
                     </div>
                     <div className="flex-1 text-center">
                       <h3 className="text-2xl font-heading font-light text-primary mb-1 uppercase">Eco-Friendly</h3>
-                      <p className="text-white text-lg font-body font-light max-w-sm mx-auto">Built with the environment in mind, using green materials and methods.</p>
+                      <p className="text-black text-lg font-body font-light max-w-sm mx-auto">Built with the environment in mind, using green materials and methods.</p>
                     </div>
                   </div>
                 </div>
               </section>
-              {/* 7 Day Houses section goes here */}
-              <HouseDesigns />
               <HouseTypes />
+              {/* Mobile 7 Day Houses - only show mobile version in normal scroll */}
+              <div className="block md:hidden">
+                <HouseDesigns />
+              </div>
             </div>
           </section>
 
-          {/* First slide: TurnKey slideshow */}
-          <section className='text-black sticky top-0 overflow-hidden'>
+          {/* First slide: 7 Day Houses slideshow (Desktop only) */}
+          <section className='text-black sticky top-0 overflow-hidden hidden md:block'>
+            <div className="relative z-10 w-full">
+              <HouseDesigns />
+            </div>
+          </section>
+
+          {/* Second slide: TurnKey slideshow */}
+          <section className='text-black sticky top-0 overflow-hidden hidden md:block'>
             <div className="relative z-10 w-full">
               <TurnKey />
             </div>
           </section>
 
-          {/* Second slide: NoBuildPermissionSection slideshow */}
-          <section className='text-black sticky top-0 overflow-hidden'>
+          {/* Mobile TurnKey - normal scroll */}
+          <div className="block md:hidden">
+            <TurnKey />
+          </div>
+
+          {/* Third slide: NoBuildPermissionSection slideshow (Desktop only) */}
+          <section className='text-black sticky top-0 overflow-hidden hidden md:block'>
             <div className="relative z-10 w-full">
               <NoBuildPermissionSection />
             </div>
           </section>
 
+          {/* Mobile NoBuildPermissionSection - normal scroll */}
+          <div className="block md:hidden">
+            <NoBuildPermissionSection />
+          </div>
+
           {/* Remaining content - normal scroll */}
           <section className='text-black'>
             <div className="relative z-10 w-full">
-              <StatsSection />
               <ReadyToStartSection />
             </div>
           </section>

@@ -38,10 +38,98 @@ const LoungePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 bg-white">
+      {/* Models Section */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-heading font-bold text-gray-800 mb-6">Lounge Models</h2>
+            <p className="text-xl font-body font-normal text-gray-600 max-w-3xl mx-auto">
+              Discover our range of Lounge models, each designed to provide the perfect balance of comfort, style, and functionality.
+            </p>
+          </div>
+
+          {/* Models Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {loungeHouses.map((house, index) => {
+              const originalIndex = houseData.findIndex(h => h.name === house.name);
+              return (
+                <div key={index} className="group relative overflow-hidden bg-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500">
+                  {/* Badge */}
+                  <div className="absolute top-4 left-4 z-10 bg-blue-600 text-white py-2 px-4 text-sm font-medium">
+                    VAULT STANDARD
+                  </div>
+                  {/* Lounge Badge */}
+                  <div className="absolute top-4 right-4 z-10 bg-primary text-white py-1 px-3 text-xs font-medium">
+                    LOUNGE
+                  </div>
+                  {/* Image */}
+                  <div className="relative overflow-hidden h-80">
+                    <img 
+                      src={house.imageUrl} 
+                      alt={house.name}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
+                      onClick={() => openLightbox(house.imageUrl)}
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
+                    {/* Overlay Info */}
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                      <h3 className="text-xl font-semibold mb-2">{house.name}</h3>
+                      <p className="text-sm opacity-90">Click to view full size</p>
+                    </div>
+                  </div>
+                  {/* House Details */}
+                  <div className="p-6">
+                    <h3 className="text-2xl font-medium text-gray-800 mb-3">{house.name}</h3>
+                    {house.description && (
+                      <p className="text-gray-600 mb-3">{house.description}</p>
+                    )}
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center justify-between">
+                        <span className="text-gray-600">Area:</span>
+                        <span className="font-medium">{house.squareFeet} ft² ({house.squareMeters} m²)</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-gray-600">Type:</span>
+                        <span className="font-medium">{house.type}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-gray-600">Price:</span>
+                        <span className="font-bold text-primary text-lg">£{house.price.toLocaleString()}</span>
+                      </div>
+                    </div>
+                    <div className="border-t pt-4">
+                      <div className="flex items-center text-sm text-gray-600 mb-3">
+                        <svg className="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        Passive House Certified
+                      </div>
+                      <Link 
+                        to={`/house/${originalIndex}`}
+                        className="block w-full bg-gray-900 text-white py-3 px-4 font-medium hover:bg-gray-800 transition-colors duration-200 text-center"
+                      >
+                        View Details &rarr;
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            {/* Removed colored heading */}
+            <h2 className="text-4xl font-heading font-bold text-gray-800 mb-6">Lounge Living</h2>
+            <p className="text-xl font-body font-normal text-gray-600 max-w-3xl mx-auto">
+              Our Lounge collection combines open-plan living, premium finishes, and energy efficiency for the ultimate in comfort and style.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -69,96 +157,6 @@ const LoungePage: React.FC = () => {
               <h3 className="text-xl font-semibold mb-2">Energy Efficient</h3>
               <p className="text-gray-600">Passive House certified designs for minimal environmental impact and low running costs</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Models Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-heading font-bold text-gray-800 mb-6">Lounge Models</h2>
-            <p className="text-xl font-body font-normal text-gray-600 max-w-3xl mx-auto">
-              Discover our range of Lounge models, each designed to provide the perfect 
-              balance of comfort, style, and functionality.
-            </p>
-          </div>
-
-          {/* Models Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {loungeHouses.map((house, index) => {
-              const originalIndex = houseData.findIndex(h => h.name === house.name);
-              return (
-                <div key={index} className="group relative overflow-hidden bg-white shadow-lg hover:shadow-2xl transition-all duration-500">
-                  {/* Badge */}
-                  <div className="absolute top-4 left-4 z-10 bg-blue-600 text-white py-2 px-4 text-sm font-medium">
-                    VAULT STANDARD
-                  </div>
-                  
-                  {/* Lounge Badge */}
-                  <div className="absolute top-4 right-4 z-10 bg-primary text-white py-1 px-3 text-xs font-medium">
-                    LOUNGE
-                  </div>
-                  
-                  {/* Image */}
-                  <div className="relative overflow-hidden h-80">
-                    <img 
-                      src={house.imageUrl} 
-                      alt={house.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
-                      onClick={() => openLightbox(house.imageUrl)}
-                    />
-                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
-                    
-                    {/* Overlay Info */}
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                      <h3 className="text-xl font-semibold mb-2">{house.name}</h3>
-                      <p className="text-sm opacity-90">Click to view full size</p>
-                    </div>
-                  </div>
-
-                  {/* House Details */}
-                  <div className="p-6">
-                    <h3 className="text-2xl font-medium text-gray-800 mb-3">{house.name}</h3>
-                    
-                    {house.description && (
-                      <p className="text-gray-600 mb-3">{house.description}</p>
-                    )}
-                    
-                    <div className="space-y-2 mb-4">
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-600">Area:</span>
-                        <span className="font-medium">{house.squareFeet} ft² ({house.squareMeters} m²)</span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-600">Type:</span>
-                        <span className="font-medium">{house.type}</span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-600">Price:</span>
-                        <span className="font-bold text-primary text-lg">£{house.price.toLocaleString()}</span>
-                      </div>
-                    </div>
-
-                    <div className="border-t pt-4">
-                      <div className="flex items-center text-sm text-gray-600 mb-3">
-                        <svg className="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                        Passive House Certified
-                      </div>
-                      
-                      <Link 
-                        to={`/house/${originalIndex}`}
-                        className="block w-full bg-gray-900 text-white py-3 px-4 font-medium hover:bg-gray-800 transition-colors duration-200 text-center"
-                      >
-                        View Details &rarr;
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
           </div>
         </div>
       </section>

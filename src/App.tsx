@@ -19,6 +19,7 @@ import ModernBPage from './pages/ModernBPage';
 import ModernPage from './pages/ModernPage';
 import ModularPage from './pages/ModularPage';
 import DesignYourselfPage from './pages/DesignYourselfPage';
+import DesignFormPage from './pages/DesignFormPage';
 import TechnologyPage from './pages/TechnologyPage';
 import SkandyPage from './pages/SkandyPage';
 import MobilePage from './pages/MobilePage';
@@ -57,6 +58,7 @@ function App() {
             <Route path="/modern" element={<ModernPage />} />
             <Route path="/modular" element={<ModularPage />} />
             <Route path="/design-yourself" element={<DesignYourselfPage />} />
+            <Route path="/design-form" element={<DesignFormPage />} />
             <Route path="/technology" element={<TechnologyPage />} />
             <Route path="/skandy" element={<SkandyPage />} />
             <Route path="/mobile" element={<MobilePage />} />
