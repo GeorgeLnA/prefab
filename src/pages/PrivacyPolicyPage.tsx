@@ -5,7 +5,7 @@ const PrivacyPolicyPage: React.FC = () => {
     <div className="pt-20">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800">
-        <div className="container mx-auto px-4">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-5xl font-light text-white mb-6">Privacy Policy</h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -19,7 +19,7 @@ const PrivacyPolicyPage: React.FC = () => {
 
       {/* Content Section */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto prose prose-lg">
             
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">1. Information We Collect</h2>

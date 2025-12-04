@@ -39,7 +39,7 @@ function App() {
       <ScrollToTop />
       <div className="font-body text-gray-800">
         <Header />
-        <main>
+        <main className="max-w-[1920px] mx-auto">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/designs" element={<DesignsPage />} />

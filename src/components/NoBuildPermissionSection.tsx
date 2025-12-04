@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const houses = [
   {
@@ -18,7 +17,7 @@ const houses = [
 
 const NoBuildPermissionSection: React.FC = () => (
   <section className="w-full bg-white flex flex-col items-center justify-center relative overflow-hidden py-16 md:py-20">
-    <div className="w-full max-w-5xl mx-auto flex flex-col items-center justify-center px-4">
+    <div className="w-full max-w-[1920px] mx-auto flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-black mb-4 md:mb-6 leading-tight text-center">
           HOUSES WITH <span className="text-primary font-light">NO BUILD PERMISSION</span>
         </h2>
@@ -29,7 +28,7 @@ const NoBuildPermissionSection: React.FC = () => (
         {houses.length} MODELS AVAILABLE
       </div>
       {/* Row of Houses - Mobile Optimized */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-16 mb-12 md:mb-16 w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 lg:gap-12 mb-12 md:mb-16 w-full">
         {houses.map((house, idx) => (
                                 <div key={idx} className="bg-gray-100 border border-gray-200 rounded-xl shadow-lg overflow-hidden flex flex-col hover:scale-105 transition-transform duration-300">
             <img src={house.image} alt={house.name} className="w-full h-40 md:h-48 object-cover" />
@@ -43,7 +42,7 @@ const NoBuildPermissionSection: React.FC = () => (
           </div>
         ))}
       </div>
-      <button className="mt-6 md:mt-8 bg-primary hover:bg-primary-hover text-white px-6 md:px-8 py-3 font-medium rounded transition-colors duration-200 text-base md:text-lg w-full max-w-xs md:w-auto">
+      <button className="mt-6 md:mt-8 bg-primary hover:bg-primary-hover text-white px-6 md:px-8 py-3 font-medium rounded-lg transition-colors duration-200 text-base md:text-lg w-full max-w-xs md:w-auto">
         Explore More
       </button>
     </div>

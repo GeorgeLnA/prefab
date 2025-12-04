@@ -11,7 +11,7 @@ const AboutPage: React.FC = () => {
           }}></div>
         </div>
         
-        <div className="container mx-auto px-4 relative">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
             <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">ABOUT PREFAB HOMES</div>
             <h1 className="text-5xl md:text-6xl font-heading font-bold text-white mb-6 leading-tight">
@@ -27,7 +27,7 @@ const AboutPage: React.FC = () => {
 
       {/* Placeholder Content Section */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="bg-gray-50 p-12 rounded-lg text-center">
               <div className="text-6xl text-gray-400 mb-6">✏️</div>
@@ -56,7 +56,7 @@ const AboutPage: React.FC = () => {
 
       {/* Stats Section (Generic) */}
       <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-light text-gray-800 mb-6 font-heading font-bold">Our Impact</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto font-body font-normal">
@@ -64,7 +64,7 @@ const AboutPage: React.FC = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
             <div className="text-center">
               <div className="text-4xl font-bold text-primary mb-2">150+</div>
               <div className="text-gray-600">Homes Delivered</div>

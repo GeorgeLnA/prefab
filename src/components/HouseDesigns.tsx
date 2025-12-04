@@ -5,7 +5,7 @@ import { houseData } from '../data/houses';
 const HouseDesigns: React.FC = () => {
   return (
     <section id="designs" className="min-h-[150vh] md:min-h-[140vh] lg:min-h-[130vh] w-full bg-gray-900 flex flex-col items-start justify-start relative overflow-hidden pb-20 md:pb-96 py-20 md:py-0">
-      <div className="w-full max-w-6xl mx-auto px-4 md:px-8 flex flex-col items-center justify-center">
+      <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
         {/* Move content higher */}
         <div className="mt-12 md:mt-16 lg:mt-20 xl:mt-24 text-center">
                               <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-6 md:mb-8 leading-tight">
@@ -21,7 +21,7 @@ const HouseDesigns: React.FC = () => {
         </div>
         
         {/* Improved grid layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-10 md:mb-12 w-full max-w-7xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-10 md:mb-12 w-full">
           {houseData.slice(0, 4).map((house, idx) => (
                                   <div key={idx} className="bg-gray-800 rounded-xl shadow-xl overflow-hidden flex flex-col hover:scale-105 hover:shadow-2xl transition-all duration-300">
               <img src={house.imageUrl} alt={house.name} className="w-full h-48 md:h-52 object-cover" />

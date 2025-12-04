@@ -35,13 +35,13 @@ const SkandyNordyPage: React.FC = () => {
         ></div>
         
         <div className="absolute inset-0 flex items-center justify-start z-20">
-          <div className="container mx-auto px-4">
+          <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl">
               <div className="text-primary text-sm uppercase tracking-wider mb-4">SKANDY-NORDY COLLECTION</div>
               <h1 className="text-5xl md:text-6xl font-heading font-bold text-white mb-6 leading-tight">
                 Nordic Harmony
                 <span className="relative">
-                  <div className="absolute -bottom-2 left-0 w-8 h-8 border-2 border-primary rounded-sm"></div>
+                  <div className="absolute -bottom-2 left-0 w-8 h-8 border-2 border-primary rounded-lg"></div>
                 </span>
               </h1>
               <p className="text-white text-xl font-body font-normal mb-8 leading-relaxed">
@@ -51,13 +51,13 @@ const SkandyNordyPage: React.FC = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a 
                   href="#models" 
-                  className="inline-block bg-primary hover:bg-primary-hover text-white px-8 py-3 font-medium transition-colors duration-200 rounded-sm"
+                  className="inline-block bg-primary hover:bg-primary-hover text-white px-8 py-3 font-medium transition-colors duration-200 rounded-lg"
                 >
                   Explore Nordic Designs &rarr;
                 </a>
                 <a 
                   href="#consultation" 
-                  className="inline-block border border-white text-white px-8 py-3 font-medium hover:bg-white hover:text-gray-900 transition-colors duration-200 rounded-sm"
+                  className="inline-block border border-white text-white px-8 py-3 font-medium hover:bg-white hover:text-gray-900 transition-colors duration-200 rounded-lg"
                 >
                   Schedule Visit
                 </a>
@@ -69,14 +69,14 @@ const SkandyNordyPage: React.FC = () => {
 
       {/* Philosophy Section */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
             <div>
               <div className="text-primary text-sm uppercase tracking-wider mb-4">NORDIC PHILOSOPHY</div>
               <h2 className="text-4xl font-heading font-bold text-gray-800 mb-6">
                 Embracing Simplicity
                 <span className="relative">
-                  <div className="absolute -bottom-2 left-0 w-8 h-8 border-2 border-primary rounded-sm"></div>
+                  <div className="absolute -bottom-2 left-0 w-8 h-8 border-2 border-primary rounded-lg"></div>
                 </span>
               </h2>
               <p className="text-xl text-gray-600 font-body font-normal mb-8 leading-relaxed">
@@ -121,8 +121,8 @@ const SkandyNordyPage: React.FC = () => {
                 className="w-full h-96 object-cover rounded-lg shadow-2xl"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
-              <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-primary rounded-sm opacity-20"></div>
-              <div className="absolute -bottom-4 -left-4 w-16 h-16 border-2 border-primary rounded-sm opacity-30"></div>
+              <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-primary rounded-lg opacity-20"></div>
+              <div className="absolute -bottom-4 -left-4 w-16 h-16 border-2 border-primary rounded-lg opacity-30"></div>
             </div>
           </div>
         </div>
@@ -130,7 +130,7 @@ const SkandyNordyPage: React.FC = () => {
 
       {/* Models Section */}
       <section id="models" className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="text-primary text-sm uppercase tracking-wider mb-4">SKANDY-NORDY MODELS</div>
             <h2 className="text-4xl font-heading font-bold text-gray-900 mb-6">Nordic Craftsmanship</h2>
@@ -139,7 +139,7 @@ const SkandyNordyPage: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {skandyNordyHouses.map((house, index) => {
               const originalIndex = houseData.findIndex(h => h.name === house.name);
               return (
@@ -157,7 +157,7 @@ const SkandyNordyPage: React.FC = () => {
                       <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-500"></div>
                       {/* Category Badge */}
                       <div className="absolute top-6 left-6">
-                        <div className="bg-primary text-white py-2 px-4 text-sm font-medium rounded-sm">
+                        <div className="bg-primary text-white py-2 px-4 text-sm font-medium rounded-lg">
                           SKANDY-NORDY
                         </div>
                       </div>
@@ -192,7 +192,7 @@ const SkandyNordyPage: React.FC = () => {
                       </div>
                       <Link 
                         to={`/house/${originalIndex}`}
-                        className="block w-full bg-primary hover:bg-primary-hover text-white py-3 px-4 font-medium transition-colors duration-200 text-center rounded-sm"
+                        className="block w-full bg-primary hover:bg-primary-hover text-white py-3 px-4 font-medium transition-colors duration-200 text-center rounded-lg"
                       >
                         View Details &rarr;
                       </Link>
@@ -207,7 +207,7 @@ const SkandyNordyPage: React.FC = () => {
 
       {/* Features Section */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             {/* Removed colored heading */}
             <h2 className="text-4xl font-heading font-bold text-gray-800 mb-6">Nordic Features</h2>
@@ -249,18 +249,18 @@ const SkandyNordyPage: React.FC = () => {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-primary to-primary-dark">
-        <div className="container mx-auto px-4 text-center">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-heading font-bold text-white mb-6">Embrace Nordic Living</h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
             Experience the tranquility and sustainability of Scandinavian design with our carefully crafted Skandy-Nordy collection.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-primary px-8 py-3 font-medium hover:bg-gray-100 transition-colors duration-200 rounded-sm">
+            <button className="bg-white text-primary px-8 py-3 font-medium hover:bg-gray-100 transition-colors duration-200 rounded-lg">
               Schedule Visit
             </button>
             <Link 
               to="/gallery"
-              className="border border-white text-white px-8 py-3 font-medium hover:bg-white hover:text-primary transition-colors duration-200 rounded-sm"
+              className="border border-white text-white px-8 py-3 font-medium hover:bg-white hover:text-primary transition-colors duration-200 rounded-lg"
             >
               View All Models
             </Link>

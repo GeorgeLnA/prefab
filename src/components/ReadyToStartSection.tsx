@@ -1,9 +1,10 @@
 import React from 'react';
+import { AnimatedButton } from './ui/animated-button';
 
 const ReadyToStartSection: React.FC = () => {
   return (
     <section className="py-20 bg-gradient-to-br from-primary to-primary-dark">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-4xl md:text-5xl font-light text-black mb-6 leading-tight">
             Ready to Start Your Journey?
@@ -31,12 +32,20 @@ const ReadyToStartSection: React.FC = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-black text-primary px-8 py-4 font-semibold hover:bg-white hover:text-black transition-colors duration-200 rounded-sm text-lg">
+            <AnimatedButton
+              asLink={true}
+              href="/contact"
+              variant="yellow"
+              className="px-8 py-4 font-semibold text-lg"
+            >
               Schedule Consultation
-            </button>
-            <button className="border-2 border-black text-black px-8 py-4 font-semibold hover:bg-black hover:text-primary transition-colors duration-200 rounded-sm text-lg">
+            </AnimatedButton>
+            <AnimatedButton
+              variant="yellow"
+              className="px-8 py-4 font-semibold text-lg"
+            >
               Download Brochure
-            </button>
+            </AnimatedButton>
           </div>
 
           <div className="mt-8 text-black/70 text-sm">

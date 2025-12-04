@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { houseData } from '../data/houses';
+import { AnimatedButton } from '../components/ui/animated-button';
 
 const HouseDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -17,7 +18,7 @@ const HouseDetailPage: React.FC = () => {
         <div className="text-center">
           <h1 className="text-4xl font-heading font-bold text-gray-800 mb-4">House Not Found</h1>
           <p className="text-gray-600 mb-8">The house you're looking for doesn't exist.</p>
-          <Link to="/gallery" className="bg-primary text-white px-6 py-3 font-medium hover:bg-primary-hover transition-colors">
+          <Link to="/gallery" className="bg-primary text-white px-6 py-3 font-medium hover:bg-primary-hover transition-colors rounded-lg">
             Back to Gallery
           </Link>
         </div>
@@ -68,7 +69,7 @@ const HouseDetailPage: React.FC = () => {
   return (
     <div className="pt-20">
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <nav className="mb-8">
             <div className="flex items-center space-x-2 text-sm text-gray-600">
@@ -98,7 +99,7 @@ const HouseDetailPage: React.FC = () => {
                   <button
                     key={index}
                     onClick={() => setActiveImageIndex(index)}
-                    className={`relative overflow-hidden rounded-md ${
+                    className={`relative overflow-hidden rounded-lg ${
                       activeImageIndex === index ? 'ring-2 ring-primary' : ''
                     }`}
                   >
@@ -115,7 +116,7 @@ const HouseDetailPage: React.FC = () => {
             {/* House Information */}
             <div>
               <div className="mb-6">
-                <div className="inline-block bg-blue-600 text-white py-1 px-3 text-sm font-medium mb-4">
+                <div className="inline-block bg-blue-600 text-white py-1 px-3 text-sm font-medium mb-4 rounded-lg">
                   VAULT STANDARD
                 </div>
                 <h1 className="text-4xl font-heading font-bold text-gray-800 mb-4">{house.name}</h1>
@@ -177,12 +178,20 @@ const HouseDetailPage: React.FC = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-primary hover:bg-primary-hover text-white px-8 py-3 font-medium transition-colors duration-200 flex-1">
+                <AnimatedButton
+                  asLink={true}
+                  href="/contact"
+                  variant="yellow"
+                  className="px-8 py-3 font-medium flex-1"
+                >
                   Request Quote
-                </button>
-                <button className="border border-gray-300 text-gray-800 px-8 py-3 font-medium hover:bg-gray-50 transition-colors duration-200 flex-1">
+                </AnimatedButton>
+                <AnimatedButton
+                  variant="yellow"
+                  className="px-8 py-3 font-medium flex-1"
+                >
                   Download Brochure
-                </button>
+                </AnimatedButton>
               </div>
             </div>
           </div>
@@ -300,7 +309,7 @@ const HouseDetailPage: React.FC = () => {
                     <p className="text-gray-600 mb-6">
                       Detailed architectural drawings and 3D floor plans are being prepared for this model.
                     </p>
-                    <button className="bg-primary text-white px-6 py-3 font-medium hover:bg-primary-hover transition-colors">
+                    <button className="bg-primary text-white px-6 py-3 font-medium hover:bg-primary-hover transition-colors rounded-lg">
                       Request Floor Plan
                     </button>
                   </div>
@@ -340,12 +349,20 @@ const HouseDetailPage: React.FC = () => {
                     </div>
                   </div>
                   <div className="mt-12 text-center">
-                    <button className="bg-primary text-white px-8 py-3 font-medium hover:bg-primary-hover transition-colors mr-4">
+                    <AnimatedButton
+                      asLink={true}
+                      href="/contact"
+                      variant="yellow"
+                      className="px-8 py-3 font-medium mr-4"
+                    >
                       Schedule Consultation
-                    </button>
-                    <button className="border border-gray-300 text-gray-800 px-8 py-3 font-medium hover:bg-gray-50 transition-colors">
+                    </AnimatedButton>
+                    <AnimatedButton
+                      variant="yellow"
+                      className="px-8 py-3 font-medium"
+                    >
                       View All Options
-                    </button>
+                    </AnimatedButton>
                   </div>
                 </div>
               )}

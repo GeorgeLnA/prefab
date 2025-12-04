@@ -12,8 +12,8 @@ const GalleryPage: React.FC = () => {
       title: 'Modern Family Home - Surrey',
       category: 'COMPLETED PROJECTS',
       type: 'image' as const,
-      thumbnail: '/Глеваха_1.jpg',
-      fullSrc: '/Глеваха_1.jpg',
+      thumbnail: '/modular-home-1.jpg',
+      fullSrc: '/modular-home-1.jpg',
       description: 'A stunning 3-bedroom modular home completed in just 4 days',
       details: {
         size: '1,400 sq ft',
@@ -144,7 +144,7 @@ const GalleryPage: React.FC = () => {
   return (
     <div className="pt-20">
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-light text-black mb-6 leading-tight text-center">Case Studies & Gallery</h1>
@@ -159,7 +159,7 @@ const GalleryPage: React.FC = () => {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 font-medium transition-all duration-300 ${
+                className={`px-6 py-3 font-medium transition-all duration-300 rounded-lg ${
                   selectedCategory === category
                     ? 'bg-primary text-white shadow-lg'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -171,16 +171,16 @@ const GalleryPage: React.FC = () => {
           </div>
 
           {/* Case Studies Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {filteredCaseStudies.map((study) => (
               <div key={study.id} className="group relative overflow-hidden bg-white shadow-lg hover:shadow-2xl transition-all duration-500 rounded-lg">
                 {/* Media Type Badge */}
-                <div className="absolute top-4 left-4 z-10 bg-primary text-white py-1 px-3 text-xs font-medium rounded-sm">
+                <div className="absolute top-4 left-4 z-10 bg-primary text-white py-1 px-3 text-xs font-medium rounded-lg">
                   {study.type === 'video' ? 'VIDEO' : 'PHOTO'}
                 </div>
                 
                 {/* Category Badge */}
-                <div className="absolute top-4 right-4 z-10 bg-gray-900 text-white py-1 px-3 text-xs font-medium rounded-sm">
+                <div className="absolute top-4 right-4 z-10 bg-gray-900 text-white py-1 px-3 text-xs font-medium rounded-lg">
                   {study.category}
                 </div>
                 

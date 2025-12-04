@@ -125,7 +125,7 @@ const FAQPage: React.FC = () => {
           }}></div>
         </div>
         
-        <div className="container mx-auto px-4 relative">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
             <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">FREQUENTLY ASKED QUESTIONS</div>
             <h1 className="text-5xl md:text-6xl font-heading font-bold text-white mb-6 leading-tight">
@@ -141,7 +141,7 @@ const FAQPage: React.FC = () => {
 
       {/* FAQ Content */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             {faqCategories.map((category, categoryIndex) => (
               <div key={categoryIndex} className="mb-12">
@@ -156,7 +156,7 @@ const FAQPage: React.FC = () => {
                       <div key={faqIndex} className="border border-gray-200 rounded-lg overflow-hidden">
                         <button
                           onClick={() => toggleFAQ(globalIndex)}
-                          className="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex items-center justify-between"
+                          className="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex items-center justify-between rounded-lg"
                         >
                           <span className="font-medium text-gray-800">{faq.question}</span>
                           <svg
@@ -188,7 +188,7 @@ const FAQPage: React.FC = () => {
 
       {/* Contact CTA */}
       <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-3xl font-light text-gray-800 mb-6">Still Have Questions?</h2>
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
@@ -198,13 +198,13 @@ const FAQPage: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
                 href="/contact"
-                className="bg-primary hover:bg-primary-hover text-white px-8 py-3 font-medium transition-colors duration-200 rounded-sm"
+                className="bg-primary hover:bg-primary-hover text-white px-8 py-3 font-medium transition-colors duration-200 rounded-lg"
               >
                 Contact Our Experts
               </a>
               <a 
                 href="tel:+447985602627"
-                className="border border-gray-300 text-gray-800 px-8 py-3 font-medium hover:bg-gray-50 transition-colors duration-200 rounded-sm"
+                className="border border-gray-300 text-gray-800 px-8 py-3 font-medium hover:bg-gray-50 transition-colors duration-200 rounded-lg"
               >
                 Call +44-798-5602627
               </a>

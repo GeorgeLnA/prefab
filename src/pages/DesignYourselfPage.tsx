@@ -30,12 +30,12 @@ const DesignYourselfPage: React.FC = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
-            backgroundImage: "url('/Глеваха_1.jpg')" 
+            backgroundImage: "url('/modular-home-1.jpg')" 
           }}
         ></div>
         
         <div className="absolute inset-0 flex items-center justify-center z-20">
-          <div className="container mx-auto px-4 text-center">
+          <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="max-w-4xl mx-auto">
               <div className="text-primary text-sm uppercase tracking-wider mb-4">OUR FLAGSHIP PRODUCT</div>
               <h1 className="text-5xl md:text-7xl font-light text-white mb-6 leading-tight">
@@ -58,7 +58,7 @@ const DesignYourselfPage: React.FC = () => {
 
       {/* Modular Houses Grid */}
       <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-light text-gray-900 mb-4">Our Modular Collection</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -87,7 +87,7 @@ const DesignYourselfPage: React.FC = () => {
                       
                       {/* Category Badge */}
                       <div className="absolute top-6 left-6">
-                        <div className="bg-primary text-white py-2 px-4 text-sm font-medium rounded-sm">
+                        <div className="bg-primary text-white py-2 px-4 text-sm font-medium rounded-lg">
                           MODULAR
                         </div>
                       </div>
@@ -127,14 +127,14 @@ const DesignYourselfPage: React.FC = () => {
 
                       <Link 
                         to={`/house/${originalIndex}`}
-                        className="block w-full bg-primary hover:bg-primary-hover text-white py-3 px-4 font-medium transition-colors duration-200 text-center rounded-sm mb-2"
+                        className="block w-full bg-primary hover:bg-primary-hover text-white py-3 px-4 font-medium transition-colors duration-200 text-center rounded-lg mb-2"
                       >
                         View Details →
                       </Link>
                       
                       <Link 
                         to="/design-form"
-                        className="block w-full border-2 border-primary text-primary hover:bg-primary hover:text-white py-3 px-4 font-medium transition-colors duration-200 text-center rounded-sm"
+                        className="block w-full border-2 border-primary text-primary hover:bg-primary hover:text-white py-3 px-4 font-medium transition-colors duration-200 text-center rounded-lg"
                       >
                         Customize This Design
                       </Link>
@@ -149,7 +149,7 @@ const DesignYourselfPage: React.FC = () => {
 
       {/* Process Section */}
       <section className="py-20 bg-gray-900">
-        <div className="container mx-auto px-4">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-light text-white mb-4">How It Works</h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
@@ -184,7 +184,7 @@ const DesignYourselfPage: React.FC = () => {
 
       {/* CTA Section */}
       <section className="py-20 bg-primary">
-        <div className="container mx-auto px-4 text-center">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-light text-white mb-6">Ready to Design Your Dream Home?</h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
             Our modular system gives you the freedom to create exactly what you envision. 

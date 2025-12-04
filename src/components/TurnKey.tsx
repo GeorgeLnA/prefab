@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const SmartChoice: React.FC = () => {
   return (
     <section id="smart-choice" className="py-16 md:py-20 lg:py-24 bg-gray-900">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-20 items-center">
           {/* Left Content */}
           <div className="space-y-4 md:space-y-6 lg:space-y-8">
@@ -19,7 +19,7 @@ const SmartChoice: React.FC = () => {
             </div>
 
             {/* Key Smart Features */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
               <div className="bg-gray-800/50 p-4 md:p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
                 <div className="flex items-center mb-3 md:mb-4">
                   <div className="bg-primary/20 p-2 md:p-3 rounded-lg mr-3 md:mr-4">
@@ -97,8 +97,8 @@ const SmartChoice: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             </div>
             {/* Decorative Elements - Hidden on mobile */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-primary rounded-sm opacity-20 hidden md:block"></div>
-            <div className="absolute -bottom-4 -left-4 w-16 h-16 border-2 border-primary rounded-sm opacity-30 hidden md:block"></div>
+            <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-primary rounded-lg opacity-20 hidden md:block"></div>
+            <div className="absolute -bottom-4 -left-4 w-16 h-16 border-2 border-primary rounded-lg opacity-30 hidden md:block"></div>
           </div>
         </div>
       </div>

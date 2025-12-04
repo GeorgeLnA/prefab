@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AnimatedButton } from '../components/ui/animated-button';
 
 const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -20,7 +21,6 @@ const ContactPage: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission
-    console.log('Form submitted:', formData);
   };
 
   return (
@@ -32,7 +32,7 @@ const ContactPage: React.FC = () => {
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}></div>
         </div>
-        <div className="container mx-auto px-4 relative">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
             <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">GET IN TOUCH</div>
             <h1 className="text-5xl md:text-6xl font-heading font-bold text-white mb-6 leading-tight">
@@ -48,7 +48,7 @@ const ContactPage: React.FC = () => {
 
       {/* Contact Form & Info Section */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Contact Form */}
             <div>
@@ -71,7 +71,7 @@ const ContactPage: React.FC = () => {
                         required
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                         placeholder="Your full name"
                       />
                     </div>
@@ -86,7 +86,7 @@ const ContactPage: React.FC = () => {
                         required
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                         placeholder="your@email.com"
                       />
                     </div>
@@ -103,7 +103,7 @@ const ContactPage: React.FC = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                         placeholder="+44 123 456 7890"
                       />
                     </div>
@@ -116,7 +116,7 @@ const ContactPage: React.FC = () => {
                         name="projectType"
                         value={formData.projectType}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                       >
                         <option value="">Select project type</option>
                         <option value="modular">Modular Home</option>
@@ -138,7 +138,7 @@ const ContactPage: React.FC = () => {
                       name="budget"
                       value={formData.budget}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                     >
                       <option value="">Select budget range</option>
                       <option value="250-300k">£250,000 - £300,000</option>
@@ -159,17 +159,18 @@ const ContactPage: React.FC = () => {
                       rows={6}
                       value={formData.message}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                       placeholder="Tell us about your project, timeline, location, and any specific requirements..."
                     ></textarea>
                   </div>
 
-                  <button
+                  <AnimatedButton
                     type="submit"
-                    className="w-full bg-primary hover:bg-primary-hover text-white px-8 py-4 font-medium transition-colors duration-200 rounded-sm"
+                    variant="yellow"
+                    className="w-full px-8 py-4 font-medium"
                   >
                     Send Message
-                  </button>
+                  </AnimatedButton>
                 </form>
               </div>
             </div>
@@ -283,7 +284,7 @@ const ContactPage: React.FC = () => {
 
       {/* Map Section */}
       <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-light text-gray-800 mb-4 font-heading font-bold">Find Us</h2>
             <p className="text-gray-600 font-body font-normal">Visit our showroom to see our prefab homes up close</p>

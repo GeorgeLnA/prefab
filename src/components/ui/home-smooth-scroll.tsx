@@ -4,8 +4,6 @@ import React, { forwardRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HouseTypes from '../HouseTypes';
 import HouseDesigns from '../HouseDesigns';
-import SmartHouse from '../SmartHouse';
-import ProcessSimple from '../ProcessSimple';
 import TurnKey from '../TurnKey';
 import ReadyToStartSection from '../ReadyToStartSection';
 import NoBuildPermissionSection from '../NoBuildPermissionSection';
@@ -15,7 +13,6 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
   const [currentVideo, setCurrentVideo] = useState(0);
   const [showButton, setShowButton] = useState(true);
   const [isFirstSlideSticky, setIsFirstSlideSticky] = useState(true);
-  const [showOverlayVideo, setShowOverlayVideo] = useState(false);
   const videos = [
     "/Now_make_a_202507222209.mp4",
     "/Begin_with_an_202507080107.mp4"
@@ -47,7 +44,6 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
         const rect = strengthsSection.getBoundingClientRect();
         const isPastStrengths = rect.bottom < 0;
         setIsFirstSlideSticky(!isPastStrengths);
-        setShowOverlayVideo(isPastStrengths);
       }
     };
 
@@ -102,7 +98,7 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
               {/* Strengths Section */}
               <section className="bg-white py-8 strengths-section">
                 <div className="w-full flex flex-col items-center">
-                  <div className="flex flex-col md:flex-row gap-8 max-w-screen-2xl w-full mx-auto justify-center mt-24">
+                  <div className="flex flex-col md:flex-row gap-8 max-w-[1920px] w-full mx-auto px-4 sm:px-6 lg:px-8 justify-center mt-24">
                     <div className="flex-1 text-center">
                       <h3 className="text-2xl font-heading font-light text-primary mb-1 uppercase">Energy Efficiency</h3>
                       <p className="text-black text-lg font-body font-light max-w-sm mx-auto">A+++ rated, sustainable, and cost-saving performance.</p>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-900 text-white py-12">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4">PREFAB HOMES</h3>

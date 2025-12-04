@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { houseData } from '../data/houses';
+import { AnimatedButton } from './ui/animated-button';
 
 const HouseTypes: React.FC = () => {
   const houseTypes = [
@@ -59,7 +60,7 @@ const HouseTypes: React.FC = () => {
 
   return (
     <section className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-light text-black mb-6 leading-tight text-center">
@@ -71,7 +72,7 @@ const HouseTypes: React.FC = () => {
         </div>
 
         {/* House Types Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 lg:gap-8">
           {houseTypes.map((type, index) => (
             <div 
               key={index} 
@@ -87,7 +88,7 @@ const HouseTypes: React.FC = () => {
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
                 
                 {/* Type Badge */}
-                <div className="absolute top-4 left-4 bg-primary text-white py-2 px-4 text-sm font-medium">
+                <div className="absolute top-4 left-4 bg-primary text-white py-2 px-4 text-sm font-medium rounded-lg">
                   {type.name.toUpperCase()}
                 </div>
               </div>
@@ -114,7 +115,7 @@ const HouseTypes: React.FC = () => {
                   <span className="text-lg font-bold text-primary">{type.price}</span>
                   <Link 
                     to={type.path}
-                    className="bg-gray-900 text-white px-4 py-2 text-sm font-medium hover:bg-gray-800 transition-colors duration-200"
+                    className="bg-gray-900 text-white px-4 py-2 text-sm font-medium hover:bg-gray-800 transition-colors duration-200 rounded-lg"
                   >
                     View Models &rarr;
                   </Link>
@@ -137,7 +138,7 @@ const HouseTypes: React.FC = () => {
             </div>
 
             {/* Modular Houses Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
               {modularHouses.map((house, index) => (
                 <div key={index} className="bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300">
                   <img src={house.imageUrl} alt={house.name} className="w-full h-48 object-cover" />
@@ -174,15 +175,22 @@ const HouseTypes: React.FC = () => {
               lifestyle, budget, and preferences.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-primary hover:bg-primary-hover text-white px-8 py-3 font-medium transition-colors duration-200">
+              <AnimatedButton
+                asLink={true}
+                href="/contact"
+                variant="yellow"
+                className="px-8 py-3 font-medium"
+              >
                 Schedule Consultation
-              </button>
-              <Link 
-                to="/designs"
-                className="border border-gray-300 text-gray-800 px-8 py-3 font-medium hover:bg-gray-50 transition-colors duration-200"
+              </AnimatedButton>
+              <AnimatedButton
+                asLink={true}
+                href="/designs"
+                variant="yellow"
+                className="px-8 py-3 font-medium"
               >
                 Browse All Designs
-              </Link>
+              </AnimatedButton>
             </div>
           </div>
         </div>

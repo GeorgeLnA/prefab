@@ -43,10 +43,9 @@ const DesignFormPage: React.FC = () => {
     preferredContact: 'Email'
   });
 
-  const modularBases = houseData.filter(h => h.category === 'MODULAR');
   const allBases = houseData;
 
-  const handleInputChange = (field: string, value: any) => {
+  const handleInputChange = (field: string, value: string | number | boolean) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
@@ -57,13 +56,13 @@ const DesignFormPage: React.FC = () => {
   const prevStep = () => setStep(prev => prev - 1);
 
   const handleSubmit = () => {
-    console.log('Form submitted:', formData);
     alert('Design form submitted successfully! We will contact you soon.');
   };
 
   return (
     <div className="pt-24 min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 max-w-4xl">
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-primary mb-4">DESIGN YOUR DREAM HOME</h1>
           <p className="text-xl text-gray-600">Let's create something amazing together</p>
@@ -556,6 +555,7 @@ const DesignFormPage: React.FC = () => {
               </div>
             </div>
           )}
+        </div>
         </div>
       </div>
     </div>

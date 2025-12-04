@@ -20,7 +20,7 @@ const DesignsPage: React.FC = () => {
   return (
     <div className="pt-20">
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center mb-16">
             <h1 className="text-5xl font-light text-gray-800 mb-6">House Designs</h1>
@@ -36,7 +36,7 @@ const DesignsPage: React.FC = () => {
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 font-medium transition-all duration-300 ${
+                className={`px-6 py-3 font-medium transition-all duration-300 rounded-lg ${
                   selectedCategory === category
                     ? 'bg-primary text-white shadow-lg'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -48,11 +48,11 @@ const DesignsPage: React.FC = () => {
           </div>
 
           {/* Designs Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {filteredHouses.map((house, index) => {
               const originalIndex = houseData.findIndex(h => h.name === house.name);
               return (
-                <div key={index} className="group relative overflow-hidden bg-white shadow-lg hover:shadow-2xl transition-all duration-500">
+                <div key={index} className="group relative overflow-hidden bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500">
                   {/* IN STOCK label (if applicable) */}
                   {house.inStock && (
                     <div className="absolute top-4 left-4 z-10 bg-primary text-white py-2 px-4 text-sm font-bold rounded-r-full shadow-lg">
@@ -61,7 +61,7 @@ const DesignsPage: React.FC = () => {
                   )}
                   
                   {/* Category Badge */}
-                  <div className="absolute top-4 right-4 z-10 bg-primary text-white py-1 px-3 text-xs font-medium">
+                  <div className="absolute top-4 right-4 z-10 bg-primary text-white py-1 px-3 text-xs font-medium rounded-lg">
                     {house.category}
                   </div>
                   
@@ -119,7 +119,7 @@ const DesignsPage: React.FC = () => {
                       
                       <Link 
                         to={`/house/${originalIndex}`}
-                        className="block w-full bg-gray-900 text-white py-3 px-4 font-medium hover:bg-gray-800 transition-colors duration-200 text-center"
+                        className="block w-full bg-gray-900 text-white py-3 px-4 font-medium hover:bg-gray-800 transition-colors duration-200 text-center rounded-lg"
                       >
                         View Details &rarr;
                       </Link>
@@ -131,7 +131,7 @@ const DesignsPage: React.FC = () => {
           </div>
 
           {/* Stats Section */}
-          <div className="mt-20 bg-gray-50 py-16 px-8">
+          <div className="mt-20 bg-gray-50 py-16 px-8 rounded-lg">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
               <div>
                 <div className="text-4xl font-bold text-primary mb-2">{houseData.length}+</div>

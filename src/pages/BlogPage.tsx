@@ -75,7 +75,7 @@ SIP building is not only about how the panels are made—it's about how you use 
       date: "March 8, 2024",
       readTime: "8 min read",
       category: "Construction",
-      image: "/Глеваха_1.jpg",
+      image: "/modular-home-1.jpg",
       content: `When considering a new home, one of the biggest decisions you'll face is choosing between modular and traditional construction. Both methods have their advantages, but understanding the differences can help you make the best choice for your situation.
 
 **Construction Timeline**
@@ -147,7 +147,7 @@ The future of prefab living is smart, connected, and responsive to our needs. As
           }}></div>
         </div>
         
-        <div className="container mx-auto px-4 relative">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
             <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">INSIGHTS & EXPERTISE</div>
             <h1 className="text-5xl md:text-6xl font-heading font-bold text-white mb-6 leading-tight">
@@ -163,8 +163,8 @@ The future of prefab living is smart, connected, and responsive to our needs. As
 
       {/* Blog Posts Grid */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
             {blogPosts.map((post, index) => (
               <article 
                 key={post.id} 
@@ -184,13 +184,13 @@ The future of prefab living is smart, connected, and responsive to our needs. As
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
                     
                     {/* Category Badge */}
-                    <div className="absolute top-4 left-4 bg-primary text-white py-2 px-4 text-sm font-medium rounded-sm">
+                    <div className="absolute top-4 left-4 bg-primary text-white py-2 px-4 text-sm font-medium rounded-lg">
                       {post.category}
                     </div>
                     
                     {/* Read More Overlay */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      <div className="bg-primary text-white py-3 px-6 rounded-sm font-medium">
+                      <div className="bg-primary text-white py-3 px-6 rounded-lg font-medium">
                         Read Full Article
                       </div>
                     </div>
@@ -237,9 +237,9 @@ The future of prefab living is smart, connected, and responsive to our needs. As
               <input 
                 type="email" 
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-sm border-0 focus:outline-none focus:ring-2 focus:ring-white"
+                className="flex-1 px-4 py-3 rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-white"
               />
-              <button className="bg-white text-primary px-8 py-3 font-medium hover:bg-gray-100 transition-colors duration-200 rounded-sm">
+              <button className="bg-white text-primary px-8 py-3 font-medium hover:bg-gray-100 transition-colors duration-200 rounded-lg">
                 Subscribe
               </button>
             </div>
@@ -264,7 +264,7 @@ The future of prefab living is smart, connected, and responsive to our needs. As
               >
                 ×
               </button>
-              <div className="absolute bottom-4 left-4 bg-primary text-white py-2 px-4 text-sm font-medium rounded-sm">
+              <div className="absolute bottom-4 left-4 bg-primary text-white py-2 px-4 text-sm font-medium rounded-lg">
                 {selectedPostData.category}
               </div>
             </div>
@@ -303,12 +303,12 @@ The future of prefab living is smart, connected, and responsive to our needs. As
                 <div className="flex items-center space-x-4 mb-4 sm:mb-0">
                   <span className="text-gray-600">Share this article:</span>
                   <div className="flex space-x-2">
-                    <button className="bg-gray-100 hover:bg-gray-200 p-2 rounded-sm transition-colors duration-200">
+                    <button className="bg-gray-100 hover:bg-gray-200 p-2 rounded-lg transition-colors duration-200">
                       <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
                       </svg>
                     </button>
-                    <button className="bg-gray-100 hover:bg-gray-200 p-2 rounded-sm transition-colors duration-200">
+                    <button className="bg-gray-100 hover:bg-gray-200 p-2 rounded-lg transition-colors duration-200">
                       <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
                       </svg>
@@ -317,7 +317,7 @@ The future of prefab living is smart, connected, and responsive to our needs. As
                 </div>
                 <button 
                   onClick={closePost}
-                  className="bg-primary hover:bg-primary-hover text-white px-6 py-2 rounded-sm font-medium transition-colors duration-200"
+                  className="bg-primary hover:bg-primary-hover text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200"
                 >
                   Close Article
                 </button>

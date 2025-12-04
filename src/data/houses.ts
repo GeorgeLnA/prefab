@@ -124,7 +124,7 @@ export const houseData: HouseType[] = [
     type: "2-STOREY",
     category: "SKANDY-NORDY",
     description: "Scandinavian design with enhanced features and luxury finishes in a natural forest setting",
-    additionalImages: ["/Skandy%20120%20front-1%202.png", "/Skandy%20120%20front-1%20Medium.png", "/Nordy-65-3D-2.jpg"]
+    additionalImages: ["/Skandy%20120%20front-1%202.png", "/Nordy-65-3D-2.jpg", "/skandy-120-3d-1.jpg"]
   },
   
   // Modern-B Houses

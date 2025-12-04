@@ -8,7 +8,7 @@ const TechnologyPage: React.FC = () => {
       <SmoothScroll />
 
       {/* CALL TO ACTION - MUCH BIGGER */}
-      <section className="container mx-auto px-4 py-32">
+      <section className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-32">
         <h2 className="text-4xl md:text-5xl font-extrabold font-heading text-primary mb-8 text-center">Ready to Experience Our Technology?</h2>
         <p className="text-2xl text-gray-700 mb-10 text-center max-w-3xl mx-auto font-body font-normal">
           Discover how our innovative prefab technology can transform your living experience. From concept to completion, we're here to guide you through every step of the process.
@@ -23,7 +23,7 @@ const TechnologyPage: React.FC = () => {
           </p>
           <a 
             href="/contact" 
-            className="inline-block bg-primary hover:bg-primary-hover text-white px-12 py-4 text-xl font-bold rounded transition-colors duration-200 shadow-lg"
+            className="inline-block bg-primary hover:bg-primary-hover text-white px-12 py-4 text-xl font-bold rounded-lg transition-colors duration-200 shadow-lg"
           >
             Get Started Today
           </a>

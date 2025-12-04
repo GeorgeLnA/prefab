@@ -21,7 +21,7 @@ const LoungePage: React.FC = () => {
       {/* Hero Section */}
       <section className="relative h-96 bg-gradient-to-r from-primary to-primary-dark">
         <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative container mx-auto px-4 h-full flex items-center">
+        <div className="relative max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <div className="text-white">
             <h1 className="text-5xl font-heading font-bold mb-4">Lounge Collection</h1>
             <p className="text-xl font-body font-normal mb-6 max-w-2xl">
@@ -29,7 +29,7 @@ const LoungePage: React.FC = () => {
               combines relaxation with modern design for the ultimate living experience.
             </p>
             <div className="flex items-center space-x-4">
-              <span className="bg-white text-primary px-4 py-2 font-medium">
+              <span className="bg-white text-primary px-4 py-2 font-medium rounded-lg">
                 {loungeHouses.length} Models Available
               </span>
               <span className="text-white/80">Starting from £285,000</span>
@@ -40,7 +40,7 @@ const LoungePage: React.FC = () => {
 
       {/* Models Section */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-heading font-bold text-gray-800 mb-6">Lounge Models</h2>
             <p className="text-xl font-body font-normal text-gray-600 max-w-3xl mx-auto">
@@ -53,13 +53,13 @@ const LoungePage: React.FC = () => {
             {loungeHouses.map((house, index) => {
               const originalIndex = houseData.findIndex(h => h.name === house.name);
               return (
-                <div key={index} className="group relative overflow-hidden bg-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500">
+                <div key={index} className="group relative overflow-hidden bg-gray-100 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500">
                   {/* Badge */}
-                  <div className="absolute top-4 left-4 z-10 bg-blue-600 text-white py-2 px-4 text-sm font-medium">
+                  <div className="absolute top-4 left-4 z-10 bg-blue-600 text-white py-2 px-4 text-sm font-medium rounded-lg">
                     VAULT STANDARD
                   </div>
                   {/* Lounge Badge */}
-                  <div className="absolute top-4 right-4 z-10 bg-primary text-white py-1 px-3 text-xs font-medium">
+                  <div className="absolute top-4 right-4 z-10 bg-primary text-white py-1 px-3 text-xs font-medium rounded-lg">
                     LOUNGE
                   </div>
                   {/* Image */}
@@ -106,7 +106,7 @@ const LoungePage: React.FC = () => {
                       </div>
                       <Link 
                         to={`/house/${originalIndex}`}
-                        className="block w-full bg-gray-900 text-white py-3 px-4 font-medium hover:bg-gray-800 transition-colors duration-200 text-center"
+                        className="block w-full bg-gray-900 text-white py-3 px-4 font-medium hover:bg-gray-800 transition-colors duration-200 text-center rounded-lg"
                       >
                         View Details &rarr;
                       </Link>
@@ -121,7 +121,7 @@ const LoungePage: React.FC = () => {
 
       {/* Features Section */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             {/* Removed colored heading */}
             <h2 className="text-4xl font-heading font-bold text-gray-800 mb-6">Lounge Living</h2>
@@ -163,19 +163,19 @@ const LoungePage: React.FC = () => {
 
       {/* CTA Section */}
       <section className="py-20 bg-primary">
-        <div className="container mx-auto px-4 text-center">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-heading font-bold text-white mb-6">Ready to Build Your Lounge Home?</h2>
           <p className="text-xl font-body font-normal text-white/90 mb-8 max-w-2xl mx-auto">
             Contact our design team to customize your perfect Lounge model or schedule a consultation 
             to explore all available options.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-primary px-8 py-3 font-medium hover:bg-gray-100 transition-colors duration-200">
+            <button className="bg-white text-primary px-8 py-3 font-medium hover:bg-gray-100 transition-colors duration-200 rounded-lg">
               Schedule Consultation
             </button>
             <Link 
               to="/gallery"
-              className="border border-white text-white px-8 py-3 font-medium hover:bg-white hover:text-primary transition-colors duration-200"
+              className="border border-white text-white px-8 py-3 font-medium hover:bg-white hover:text-primary transition-colors duration-200 rounded-lg"
             >
               View All Models
             </Link>

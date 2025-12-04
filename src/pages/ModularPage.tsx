@@ -35,13 +35,13 @@ const ModularPage: React.FC = () => {
         ></div>
         
         <div className="absolute inset-0 flex items-center justify-start z-20">
-          <div className="container mx-auto px-4">
+          <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl">
               <div className="text-primary text-sm uppercase tracking-wider mb-4">MODULAR COLLECTION</div>
               <h1 className="text-5xl md:text-6xl font-heading font-bold text-white mb-6 leading-tight">
                 Flexible Living
                 <span className="relative">
-                  <div className="absolute -bottom-2 left-0 w-8 h-8 border-2 border-primary rounded-sm"></div>
+                  <div className="absolute -bottom-2 left-0 w-8 h-8 border-2 border-primary rounded-lg"></div>
                 </span>
               </h1>
               <p className="text-white text-xl font-body font-normal mb-8 leading-relaxed">
@@ -51,13 +51,13 @@ const ModularPage: React.FC = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a 
                   href="#models" 
-                  className="inline-block bg-primary hover:bg-primary-hover text-white px-8 py-3 font-medium transition-colors duration-200 rounded-sm"
+                  className="inline-block bg-primary hover:bg-primary-hover text-white px-8 py-3 font-medium transition-colors duration-200 rounded-lg"
                 >
                   Explore Models &rarr;
                 </a>
                 <a 
                   href="#consultation" 
-                  className="inline-block border border-white text-white px-8 py-3 font-medium hover:bg-white hover:text-gray-900 transition-colors duration-200 rounded-sm"
+                  className="inline-block border border-white text-white px-8 py-3 font-medium hover:bg-white hover:text-gray-900 transition-colors duration-200 rounded-lg"
                 >
                   Plan Your Modules
                 </a>
@@ -69,7 +69,7 @@ const ModularPage: React.FC = () => {
 
       {/* Features Section */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="text-primary text-sm uppercase tracking-wider mb-4">MODULAR ADVANTAGES</div>
             <h2 className="text-4xl font-heading font-bold text-gray-800 mb-6">Modular Flexibility</h2>
@@ -78,7 +78,7 @@ const ModularPage: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                 <svg className="w-10 h-10 text-primary group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -124,7 +124,7 @@ const ModularPage: React.FC = () => {
 
       {/* Models Section */}
       <section id="models" className="py-20 bg-gray-900">
-        <div className="container mx-auto px-4">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="text-primary text-sm uppercase tracking-wider mb-4">MODULAR MODELS</div>
             <h2 className="text-4xl font-heading font-bold text-white mb-6">Available Configurations</h2>
@@ -133,7 +133,7 @@ const ModularPage: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {modularHouses.map((house, index) => {
               const originalIndex = houseData.findIndex(h => h.name === house.name);
               return (
@@ -153,7 +153,7 @@ const ModularPage: React.FC = () => {
                       
                       {/* Category Badge */}
                       <div className="absolute top-6 left-6">
-                        <div className="bg-primary text-white py-2 px-4 text-sm font-medium rounded-sm">
+                        <div className="bg-primary text-white py-2 px-4 text-sm font-medium rounded-lg">
                           MODULAR
                         </div>
                       </div>
@@ -193,7 +193,7 @@ const ModularPage: React.FC = () => {
 
                       <Link 
                         to={`/house/${originalIndex}`}
-                        className="block w-full bg-primary hover:bg-primary-hover text-white py-3 px-4 font-medium transition-colors duration-200 text-center rounded-sm"
+                        className="block w-full bg-primary hover:bg-primary-hover text-white py-3 px-4 font-medium transition-colors duration-200 text-center rounded-lg"
                       >
                         View Details &rarr;
                       </Link>
@@ -208,18 +208,18 @@ const ModularPage: React.FC = () => {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-primary to-primary-dark">
-        <div className="container mx-auto px-4 text-center">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-heading font-bold text-white mb-6">Build Your Future, One Module at a Time</h2>
           <p className="text-xl text-white/90 font-body font-normal mb-8 max-w-2xl mx-auto">
             Start with what you need today and expand tomorrow with our flexible modular construction system.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-primary px-8 py-3 font-medium hover:bg-gray-100 transition-colors duration-200 rounded-sm">
+            <button className="bg-white text-primary px-8 py-3 font-medium hover:bg-gray-100 transition-colors duration-200 rounded-lg">
               Plan Your Modules
             </button>
             <Link 
               to="/gallery"
-              className="border border-white text-white px-8 py-3 font-medium hover:bg-white hover:text-primary transition-colors duration-200 rounded-sm"
+              className="border border-white text-white px-8 py-3 font-medium hover:bg-white hover:text-primary transition-colors duration-200 rounded-lg"
             >
               View All Models
             </Link>
