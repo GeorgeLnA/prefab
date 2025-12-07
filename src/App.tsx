@@ -20,10 +20,8 @@ import SkandyNordyPage from './pages/SkandyNordyPage';
 import ModernBPage from './pages/ModernBPage';
 import ModernPage from './pages/ModernPage';
 import ModularPage from './pages/ModularPage';
-import DesignYourselfPage from './pages/DesignYourselfPage';
 import DesignFormPage from './pages/DesignFormPage';
 import TechnologyPage from './pages/TechnologyPage';
-import SkandyPage from './pages/SkandyPage';
 import MobilePage from './pages/MobilePage';
 import BungalowPage from './pages/BungalowPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -55,17 +53,15 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="/terms-of-service" element={<TermsOfServicePage />} />
-            <Route path="/house/:id" element={<HouseDetailPage />} />
+            <Route path="/house/:slug" element={<HouseDetailPage />} />
             <Route path="/lounge" element={<LoungePage />} />
             <Route path="/smart" element={<SmartPage />} />
             <Route path="/skandy-nordy" element={<SkandyNordyPage />} />
             <Route path="/modern-b" element={<ModernBPage />} />
             <Route path="/modern" element={<ModernPage />} />
             <Route path="/modular" element={<ModularPage />} />
-            <Route path="/design-yourself" element={<DesignYourselfPage />} />
             <Route path="/design-form" element={<DesignFormPage />} />
             <Route path="/technology" element={<TechnologyPage />} />
-            <Route path="/skandy" element={<SkandyPage />} />
             <Route path="/mobile" element={<MobilePage />} />
             <Route path="/bungalow" element={<BungalowPage />} />
             <Route path="*" element={<NotFoundPage />} />

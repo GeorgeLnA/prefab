@@ -9,7 +9,7 @@ interface AnimatedButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButton
   className?: string;
   asLink?: boolean;
   href?: string;
-  variant?: 'primary' | 'secondary' | 'white' | 'whiteOnYellow' | 'yellow' | 'yellowOnWhite' | 'greyToYellow' | 'dark';
+  variant?: 'primary' | 'secondary' | 'white' | 'whiteOnYellow' | 'yellow' | 'yellowOnWhite' | 'greyToYellow' | 'greyToWhite' | 'whiteToGrey' | 'dark';
 }
 
 const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
@@ -55,12 +55,12 @@ const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
           bottomText: 'text-black',
         };
       } else if (variant === 'whiteOnYellow') {
-        // White button on yellow background: white → grey
+        // White button on yellow background: white → white
         return {
           topBg: 'bg-white',
           topText: 'text-gray-900',
-          bottomBg: 'bg-gray-900',
-          bottomText: 'text-white',
+          bottomBg: 'bg-white',
+          bottomText: 'text-gray-900',
         };
       } else if (variant === 'yellowOnWhite') {
         // Yellow button on white background: yellow → grey
@@ -71,12 +71,28 @@ const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
           bottomText: 'text-white',
         };
       } else if (variant === 'greyToYellow') {
-        // Grey button: grey → white (for Download Brochure buttons)
+        // Grey button: grey → yellow (brand yellow)
+        return {
+          topBg: 'bg-gray-900',
+          topText: 'text-white',
+          bottomBg: 'bg-primary',
+          bottomText: 'text-black',
+        };
+      } else if (variant === 'greyToWhite') {
+        // Grey button: grey → white
         return {
           topBg: 'bg-gray-900',
           topText: 'text-white',
           bottomBg: 'bg-white',
           bottomText: 'text-gray-900',
+        };
+      } else if (variant === 'whiteToGrey') {
+        // White button: white → grey
+        return {
+          topBg: 'bg-white',
+          topText: 'text-gray-900',
+          bottomBg: 'bg-gray-900',
+          bottomText: 'text-white',
         };
       } else {
         // White button: white → yellow
@@ -95,7 +111,7 @@ const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
       <button
         ref={ref}
         className={cn(
-          'group/btn relative cursor-pointer p-2 overflow-hidden rounded-lg text-center font-semibold',
+          'group/btn relative cursor-pointer p-2 overflow-hidden rounded-lg text-center font-thin',
           colors.topBg,
           colors.topText,
           className,
@@ -104,12 +120,12 @@ const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
         {...props}
       >
         <span className={cn(
-          'translate-y-0 group-hover/btn:-translate-y-12 group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap',
+          'translate-y-0 md:group-hover/btn:-translate-y-12 md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap',
         )}>
           {children}
         </span>
         <div className={cn(
-          'flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-12 opacity-0 group-hover/btn:translate-y-0 group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap',
+          'flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-12 opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap',
           colors.bottomBg,
           colors.bottomText,
         )}>

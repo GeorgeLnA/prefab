@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { houseData } from '../data/houses';
+import { houseData, getHouseBySlug } from '../data/houses';
 import { AnimatedButton } from '../components/ui/animated-button';
 import SEO from '../components/SEO';
 
 const HouseDetailPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const houseId = parseInt(id || '0');
+  const { slug } = useParams<{ slug: string }>();
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [activeTab, setActiveTab] = useState('overview');
+  const [notIncludedOpen, setNotIncludedOpen] = useState(false);
   
-  // Get the house data
-  const house = houseData[houseId];
+  // Get the house data by slug
+  const house = slug ? getHouseBySlug(slug) : null;
+  const houseId = house ? houseData.indexOf(house) : -1;
   
   if (!house) {
     return (
       <div className="pt-20 min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-heading font-bold text-gray-900 mb-4">House Not Found</h1>
+          <h1 className="text-4xl font-heading font-thin text-gray-900 mb-4">House Not Found</h1>
           <p className="text-gray-900 mb-8">The house you're looking for doesn't exist.</p>
-          <Link to="/gallery" className="bg-primary text-white px-6 py-3 font-medium hover:bg-primary-hover transition-colors rounded-lg">
+          <Link to="/gallery" className="bg-primary text-white px-6 py-3 font-thin hover:bg-primary-hover transition-colors rounded-lg">
             Back to Gallery
           </Link>
         </div>
@@ -27,13 +28,11 @@ const HouseDetailPage: React.FC = () => {
     );
   }
   
-  // Sample additional images for the house
+  // Use only actual house images (main image, additional images, and facades)
   const houseImages = [
     house.imageUrl,
-    "https://images.pexels.com/photos/7031405/pexels-photo-7031405.jpeg",
-    "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg",
-    "https://images.pexels.com/photos/7534177/pexels-photo-7534177.jpeg",
-    "https://images.pexels.com/photos/5997993/pexels-photo-5997993.jpeg"
+    ...(house.additionalImages || []),
+    ...(house.facades || [])
   ];
 
   const specifications = {
@@ -52,7 +51,6 @@ const HouseDetailPage: React.FC = () => {
       'Foundation': 'Concrete slab or basement'
     },
     energy: {
-      'Energy Rating': 'Highly Energy Efficient',
       'Heating System': 'Heat pump with underfloor heating',
       'Ventilation': 'Mechanical ventilation with heat recovery',
       'Solar Ready': 'Pre-wired for solar panels',
@@ -62,8 +60,7 @@ const HouseDetailPage: React.FC = () => {
       'Smart Home': 'Integrated automation system',
       'Kitchen': 'Premium fitted kitchen included',
       'Flooring': 'Engineered hardwood throughout',
-      'Warranty': '10-year structural warranty',
-      'Assembly Time': '3-5 days on-site'
+      'Warranty': '10-year structural warranty'
     }
   };
 
@@ -80,7 +77,7 @@ const HouseDetailPage: React.FC = () => {
     },
     "offers": {
       "@type": "Offer",
-      "url": `https://prefabhomes.co.uk/house/${houseId}`,
+      "url": `https://prefabhomes.co.uk/house/${house.slug}`,
       "priceCurrency": "GBP",
       "price": house.price,
       "availability": house.inStock ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
@@ -138,7 +135,7 @@ const HouseDetailPage: React.FC = () => {
         "@type": "ListItem",
         "position": 3,
         "name": house.name,
-        "item": `https://prefabhomes.co.uk/house/${houseId}`
+        "item": `https://prefabhomes.co.uk/house/${house.slug}`
       }
     ]
   } : null;
@@ -148,7 +145,7 @@ const HouseDetailPage: React.FC = () => {
       <SEO
         title={house ? `${house.name} - ${house.category} Prefab Home` : 'House Details'}
         description={house ? `${house.name} - ${house.description}. ${house.squareFeet} ft², £${house.price.toLocaleString()}, ${house.category} category.` : 'View house details'}
-        url={`/house/${houseId}`}
+        url={`/house/${house.slug}`}
         image={house?.imageUrl}
         type="product"
         keywords={house ? `${house.name}, ${house.category}, prefab home, modular house, ${house.squareFeet} sq ft, £${house.price}` : undefined}
@@ -156,29 +153,35 @@ const HouseDetailPage: React.FC = () => {
       />
       <div className="bg-white">
       <div className="pt-20">
-      <section className="py-20 bg-white">
+      <section className="pt-8 md:pt-20 pb-20 bg-white">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-            {/* Image Gallery */}
-            <div>
+          <div className="mb-12 lg:mb-16">
+            {/* Main Content Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+              {/* Left Column - Images */}
+              <div className="lg:col-span-2 space-y-4 sm:space-y-5">
               {/* Main Image */}
-              <div className="mb-4" role="tabpanel" aria-label={`Main image view ${activeImageIndex + 1}`}>
+                <div role="tabpanel" aria-label={`Main image view ${activeImageIndex + 1}`}>
+                  <div className="relative overflow-hidden rounded-lg shadow-lg">
                 <img 
                   src={houseImages[activeImageIndex]} 
                   alt={`${house.name} - Main view ${activeImageIndex + 1} of ${houseImages.length}`}
-                  className="w-full h-96 object-cover rounded-lg shadow-lg"
+                      className="w-full aspect-video object-cover"
                   loading="lazy"
                 />
+                  </div>
               </div>
               
               {/* Thumbnail Gallery */}
-              <div className="grid grid-cols-5 gap-2" role="tablist" aria-label="House image gallery">
+                <div className="flex flex-nowrap gap-2 sm:gap-2.5 overflow-x-auto scrollbar-hide -ml-1 sm:-ml-2 pr-6 sm:pr-8 py-3" role="tablist" aria-label="House image gallery">
                 {houseImages.map((image, index) => (
+                  <div key={index} className="flex-shrink-0 w-[calc(25%-0.4rem)] sm:w-[calc(20%-0.5rem)] min-w-[80px] sm:min-w-[80px] px-2">
                   <button
-                    key={index}
                     onClick={() => setActiveImageIndex(index)}
-                    className={`relative overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
-                      activeImageIndex === index ? 'ring-2 ring-primary' : ''
+                      className={`relative w-full overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-all duration-200 aspect-square ${
+                        activeImageIndex === index 
+                          ? 'ring-2 ring-primary shadow-md' 
+                          : 'hover:ring-1 hover:ring-gray-300'
                     }`}
                     role="tab"
                     aria-selected={activeImageIndex === index}
@@ -188,119 +191,100 @@ const HouseDetailPage: React.FC = () => {
                     <img 
                       src={image} 
                       alt={`${house.name} view ${index + 1}`}
-                      className="w-full h-20 object-cover hover:opacity-80 transition-opacity"
+                        className="w-full h-full object-cover transition-opacity duration-200"
                       loading="lazy"
                     />
                   </button>
+                  </div>
                 ))}
               </div>
             </div>
 
-            {/* House Information */}
+              {/* Right Column - Info & Features */}
+              <div className="lg:col-span-1 space-y-6 sm:space-y-8">
+                {/* Title */}
             <div>
-              <div className="mb-6">
-                <div className="inline-block bg-blue-600 text-white py-1 px-3 text-sm font-medium mb-4 rounded-lg">
-                  VAULT STANDARD
-                </div>
-                <h1 className="text-4xl font-heading font-bold text-gray-900 mb-4">{house.name}</h1>
-                <p className="text-xl text-gray-900 mb-6 font-body font-normal">
-                  High-performance prefab home with exceptional energy efficiency and modern design.
-                </p>
+                  <h1 className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl font-heading font-thin text-gray-900 mb-3 sm:mb-4 leading-tight">{house.name}</h1>
               </div>
 
               {/* Key Stats */}
-              <div className="grid grid-cols-2 gap-6 mb-8">
-                <div className="bg-white p-4 rounded-lg">
-                  <div className="text-2xl font-bold text-primary">{house.squareFeet} ft²</div>
-                  <div className="text-gray-900">Total Living Area</div>
+                <div className="grid grid-cols-2 gap-4 sm:gap-5">
+                  <div className="bg-white shadow-md rounded-lg p-4 sm:p-5">
+                    <div className="text-xl sm:text-2xl lg:text-2xl font-thin text-primary mb-1.5 sm:mb-2 break-words">
+                      {house.livingArea ? `${house.livingArea.feet} ft²` : `${house.squareFeet} ft²`}
                 </div>
-                <div className="bg-white p-4 rounded-lg">
-                  <div className="text-2xl font-bold text-primary">£{house.price.toLocaleString()}</div>
-                  <div className="text-gray-900">Starting Price</div>
+                    <div className="text-xs sm:text-sm text-gray-600 font-body font-normal leading-tight">Total Living Area</div>
                 </div>
-                <div className="bg-white p-4 rounded-lg">
-                  <div className="text-2xl font-bold text-primary">3-5</div>
-                  <div className="text-gray-900">Days Assembly</div>
-                </div>
-                <div className="bg-white p-4 rounded-lg">
-                  <div className="text-2xl font-bold text-primary">Highly Energy Efficient</div>
-                  <div className="text-gray-900">Energy Rating</div>
+                  <div className="bg-white shadow-md rounded-lg p-4 sm:p-5">
+                    <div className="text-xl sm:text-2xl lg:text-2xl font-thin text-primary mb-1.5 sm:mb-2 break-words">£{house.price.toLocaleString()}</div>
+                    <div className="text-xs sm:text-sm text-gray-600 font-body font-normal leading-tight">Price</div>
                 </div>
               </div>
 
               {/* Key Features */}
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold mb-4">Key Features</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                {house.keyFeatures && house.keyFeatures.length > 0 && (
+                  <div>
+                    <h3 className="text-xl sm:text-2xl font-heading font-thin mb-4 sm:mb-5 text-gray-900">Key Features</h3>
+                    <ul className="space-y-3 sm:space-y-4">
+                      {house.keyFeatures.map((feature, index) => (
+                        <li key={index} className="flex items-start gap-3">
+                          <svg className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
-                    <span>Passive House Certified for maximum energy efficiency</span>
+                          <span className="text-sm sm:text-base text-gray-900 font-body font-normal leading-relaxed flex-1">{feature}</span>
                   </li>
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    <span>Factory-built precision with premium materials</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    <span>Smart home automation system included</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    <span>10-year structural warranty</span>
-                  </li>
+                      ))}
                 </ul>
               </div>
+                )}
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-col gap-3 sm:gap-4 pt-4">
                 <AnimatedButton
                   asLink={true}
                   href="/contact"
                   variant="yellowOnWhite"
-                  className="px-8 py-3 font-medium flex-1"
+                    className="px-6 sm:px-8 py-3 sm:py-3.5 font-thin w-full text-center text-sm sm:text-base"
                 >
                   Request Quote
                 </AnimatedButton>
                 <AnimatedButton
                   variant="greyToYellow"
-                  className="px-8 py-3 font-medium flex-1"
+                    className="px-6 sm:px-8 py-3 sm:py-3.5 font-thin w-full text-center text-sm sm:text-base"
                 >
                   Download Brochure
                 </AnimatedButton>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Detailed Information Tabs */}
-          <div className="border-t pt-16">
+          <div className="pt-16">
             {/* Tab Navigation */}
-            <div className="flex flex-wrap border-b mb-8">
-              {[
-                { id: 'overview', label: 'Overview' },
-                { id: 'specifications', label: 'Specifications' },
-                { id: 'floorplan', label: 'Floor Plan' },
-                { id: 'customization', label: 'Customization' }
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`py-3 px-6 font-medium transition-colors duration-200 ${
-                    activeTab === tab.id
-                      ? 'border-b-2 border-primary text-primary'
-                      : 'text-gray-900 hover:text-gray-900'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
+            <div className="border-b mb-6 sm:mb-8">
+              <div className="flex overflow-x-auto scrollbar-hide -mx-4 sm:mx-0 px-4 sm:px-0">
+                <div className="flex gap-1 sm:gap-0 min-w-full sm:min-w-0">
+                  {[
+                    { id: 'overview', label: 'Overview' },
+                    { id: 'specifications', label: 'Specifications' },
+                    { id: 'floorplan', label: 'Floor Plan' },
+                    { id: 'customization', label: 'Customization' }
+                  ].map((tab) => (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      className={`py-3 px-4 sm:py-3 sm:px-6 text-xs sm:text-base font-thin transition-colors duration-200 whitespace-nowrap flex-shrink-0 ${
+                        activeTab === tab.id
+                          ? 'border-b-2 border-primary text-primary font-medium'
+                          : 'text-gray-600 md:hover:text-gray-900'
+                      }`}
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Tab Content */}
@@ -308,7 +292,15 @@ const HouseDetailPage: React.FC = () => {
               {activeTab === 'overview' && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                   <div>
-                    <h3 className="text-2xl font-heading font-semibold mb-6">About {house.name}</h3>
+                    <h3 className="text-2xl font-heading font-thin mb-6">About {house.name}</h3>
+                    {house.about ? (
+                      <div className="text-gray-900 font-body font-normal whitespace-pre-line">
+                        {house.about.split('\n').map((paragraph, index) => (
+                          <p key={index} className={index > 0 ? "mt-4" : ""}>{paragraph}</p>
+                        ))}
+                      </div>
+                    ) : (
+                      <>
                     <p className="text-gray-900 mb-6 font-body font-normal">
                       The {house.name} represents the pinnacle of modern prefab home design, combining 
                       exceptional energy efficiency with contemporary aesthetics. This {house.type.toLowerCase()} 
@@ -323,10 +315,27 @@ const HouseDetailPage: React.FC = () => {
                       With factory precision construction and on-site assembly in just 3-5 days, you can 
                       move into your dream home faster than ever before, without compromising on quality or performance.
                     </p>
+                      </>
+                    )}
                   </div>
                   <div>
-                    <h3 className="text-2xl font-heading font-semibold mb-6">What's Included</h3>
-                    <ul className="space-y-3">
+                    <h3 className="text-2xl font-heading font-thin mb-6">What's Included</h3>
+                    {house.whatsIncluded && house.whatsIncluded.length > 0 ? (
+                      <ul className="space-y-3 mb-8">
+                        {house.whatsIncluded.map((item, index) => (
+                          <li key={index} className="flex items-start">
+                            <span className="text-primary mr-3">•</span>
+                            <div>
+                              <span className="font-medium text-gray-900">{item.title}</span>
+                              {item.description && (
+                                <span className="text-gray-700"> {item.description}</span>
+                              )}
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <ul className="space-y-3 mb-8">
                       <li className="flex items-start">
                         <span className="text-primary mr-3">•</span>
                         <span>Complete structural shell with premium insulation</span>
@@ -360,91 +369,341 @@ const HouseDetailPage: React.FC = () => {
                         <span>Professional installation and commissioning</span>
                       </li>
                     </ul>
+                    )}
+                    
+                    {/* What's Not Included - Collapsible */}
+                    {house.whatsNotIncluded && house.whatsNotIncluded.length > 0 && (
+                      <div className="mt-8">
+                        <button
+                          onClick={() => setNotIncludedOpen(!notIncludedOpen)}
+                          className="flex items-center justify-between w-full text-left mb-4"
+                        >
+                          <h3 className="text-2xl font-heading font-thin">What's Not Included</h3>
+                          <svg
+                            className={`w-5 h-5 text-gray-600 transition-transform duration-200 ${
+                              notIncludedOpen ? 'rotate-180' : ''
+                            }`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </button>
+                        {notIncludedOpen && (
+                          <ul className="space-y-3">
+                            {house.whatsNotIncluded.map((item, index) => (
+                              <li key={index} className="flex items-start">
+                                <span className="text-gray-500 mr-3">•</span>
+                                <div>
+                                  <span className="font-medium text-gray-900">{item.title}</span>
+                                  {item.description && (
+                                    <span className="text-gray-700"> {item.description}</span>
+                                  )}
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               )}
 
               {activeTab === 'specifications' && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8">
+                  {house.dimensions && (
+                    <div className="bg-white shadow-sm border border-gray-100 rounded-lg p-5 sm:p-6 md:p-7 lg:p-8">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-heading font-thin mb-5 sm:mb-6 text-primary border-b border-gray-200 pb-3 sm:pb-4">Dimensions</h3>
+                      <dl className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+                        {house.dimensions.totalArea && (
+                          <div className="flex flex-col gap-1 sm:gap-2">
+                            <dt className="text-sm sm:text-base font-medium text-gray-700">Total Area:</dt>
+                            <dd className="text-sm sm:text-base font-thin text-gray-900">{house.dimensions.totalArea.feet} ft² ({house.dimensions.totalArea.meters} m²)</dd>
+                          </div>
+                        )}
+                        {house.dimensions.livingArea && (
+                          <div className="flex flex-col gap-1 sm:gap-2">
+                            <dt className="text-sm sm:text-base font-medium text-gray-700">Living Area:</dt>
+                            <dd className="text-sm sm:text-base font-thin text-gray-900">{house.dimensions.livingArea.feet} ft² ({house.dimensions.livingArea.meters} m²)</dd>
+                          </div>
+                        )}
+                        {house.dimensions.coveredTerrace && (
+                          <div className="flex flex-col gap-1 sm:gap-2">
+                            <dt className="text-sm sm:text-base font-medium text-gray-700">Covered Terrace:</dt>
+                            <dd className="text-sm sm:text-base font-thin text-gray-900">{house.dimensions.coveredTerrace.feet} ft² ({house.dimensions.coveredTerrace.meters} m²)</dd>
+                          </div>
+                        )}
+                        {house.dimensions.bedrooms && (
+                          <div className="flex flex-col gap-1 sm:gap-2">
+                            <dt className="text-sm sm:text-base font-medium text-gray-700">Bedrooms:</dt>
+                            <dd className="text-sm sm:text-base font-thin text-gray-900">{house.dimensions.bedrooms}</dd>
+                          </div>
+                        )}
+                        {house.dimensions.bathrooms && (
+                          <div className="flex flex-col gap-1 sm:gap-2">
+                            <dt className="text-sm sm:text-base font-medium text-gray-700">Bathrooms:</dt>
+                            <dd className="text-sm sm:text-base font-thin text-gray-900">{String(house.dimensions.bathrooms)}</dd>
+                          </div>
+                        )}
+                        {house.dimensions.overallSize && (
+                          <div className="flex flex-col gap-1 sm:gap-2">
+                            <dt className="text-sm sm:text-base font-medium text-gray-700">Overall Size:</dt>
+                            <dd className="text-sm sm:text-base font-thin text-gray-900">{house.dimensions.overallSize}</dd>
+                          </div>
+                        )}
+                        {house.dimensions.walkInWardrobes && (
+                          <div className="flex flex-col gap-1 sm:gap-2">
+                            <dt className="text-sm sm:text-base font-medium text-gray-700">Walk-in Wardrobes:</dt>
+                            <dd className="text-sm sm:text-base font-thin text-gray-900">{house.dimensions.walkInWardrobes}</dd>
+                          </div>
+                        )}
+                      </dl>
+                    </div>
+                  )}
+                  {house.construction && (
+                    <div className="bg-white shadow-sm border border-gray-100 rounded-lg p-5 sm:p-6 md:p-7 lg:p-8">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-heading font-thin mb-5 sm:mb-6 text-primary border-b border-gray-200 pb-3 sm:pb-4">Construction</h3>
+                      <dl className="space-y-4 sm:space-y-5">
+                        {house.construction.wallSystem && (
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-2 pb-4 sm:pb-5 border-b border-gray-100 last:border-b-0 last:pb-0">
+                            <dt className="text-sm sm:text-base font-medium text-gray-700 sm:min-w-[140px]">Wall System:</dt>
+                            <dd className="text-sm sm:text-base font-thin text-gray-900 text-left sm:text-right flex-1">{house.construction.wallSystem}</dd>
+                          </div>
+                        )}
+                        {house.construction.insulation && (
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-2 pb-4 sm:pb-5 border-b border-gray-100 last:border-b-0 last:pb-0">
+                            <dt className="text-sm sm:text-base font-medium text-gray-700 sm:min-w-[140px]">Insulation:</dt>
+                            <dd className="text-sm sm:text-base font-thin text-gray-900 text-left sm:text-right flex-1">{house.construction.insulation}</dd>
+                          </div>
+                        )}
+                        {house.construction.windows && (
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-2 pb-4 sm:pb-5 border-b border-gray-100 last:border-b-0 last:pb-0">
+                            <dt className="text-sm sm:text-base font-medium text-gray-700 sm:min-w-[140px]">Windows:</dt>
+                            <dd className="text-sm sm:text-base font-thin text-gray-900 text-left sm:text-right flex-1">{house.construction.windows}</dd>
+                          </div>
+                        )}
+                        {house.construction.roof && (
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-2 pb-4 sm:pb-5 border-b border-gray-100 last:border-b-0 last:pb-0">
+                            <dt className="text-sm sm:text-base font-medium text-gray-700 sm:min-w-[140px]">Roof:</dt>
+                            <dd className="text-sm sm:text-base font-thin text-gray-900 text-left sm:text-right flex-1">{house.construction.roof}</dd>
+                          </div>
+                        )}
+                        {house.construction.foundation && (
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-2 pb-4 sm:pb-5 border-b border-gray-100 last:border-b-0 last:pb-0">
+                            <dt className="text-sm sm:text-base font-medium text-gray-700 sm:min-w-[140px]">Foundation:</dt>
+                            <dd className="text-sm sm:text-base font-thin text-gray-900 text-left sm:text-right flex-1">{house.construction.foundation}</dd>
+                          </div>
+                        )}
+                      </dl>
+                    </div>
+                  )}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
+                    {house.energyEnvironment && house.energyEnvironment.length > 0 && (
+                      <div className="bg-white shadow-sm border border-gray-100 rounded-lg p-5 sm:p-6 md:p-7 lg:p-8">
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-heading font-thin mb-5 sm:mb-6 text-primary border-b border-gray-200 pb-3 sm:pb-4">Energy & Environment</h3>
+                        <ul className="space-y-3 sm:space-y-3.5">
+                          {house.energyEnvironment.map((item, index) => (
+                            <li key={index} className="flex items-start gap-2.5 sm:gap-3 pb-3 sm:pb-4 border-b border-gray-100 last:border-b-0 last:pb-0">
+                              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                              </svg>
+                              <span className="text-sm sm:text-base text-gray-900 font-body font-normal leading-relaxed">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {house.features && house.features.length > 0 && (
+                      <div className="bg-white shadow-sm border border-gray-100 rounded-lg p-5 sm:p-6 md:p-7 lg:p-8">
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-heading font-thin mb-5 sm:mb-6 text-primary border-b border-gray-200 pb-3 sm:pb-4">Features</h3>
+                        <ul className="space-y-3 sm:space-y-3.5">
+                          {house.features.map((item, index) => (
+                            <li key={index} className="flex items-start gap-2.5 sm:gap-3 pb-3 sm:pb-4 border-b border-gray-100 last:border-b-0 last:pb-0">
+                              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                              </svg>
+                              <span className="text-sm sm:text-base text-gray-900 font-body font-normal leading-relaxed">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                  {/* Fallback to old format if no structured data */}
+                  {!house.dimensions && !house.construction && !house.energyEnvironment && !house.features && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
                   {Object.entries(specifications).map(([category, specs]) => (
-                    <div key={category} className="bg-white p-6 rounded-lg">
-                      <h3 className="text-xl font-semibold mb-4 capitalize text-primary">
+                        <div key={category} className="bg-white shadow-sm border border-gray-100 rounded-lg p-5 sm:p-6 md:p-7 lg:p-8">
+                          <h3 className="text-lg sm:text-xl md:text-2xl font-heading font-thin mb-5 sm:mb-6 text-primary border-b border-gray-200 pb-3 sm:pb-4 capitalize">
                         {category === 'energy' ? 'Energy & Environment' : category}
                       </h3>
-                      <dl className="space-y-3">
+                          <dl className="space-y-3 sm:space-y-4">
                         {Object.entries(specs).map(([key, value]) => (
-                          <div key={key} className="flex justify-between">
-                            <dt className="text-gray-900">{key}:</dt>
-                            <dd className="font-medium text-gray-900">{value}</dd>
+                              <div key={key} className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-2 pb-3 sm:pb-4 border-b border-gray-100 last:border-b-0 last:pb-0">
+                                <dt className="text-sm sm:text-base font-medium text-gray-700 sm:min-w-[140px]">{key}:</dt>
+                                <dd className="text-sm sm:text-base font-thin text-gray-900 text-left sm:text-right flex-1">{value}</dd>
                           </div>
                         ))}
                       </dl>
                     </div>
                   ))}
+                    </div>
+                  )}
                 </div>
               )}
 
               {activeTab === 'floorplan' && (
+                <div>
+                  {house.floorPlans && house.floorPlans.length > 0 ? (
+                    <div className="space-y-8 sm:space-y-10">
+                      <div>
+                        <h3 className="text-2xl sm:text-3xl font-heading font-thin mb-4 sm:mb-6 text-gray-900">Floor Plans</h3>
+                        <p className="text-gray-700 mb-6 sm:mb-8">
+                          {house.floorPlans.length === 1 
+                            ? 'View the floor plan for this model.' 
+                            : `View ${house.floorPlans.length} floor plan variations for this model.`}
+                        </p>
+                      </div>
+                      <div className="space-y-8 sm:space-y-10">
+                        {house.floorPlans.map((floorPlan, index) => (
+                          <div key={index} className="bg-white rounded-lg overflow-hidden shadow-sm">
+                            <div className="p-4 sm:p-6 border-b border-gray-200">
+                              <h4 className="text-lg sm:text-xl font-heading font-thin text-gray-900">
+                                {house.floorPlans && house.floorPlans.length > 1 ? `Version ${index + 1}` : 'Floor Plan'}
+                              </h4>
+                            </div>
+                            <div className="relative w-full overflow-hidden">
+                              <img
+                                src={floorPlan}
+                                alt={`${house.name} Floor Plan ${index + 1}`}
+                                className="w-full h-auto object-contain"
+                                style={{ display: 'block' }}
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
                 <div className="text-center">
                   <div className="bg-white p-12 rounded-lg mb-6">
                     <div className="text-6xl text-gray-900 mb-4">📐</div>
-                    <h3 className="text-2xl font-heading font-semibold mb-4">Floor Plan Coming Soon</h3>
+                    <h3 className="text-2xl font-heading font-thin mb-4">Floor Plan Coming Soon</h3>
                     <p className="text-gray-900 mb-6">
                       Detailed architectural drawings and 3D floor plans are being prepared for this model.
                     </p>
-                    <button className="bg-primary text-white px-6 py-3 font-medium hover:bg-primary-hover transition-colors rounded-lg">
+                    <button className="bg-primary text-white px-6 py-3 font-thin hover:bg-primary-hover transition-colors rounded-lg">
                       Request Floor Plan
                     </button>
                   </div>
+                    </div>
+                  )}
                 </div>
               )}
 
               {activeTab === 'customization' && (
                 <div>
-                  <h3 className="text-2xl font-heading font-semibold mb-6">Customization Options</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div className="text-center">
-                      <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                        </svg>
+                  {/* Add-On Options */}
+                  <div>
+                    <h3 className="text-2xl font-heading font-thin mb-6">Available Add-Ons</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="bg-white border border-gray-200 rounded-lg p-4 md:p-5">
+                        <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Sanitary Ware & Bathroom Equipment</h4>
+                        <p className="text-sm text-gray-600 font-body font-normal mb-3">WC, shower, taps, boiler, cabinets and all bathroom fixtures</p>
+                        <AnimatedButton
+                          asLink={true}
+                          href="/contact"
+                          variant="yellowOnWhite"
+                          className="px-4 py-2 text-sm font-thin w-full sm:w-auto"
+                        >
+                          Request Quote
+                        </AnimatedButton>
                       </div>
-                      <h4 className="text-lg font-semibold mb-2">Interior Finishes</h4>
-                      <p className="text-gray-900">Choose from premium flooring, paint colors, and fixture options</p>
+                      <div className="bg-white border border-gray-200 rounded-lg p-4 md:p-5">
+                        <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Heating & Ventilation Systems</h4>
+                        <p className="text-sm text-gray-600 font-body font-normal mb-3">ASHP, radiators, underfloor heating, MVHR or any HVAC equipment</p>
+                        <AnimatedButton
+                          asLink={true}
+                          href="/contact"
+                          variant="yellowOnWhite"
+                          className="px-4 py-2 text-sm font-thin w-full sm:w-auto"
+                        >
+                          Request Quote
+                        </AnimatedButton>
+                      </div>
+                      <div className="bg-white border border-gray-200 rounded-lg p-4 md:p-5">
+                        <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Fire Safety Systems</h4>
+                        <p className="text-sm text-gray-600 font-body font-normal mb-3">Smoke detectors, heat detectors, fire alarm panels and emergency lighting</p>
+                        <AnimatedButton
+                          asLink={true}
+                          href="/contact"
+                          variant="yellowOnWhite"
+                          className="px-4 py-2 text-sm font-thin w-full sm:w-auto"
+                        >
+                          Request Quote
+                        </AnimatedButton>
+                      </div>
+                      <div className="bg-white border border-gray-200 rounded-lg p-4 md:p-5">
+                        <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Foundations</h4>
+                        <p className="text-sm text-gray-600 font-body font-normal mb-3">Supply and installation of screw-pile foundations or any concrete foundation system</p>
+                        <AnimatedButton
+                          asLink={true}
+                          href="/contact"
+                          variant="yellowOnWhite"
+                          className="px-4 py-2 text-sm font-thin w-full sm:w-auto"
+                        >
+                          Request Quote
+                        </AnimatedButton>
                     </div>
-                    <div className="text-center">
-                      <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-                        </svg>
+                      <div className="bg-white border border-gray-200 rounded-lg p-4 md:p-5">
+                        <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Mechanical Lifting Equipment</h4>
+                        <p className="text-sm text-gray-600 font-body font-normal mb-3">Crane hire, telehandlers, fall-arrest systems and scaffolding</p>
+                        <AnimatedButton
+                          asLink={true}
+                          href="/contact"
+                          variant="yellowOnWhite"
+                          className="px-4 py-2 text-sm font-thin w-full sm:w-auto"
+                        >
+                          Request Quote
+                        </AnimatedButton>
                       </div>
-                      <h4 className="text-lg font-semibold mb-2">Layout Modifications</h4>
-                      <p className="text-gray-900">Adjust room configurations to suit your lifestyle needs</p>
+                      <div className="bg-white border border-gray-200 rounded-lg p-4 md:p-5">
+                        <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Planning Permission & Regulatory Fees</h4>
+                        <p className="text-sm text-gray-600 font-body font-normal mb-3">Submission, architectural fees, engineering approvals and associated documentation</p>
+                        <AnimatedButton
+                          asLink={true}
+                          href="/contact"
+                          variant="yellowOnWhite"
+                          className="px-4 py-2 text-sm font-thin w-full sm:w-auto"
+                        >
+                          Request Quote
+                        </AnimatedButton>
                     </div>
-                    <div className="text-center">
-                      <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
+                      <div className="bg-white border border-gray-200 rounded-lg p-4 md:p-5 md:col-span-2">
+                        <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">External Utilities & Site Works</h4>
+                        <p className="text-sm text-gray-600 font-body font-normal mb-3">Groundworks, external drainage, mains connection for water, electricity or sewage</p>
+                        <AnimatedButton
+                          asLink={true}
+                          href="/contact"
+                          variant="yellowOnWhite"
+                          className="px-4 py-2 text-sm font-thin w-full sm:w-auto"
+                        >
+                          Request Quote
+                        </AnimatedButton>
                       </div>
-                      <h4 className="text-lg font-semibold mb-2">Energy Upgrades</h4>
-                      <p className="text-gray-900">Add solar panels, battery storage, and EV charging stations</p>
                     </div>
                   </div>
+
                   <div className="mt-12 text-center">
                     <AnimatedButton
                       asLink={true}
                       href="/contact"
                       variant="yellowOnWhite"
-                      className="px-8 py-3 font-medium mr-4"
+                      className="px-8 py-3 font-thin"
                     >
                       Schedule Consultation
-                    </AnimatedButton>
-                    <AnimatedButton
-                      variant="yellowOnWhite"
-                      className="px-8 py-3 font-medium"
-                    >
-                      View All Options
                     </AnimatedButton>
                   </div>
                 </div>
@@ -457,7 +716,7 @@ const HouseDetailPage: React.FC = () => {
             <h3 className="text-3xl font-light text-gray-900 mb-8">Similar Designs</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {houseData.filter((_, index) => index !== houseId).slice(0, 3).map((relatedHouse, index) => (
-                <Link key={index} to={`/house/${houseData.indexOf(relatedHouse)}`} className="group cursor-pointer">
+                <Link key={index} to={`/house/${relatedHouse.slug}`} className="group cursor-pointer">
                   <div className="overflow-hidden rounded-lg mb-4">
                     <img 
                       src={relatedHouse.imageUrl} 
@@ -465,9 +724,9 @@ const HouseDetailPage: React.FC = () => {
                       className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
-                  <h4 className="text-xl font-medium text-gray-900 mb-2">{relatedHouse.name}</h4>
+                  <h4 className="text-xl font-thin text-gray-900 mb-2">{relatedHouse.name}</h4>
                   <p className="text-gray-900 mb-2">{relatedHouse.squareFeet} ft² • {relatedHouse.type}</p>
-                  <p className="text-primary font-semibold">£{relatedHouse.price.toLocaleString()}</p>
+                  <p className="text-primary font-thin">£{relatedHouse.price.toLocaleString()}</p>
                 </Link>
               ))}
             </div>

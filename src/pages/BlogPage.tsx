@@ -13,7 +13,7 @@ const BlogPage: React.FC = () => {
       date: "March 15, 2024",
       readTime: "5 min read",
       category: "Energy Efficiency",
-      image: "/Skandy 120 front-1 2.png",
+      image: "/Nordy-65-3D-2.jpg",
       content: `Energy efficiency has become more than a buzzword in modern construction—it's a necessity. As energy prices continue to rise and environmental concerns grow, homeowners are looking for better ways to build. But what exactly makes an energy-efficient home different? And why are so many people choosing this route?
 
 In my years working with prefab homes, I've seen firsthand how much of a difference energy efficiency makes—not just in terms of money saved, but in quality of life. The concept goes beyond insulation and smart meters. It's a combination of thoughtful design, high-performance materials, and a long-term view on comfort and sustainability.
@@ -154,7 +154,7 @@ The future of prefab living is smart, connected, and responsive to our needs. As
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
             <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">INSIGHTS & EXPERTISE</div>
-            <h1 className="text-5xl md:text-6xl font-heading font-bold text-white mb-6 leading-tight">
+            <h1 className="text-5xl md:text-6xl font-heading font-light text-white mb-6 leading-tight">
               Prefab Homes Blog
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-body font-normal">
@@ -166,7 +166,7 @@ The future of prefab living is smart, connected, and responsive to our needs. As
       </section>
 
       {/* Blog Posts Grid */}
-      <section className="py-20 bg-white">
+      <section className="pt-8 md:pt-20 pb-20 bg-white">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
             {blogPosts.map((post, index) => (
@@ -177,15 +177,15 @@ The future of prefab living is smart, connected, and responsive to our needs. As
                 }`}
                 onClick={() => openPost(post.id)}
               >
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 h-full">
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden md:hover:shadow-2xl transition-all duration-500 h-full">
                   {/* Image */}
                   <div className={`relative overflow-hidden ${index === 0 ? 'h-80 lg:h-96' : 'h-64'}`}>
                     <img 
                       src={post.image} 
                       alt={post.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
+                    <div className="absolute inset-0 bg-black bg-opacity-0 md:group-hover:bg-opacity-20 transition-all duration-300"></div>
                     
                     {/* Category Badge */}
                     <div className="absolute top-4 left-4 bg-primary text-white py-2 px-4 text-sm font-medium rounded-lg">
@@ -193,7 +193,7 @@ The future of prefab living is smart, connected, and responsive to our needs. As
                     </div>
                     
                     {/* Read More Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 md:group-hover:opacity-100 transition-all duration-300">
                       <div className="bg-primary text-white py-3 px-6 rounded-lg font-medium">
                         Read Full Article
                       </div>
@@ -229,25 +229,6 @@ The future of prefab living is smart, connected, and responsive to our needs. As
               </article>
             ))}
           </div>
-
-          {/* Newsletter Signup */}
-          <div className="mt-20 bg-gradient-to-br from-primary to-primary-dark p-8 lg:p-12 rounded-lg text-center">
-            <h3 className="text-3xl font-light text-white mb-4">Stay Updated</h3>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Get the latest insights on prefab construction, energy efficiency, and modern living 
-              delivered to your inbox.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input 
-                type="email" 
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-white"
-              />
-              <button className="bg-white text-primary px-8 py-3 font-medium hover:bg-gray-100 transition-colors duration-200 rounded-lg">
-                Subscribe
-              </button>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -281,7 +262,7 @@ The future of prefab living is smart, connected, and responsive to our needs. As
                 <span>{selectedPostData.readTime}</span>
               </div>
               
-              <h1 className="text-3xl lg:text-4xl font-heading font-bold text-gray-800 mb-8 leading-tight">
+              <h1 className="text-3xl lg:text-4xl font-heading font-light text-gray-800 mb-8 leading-tight">
                 {selectedPostData.title}
               </h1>
               

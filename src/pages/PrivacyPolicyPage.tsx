@@ -118,8 +118,8 @@ const PrivacyPolicyPage: React.FC = () => {
               If you have any questions about this privacy policy or our data practices, please contact us:
             </p>
             <div className="bg-gray-50 p-6 rounded-lg">
-              <p className="text-gray-700 mb-2"><strong>Email:</strong> privacy@prefabhomes.co.uk</p>
-              <p className="text-gray-700 mb-2"><strong>Phone:</strong> +44-798-5602627</p>
+              <p className="text-gray-700 mb-2"><strong>Email:</strong> prefabhomes.uk@gmail.com</p>
+              <p className="text-gray-700 mb-2"><strong>Phone:</strong> +44 7495788669</p>
               <p className="text-gray-700"><strong>Address:</strong> 123 Construction Avenue, London, UK SW1A 1AA</p>
             </div>
           </div>

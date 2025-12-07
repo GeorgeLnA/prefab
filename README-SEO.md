@@ -83,7 +83,7 @@ import SEO from '../components/SEO';
 - ✅ BlogPage
 - ✅ GalleryPage
 - ✅ HouseDetailPage
-- ✅ SkandyPage
+- ✅ NordyPage (formerly SkandyNordyPage)
 - ✅ SmartPage
 - ✅ ModularPage
 

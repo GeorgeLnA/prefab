@@ -31,7 +31,6 @@ export const staticRoutes = [
   { path: '/blog', priority: '0.8', changefreq: 'weekly' },
   { path: '/contact', priority: '0.7', changefreq: 'monthly' },
   { path: '/faq', priority: '0.7', changefreq: 'monthly' },
-  { path: '/skandy', priority: '0.8', changefreq: 'monthly' },
   { path: '/smart', priority: '0.8', changefreq: 'monthly' },
   { path: '/modular', priority: '0.8', changefreq: 'monthly' },
   { path: '/modern', priority: '0.8', changefreq: 'monthly' },

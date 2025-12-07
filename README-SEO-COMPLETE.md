@@ -64,7 +64,7 @@ All 23 pages have optimized SEO:
 - AboutPage - Company information
 - FAQPage - FAQ schema ready
 - HouseDetailPage - Product & Breadcrumb schema
-- All house type pages (Skandy, Smart, Modular, etc.)
+- All house type pages (Nordy, Smart, Modular, etc.)
 - Legal pages (Terms, Privacy) - noindex
 
 ### 5. **Image SEO**

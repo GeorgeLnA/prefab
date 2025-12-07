@@ -25,16 +25,16 @@ const GalleryPage: React.FC = () => {
     },
     {
       id: 2,
-      title: 'Skandy-Nordy Forest Retreat',
+      title: 'Nordy Forest Retreat',
       category: 'COMPLETED PROJECTS',
       type: 'image' as const,
-      thumbnail: '/Skandy 120 front-1 2.png',
-      fullSrc: '/Skandy 120 front-1 2.png',
+      thumbnail: '/Nordy-65-3D-2.jpg',
+      fullSrc: '/Nordy-65-3D-2.jpg',
       description: 'Nordic-inspired design nestled in natural woodland setting',
       details: {
         size: '2,200 sq ft',
         completion: '2024',
-        type: 'Skandy-Nordy',
+        type: 'Nordy',
         location: 'Lake District, UK'
       }
     },
@@ -151,7 +151,7 @@ const GalleryPage: React.FC = () => {
       />
       <div className="bg-white">
       <div className="pt-20">
-      <section className="py-20 bg-white">
+      <section className="pt-8 md:pt-20 pb-20 bg-white">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center mb-16">
@@ -162,15 +162,15 @@ const GalleryPage: React.FC = () => {
           </div>
 
           {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-4 md:gap-6 mb-8 sm:mb-12">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 font-medium transition-all duration-300 rounded-lg ${
+                className={`px-3 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-3 text-xs sm:text-sm md:text-base font-thin transition-all duration-300 rounded-lg ${
                   selectedCategory === category
                     ? 'bg-primary text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    : 'bg-white text-gray-900 md:hover:bg-gray-900 md:hover:text-white'
                 }`}
               >
                 {category}
@@ -179,11 +179,11 @@ const GalleryPage: React.FC = () => {
           </div>
 
           {/* Case Studies Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 lg:gap-6 xl:gap-8 auto-rows-fr">
             {filteredCaseStudies.map((study) => (
               <div 
                 key={study.id} 
-                className="group flex flex-col bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer"
+                className="group flex flex-col bg-white rounded-lg shadow-lg md:hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer"
                     onClick={() => openLightbox({ type: study.type, src: study.fullSrc })}
                     role="button"
                     tabIndex={0}
@@ -196,29 +196,19 @@ const GalleryPage: React.FC = () => {
                     aria-label={`View ${study.type === 'video' ? 'video' : 'full image'} of ${study.title}`}
               >
                 {/* Image Section - Fixed Height */}
-                <div className="relative overflow-hidden h-64 bg-white">
-                  {/* Media Type Badge */}
-                  <div className="absolute top-3 left-3 z-10 bg-primary text-white py-1.5 px-3 text-xs font-bold rounded uppercase tracking-wide">
-                    {study.type === 'video' ? 'VIDEO' : 'PHOTO'}
-                  </div>
-                  
-                  {/* Category Badge */}
-                  <div className="absolute top-3 right-3 z-10 bg-gray-900 text-white py-1.5 px-3 text-xs font-medium rounded-lg">
-                    {study.category}
-                  </div>
-                  
+                <div className="relative overflow-hidden h-32 sm:h-36 md:h-40 lg:h-64 bg-white flex-shrink-0">
                   <img 
                     src={study.thumbnail} 
                     alt={`${study.title} - ${study.category} case study ${study.type === 'video' ? 'video' : 'photo'}`}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-105"
                     loading="lazy"
                   />
                   
                   {/* Video Play Button */}
                   {study.type === 'video' && (
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="bg-primary/90 text-white w-16 h-16 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <svg className="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <div className="bg-primary/90 text-white w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center md:group-hover:scale-110 transition-transform duration-300">
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 ml-1" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M8 5v14l11-7z"/>
                         </svg>
                       </div>
@@ -226,46 +216,46 @@ const GalleryPage: React.FC = () => {
                   )}
                   
                   {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
+                  <div className="absolute inset-0 bg-black/0 md:group-hover:bg-black/10 transition-all duration-300"></div>
                 </div>
 
                 {/* Content Section - Flex Grow for Equal Heights */}
-                <div className="flex flex-col flex-grow p-6">
-                  {/* Title */}
-                  <h3 className="text-xl font-heading font-semibold text-gray-900 mb-2 line-clamp-1">
-                    {study.title}
-                  </h3>
-                  
-                  {/* Description */}
-                  <p className="text-sm text-gray-900 mb-4 line-clamp-2 flex-grow">
-                    {study.description}
-                  </p>
-                  
-                  {/* Details Grid - Consistent Spacing */}
-                  <div className="space-y-2.5 mb-5">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-900">Size</span>
-                      <span className="font-medium text-gray-900">{study.details.size}</span>
-                    </div>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-900">Type</span>
-                      <span className="font-medium text-gray-900">{study.details.type}</span>
-                    </div>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-900">Year</span>
-                      <span className="font-medium text-gray-900">{study.details.completion}</span>
-                    </div>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-900">Location</span>
-                      <span className="font-medium text-gray-900">{study.details.location}</span>
+                <div className="flex flex-col flex-grow px-4 sm:px-5 md:px-6 pt-4 sm:pt-5 md:pt-6 pb-4 sm:pb-5 md:pb-6 min-h-0">
+                  <div className="flex-grow">
+                    {/* Title */}
+                    <h3 className="text-[10px] sm:text-xs md:text-sm lg:text-xl font-heading font-semibold text-gray-900 mb-0.5 sm:mb-1 md:mb-2 line-clamp-1">
+                      {study.title}
+                    </h3>
+                    
+                    {/* Details Grid - Consistent Spacing */}
+                    <div className="space-y-1 sm:space-y-1.5 md:space-y-2.5 mb-3 sm:mb-4 md:mb-5">
+                      <div className="flex items-center justify-between text-[9px] sm:text-[10px] md:text-xs lg:text-sm">
+                        <span className="text-gray-900">Size</span>
+                        <span className="font-medium text-gray-900">{study.details.size}</span>
+                      </div>
+                      <div className="flex items-center justify-between text-[9px] sm:text-[10px] md:text-xs lg:text-sm">
+                        <span className="text-gray-900">Type</span>
+                        <span className="font-medium text-gray-900">{study.details.type}</span>
+                      </div>
+                      <div className="flex items-center justify-between text-[9px] sm:text-[10px] md:text-xs lg:text-sm">
+                        <span className="text-gray-900">Year</span>
+                        <span className="font-medium text-gray-900">{study.details.completion}</span>
+                      </div>
+                      <div className="flex items-center justify-between text-[9px] sm:text-[10px] md:text-xs lg:text-sm">
+                        <span className="text-gray-900">Location</span>
+                        <span className="font-medium text-gray-900">{study.details.location}</span>
+                      </div>
                     </div>
                   </div>
 
                   {/* CTA Button - Always at Bottom */}
-                  <div className="mt-auto flex justify-center">
-                    <div className="w-full bg-gray-900 text-white py-3 px-4 rounded-lg text-center font-medium text-sm">
-                      {study.type === 'video' ? 'Watch Video' : 'View Full Size'}
-                    </div>
+                  <div className="mt-auto">
+                    <a 
+                      href="/contact" 
+                      className="inline-block w-full bg-gray-900 text-white py-2 sm:py-2.5 md:py-3 px-3 sm:px-4 rounded-lg text-center font-thin text-[9px] sm:text-[10px] md:text-xs lg:text-sm md:hover:bg-gray-800 transition-colors duration-200"
+                    >
+                      Schedule Consultation
+                    </a>
                   </div>
                 </div>
               </div>
@@ -278,7 +268,7 @@ const GalleryPage: React.FC = () => {
               <h3 className="text-2xl font-semibold text-gray-800 mb-4">Our Track Record</h3>
               <p className="text-gray-600">Real results from real projects</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
               <div>
                 <div className="text-4xl font-bold text-primary mb-2">150+</div>
                 <div className="text-gray-600">Completed Projects</div>
@@ -290,10 +280,6 @@ const GalleryPage: React.FC = () => {
               <div>
                 <div className="text-4xl font-bold text-primary mb-2">4.2</div>
                 <div className="text-gray-600">Avg. Assembly Days</div>
-              </div>
-              <div>
-                <div className="text-4xl font-bold text-primary mb-2">Highly Energy Efficient</div>
-                <div className="text-gray-600">Energy Rating</div>
               </div>
             </div>
           </div>

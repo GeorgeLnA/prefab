@@ -68,8 +68,7 @@ const Header: React.FC = () => {
   };
 
   const houseTypes = [
-    { name: 'Skandy', path: '/skandy-nordy', image: '/Skandy 120 front-1 2.png' },
-    { name: 'Nordy', path: '/skandy-nordy', image: '/Nordy-65-3D-2.jpg' },
+    { name: 'Nordy', path: '/skandy-nordy', image: '/NORDY/NORDY 65_1F.jpg' },
     { name: 'Modern', path: '/modern', image: '/2p.jpg' },
     { name: 'Mobile', path: '/mobile', image: '/prefab_homes_lounge_30_front_view.jpg' },
     { name: 'Smart', path: '/smart', image: '/S-18-1.jpg' },
@@ -88,7 +87,7 @@ const Header: React.FC = () => {
     as?: 'button' | 'a';
     href?: string;
   }> = ({ children, onClick, className = '', as = 'button', href }) => {
-    const baseClass = 'inline-flex items-center gap-1.5 lg:gap-2 px-0 py-2 font-normal text-gray-900 hover:text-primary transition-all duration-300 bg-transparent border-none cursor-pointer whitespace-nowrap';
+    const baseClass = 'inline-flex items-center gap-1.5 lg:gap-2 px-0 py-2 font-thin text-gray-900 md:hover:text-primary transition-all duration-300 bg-transparent border-none cursor-pointer whitespace-nowrap';
     
     if (as === 'a' && href) {
       return (
@@ -141,6 +140,7 @@ const Header: React.FC = () => {
   };
 
   return (
+    <>
     <header className={`fixed top-0 left-0 right-0 z-50 pt-2 px-2 sm:pt-3 sm:px-3 md:pt-4 md:px-4 lg:pt-4 lg:px-6 xl:px-8 transition-transform duration-300 ${
       isScrollingDown ? '-translate-y-full' : 'translate-y-0'
     }`}>
@@ -164,10 +164,10 @@ const Header: React.FC = () => {
                     height="auto"
                   />
                   <div className="flex flex-col min-w-0">
-                    <span className="text-[10px] sm:text-xs md:text-sm font-light tracking-wide transition-colors duration-200 text-gray-900 group-hover:opacity-70 truncate">
+                    <span className="text-[10px] sm:text-xs md:text-sm font-light tracking-wide transition-colors duration-200 text-gray-900 md:group-hover:opacity-70 truncate">
                       PREFAB HOMES
                     </span>
-                    <span className="text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-wider sm:tracking-widest font-medium transition-colors duration-200 text-gray-900 group-hover:opacity-70 leading-tight">
+                    <span className="text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-wider sm:tracking-widest font-medium transition-colors duration-200 text-gray-900 md:group-hover:opacity-70 leading-tight">
                       Engineered for Efficiency
                     </span>
                   </div>
@@ -233,7 +233,7 @@ const Header: React.FC = () => {
 
             {/* Mobile Menu Button */}
             <button 
-              className="lg:hidden flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-2 text-xs sm:text-sm font-normal text-gray-900 hover:opacity-70 transition-opacity bg-transparent border-none cursor-pointer min-h-[44px] min-w-[44px]"
+              className="lg:hidden flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-2 text-xs sm:text-sm font-thin text-gray-900 active:opacity-70 transition-opacity bg-transparent border-none cursor-pointer min-h-[44px] min-w-[44px]"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileMenuOpen}
@@ -242,7 +242,7 @@ const Header: React.FC = () => {
             >
               <span className="hidden sm:inline">Menu</span>
               <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 18V16H21V18H3ZM3 13V11H21V13H3ZM3 8V6H21V8H3Z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
           </div>
@@ -250,72 +250,98 @@ const Header: React.FC = () => {
         
         {/* Dropdown Menu - Positioned relative to nav, full width, centered */}
         <div 
-          className={`absolute top-full left-0 right-0 mt-2 w-full bg-white shadow-2xl transition-all duration-200 rounded-lg z-50 p-4 lg:p-6 ${
+          className={`absolute top-full left-0 right-0 mt-2 w-full bg-white shadow-2xl transition-all duration-200 rounded-2xl z-50 p-4 lg:p-6 ${
             houseTypesDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
           }`}
           onMouseEnter={() => setHouseTypesDropdownOpen(true)}
           onMouseLeave={() => setHouseTypesDropdownOpen(false)}
         >
-          <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] lg:grid-cols-[350px_1fr] xl:grid-cols-[500px_1fr] 2xl:grid-cols-[600px_1fr] gap-3 md:gap-4 lg:gap-5 xl:gap-6">
-            <div>
-              <h3 className="text-xs sm:text-sm md:text-base font-semibold text-gray-900 mb-2 md:mb-3">House Types</h3>
-              <ul className="space-y-1 md:space-y-1.5">
+          <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] lg:grid-cols-[240px_1fr] xl:grid-cols-[280px_1fr] 2xl:grid-cols-[320px_1fr] gap-4 md:gap-5 lg:gap-6 xl:gap-8">
+            <div className="flex flex-col">
+              <h3 className="text-xs sm:text-sm md:text-base font-thin text-gray-900 mb-3 md:mb-4">House Types</h3>
+              <ul className="space-y-1.5 md:space-y-2 flex-1">
                 {houseTypes.filter(type => type.name !== 'Modular').map((type) => (
                   <li key={type.name}>
                     <Link
                       to={type.path}
-                      className={`block px-2.5 md:px-3 py-1.5 md:py-2 text-xs sm:text-sm md:text-base transition-colors duration-200 rounded-lg ${
+                      className={`block px-3 md:px-4 py-2 md:py-2.5 text-xs sm:text-sm md:text-base transition-colors duration-200 rounded-lg ${
                         hoveredHouseType === type.name
                           ? 'bg-primary text-white'
-                          : 'text-gray-900 hover:bg-primary hover:text-white'
+                          : 'text-gray-900 md:hover:bg-primary md:hover:text-white'
                       }`}
-                      onMouseEnter={() => setHoveredHouseType(type.name)}
-                      onMouseLeave={() => setHoveredHouseType(null)}
+                      onMouseEnter={() => {
+                        if (window.matchMedia("(hover: hover)").matches) {
+                          setHoveredHouseType(type.name);
+                        }
+                      }}
+                      onMouseLeave={() => {
+                        if (window.matchMedia("(hover: hover)").matches) {
+                          setHoveredHouseType(null);
+                        }
+                      }}
                     >
                       {type.name}
                     </Link>
                   </li>
                 ))}
               </ul>
-              <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t-2 border-gray-300">
+              <div className="mt-4 md:mt-5 pt-4 md:pt-5 border-t-2 border-gray-300">
                 <Link
-                  to="/design-form"
-                  className={`block px-3 md:px-4 py-2 md:py-3 text-sm md:text-base lg:text-lg font-bold transition-all duration-200 rounded-lg text-center ${
+                  to="/modular"
+                  className={`block px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base font-thin transition-all duration-200 rounded-lg text-center ${
                     hoveredHouseType === 'Modular'
-                      ? 'bg-primary text-white shadow-xl scale-105'
-                      : 'bg-primary text-black hover:bg-gray-900 hover:text-white shadow-lg'
+                      ? 'bg-primary text-white shadow-xl md:scale-105'
+                      : 'bg-primary text-black md:hover:bg-gray-900 md:hover:text-white shadow-lg'
                   }`}
-                  onMouseEnter={() => setHoveredHouseType('Modular')}
-                  onMouseLeave={() => setHoveredHouseType(null)}
+                  onMouseEnter={() => {
+                    if (window.matchMedia("(hover: hover)").matches) {
+                      setHoveredHouseType('Modular');
+                    }
+                  }}
+                  onMouseLeave={() => {
+                    if (window.matchMedia("(hover: hover)").matches) {
+                      setHoveredHouseType(null);
+                    }
+                  }}
                 >
                   Modular
                 </Link>
               </div>
             </div>
-            <div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-2 sm:gap-2.5 md:gap-3 lg:gap-3 xl:gap-4">
-                {houseTypes.filter(type => type.name !== 'Modular').slice(0, 6).map((type) => (
+            <div className="flex items-center min-h-0">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-2.5 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6 w-full h-full">
+                {houseTypes.map((type) => (
                   <Link
                     key={type.name}
                     to={type.path}
-                    className={`group relative overflow-hidden rounded-lg shadow-md transition-all duration-200 cursor-pointer aspect-square ${
+                    className={`group relative overflow-hidden rounded-lg shadow-md transition-all duration-200 cursor-pointer h-[120px] sm:h-[140px] md:h-[160px] lg:h-[180px] xl:h-[200px] 2xl:h-[220px] ${
                       hoveredHouseType === type.name
-                        ? 'shadow-xl ring-2 ring-primary scale-105'
-                        : 'hover:shadow-lg'
+                        ? 'shadow-xl ring-2 ring-primary md:scale-105'
+                        : 'md:hover:shadow-lg'
                     }`}
-                    onMouseEnter={() => setHoveredHouseType(type.name)}
-                    onMouseLeave={() => setHoveredHouseType(null)}
+                    onMouseEnter={() => {
+                      if (window.matchMedia("(hover: hover)").matches) {
+                        setHoveredHouseType(type.name);
+                      }
+                    }}
+                    onMouseLeave={() => {
+                      if (window.matchMedia("(hover: hover)").matches) {
+                        setHoveredHouseType(null);
+                      }
+                    }}
                   >
                     <img 
                       src={type.image} 
                       alt={type.name}
-                      className={`w-full h-full object-cover transition-transform duration-300 ${
-                        hoveredHouseType === type.name
-                          ? 'scale-110'
-                          : 'group-hover:scale-110'
-                      }`}
+                      className="w-full h-full object-cover transition-transform duration-300 md:group-hover:scale-110"
                       loading="lazy"
                     />
+                    {/* Category Badge */}
+                    <div className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 md:top-3 md:left-3 z-10">
+                      <div className="bg-primary text-white py-1 px-2 sm:py-1.5 sm:px-2.5 md:px-3 text-[9px] sm:text-[10px] md:text-xs font-thin rounded-lg whitespace-nowrap">
+                        {type.name.toUpperCase()}
+                      </div>
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -323,94 +349,96 @@ const Header: React.FC = () => {
           </div>
         </div>
       </nav>
-      <div 
-        id="mobile-menu"
-        className={`fixed inset-0 z-50 lg:hidden transition-transform duration-300 ease-in-out ${
+    </header>
+    
+    {/* Mobile Menu - Outside header to prevent clipping */}
+    <div 
+      id="mobile-menu"
+      className={`fixed inset-0 z-[100] lg:hidden transition-opacity duration-300 ${
+        mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+      }`}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="mobile-menu-title"
+      aria-hidden={!mobileMenuOpen}
+    >
+        {/* Backdrop */}
+        <div 
+          className="absolute inset-0 bg-black/50 transition-opacity duration-300" 
+          onClick={() => setMobileMenuOpen(false)}
+        ></div>
+        
+        {/* Menu Panel */}
+        <div className={`absolute right-0 top-0 bottom-0 w-full max-w-[280px] bg-white shadow-2xl overflow-y-auto transition-transform duration-300 ease-out ${
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="mobile-menu-title"
-      >
-        <div className="absolute inset-0 bg-black/50" onClick={() => setMobileMenuOpen(false)}></div>
-        <div className="absolute right-0 top-0 bottom-0 w-full max-w-xs sm:max-w-sm md:max-w-md bg-white shadow-xl overflow-y-auto">
-          {/* Panel Header */}
-          <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-900 sticky top-0 bg-white z-10">
-            <p id="mobile-menu-title" className="text-sm sm:text-base font-medium text-gray-900">Menu</p>
-            <button
-              onClick={() => setMobileMenuOpen(false)}
-              className="p-2 text-gray-900 hover:text-gray-900 hover:bg-white rounded-lg transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
-              style={{ touchAction: 'manipulation' }}
-              aria-label="Close menu"
-            >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
+        }`}>
+            {/* Header */}
+            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 sticky top-0 bg-white z-10">
+              <h2 id="mobile-menu-title" className="text-base font-thin text-gray-900">Menu</h2>
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-2 text-gray-900 rounded-lg active:bg-gray-100 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+                aria-label="Close menu"
+              >
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
 
-          {/* Panel Content */}
-          <div className="px-4 sm:px-6 py-4 sm:py-6">
-            <nav>
-              <ul className="space-y-1">
+            {/* Navigation */}
+            <nav className="px-4 py-4">
+              <ul className="space-y-2">
                 <li>
                   <Link
                     to="/"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between w-full px-3 sm:px-4 py-3 sm:py-4 text-sm sm:text-base font-medium text-gray-900 hover:bg-white active:bg-white rounded-lg transition-colors min-h-[44px]"
-                    style={{ touchAction: 'manipulation' }}
+                    className="block w-full px-4 py-3 text-base font-thin text-gray-900 rounded-lg active:bg-gray-100 transition-colors"
                   >
-                    <span>Home</span>
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-900 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+                    Home
                   </Link>
                 </li>
                 <li>
                   <Link
                     to="/technology"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between w-full px-3 sm:px-4 py-3 sm:py-4 text-sm sm:text-base font-medium text-gray-900 hover:bg-white active:bg-white rounded-lg transition-colors min-h-[44px]"
-                    style={{ touchAction: 'manipulation' }}
+                    className="block w-full px-4 py-3 text-base font-thin text-gray-900 rounded-lg active:bg-gray-100 transition-colors"
                   >
-                    <span>Technology</span>
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-900 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+                    Technology
                   </Link>
                 </li>
                 <li>
                   <Link
                     to="/designs"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between w-full px-3 sm:px-4 py-3 sm:py-4 text-sm sm:text-base font-medium text-gray-900 hover:bg-white active:bg-white rounded-lg transition-colors min-h-[44px]"
-                    style={{ touchAction: 'manipulation' }}
+                    className="block w-full px-4 py-3 text-base font-thin text-gray-900 rounded-lg active:bg-gray-100 transition-colors"
                   >
-                    <span>Designs</span>
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-900 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+                    Designs
                   </Link>
                 </li>
                 <li>
                   <button
                     onClick={handleMobileHouseTypesToggle}
-                    className="flex items-center justify-between w-full px-3 sm:px-4 py-3 sm:py-4 text-sm sm:text-base font-medium text-gray-900 hover:bg-white active:bg-white rounded-lg transition-colors min-h-[44px]"
-                    style={{ touchAction: 'manipulation' }}
+                    className="flex items-center justify-between w-full px-4 py-3 text-base font-thin text-gray-900 rounded-lg active:bg-gray-100 transition-colors"
                   >
                     <span>House Types</span>
                     <svg 
-                      className={`w-4 h-4 sm:w-5 sm:h-5 text-gray-900 transition-transform duration-200 flex-shrink-0 ${mobileHouseTypesOpen ? 'rotate-90' : ''}`}
+                      className={`w-5 h-5 transition-transform duration-200 ${mobileHouseTypesOpen ? 'rotate-90' : ''}`}
                       viewBox="0 0 24 24" 
                       fill="none" 
                       stroke="currentColor"
+                      strokeWidth={2}
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                   </button>
-                  {mobileHouseTypesOpen && (
-                    <ul className="ml-2 sm:ml-4 mt-1 space-y-1 border-l-2 border-gray-900 pl-3 sm:pl-4">
-                      {houseTypes.map((type) => (
+                  <div 
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      mobileHouseTypesOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                  >
+                    <ul className="mt-2 space-y-1">
+                      {houseTypes.filter(type => type.name !== 'Modular').map((type) => (
                         <li key={type.name}>
                           <Link
                             to={type.path}
@@ -418,84 +446,70 @@ const Header: React.FC = () => {
                               setMobileMenuOpen(false);
                               setMobileHouseTypesOpen(false);
                             }}
-                            className="flex items-center justify-between w-full px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-gray-900 hover:bg-white active:bg-white rounded-lg transition-colors min-h-[40px]"
-                    style={{ touchAction: 'manipulation' }}
+                            className="block w-full px-4 py-2.5 text-sm text-gray-700 rounded-lg active:bg-gray-100 transition-colors"
                           >
-                            <span>{type.name}</span>
-                            <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-900 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
+                            {type.name}
                           </Link>
                         </li>
                       ))}
-                      <li className="mt-2 pt-2 border-t border-gray-900">
-                        <Link
-                          to="/design-form"
-                          onClick={() => {
-                            setMobileMenuOpen(false);
-                            setMobileHouseTypesOpen(false);
-                          }}
-                          className="flex items-center justify-center w-full px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold text-primary bg-primary/10 hover:bg-primary hover:text-white active:bg-primary/90 rounded-lg transition-colors min-h-[44px]"
-                          style={{ touchAction: 'manipulation' }}
-                        >
-                          Modular Houses
-                        </Link>
-                      </li>
                     </ul>
-                  )}
+                    <div className="mt-3 pt-3 border-t-2 border-gray-300">
+                      <Link
+                        to="/modular"
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          setMobileHouseTypesOpen(false);
+                        }}
+                        className="block w-full px-4 py-3 text-sm font-thin bg-primary text-black rounded-lg active:bg-gray-900 active:text-white transition-colors text-center"
+                      >
+                        Modular
+                      </Link>
+                    </div>
+                  </div>
                 </li>
                 <li>
                   <Link
                     to="/gallery"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between w-full px-3 sm:px-4 py-3 sm:py-4 text-sm sm:text-base font-medium text-gray-900 hover:bg-white active:bg-white rounded-lg transition-colors min-h-[44px]"
-                    style={{ touchAction: 'manipulation' }}
+                    className="block w-full px-4 py-3 text-base font-thin text-gray-900 rounded-lg active:bg-gray-100 transition-colors"
                   >
-                    <span>Gallery</span>
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-900 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+                    Gallery
                   </Link>
                 </li>
                 <li>
                   <Link
                     to="/contact"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between w-full px-3 sm:px-4 py-3 sm:py-4 text-sm sm:text-base font-medium text-gray-900 hover:bg-white active:bg-white rounded-lg transition-colors min-h-[44px]"
-                    style={{ touchAction: 'manipulation' }}
+                    className="block w-full px-4 py-3 text-base font-thin text-gray-900 rounded-lg active:bg-gray-100 transition-colors"
                   >
-                    <span>Contact</span>
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-900 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+                    Contact
                   </Link>
                 </li>
                 <li>
                   <Link
                     to="/blog"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between w-full px-3 sm:px-4 py-3 sm:py-4 text-sm sm:text-base font-medium text-gray-900 hover:bg-white active:bg-white rounded-lg transition-colors min-h-[44px]"
-                    style={{ touchAction: 'manipulation' }}
+                    className="block w-full px-4 py-3 text-base font-thin text-gray-900 rounded-lg active:bg-gray-100 transition-colors"
                   >
-                    <span>Blog</span>
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-900 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+                    Blog
                   </Link>
                 </li>
               </ul>
             </nav>
 
-            {/* Mobile Action Buttons */}
-            <div className="mt-6 sm:mt-8 space-y-3">
-              <Button variant="secondary" href="/contact" className="w-full text-xs sm:text-sm px-3 py-2 sm:py-2.5">
+            {/* CTA Button */}
+            <div className="px-4 pb-6 pt-4 border-t border-gray-200 flex justify-center">
+              <Button 
+                variant="primary" 
+                href="/contact" 
+                className="w-full text-base px-6 py-4"
+              >
                 Schedule Consultation
               </Button>
             </div>
           </div>
         </div>
-      </div>
-    </header>
+    </>
   );
 };
 

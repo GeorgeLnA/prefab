@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO';
+import { AnimatedButton } from '../components/ui/animated-button';
 
 const FAQPage: React.FC = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
@@ -39,7 +40,7 @@ const FAQPage: React.FC = () => {
         },
         {
           question: "What house types do you offer?",
-          answer: "We offer five main house types: Modular (flexible, expandable designs), Skandy-Nordy (Scandinavian-inspired minimalist), Smart (advanced home automation), Modern (contemporary aesthetics), and Modern-B (bold architectural elements)."
+          answer: "We offer five main house types: Modular (flexible, expandable designs), Nordy (Scandinavian-inspired minimalist), Smart (advanced home automation), Modern (contemporary aesthetics), and Modern-B (bold architectural elements)."
         },
         {
           question: "Do you provide architectural services?",
@@ -77,7 +78,7 @@ const FAQPage: React.FC = () => {
       faqs: [
         {
           question: "What's the price range for your homes?",
-          answer: "Our homes start from £275,000 for Modular designs and go up to £395,000+ for larger Skandy-Nordy models. Final pricing depends on size, customization, site conditions, and finish selections."
+          answer: "Our homes start from £275,000 for Modular designs and go up to £395,000+ for larger Nordy models. Final pricing depends on size, customization, site conditions, and finish selections."
         },
         {
           question: "What's included in the base price?",
@@ -130,8 +131,8 @@ const FAQPage: React.FC = () => {
         
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
-            <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">FREQUENTLY ASKED QUESTIONS</div>
-            <h1 className="text-5xl md:text-6xl font-heading font-bold text-white mb-6 leading-tight">
+            <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-thin">FREQUENTLY ASKED QUESTIONS</div>
+            <h1 className="text-5xl md:text-6xl font-heading font-thin text-white mb-6 leading-tight">
               Everything You Need to Know
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-body font-normal">
@@ -143,12 +144,12 @@ const FAQPage: React.FC = () => {
       </section>
 
       {/* FAQ Content */}
-      <section className="py-20 bg-white">
+      <section className="pt-8 md:pt-20 pb-20 bg-white">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             {faqCategories.map((category, categoryIndex) => (
               <div key={categoryIndex} className="mb-12">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-8 pb-4 border-b border-gray-200">
+                <h2 className="text-2xl font-thin text-gray-800 mb-8 pb-4 border-b border-gray-200">
                   {category.title}
                 </h2>
                 
@@ -161,7 +162,7 @@ const FAQPage: React.FC = () => {
                           onClick={() => toggleFAQ(globalIndex)}
                           className="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex items-center justify-between rounded-lg"
                         >
-                          <span className="font-medium text-gray-800">{faq.question}</span>
+                          <span className="font-thin text-gray-800">{faq.question}</span>
                           <svg
                             className={`w-5 h-5 text-gray-500 transition-transform duration-200 ${
                               openFAQ === globalIndex ? 'rotate-180' : ''
@@ -190,7 +191,7 @@ const FAQPage: React.FC = () => {
       </section>
 
       {/* Contact CTA */}
-      <section className="py-20 bg-gray-50">
+      <section className="pt-8 md:pt-20 pb-20 bg-gray-50">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-3xl font-light text-gray-800 mb-6">Still Have Questions?</h2>
@@ -199,18 +200,22 @@ const FAQPage: React.FC = () => {
               and guidance on your prefab home project.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
+              <AnimatedButton
+                asLink={true}
                 href="/contact"
-                className="bg-primary hover:bg-primary-hover text-white px-8 py-3 font-medium transition-colors duration-200 rounded-lg"
+                variant="yellow"
+                className="px-8 py-3 font-thin text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
               >
                 Contact Our Experts
-              </a>
-              <a 
-                href="tel:+447985602627"
-                className="border border-gray-300 text-gray-800 px-8 py-3 font-medium hover:bg-gray-50 transition-colors duration-200 rounded-lg"
+              </AnimatedButton>
+              <AnimatedButton
+                asLink={true}
+                href="tel:+447495788669"
+                variant="white"
+                className="px-8 py-3 font-thin text-sm sm:text-base md:text-lg"
               >
-                Call +44-798-5602627
-              </a>
+                Call +44 7495788669
+              </AnimatedButton>
             </div>
           </div>
         </div>

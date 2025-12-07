@@ -38,6 +38,10 @@ const InteractiveHoverButton = React.forwardRef<
     const button = buttonRef.current;
     if (!button) return;
 
+    // Check if device supports hover (desktop)
+    const supportsHover = window.matchMedia("(hover: hover)").matches;
+    if (!supportsHover) return;
+
     const handleMouseEnter = () => {
       if (textSpanRef.current) {
         gsap.to(textSpanRef.current, {
@@ -108,7 +112,7 @@ const InteractiveHoverButton = React.forwardRef<
   }, []);
 
   const baseClasses = cn(
-    "relative cursor-pointer overflow-hidden rounded-lg bg-background py-2.5 px-6 text-center font-semibold inline-flex items-center justify-center min-w-[140px]",
+    "relative cursor-pointer overflow-hidden rounded-lg bg-background py-2.5 px-6 text-center font-thin inline-flex items-center justify-center min-w-[140px]",
     className,
   );
 

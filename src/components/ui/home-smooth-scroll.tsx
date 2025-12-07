@@ -64,7 +64,7 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
       <main ref={ref}>
         <article>
           {/* First slide: both videos in sequence */}
-          <section className={`relative text-white h-screen w-full bg-slate-950 ${isFirstSlideSticky ? 'sticky top-0' : ''} overflow-hidden`}>
+          <section className={`relative text-white h-[60vh] md:h-screen w-full bg-slate-950 ${isFirstSlideSticky ? 'sticky top-0' : ''} overflow-hidden`}>
             <video
               key={currentVideo}
               src={videos[currentVideo]}
@@ -83,7 +83,7 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
                   <AnimatedButton
                     onClick={navigateToDesigns}
                     variant="yellow"
-                    className="px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 text-sm sm:text-base md:text-lg lg:text-xl font-semibold uppercase"
+                    className="px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 text-sm sm:text-base md:text-lg lg:text-xl !font-thin uppercase"
                   >
                     Explore Our Homes
                   </AnimatedButton>
@@ -96,14 +96,14 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
           <section className='text-black'>
             <div className="relative z-10 w-full">
               {/* Strengths Section */}
-              <section className="bg-white py-4 sm:py-6 md:py-8 strengths-section">
+              <section className="bg-white pt-8 sm:pt-10 md:pt-12 pb-2 sm:pb-3 md:pb-4 strengths-section">
                 <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
                     {/* Energy Efficiency */}
-                    <div className="group relative bg-white/30 hover:bg-white rounded-lg p-3 sm:p-4 md:p-5 transition-all duration-500 ease-out hover:shadow-lg border border-gray-900/50 hover:border-gray-900">
+                    <div className="group relative bg-white/30 md:hover:bg-white rounded-lg p-3 sm:p-4 md:p-5 transition-all duration-500 ease-out shadow-md md:hover:shadow-lg md:hover:-translate-y-2 backdrop-blur-sm">
                       <div className="flex flex-col items-center text-center h-full">
                         <div className="mb-2 sm:mb-3 flex items-center justify-center">
-                          <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-primary transition-transform duration-500 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                          <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-primary transition-transform duration-500 md:group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                           </svg>
                         </div>
@@ -113,10 +113,10 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
                     </div>
 
                     {/* Speed */}
-                    <div className="group relative bg-white/30 hover:bg-white rounded-lg p-3 sm:p-4 md:p-5 transition-all duration-500 ease-out hover:shadow-lg border border-gray-900/50 hover:border-gray-900">
+                    <div className="group relative bg-white/30 md:hover:bg-white rounded-lg p-3 sm:p-4 md:p-5 transition-all duration-500 ease-out shadow-md md:hover:shadow-lg md:hover:-translate-y-2 backdrop-blur-sm">
                       <div className="flex flex-col items-center text-center h-full">
                         <div className="mb-2 sm:mb-3 flex items-center justify-center">
-                          <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-primary transition-transform duration-500 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                          <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-primary transition-transform duration-500 md:group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
                         </div>
@@ -126,10 +126,10 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
                     </div>
 
                     {/* Speed in Building */}
-                    <div className="group relative bg-white/30 hover:bg-white rounded-lg p-3 sm:p-4 md:p-5 transition-all duration-500 ease-out hover:shadow-lg border border-gray-900/50 hover:border-gray-900">
+                    <div className="group relative bg-white/30 md:hover:bg-white rounded-lg p-3 sm:p-4 md:p-5 transition-all duration-500 ease-out shadow-md md:hover:shadow-lg md:hover:-translate-y-2 backdrop-blur-sm">
                       <div className="flex flex-col items-center text-center h-full">
                         <div className="mb-2 sm:mb-3 flex items-center justify-center">
-                          <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-primary transition-transform duration-500 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                          <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-primary transition-transform duration-500 md:group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
                           </svg>
                         </div>
@@ -139,10 +139,10 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
                     </div>
 
                     {/* Eco-Friendly */}
-                    <div className="group relative bg-white/30 hover:bg-white rounded-lg p-3 sm:p-4 md:p-5 transition-all duration-500 ease-out hover:shadow-lg border border-gray-900/50 hover:border-gray-900">
+                    <div className="group relative bg-white/30 md:hover:bg-white rounded-lg p-3 sm:p-4 md:p-5 transition-all duration-500 ease-out shadow-md md:hover:shadow-lg md:hover:-translate-y-2 backdrop-blur-sm">
                       <div className="flex flex-col items-center text-center h-full">
                         <div className="mb-2 sm:mb-3 flex items-center justify-center">
-                          <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-primary transition-transform duration-500 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                          <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-primary transition-transform duration-500 md:group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
                           </svg>
                         </div>
@@ -155,7 +155,7 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
               </section>
               <HouseTypes />
               {/* Mobile 7 Day Houses - only show mobile version in normal scroll */}
-              <div className="block md:hidden">
+              <div className="block md:hidden" style={{ marginBottom: '-1px' }}>
                 <HouseDesigns />
               </div>
             </div>
@@ -176,7 +176,7 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
           </section>
 
           {/* Mobile TurnKey - normal scroll */}
-          <div className="block md:hidden">
+          <div className="block md:hidden" style={{ marginTop: '-1px' }}>
             <TurnKey />
           </div>
 

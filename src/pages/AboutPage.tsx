@@ -17,7 +17,7 @@ const AboutPage: React.FC = () => {
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
             <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">ABOUT PREFAB HOMES</div>
-            <h1 className="text-5xl md:text-6xl font-heading font-bold text-white mb-6 leading-tight">
+            <h1 className="text-5xl md:text-6xl font-heading font-light text-white mb-6 leading-tight">
               Building the Future of Housing
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-body font-normal">
@@ -29,12 +29,12 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Placeholder Content Section */}
-      <section className="py-20 bg-white">
+      <section className="pt-8 md:pt-20 pb-20 bg-white">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="bg-gray-50 p-12 rounded-lg text-center">
               <div className="text-6xl text-gray-400 mb-6">✏️</div>
-              <h2 className="text-3xl font-light text-gray-800 mb-6 font-heading font-bold">Content Ready for Customization</h2>
+              <h2 className="text-3xl font-light text-gray-800 mb-6 font-heading">Content Ready for Customization</h2>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed font-body font-normal">
                 This About Us page is prepared and waiting for your unique company story, 
                 mission statement, team information, and values. Please provide the content 
@@ -58,16 +58,16 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Stats Section (Generic) */}
-      <section className="py-20 bg-gray-50">
+      <section className="pt-8 md:pt-20 pb-20 bg-gray-50">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-light text-gray-800 mb-6 font-heading font-bold">Our Impact</h2>
+            <h2 className="text-3xl font-light text-gray-800 mb-6 font-heading">Our Impact</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto font-body font-normal">
               Numbers that reflect our commitment to quality and innovation
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             <div className="text-center">
               <div className="text-4xl font-bold text-primary mb-2">150+</div>
               <div className="text-gray-600">Homes Delivered</div>
@@ -79,10 +79,6 @@ const AboutPage: React.FC = () => {
             <div className="text-center">
               <div className="text-4xl font-bold text-primary mb-2">98%</div>
               <div className="text-gray-600">Client Satisfaction</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary mb-2">Highly Energy Efficient</div>
-              <div className="text-gray-600">Energy Rating</div>
             </div>
           </div>
         </div>

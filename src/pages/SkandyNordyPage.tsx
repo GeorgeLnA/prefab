@@ -7,13 +7,23 @@ import { ExpandingButton } from '../components/ui/expanding-button';
 
 const SkandyNordyPage: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
   
-  // Filter only Skandy-Nordy category houses
-  const skandyNordyHouses = houseData.filter(house => house.category === 'SKANDY-NORDY');
+  // Filter only Nordy category houses
+  const nordyHouses = houseData.filter(house => house.category === 'NORDY');
 
   // Scroll to top on component mount
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  // Scroll detection
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const openLightbox = (imageUrl: string) => {
@@ -27,43 +37,41 @@ const SkandyNordyPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Skandy-Nordy Collection - Scandinavian Prefab Homes"
-        description="Scandinavian-inspired minimalist prefab homes combining Skandy and Nordy designs. Natural materials, clean lines, and sustainable living. Starting from £295,000."
+        title="Nordy Collection - Scandinavian Prefab Homes"
+        description="Scandinavian-inspired minimalist prefab homes. Natural materials, clean lines, and sustainable living."
         url="/skandy-nordy"
       />
       <div>
       {/* Hero Section */}
-      <section className="relative h-screen">
-        <div className="absolute inset-0 bg-black/40 z-10"></div>
+      <section className="relative h-[60vh] md:h-screen">
+        <div className="absolute inset-0 bg-black/35 z-10"></div>
         
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
-            backgroundImage: "url('/Skandy 120 front-1 2.png')" 
+            backgroundImage: "url('/NORDY/NORDY 35_1.2F 4K.jpg')" 
           }}
         ></div>
         
         <div className="absolute inset-0 flex items-center justify-start z-20">
           <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl">
-              <div className="text-primary text-sm uppercase tracking-wider mb-4">SKANDY-NORDY COLLECTION</div>
-              <h1 className="text-5xl md:text-6xl font-heading font-bold text-white mb-6 leading-tight">
+              <h1 className="text-5xl md:text-6xl font-heading font-thin text-white mb-6 leading-tight">
                 Nordic Harmony
-                <span className="relative">
-                  <div className="absolute -bottom-2 left-0 w-8 h-8 border-2 border-primary rounded-lg"></div>
-                </span>
               </h1>
               <p className="text-white text-xl font-body font-normal mb-8 leading-relaxed">
                 Scandinavian-Nordic inspired minimalist design. Natural materials, clean lines, 
-                and sustainable living principles, starting from £295,000.
+                and sustainable living principles.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a 
-                  href="#consultation" 
-                  className="inline-block border border-white text-white px-8 py-3 font-medium hover:bg-white hover:text-gray-900 transition-colors duration-200 rounded-lg"
+                <AnimatedButton
+                  asLink={true}
+                  href="/contact"
+                  variant="yellow"
+                  className="px-8 py-3 w-full sm:w-auto text-center"
                 >
-                  Schedule Visit
-                </a>
+                  Schedule Consultation
+                </AnimatedButton>
               </div>
             </div>
           </div>
@@ -71,66 +79,55 @@ const SkandyNordyPage: React.FC = () => {
       </section>
 
       {/* Models Section */}
-      <section id="models" className="py-20 bg-white">
+      <section id="models" className="pt-8 md:pt-20 pb-20 bg-white">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">SKANDY-NORDY MODELS</div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4 sm:mb-6">Nordic Craftsmanship</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Nordic Craftsmanship</h2>
             <p className="text-lg sm:text-xl font-body font-normal text-gray-900 max-w-3xl mx-auto">
               Each model embodies the essence of Scandinavian design philosophy and Nordic craftsmanship.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {skandyNordyHouses.map((house, index) => {
-              const originalIndex = houseData.findIndex(h => h.name === house.name);
+            {nordyHouses.map((house, index) => {
+              const houseMatch = houseData.find(h => h.name === house.name);
               return (
                 <Link 
                   key={index} 
-                  to={`/house/${originalIndex}`}
-                  className="group flex flex-col bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden h-full cursor-pointer"
+                  to={`/house/${houseMatch?.slug || ''}`}
+                  className="group flex flex-col bg-white rounded-lg shadow-lg md:hover:shadow-2xl transition-all duration-300 overflow-hidden h-full cursor-pointer"
                 >
                   <div className="relative overflow-hidden bg-white">
                     {/* Image Container */}
-                    <div className="relative overflow-hidden h-64">
+                    <div className="relative overflow-hidden aspect-[4/3]">
                       <img 
                         src={house.imageUrl} 
                         alt={house.name} 
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110"
                       />
                       {/* Overlay */}
-                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-500"></div>
-                      {/* Category Badge */}
-                      <div className="absolute top-6 left-6">
-                        <div className="bg-primary text-white py-2 px-4 text-sm font-medium rounded-lg">
-                          SKANDY-NORDY
-                        </div>
-                      </div>
+                      <div className="absolute inset-0 bg-black bg-opacity-0 md:group-hover:bg-opacity-10 transition-all duration-500"></div>
                     </div>
                     {/* Content */}
                     <div className="flex flex-col flex-grow p-6">
-                      <h3 className="text-xl font-heading font-semibold text-gray-900 mb-2 line-clamp-1">
+                      <h3 className="text-xl font-heading font-thin text-gray-900 mb-2 line-clamp-1">
                         {house.name}
                       </h3>
-                      {house.description && (
-                        <p className="text-sm text-gray-900 mb-4 line-clamp-2 flex-grow">
-                          {house.description}
-                        </p>
-                      )}
                       <div className="flex items-center justify-between text-sm mb-4">
                         <span className="text-gray-900">
-                          {house.squareMeters} m² • {house.type}
+                          {house.squareFeet} ft² • {house.type}
                         </span>
-                        <span className="text-primary font-medium">
+                        <span className="text-primary font-thin">
                           £{house.price.toLocaleString()}
                         </span>
                       </div>
                       <div className="mt-auto">
-                        <div className="relative block w-full overflow-hidden text-center rounded-lg font-medium bg-primary text-white py-3 px-4">
-                          <span className="relative z-10 inline-block whitespace-nowrap">
-                            View Details
-                          </span>
-                        </div>
+                        <ExpandingButton
+                          to={`/house/${houseMatch?.slug || ''}`}
+                          className="w-full bg-primary text-white py-3 px-4"
+                        >
+                          View Details
+                        </ExpandingButton>
                       </div>
                     </div>
                   </div>
@@ -142,66 +139,69 @@ const SkandyNordyPage: React.FC = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-white">
+      <section className="pt-8 md:pt-20 pb-20 bg-white">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            {/* Removed colored heading */}
-            <h2 className="text-4xl font-heading font-bold text-gray-800 mb-6">Nordic Living</h2>
-            <p className="text-xl text-gray-900 font-body font-normal max-w-3xl mx-auto">
-              Our Skandy-Nordy collection embodies the timeless principles of Scandinavian design: functionality, simplicity, and deep connection with nature.
-            </p>
+            <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Our Core Principles</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             <div className="text-center group">
-              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                <svg className="w-10 h-10 text-primary group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
+                <svg className="w-10 h-10 text-primary md:group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-heading font-semibold mb-3">Natural Materials</h3>
-              <p className="text-gray-900 font-body font-normal">Sustainably sourced wood, stone, and eco-friendly materials throughout</p>
+              <p className="text-gray-900 font-body font-normal">Natural materials for a warm and authentic living atmosphere</p>
             </div>
             <div className="text-center group">
-              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                <svg className="w-10 h-10 text-primary group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
+                <svg className="w-10 h-10 text-primary md:group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-heading font-semibold mb-3">Minimalist Design</h3>
-              <p className="text-gray-900 font-body font-normal">Clean lines and uncluttered spaces that promote tranquility</p>
+              <p className="text-gray-900 font-body font-normal">High thermal comfort with advanced SIP insulation</p>
             </div>
             <div className="text-center group">
-              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                <svg className="w-10 h-10 text-primary group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
+                <svg className="w-10 h-10 text-primary md:group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-heading font-semibold mb-3">Sustainable Living</h3>
-              <p className="text-gray-900 font-body font-normal">Environmentally conscious design with minimal ecological footprint</p>
+              <p className="text-gray-900 font-body font-normal">Faster move-in through precision off-site manufacturing</p>
+            </div>
+            <div className="text-center group">
+              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
+                <svg className="w-10 h-10 text-primary md:group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <p className="text-gray-900 font-body font-normal">Clean, predictable assembly for effortless installation</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-primary to-primary-dark">
+      <section className="pt-8 md:pt-20 pb-20 bg-gradient-to-br from-primary to-primary-dark">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-heading font-bold text-white mb-6">Embrace Nordic Living</h2>
+          <h2 className="text-4xl font-heading font-thin text-white mb-6">Embrace Nordic Living</h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Experience the tranquility and sustainability of Scandinavian design with our carefully crafted Skandy-Nordy collection.
+            Experience the tranquility and sustainability of Scandinavian design with our carefully crafted Nordy collection.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <AnimatedButton
-              variant="whiteOnYellow"
-              className="px-6 sm:px-8 py-3 sm:py-4 font-semibold text-sm sm:text-base md:text-lg"
+              asLink={true}
+              href="/contact"
+              variant={isScrolled ? "greyToWhite" : "greyToYellow"}
+              className="px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
             >
               Schedule Viewing
             </AnimatedButton>
             <AnimatedButton
               asLink={true}
               href="/gallery"
-              variant="whiteOnYellow"
-              className="px-6 sm:px-8 py-3 sm:py-4 font-semibold text-sm sm:text-base md:text-lg"
+              variant={isScrolled ? "whiteToGrey" : "whiteOnYellow"}
+              className="px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
             >
               View All Models
             </AnimatedButton>
@@ -218,13 +218,13 @@ const SkandyNordyPage: React.FC = () => {
           <div className="relative max-w-4xl max-h-full">
             <button
               onClick={closeLightbox}
-              className="absolute top-4 right-4 text-white text-4xl hover:text-white transition-colors z-10"
+              className="absolute top-4 right-4 text-white text-4xl md:hover:text-white transition-colors z-10"
             >
               &times;
             </button>
             <img 
               src={selectedImage} 
-              alt="Skandy-Nordy house design"
+              alt="Nordy house design"
               className="max-w-full max-h-full object-contain"
             />
           </div>

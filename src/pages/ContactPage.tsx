@@ -36,7 +36,7 @@ const ContactPage: React.FC = () => {
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
             <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">GET IN TOUCH</div>
-            <h1 className="text-5xl md:text-6xl font-heading font-bold text-white mb-6 leading-tight">
+            <h1 className="text-5xl md:text-6xl font-heading font-light text-white mb-6 leading-tight">
               Let's Build Your Dream Home
             </h1>
             <p className="text-xl text-white max-w-3xl mx-auto leading-relaxed font-body font-normal">
@@ -48,21 +48,21 @@ const ContactPage: React.FC = () => {
       </section>
 
       {/* Contact Form & Info Section */}
-      <section className="py-20 bg-white">
+      <section className="pt-8 md:pt-20 pb-20 bg-white">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Contact Form */}
             <div>
-              <div className="bg-white p-8 rounded-lg shadow-lg">
-                <h2 className="text-3xl font-light text-gray-800 mb-6 font-heading font-bold">Start Your Project</h2>
-                <p className="text-gray-900 mb-8 font-body font-normal">
+              <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+                <h2 className="text-2xl sm:text-3xl font-heading font-thin text-gray-800 mb-3 sm:mb-4">Start Your Project</h2>
+                <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8 font-body font-normal leading-relaxed">
                   Fill out the form below and we'll get back to you within 24 hours to discuss your project.
                 </p>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-900 mb-2">
+                      <label htmlFor="name" className="block text-sm font-thin text-gray-700 mb-1.5 sm:mb-2">
                         Full Name *
                       </label>
                       <input
@@ -72,12 +72,12 @@ const ContactPage: React.FC = () => {
                         required
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-sm sm:text-base"
                         placeholder="Your full name"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-900 mb-2">
+                      <label htmlFor="email" className="block text-sm font-thin text-gray-700 mb-1.5 sm:mb-2">
                         Email Address *
                       </label>
                       <input
@@ -87,15 +87,15 @@ const ContactPage: React.FC = () => {
                         required
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-sm sm:text-base"
                         placeholder="your@email.com"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-gray-900 mb-2">
+                      <label htmlFor="phone" className="block text-sm font-thin text-gray-700 mb-1.5 sm:mb-2">
                         Phone Number
                       </label>
                       <input
@@ -104,63 +104,79 @@ const ContactPage: React.FC = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-sm sm:text-base"
                         placeholder="+44 123 456 7890"
                       />
                     </div>
                     <div>
-                      <label htmlFor="projectType" className="block text-sm font-medium text-gray-900 mb-2">
+                      <label htmlFor="projectType" className="block text-sm font-thin text-gray-700 mb-1.5 sm:mb-2">
                         Project Type
                       </label>
-                      <select
-                        id="projectType"
-                        name="projectType"
-                        value={formData.projectType}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                      >
-                        <option value="">Select project type</option>
-                        <option value="modular">Modular Home</option>
-                        <option value="skandy-nordy">Skandy-Nordy</option>
-                        <option value="smart">Smart Home</option>
-                        <option value="modern">Modern Home</option>
-                        <option value="modern-b">Modern-B</option>
-                        <option value="custom">Custom Design</option>
-                      </select>
+                      <div className="relative">
+                        <select
+                          id="projectType"
+                          name="projectType"
+                          value={formData.projectType}
+                          onChange={handleInputChange}
+                          className="w-full pl-4 pr-10 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-sm sm:text-base bg-white appearance-none"
+                        >
+                          <option value="">Select project type</option>
+                          <option value="modular">Modular Home</option>
+                          <option value="nordy">Nordy</option>
+                          <option value="smart">Smart Home</option>
+                          <option value="modern">Modern Home</option>
+                          <option value="modern-b">Modern-B</option>
+                          <option value="custom">Custom Design</option>
+                        </select>
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                          <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="budget" className="block text-sm font-medium text-gray-900 mb-2">
+                    <label htmlFor="budget" className="block text-sm font-thin text-gray-700 mb-1.5 sm:mb-2">
                       Budget Range
                     </label>
-                    <select
-                      id="budget"
-                      name="budget"
-                      value={formData.budget}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                    >
-                      <option value="">Select budget range</option>
-                      <option value="250-300k">£250,000 - £300,000</option>
-                      <option value="300-400k">£300,000 - £400,000</option>
-                      <option value="400-500k">£400,000 - £500,000</option>
-                      <option value="500k+">£500,000+</option>
-                    </select>
+                    <div className="relative">
+                      <select
+                        id="budget"
+                        name="budget"
+                        value={formData.budget}
+                        onChange={handleInputChange}
+                        className="w-full pl-4 pr-10 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-sm sm:text-base bg-white appearance-none"
+                      >
+                        <option value="">Select budget range</option>
+                        <option value="100k-less">£100,000 or less</option>
+                        <option value="100k-250k">£100,000 - £250,000</option>
+                        <option value="250-300k">£250,000 - £300,000</option>
+                        <option value="300-400k">£300,000 - £400,000</option>
+                        <option value="400-500k">£400,000 - £500,000</option>
+                        <option value="500k+">£500,000+</option>
+                      </select>
+                      <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                        <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-900 mb-2">
+                    <label htmlFor="message" className="block text-sm font-thin text-gray-700 mb-1.5 sm:mb-2">
                       Project Details *
                     </label>
                     <textarea
                       id="message"
                       name="message"
                       required
-                      rows={6}
+                      rows={5}
                       value={formData.message}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      className="w-full px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-sm sm:text-base resize-none"
                       placeholder="Tell us about your project, timeline, location, and any specific requirements..."
                     ></textarea>
                   </div>
@@ -168,7 +184,7 @@ const ContactPage: React.FC = () => {
                   <AnimatedButton
                     type="submit"
                     variant="yellowOnWhite"
-                    className="w-full px-8 py-4 font-medium"
+                    className="w-full px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base"
                   >
                     Send Message
                   </AnimatedButton>
@@ -178,29 +194,6 @@ const ContactPage: React.FC = () => {
 
             {/* Contact Information */}
             <div className="space-y-8">
-              {/* Office Info */}
-              <div className="bg-white p-8 rounded-lg">
-                <div className="flex items-start">
-                  <div className="bg-primary/10 p-3 rounded-lg mr-6">
-                    <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-2 font-heading font-bold">Visit Our Showroom</h3>
-                    <p className="text-gray-900 mb-2 font-body font-normal">
-                      123 Construction Avenue<br />
-                      London, UK SW1A 1AA
-                    </p>
-                    <p className="text-sm text-gray-900 font-body font-medium">
-                      Open Monday - Friday: 9:00 AM - 6:00 PM<br />
-                      Saturday: 10:00 AM - 4:00 PM
-                    </p>
-                  </div>
-                </div>
-              </div>
-
               {/* Phone */}
               <div className="bg-white p-8 rounded-lg">
                 <div className="flex items-start">
@@ -210,10 +203,10 @@ const ContactPage: React.FC = () => {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-2 font-heading font-bold">Call Us</h3>
+                    <h3 className="text-xl font-light text-gray-800 mb-2 font-heading">Call Us</h3>
                     <p className="text-gray-900 mb-2 font-body font-normal">
-                      <a href="tel:+447985602627" className="text-primary hover:text-primary-hover transition-colors">
-                        +44-798-5602627
+                      <a href="tel:+447495788669" className="text-primary hover:text-primary-hover transition-colors">
+                        +44 7495788669
                       </a>
                     </p>
                     <p className="text-sm text-gray-900 font-body font-medium">
@@ -232,10 +225,10 @@ const ContactPage: React.FC = () => {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-2 font-heading font-bold">Email Us</h3>
+                    <h3 className="text-xl font-light text-gray-800 mb-2 font-heading">Email Us</h3>
                     <p className="text-gray-900 mb-2 font-body font-normal">
-                      <a href="mailto:info@prefabhomes.co.uk" className="text-primary hover:text-primary-hover transition-colors">
-                        info@prefabhomes.co.uk
+                      <a href="mailto:prefabhomes.uk@gmail.com" className="text-primary hover:text-primary-hover transition-colors">
+                        prefabhomes.uk@gmail.com
                       </a>
                     </p>
                     <p className="text-sm text-gray-900 font-body font-medium">
@@ -247,14 +240,14 @@ const ContactPage: React.FC = () => {
 
               {/* Process Timeline */}
               <div className="bg-primary/5 p-8 rounded-lg">
-                <h3 className="text-xl font-semibold text-gray-800 mb-6 font-heading font-bold">What Happens Next?</h3>
+                <h3 className="text-xl font-light text-gray-800 mb-6 font-heading">What Happens Next?</h3>
                 <div className="space-y-4">
                   <div className="flex items-start">
                     <div className="bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
                       <span className="text-sm font-bold">1</span>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-800 font-heading font-bold">Initial Consultation</h4>
+                      <h4 className="font-light text-gray-800 font-heading">Initial Consultation</h4>
                       <p className="text-gray-900 text-sm font-body font-normal">We'll discuss your vision, requirements, and timeline</p>
                     </div>
                   </div>
@@ -263,7 +256,7 @@ const ContactPage: React.FC = () => {
                       <span className="text-sm font-bold">2</span>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-800 font-heading font-bold">Design & Quote</h4>
+                      <h4 className="font-light text-gray-800 font-heading">Design & Quote</h4>
                       <p className="text-gray-900 text-sm font-body font-normal">Custom design proposal with detailed pricing</p>
                     </div>
                   </div>
@@ -272,7 +265,7 @@ const ContactPage: React.FC = () => {
                       <span className="text-sm font-bold">3</span>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-800 font-heading font-bold">Project Start</h4>
+                      <h4 className="font-light text-gray-800 font-heading">Project Start</h4>
                       <p className="text-gray-900 text-sm font-body font-normal">Begin manufacturing and site preparation</p>
                     </div>
                   </div>
@@ -283,23 +276,6 @@ const ContactPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Map Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-light text-gray-800 mb-4 font-heading font-bold">Find Us</h2>
-            <p className="text-gray-900 font-body font-normal">Visit our showroom to see our prefab homes up close</p>
-          </div>
-          
-          <div className="bg-gray-900 h-96 rounded-lg flex items-center justify-center">
-            <div className="text-center">
-              <div className="text-6xl text-gray-900 mb-4">🗺️</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2 font-heading font-bold">Interactive Map</h3>
-              <p className="text-gray-900 font-body font-normal">Map integration coming soon</p>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
     </>
   );

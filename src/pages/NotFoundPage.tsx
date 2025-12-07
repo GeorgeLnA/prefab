@@ -14,8 +14,8 @@ const NotFoundPage: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-2xl mx-auto">
-            <h1 className="text-9xl font-heading font-bold text-primary mb-4">404</h1>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-6">
+            <h1 className="text-9xl font-heading font-thin text-primary mb-4">404</h1>
+            <h2 className="text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-6">
               Page Not Found
             </h2>
             <p className="text-xl text-gray-600 mb-10 font-body font-normal leading-relaxed">
@@ -27,7 +27,7 @@ const NotFoundPage: React.FC = () => {
                 asLink={true}
                 href="/"
                 variant="yellowOnWhite"
-                className="px-8 py-4 font-semibold text-base"
+                className="px-8 py-4 font-thin text-base w-full sm:w-auto text-center"
               >
                 Go to Homepage
               </AnimatedButton>
@@ -35,14 +35,14 @@ const NotFoundPage: React.FC = () => {
                 asLink={true}
                 href="/designs"
                 variant="white"
-                className="px-8 py-4 font-semibold text-base"
+                className="px-8 py-4 font-thin text-base w-full sm:w-auto text-center"
               >
                 Browse Designs
               </AnimatedButton>
             </div>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
               <div>
-                <h3 className="font-heading font-bold text-gray-900 mb-3">Popular Pages</h3>
+                <h3 className="font-heading font-thin text-gray-900 mb-3">Popular Pages</h3>
                 <ul className="space-y-2">
                   <li>
                     <Link to="/designs" className="text-gray-600 hover:text-primary transition-colors font-body font-normal">
@@ -62,11 +62,11 @@ const NotFoundPage: React.FC = () => {
                 </ul>
               </div>
               <div>
-                <h3 className="font-heading font-bold text-gray-900 mb-3">House Types</h3>
+                <h3 className="font-heading font-thin text-gray-900 mb-3">House Types</h3>
                 <ul className="space-y-2">
                   <li>
-                    <Link to="/skandy" className="text-gray-600 hover:text-primary transition-colors font-body font-normal">
-                      → Skandy
+                    <Link to="/skandy-nordy" className="text-gray-600 hover:text-primary transition-colors font-body font-normal">
+                      → Nordy
                     </Link>
                   </li>
                   <li>
@@ -82,7 +82,7 @@ const NotFoundPage: React.FC = () => {
                 </ul>
               </div>
               <div>
-                <h3 className="font-heading font-bold text-gray-900 mb-3">Resources</h3>
+                <h3 className="font-heading font-thin text-gray-900 mb-3">Resources</h3>
                 <ul className="space-y-2">
                   <li>
                     <Link to="/blog" className="text-gray-600 hover:text-primary transition-colors font-body font-normal">

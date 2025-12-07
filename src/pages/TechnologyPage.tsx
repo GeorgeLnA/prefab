@@ -17,7 +17,7 @@ const TechnologyPage: React.FC = () => {
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
             <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">TECHNOLOGY</div>
-            <h1 className="text-5xl md:text-6xl font-heading font-bold text-white mb-6 leading-tight">
+            <h1 className="text-5xl md:text-6xl font-heading font-light text-white mb-6 leading-tight">
               Built for Performance
             </h1>
             <p className="text-xl text-white max-w-3xl mx-auto leading-relaxed font-body font-normal">
@@ -33,15 +33,11 @@ const TechnologyPage: React.FC = () => {
           {/* Energy Efficiency */}
           <div className="mb-12 sm:mb-16 md:mb-20">
             <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">ENERGY EFFICIENCY</div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4 sm:mb-6">Highly Energy Efficient Performance</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-light text-gray-900 mb-4 sm:mb-6">Highly Energy Efficient Performance</h2>
             <p className="text-lg sm:text-xl font-body font-normal text-gray-900 mb-6 sm:mb-8 leading-relaxed">
               Our homes achieve the highest energy ratings through superior insulation, triple-glazed windows, and integrated renewable energy systems. Annual heating costs are typically under £600.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="border-l-4 border-primary pl-6">
-                <div className="text-2xl font-bold text-gray-900 mb-2">Highly Energy Efficient</div>
-                <div className="text-gray-900 font-body font-normal">Energy Rating</div>
-              </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
               <div className="border-l-4 border-primary pl-6">
                 <div className="text-2xl font-bold text-gray-900 mb-2">90%</div>
                 <div className="text-gray-900 font-body font-normal">Energy Savings</div>
@@ -56,7 +52,7 @@ const TechnologyPage: React.FC = () => {
           {/* Manufacturing */}
           <div className="mb-20">
             <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">MANUFACTURING</div>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6">Precision Engineering</h2>
+            <h2 className="text-3xl md:text-4xl font-heading font-light text-gray-900 mb-6">Precision Engineering</h2>
             <p className="text-lg text-gray-900 mb-8 leading-relaxed font-body font-normal">
               Every component is manufactured in our controlled factory environment using advanced CNC machinery and automated systems. This ensures consistent quality, reduced waste, and faster assembly.
             </p>
@@ -85,11 +81,11 @@ const TechnologyPage: React.FC = () => {
           {/* Smart Systems */}
           <div className="mb-20">
             <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">SMART SYSTEMS</div>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6">Integrated Technology</h2>
+            <h2 className="text-3xl md:text-4xl font-heading font-light text-gray-900 mb-6">Integrated Technology</h2>
             <p className="text-lg text-gray-900 mb-8 leading-relaxed font-body font-normal">
               Every home includes pre-wired infrastructure for smart home automation, allowing complete control of lighting, climate, security, and energy management through your phone or voice assistant.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-2 gap-6">
               <div className="rounded-lg p-6">
                 <h3 className="text-xl font-heading font-bold text-gray-900 mb-3">Home Automation</h3>
                 <p className="text-gray-900 font-body font-normal">
@@ -108,11 +104,11 @@ const TechnologyPage: React.FC = () => {
           {/* Materials */}
           <div className="mb-20">
             <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">MATERIALS</div>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6">Sustainable Construction</h2>
+            <h2 className="text-3xl md:text-4xl font-heading font-light text-gray-900 mb-6">Sustainable Construction</h2>
             <p className="text-lg text-gray-900 mb-8 leading-relaxed font-body font-normal">
               We use responsibly sourced materials and eco-friendly construction methods. Our homes are built to last with minimal environmental impact.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-xl font-heading font-bold text-gray-900 mb-4">Structural Components</h3>
                 <ul className="space-y-2 text-gray-900 font-body font-normal">
@@ -137,12 +133,12 @@ const TechnologyPage: React.FC = () => {
           {/* Assembly */}
           <div>
             <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">ASSEMBLY</div>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6">Rapid Installation</h2>
+            <h2 className="text-3xl md:text-4xl font-heading font-light text-gray-900 mb-6">Rapid Installation</h2>
             <p className="text-lg text-gray-900 mb-8 leading-relaxed font-body font-normal">
               Our modular design enables on-site assembly in just 3-5 days. This minimizes disruption, reduces construction time by up to 70%, and ensures consistent quality regardless of weather conditions.
             </p>
             <div className="bg-white p-8 rounded-lg">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
                 <div>
                   <div className="text-3xl font-bold text-primary mb-2">6-8</div>
                   <div className="text-gray-900 font-body font-normal">Weeks Manufacturing</div>
@@ -176,7 +172,7 @@ const TechnologyPage: React.FC = () => {
                 asLink={true}
             href="/contact" 
                 variant="whiteOnYellow"
-                className="px-6 sm:px-8 py-3 sm:py-4 font-semibold text-sm sm:text-base md:text-lg"
+                className="px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
               >
                 Schedule Consultation
               </AnimatedButton>
@@ -184,7 +180,7 @@ const TechnologyPage: React.FC = () => {
                 asLink={true}
                 href="/designs"
                 variant="whiteOnYellow"
-                className="px-6 sm:px-8 py-3 sm:py-4 font-semibold text-sm sm:text-base md:text-lg"
+                className="px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg"
               >
                 View Designs
               </AnimatedButton>

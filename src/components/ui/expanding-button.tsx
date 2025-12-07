@@ -17,13 +17,28 @@ const ExpandingButton = React.forwardRef<HTMLAnchorElement, ExpandingButtonProps
     const hoverContentRef = useRef<HTMLDivElement>(null);
     const bgCircleRef = useRef<HTMLDivElement>(null);
     
-    // Determine if button starts with grey background - if so, expand with yellow
-    const isGreyBackground = className?.includes('bg-gray-900');
-    const expandingColor = isGreyBackground ? 'bg-primary' : 'bg-gray-900';
+    // Determine button background color for hover animation
+    const isGreyBackground = className?.includes('bg-gray-900') || className?.includes('bg-gray-800');
+    const isYellowBackground = className?.includes('bg-primary');
+    
+    let expandingColor = 'bg-gray-900';
+    let hoverTextColor = 'text-white';
+    
+    if (isGreyBackground) {
+      expandingColor = 'bg-white';
+      hoverTextColor = 'text-gray-900';
+    } else if (isYellowBackground) {
+      expandingColor = 'bg-white';
+      hoverTextColor = 'text-gray-900';
+    }
 
     useEffect(() => {
       const button = buttonRef.current;
       if (!button) return;
+
+      // Check if device supports hover (desktop)
+      const supportsHover = window.matchMedia("(hover: hover)").matches;
+      if (!supportsHover) return;
 
       let enterTimeline: gsap.core.Timeline | null = null;
       let leaveTimeline: gsap.core.Timeline | null = null;
@@ -48,32 +63,44 @@ const ExpandingButton = React.forwardRef<HTMLAnchorElement, ExpandingButtonProps
           enterTimeline.to(textSpanRef.current, {
             x: 48,
             opacity: 0,
-            duration: 0.4,
+            duration: 0.2,
             ease: "power2.in",
+            force3D: true
           }, 0);
         }
         
         // Animate expanding circle (starts slightly before text fades completely)
         if (bgCircleRef.current) {
+          enterTimeline.set(bgCircleRef.current, {
+            opacity: 1,
+            scale: 0,
+            xPercent: -50,
+            yPercent: -50,
+            force3D: true
+          }, 0.05);
           enterTimeline.to(bgCircleRef.current, {
-            left: "0%",
-            top: "0%",
+            left: "50%",
+            top: "50%",
             width: "100%",
             height: "100%",
             scale: 1.8,
-            duration: 0.5,
+            xPercent: -50,
+            yPercent: -50,
+            duration: 0.25,
             ease: "power2.out",
-          }, 0.1);
+            force3D: true
+          }, 0.05);
         }
         
         // Animate hover text in (fade and move from right, starts when initial text is mostly gone)
         if (hoverContentRef.current) {
           enterTimeline.to(hoverContentRef.current, {
-            x: -4,
+            x: -9,
             opacity: 1,
-            duration: 0.4,
+            duration: 0.2,
             ease: "power2.out",
-          }, 0.3);
+            force3D: true
+          }, 0.15);
         }
       };
 
@@ -102,11 +129,14 @@ const ExpandingButton = React.forwardRef<HTMLAnchorElement, ExpandingButtonProps
             }
             if (bgCircleRef.current) {
               gsap.set(bgCircleRef.current, {
-                left: "20%",
-                top: "40%",
+                left: "50%",
+                top: "50%",
                 width: "8px",
                 height: "8px",
-                scale: 1
+                scale: 0,
+                opacity: 0,
+                xPercent: -50,
+                yPercent: -50
               });
             }
           }
@@ -117,22 +147,27 @@ const ExpandingButton = React.forwardRef<HTMLAnchorElement, ExpandingButtonProps
           leaveTimeline.to(hoverContentRef.current, {
             x: 48,
             opacity: 0,
-            duration: 0.3,
+            duration: 0.2,
             ease: "power2.in",
+            force3D: true
           }, 0);
         }
         
         // Animate circle back to small size - starts AFTER text is completely gone
         if (bgCircleRef.current) {
           leaveTimeline.to(bgCircleRef.current, {
-            left: "20%",
-            top: "40%",
+            left: "50%",
+            top: "50%",
             width: "8px",
             height: "8px",
-            scale: 1,
-            duration: 0.4,
-            ease: "power2.out",
-          }, 0.3);
+            scale: 0,
+            opacity: 0,
+            xPercent: -50,
+            yPercent: -50,
+            duration: 0.2,
+            ease: "power2.in",
+            force3D: true
+          }, 0.2);
         }
         
         // Animate initial text back in - starts when circle is shrinking
@@ -140,9 +175,10 @@ const ExpandingButton = React.forwardRef<HTMLAnchorElement, ExpandingButtonProps
           leaveTimeline.to(textSpanRef.current, {
             x: 4,
             opacity: 1,
-            duration: 0.35,
+            duration: 0.2,
             ease: "power2.out",
-          }, 0.4);
+            force3D: true
+          }, 0.25);
         }
       };
 
@@ -170,7 +206,7 @@ const ExpandingButton = React.forwardRef<HTMLAnchorElement, ExpandingButtonProps
         }}
         to={to}
         className={cn(
-          "relative block w-full overflow-hidden text-center rounded-lg font-medium",
+          "relative block w-full overflow-hidden text-center rounded-lg font-thin",
           className
         )}
         {...props}
@@ -186,16 +222,18 @@ const ExpandingButton = React.forwardRef<HTMLAnchorElement, ExpandingButtonProps
           ref={bgCircleRef}
           className={`absolute rounded-lg ${expandingColor} z-20`}
           style={{ 
-            left: "20%", 
-            top: "40%", 
+            left: "50%", 
+            top: "50%", 
             width: "8px", 
             height: "8px",
-            transform: "scale(1)"
+            transform: "translate(-50%, -50%) scale(0)",
+            opacity: 0,
+            willChange: "transform, opacity"
           }}
         ></div>
         <div 
           ref={hoverContentRef}
-          className="absolute top-0 z-30 flex h-full w-full items-center justify-center gap-2 text-white"
+          className={`absolute top-0 z-30 flex h-full w-full items-center justify-center gap-2 ${hoverTextColor}`}
           style={{ transform: "translateX(48px)", opacity: 0 }}
         >
           <span className="whitespace-nowrap">{children}</span>
