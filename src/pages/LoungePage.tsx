@@ -80,11 +80,11 @@ const LoungePage: React.FC = () => {
                   <div className="relative overflow-hidden bg-white">
                     {/* Image Container */}
                     <div className="relative overflow-hidden aspect-[4/3]">
-                      <img 
-                        src={house.imageUrl} 
-                        alt={house.name} 
-                        className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110"
-                      />
+                    <img 
+                      src={house.imageUrl} 
+                      alt={house.name}
+                      className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110"
+                    />
                       {/* Overlay */}
                       <div className="absolute inset-0 bg-black bg-opacity-0 md:group-hover:bg-opacity-10 transition-all duration-500"></div>
                     </div>
@@ -102,14 +102,14 @@ const LoungePage: React.FC = () => {
                         </span>
                       </div>
                       <div className="mt-auto">
-                        <ExpandingButton
+                      <ExpandingButton
                           to={`/house/${houseMatch?.slug || ''}`}
                           className="w-full bg-primary text-white py-3 px-4"
-                        >
-                          View Details
-                        </ExpandingButton>
-                      </div>
+                      >
+                        View Details
+                      </ExpandingButton>
                     </div>
+                  </div>
                   </div>
                 </Link>
               );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { houseData, getHouseBySlug } from '../data/houses';
 import { AnimatedButton } from '../components/ui/animated-button';
@@ -9,6 +9,8 @@ const HouseDetailPage: React.FC = () => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [activeTab, setActiveTab] = useState('overview');
   const [notIncludedOpen, setNotIncludedOpen] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxImageIndex, setLightboxImageIndex] = useState(0);
   
   // Get the house data by slug
   const house = slug ? getHouseBySlug(slug) : null;
@@ -34,6 +36,46 @@ const HouseDetailPage: React.FC = () => {
     ...(house.additionalImages || []),
     ...(house.facades || [])
   ];
+
+  // Handle ESC key to close lightbox
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && lightboxOpen) {
+        setLightboxOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [lightboxOpen]);
+
+  // Prevent body scroll when lightbox is open
+  useEffect(() => {
+    if (lightboxOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [lightboxOpen]);
+
+  const openLightbox = (index: number) => {
+    setLightboxImageIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+  };
+
+  const nextImage = () => {
+    setLightboxImageIndex((prev) => (prev + 1) % houseImages.length);
+  };
+
+  const prevImage = () => {
+    setLightboxImageIndex((prev) => (prev - 1 + houseImages.length) % houseImages.length);
+  };
 
   const specifications = {
     dimensions: {
@@ -162,13 +204,16 @@ const HouseDetailPage: React.FC = () => {
               <div className="lg:col-span-2 space-y-4 sm:space-y-5">
               {/* Main Image */}
                 <div role="tabpanel" aria-label={`Main image view ${activeImageIndex + 1}`}>
-                  <div className="relative overflow-hidden rounded-lg shadow-lg">
-                <img 
-                  src={houseImages[activeImageIndex]} 
-                  alt={`${house.name} - Main view ${activeImageIndex + 1} of ${houseImages.length}`}
+                  <div 
+                    className="relative overflow-hidden rounded-lg shadow-lg cursor-pointer"
+                    onClick={() => openLightbox(activeImageIndex)}
+                  >
+                    <img 
+                      src={houseImages[activeImageIndex]} 
+                      alt={`${house.name} - Main view ${activeImageIndex + 1} of ${houseImages.length}`}
                       className="w-full aspect-video object-cover"
-                  loading="lazy"
-                />
+                      loading="lazy"
+                    />
                   </div>
               </div>
               
@@ -735,6 +780,37 @@ const HouseDetailPage: React.FC = () => {
       </section>
     </div>
     </div>
+
+    {/* Full-Screen Lightbox */}
+    {lightboxOpen && (
+      <div 
+        className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
+        onClick={closeLightbox}
+      >
+        {/* Close Button */}
+        <button
+          onClick={closeLightbox}
+          className="absolute top-4 right-4 sm:top-6 sm:right-6 z-60 text-white hover:text-gray-300 transition-colors duration-200"
+          aria-label="Close lightbox"
+        >
+          <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        {/* Image */}
+        <div 
+          className="relative max-w-7xl max-h-full w-full h-full flex items-center justify-center"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <img 
+            src={houseImages[lightboxImageIndex]} 
+            alt={`${house.name} - Full screen view ${lightboxImageIndex + 1} of ${houseImages.length}`}
+            className="max-w-full max-h-full object-contain"
+          />
+        </div>
+      </div>
+    )}
     </>
   );
 };
