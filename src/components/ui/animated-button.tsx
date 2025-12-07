@@ -95,7 +95,7 @@ const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
       <button
         ref={ref}
         className={cn(
-          'group relative cursor-pointer p-2 overflow-hidden rounded-lg text-center font-semibold',
+          'group/btn relative cursor-pointer p-2 overflow-hidden rounded-lg text-center font-semibold',
           colors.topBg,
           colors.topText,
           className,
@@ -104,12 +104,12 @@ const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
         {...props}
       >
         <span className={cn(
-          'translate-y-0 group-hover:-translate-y-12 group-hover:opacity-0 transition-all duration-300 inline-block whitespace-nowrap',
+          'translate-y-0 group-hover/btn:-translate-y-12 group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap',
         )}>
           {children}
         </span>
         <div className={cn(
-          'flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap',
+          'flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-12 opacity-0 group-hover/btn:translate-y-0 group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap',
           colors.bottomBg,
           colors.bottomText,
         )}>

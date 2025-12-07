@@ -184,16 +184,16 @@ const GalleryPage: React.FC = () => {
               <div 
                 key={study.id} 
                 className="group flex flex-col bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer"
-                onClick={() => openLightbox({ type: study.type, src: study.fullSrc })}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    openLightbox({ type: study.type, src: study.fullSrc });
-                  }
-                }}
-                aria-label={`View ${study.type === 'video' ? 'video' : 'full image'} of ${study.title}`}
+                    onClick={() => openLightbox({ type: study.type, src: study.fullSrc })}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openLightbox({ type: study.type, src: study.fullSrc });
+                      }
+                    }}
+                    aria-label={`View ${study.type === 'video' ? 'video' : 'full image'} of ${study.title}`}
               >
                 {/* Image Section - Fixed Height */}
                 <div className="relative overflow-hidden h-64 bg-white">

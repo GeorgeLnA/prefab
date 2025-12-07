@@ -25,13 +25,27 @@ const ExpandingButton = React.forwardRef<HTMLAnchorElement, ExpandingButtonProps
       const button = buttonRef.current;
       if (!button) return;
 
+      let enterTimeline: gsap.core.Timeline | null = null;
+      let leaveTimeline: gsap.core.Timeline | null = null;
+
       const handleMouseEnter = () => {
+        // Kill any running leave animation
+        if (leaveTimeline) {
+          leaveTimeline.kill();
+          leaveTimeline = null;
+        }
+        
+        // Kill any running enter animation
+        if (enterTimeline) {
+          enterTimeline.kill();
+        }
+
         // Create a timeline for smoother coordinated animation
-        const tl = gsap.timeline();
+        enterTimeline = gsap.timeline();
         
         // Animate initial text out (fade and move right)
         if (textSpanRef.current) {
-          tl.to(textSpanRef.current, {
+          enterTimeline.to(textSpanRef.current, {
             x: 48,
             opacity: 0,
             duration: 0.4,
@@ -41,7 +55,7 @@ const ExpandingButton = React.forwardRef<HTMLAnchorElement, ExpandingButtonProps
         
         // Animate expanding circle (starts slightly before text fades completely)
         if (bgCircleRef.current) {
-          tl.to(bgCircleRef.current, {
+          enterTimeline.to(bgCircleRef.current, {
             left: "0%",
             top: "0%",
             width: "100%",
@@ -54,7 +68,7 @@ const ExpandingButton = React.forwardRef<HTMLAnchorElement, ExpandingButtonProps
         
         // Animate hover text in (fade and move from right, starts when initial text is mostly gone)
         if (hoverContentRef.current) {
-          tl.to(hoverContentRef.current, {
+          enterTimeline.to(hoverContentRef.current, {
             x: -4,
             opacity: 1,
             duration: 0.4,
@@ -64,12 +78,43 @@ const ExpandingButton = React.forwardRef<HTMLAnchorElement, ExpandingButtonProps
       };
 
       const handleMouseLeave = () => {
+        // Kill any running enter animation
+        if (enterTimeline) {
+          enterTimeline.kill();
+          enterTimeline = null;
+        }
+        
+        // Kill any running leave animation
+        if (leaveTimeline) {
+          leaveTimeline.kill();
+        }
+
         // Create a timeline for smoother coordinated animation
-        const tl = gsap.timeline();
+        leaveTimeline = gsap.timeline({
+          onComplete: () => {
+            leaveTimeline = null;
+            // Ensure final state is correct
+            if (textSpanRef.current) {
+              gsap.set(textSpanRef.current, { x: 4, opacity: 1 });
+            }
+            if (hoverContentRef.current) {
+              gsap.set(hoverContentRef.current, { x: 48, opacity: 0 });
+            }
+            if (bgCircleRef.current) {
+              gsap.set(bgCircleRef.current, {
+                left: "20%",
+                top: "40%",
+                width: "8px",
+                height: "8px",
+                scale: 1
+              });
+            }
+          }
+        });
         
         // Animate hover text out first (fade and move right) - must complete before color changes
         if (hoverContentRef.current) {
-          tl.to(hoverContentRef.current, {
+          leaveTimeline.to(hoverContentRef.current, {
             x: 48,
             opacity: 0,
             duration: 0.3,
@@ -79,7 +124,7 @@ const ExpandingButton = React.forwardRef<HTMLAnchorElement, ExpandingButtonProps
         
         // Animate circle back to small size - starts AFTER text is completely gone
         if (bgCircleRef.current) {
-          tl.to(bgCircleRef.current, {
+          leaveTimeline.to(bgCircleRef.current, {
             left: "20%",
             top: "40%",
             width: "8px",
@@ -92,7 +137,7 @@ const ExpandingButton = React.forwardRef<HTMLAnchorElement, ExpandingButtonProps
         
         // Animate initial text back in - starts when circle is shrinking
         if (textSpanRef.current) {
-          tl.to(textSpanRef.current, {
+          leaveTimeline.to(textSpanRef.current, {
             x: 4,
             opacity: 1,
             duration: 0.35,
@@ -105,6 +150,9 @@ const ExpandingButton = React.forwardRef<HTMLAnchorElement, ExpandingButtonProps
       button.addEventListener("mouseleave", handleMouseLeave);
 
       return () => {
+        // Clean up animations
+        if (enterTimeline) enterTimeline.kill();
+        if (leaveTimeline) leaveTimeline.kill();
         button.removeEventListener("mouseenter", handleMouseEnter);
         button.removeEventListener("mouseleave", handleMouseLeave);
       };
