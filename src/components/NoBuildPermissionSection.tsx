@@ -44,7 +44,7 @@ const NoBuildPermissionSection: React.FC = () => (
           <Link 
             key={idx} 
             to={linkTo}
-            className="bg-white border border-gray-900 rounded-lg sm:rounded-xl shadow-lg overflow-hidden flex flex-col hover:scale-[1.02] sm:hover:scale-105 transition-transform duration-300 h-full cursor-pointer"
+            className="bg-white rounded-lg sm:rounded-xl shadow-lg overflow-hidden flex flex-col hover:scale-[1.02] sm:hover:scale-105 transition-transform duration-300 h-full cursor-pointer"
           >
             <img src={house.image} alt={house.name} className="w-full h-24 sm:h-28 md:h-32 lg:h-40 xl:h-48 2xl:h-56 object-cover" />
             <div className="p-1.5 sm:p-2 md:p-2.5 lg:p-3 xl:p-4 2xl:p-5 flex-1 flex flex-col justify-between">
@@ -59,7 +59,7 @@ const NoBuildPermissionSection: React.FC = () => (
         })}
       </div>
       <AnimatedButton
-        variant="yellow"
+        variant="yellowOnWhite"
         className="px-3 sm:px-4 md:px-5 lg:px-6 xl:px-8 2xl:px-10 py-1.5 sm:py-2 md:py-2.5 lg:py-3 xl:py-4 text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg font-bold w-full max-w-[180px] sm:max-w-[200px] md:max-w-xs lg:w-auto"
       >
         Explore More

@@ -41,7 +41,7 @@ const SmartChoice: React.FC = () => {
                   </div>
                   <h3 className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg font-semibold text-white">Energy Efficiency</h3>
                 </div>
-                <p className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-white/80 leading-snug">A+++ energy rating, smart thermostats, and solar-ready design.</p>
+                <p className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-white/80 leading-snug">Highly energy efficient design, smart thermostats, and solar-ready design.</p>
               </div>
 
               <div className="bg-gray-800/50 p-1.5 sm:p-2 md:p-2.5 lg:p-3 xl:p-4 2xl:p-6 rounded-lg sm:rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">

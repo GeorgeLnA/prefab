@@ -126,12 +126,11 @@ const SkandyNordyPage: React.FC = () => {
                         </span>
                       </div>
                       <div className="mt-auto">
-                        <ExpandingButton
-                          to={`/house/${originalIndex}`}
-                          className="bg-primary text-white py-3 px-4"
-                        >
-                          View Details &rarr;
-                        </ExpandingButton>
+                        <div className="relative block w-full overflow-hidden text-center rounded-lg font-medium bg-primary text-white py-3 px-4">
+                          <span className="relative z-10 inline-block whitespace-nowrap">
+                            View Details
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -193,7 +192,7 @@ const SkandyNordyPage: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <AnimatedButton
-              variant="white"
+              variant="whiteOnYellow"
               className="px-6 sm:px-8 py-3 sm:py-4 font-semibold text-sm sm:text-base md:text-lg"
             >
               Schedule Viewing
@@ -201,7 +200,7 @@ const SkandyNordyPage: React.FC = () => {
             <AnimatedButton
               asLink={true}
               href="/gallery"
-              variant="white"
+              variant="whiteOnYellow"
               className="px-6 sm:px-8 py-3 sm:py-4 font-semibold text-sm sm:text-base md:text-lg"
             >
               View All Models

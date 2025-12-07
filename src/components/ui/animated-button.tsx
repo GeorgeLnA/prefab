@@ -9,7 +9,7 @@ interface AnimatedButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButton
   className?: string;
   asLink?: boolean;
   href?: string;
-  variant?: 'primary' | 'secondary' | 'white' | 'yellow' | 'dark';
+  variant?: 'primary' | 'secondary' | 'white' | 'whiteOnYellow' | 'yellow' | 'yellowOnWhite' | 'greyToYellow' | 'dark';
 }
 
 const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
@@ -53,6 +53,30 @@ const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
           topText: 'text-white',
           bottomBg: 'bg-white',
           bottomText: 'text-black',
+        };
+      } else if (variant === 'whiteOnYellow') {
+        // White button on yellow background: white → grey
+        return {
+          topBg: 'bg-white',
+          topText: 'text-gray-900',
+          bottomBg: 'bg-gray-900',
+          bottomText: 'text-white',
+        };
+      } else if (variant === 'yellowOnWhite') {
+        // Yellow button on white background: yellow → grey
+        return {
+          topBg: 'bg-primary',
+          topText: 'text-black',
+          bottomBg: 'bg-gray-900',
+          bottomText: 'text-white',
+        };
+      } else if (variant === 'greyToYellow') {
+        // Grey button: grey → white (for Download Brochure buttons)
+        return {
+          topBg: 'bg-gray-900',
+          topText: 'text-white',
+          bottomBg: 'bg-white',
+          bottomText: 'text-gray-900',
         };
       } else {
         // White button: white → yellow

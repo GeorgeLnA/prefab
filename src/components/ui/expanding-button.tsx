@@ -16,68 +16,88 @@ const ExpandingButton = React.forwardRef<HTMLAnchorElement, ExpandingButtonProps
     const textSpanRef = useRef<HTMLSpanElement>(null);
     const hoverContentRef = useRef<HTMLDivElement>(null);
     const bgCircleRef = useRef<HTMLDivElement>(null);
+    
+    // Determine if button starts with grey background - if so, expand with yellow
+    const isGreyBackground = className?.includes('bg-gray-900');
+    const expandingColor = isGreyBackground ? 'bg-primary' : 'bg-gray-900';
 
     useEffect(() => {
       const button = buttonRef.current;
       if (!button) return;
 
       const handleMouseEnter = () => {
+        // Create a timeline for smoother coordinated animation
+        const tl = gsap.timeline();
+        
+        // Animate initial text out (fade and move right)
         if (textSpanRef.current) {
-          gsap.to(textSpanRef.current, {
+          tl.to(textSpanRef.current, {
             x: 48,
             opacity: 0,
-            duration: 0.6,
-            ease: "power2.out",
-          });
+            duration: 0.4,
+            ease: "power2.in",
+          }, 0);
         }
-        if (hoverContentRef.current) {
-          gsap.to(hoverContentRef.current, {
-            x: -4,
-            opacity: 1,
-            duration: 0.6,
-            ease: "power2.out",
-          });
-        }
+        
+        // Animate expanding circle (starts slightly before text fades completely)
         if (bgCircleRef.current) {
-          gsap.to(bgCircleRef.current, {
+          tl.to(bgCircleRef.current, {
             left: "0%",
             top: "0%",
             width: "100%",
             height: "100%",
             scale: 1.8,
-            duration: 0.6,
+            duration: 0.5,
             ease: "power2.out",
-          });
+          }, 0.1);
+        }
+        
+        // Animate hover text in (fade and move from right, starts when initial text is mostly gone)
+        if (hoverContentRef.current) {
+          tl.to(hoverContentRef.current, {
+            x: -4,
+            opacity: 1,
+            duration: 0.4,
+            ease: "power2.out",
+          }, 0.3);
         }
       };
 
       const handleMouseLeave = () => {
-        if (textSpanRef.current) {
-          gsap.to(textSpanRef.current, {
-            x: 4,
-            opacity: 1,
-            duration: 0.6,
-            ease: "power2.out",
-          });
-        }
+        // Create a timeline for smoother coordinated animation
+        const tl = gsap.timeline();
+        
+        // Animate hover text out first (fade and move right) - must complete before color changes
         if (hoverContentRef.current) {
-          gsap.to(hoverContentRef.current, {
+          tl.to(hoverContentRef.current, {
             x: 48,
             opacity: 0,
-            duration: 0.6,
-            ease: "power2.out",
-          });
+            duration: 0.3,
+            ease: "power2.in",
+          }, 0);
         }
+        
+        // Animate circle back to small size - starts AFTER text is completely gone
         if (bgCircleRef.current) {
-          gsap.to(bgCircleRef.current, {
+          tl.to(bgCircleRef.current, {
             left: "20%",
             top: "40%",
             width: "8px",
             height: "8px",
             scale: 1,
-            duration: 0.6,
+            duration: 0.4,
             ease: "power2.out",
-          });
+          }, 0.3);
+        }
+        
+        // Animate initial text back in - starts when circle is shrinking
+        if (textSpanRef.current) {
+          tl.to(textSpanRef.current, {
+            x: 4,
+            opacity: 1,
+            duration: 0.35,
+            ease: "power2.out",
+          }, 0.4);
         }
       };
 
@@ -115,16 +135,8 @@ const ExpandingButton = React.forwardRef<HTMLAnchorElement, ExpandingButtonProps
           {children}
         </span>
         <div 
-          ref={hoverContentRef}
-          className="absolute top-0 z-10 flex h-full w-full items-center justify-center gap-2 text-white"
-          style={{ transform: "translateX(48px)", opacity: 0 }}
-        >
-          <span className="whitespace-nowrap">{children}</span>
-          <ArrowRight className="w-4 h-4" />
-        </div>
-        <div 
           ref={bgCircleRef}
-          className="absolute rounded-lg bg-gray-900"
+          className={`absolute rounded-lg ${expandingColor} z-20`}
           style={{ 
             left: "20%", 
             top: "40%", 
@@ -133,6 +145,14 @@ const ExpandingButton = React.forwardRef<HTMLAnchorElement, ExpandingButtonProps
             transform: "scale(1)"
           }}
         ></div>
+        <div 
+          ref={hoverContentRef}
+          className="absolute top-0 z-30 flex h-full w-full items-center justify-center gap-2 text-white"
+          style={{ transform: "translateX(48px)", opacity: 0 }}
+        >
+          <span className="whitespace-nowrap">{children}</span>
+          <ArrowRight className="w-4 h-4" />
+        </div>
       </Link>
     );
   }

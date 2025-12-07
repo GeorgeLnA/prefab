@@ -130,7 +130,7 @@ const SkandyPage: React.FC = () => {
                           to={`/house/${originalIndex}`}
                           className="bg-primary text-white py-3 px-4"
                         >
-                          View Details &rarr;
+                          View Details
                         </ExpandingButton>
                       </div>
                     </div>
@@ -192,7 +192,7 @@ const SkandyPage: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <AnimatedButton
-              variant="white"
+              variant="whiteOnYellow"
               className="px-6 sm:px-8 py-3 sm:py-4 font-semibold text-sm sm:text-base md:text-lg"
             >
               Schedule Viewing
@@ -200,7 +200,7 @@ const SkandyPage: React.FC = () => {
             <AnimatedButton
               asLink={true}
               href="/gallery"
-              variant="white"
+              variant="whiteOnYellow"
               className="px-6 sm:px-8 py-3 sm:py-4 font-semibold text-sm sm:text-base md:text-lg"
             >
               View All Models

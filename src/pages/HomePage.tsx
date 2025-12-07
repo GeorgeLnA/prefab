@@ -9,7 +9,7 @@ const HomePage: React.FC = () => {
     "name": "Prefab Homes",
     "url": "https://prefabhomes.co.uk",
     "logo": "https://prefabhomes.co.uk/sharp_logo_high_res.png",
-    "description": "High-performance prefab homes engineered for efficiency. A+++ energy rating, rapid 3-5 day assembly, and sustainable construction.",
+    "description": "High-performance prefab homes engineered for efficiency. Highly energy efficient design, rapid 3-5 day assembly, and sustainable construction.",
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+44-798-5602627",
@@ -45,9 +45,9 @@ const HomePage: React.FC = () => {
     <>
       <SEO
         title="Prefab Homes | High-Performance, Energy Efficient, Built in Days"
-        description="Discover premium prefab homes engineered for efficiency. A+++ energy rating, rapid 3-5 day assembly, and sustainable construction. Starting from £275,000."
+        description="Discover premium prefab homes engineered for efficiency. Highly energy efficient design, rapid 3-5 day assembly, and sustainable construction. Starting from £275,000."
         url="/"
-        keywords="prefab homes, modular homes, energy efficient homes, sustainable construction, prefabricated houses UK, A+++ energy rating"
+        keywords="prefab homes, modular homes, energy efficient homes, sustainable construction, prefabricated houses UK, highly energy efficient"
         structuredData={[organizationSchema, websiteSchema]}
       />
       <HomeSmoothScroll />

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { houseData } from '../data/houses';
+import SEO from '../components/SEO';
 import { InteractiveHoverButton } from '../components/ui/interactive-hover-button';
 
 const DesignFormPage: React.FC = () => {
@@ -250,7 +251,7 @@ const DesignFormPage: React.FC = () => {
                   >
                     <option value="Standard">Standard</option>
                     <option value="Enhanced">Enhanced</option>
-                    <option value="Premium">Premium (A+++)</option>
+                    <option value="Premium">Premium (Highly Energy Efficient)</option>
                   </select>
                 </div>
                 

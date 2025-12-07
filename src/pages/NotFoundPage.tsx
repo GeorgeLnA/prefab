@@ -26,7 +26,7 @@ const NotFoundPage: React.FC = () => {
               <AnimatedButton
                 asLink={true}
                 href="/"
-                variant="yellow"
+                variant="yellowOnWhite"
                 className="px-8 py-4 font-semibold text-base"
               >
                 Go to Homepage

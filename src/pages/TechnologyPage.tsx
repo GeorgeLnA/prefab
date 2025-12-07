@@ -7,17 +7,12 @@ const TechnologyPage: React.FC = () => {
     <>
       <SEO
         title="Technology & Innovation"
-        description="Advanced prefab home technology: A+++ energy efficiency, precision CNC manufacturing, smart home integration, and sustainable materials. Built for performance."
+        description="Advanced prefab home technology: highly energy efficient design, precision CNC manufacturing, smart home integration, and sustainable materials. Built for performance."
         url="/technology"
       />
       <div>
       {/* Hero Section */}
-      <section className="py-24 sm:py-32 bg-gradient-to-br from-gray-900 to-gray-800 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}></div>
-        </div>
+      <section className="py-24 sm:py-32 bg-gray-900 relative overflow-hidden">
         
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
@@ -38,13 +33,13 @@ const TechnologyPage: React.FC = () => {
           {/* Energy Efficiency */}
           <div className="mb-12 sm:mb-16 md:mb-20">
             <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">ENERGY EFFICIENCY</div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4 sm:mb-6">A+++ Performance</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4 sm:mb-6">Highly Energy Efficient Performance</h2>
             <p className="text-lg sm:text-xl font-body font-normal text-gray-900 mb-6 sm:mb-8 leading-relaxed">
               Our homes achieve the highest energy ratings through superior insulation, triple-glazed windows, and integrated renewable energy systems. Annual heating costs are typically under £600.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="border-l-4 border-primary pl-6">
-                <div className="text-2xl font-bold text-gray-900 mb-2">A+++</div>
+                <div className="text-2xl font-bold text-gray-900 mb-2">Highly Energy Efficient</div>
                 <div className="text-gray-900 font-body font-normal">Energy Rating</div>
               </div>
               <div className="border-l-4 border-primary pl-6">
@@ -95,13 +90,13 @@ const TechnologyPage: React.FC = () => {
               Every home includes pre-wired infrastructure for smart home automation, allowing complete control of lighting, climate, security, and energy management through your phone or voice assistant.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="border border-gray-900 rounded-lg p-6">
+              <div className="rounded-lg p-6">
                 <h3 className="text-xl font-heading font-bold text-gray-900 mb-3">Home Automation</h3>
                 <p className="text-gray-900 font-body font-normal">
                   Control lighting, climate, and appliances from anywhere. Compatible with Alexa, Google Home, and Apple HomeKit.
                 </p>
               </div>
-              <div className="border border-gray-900 rounded-lg p-6">
+              <div className="rounded-lg p-6">
                 <h3 className="text-xl font-heading font-bold text-gray-900 mb-3">Security & Monitoring</h3>
                 <p className="text-gray-900 font-body font-normal">
                   Integrated smart locks, cameras, and sensors provide comprehensive security and peace of mind.
@@ -180,7 +175,7 @@ const TechnologyPage: React.FC = () => {
               <AnimatedButton
                 asLink={true}
             href="/contact" 
-                variant="white"
+                variant="whiteOnYellow"
                 className="px-6 sm:px-8 py-3 sm:py-4 font-semibold text-sm sm:text-base md:text-lg"
               >
                 Schedule Consultation
@@ -188,7 +183,7 @@ const TechnologyPage: React.FC = () => {
               <AnimatedButton
                 asLink={true}
                 href="/designs"
-                variant="white"
+                variant="whiteOnYellow"
                 className="px-6 sm:px-8 py-3 sm:py-4 font-semibold text-sm sm:text-base md:text-lg"
               >
                 View Designs

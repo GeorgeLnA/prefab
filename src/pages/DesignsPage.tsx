@@ -101,7 +101,7 @@ const DesignsPage: React.FC = () => {
                         <span className="text-gray-900">Type</span>
                         <span className="font-medium text-gray-900">{house.type}</span>
                       </div>
-                      <div className="flex items-center justify-between pt-2 border-t border-gray-900">
+                      <div className="flex items-center justify-between pt-2">
                         <span className="text-gray-900 font-medium">Price</span>
                         <span className="font-bold text-primary text-lg">£{house.price.toLocaleString()}</span>
                       </div>

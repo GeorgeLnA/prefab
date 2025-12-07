@@ -17,7 +17,7 @@ interface SEOProps {
 
 const SEO: React.FC<SEOProps> = ({
   title = 'Prefab Homes | High-Performance, Energy Efficient, Built in Days',
-  description = 'Discover premium prefab homes engineered for efficiency. A+++ energy rating, rapid 3-5 day assembly, and sustainable construction. Starting from £275,000.',
+  description = 'Discover premium prefab homes engineered for efficiency. Highly energy efficient design, rapid 3-5 day assembly, and sustainable construction. Starting from £275,000.',
   image = '/sharp_logo_high_res.png',
   url = 'https://prefabhomes.co.uk',
   type = 'website',

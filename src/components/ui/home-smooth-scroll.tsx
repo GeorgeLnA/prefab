@@ -77,13 +77,13 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
             />
             
             {/* Text and Button Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 lg:p-12 z-20">
+            <div className="absolute bottom-12 sm:bottom-16 md:bottom-20 lg:bottom-24 left-0 right-0 p-4 sm:p-6 md:p-8 lg:p-12 z-20">
               <div className="text-center">
                 <div className={`mb-4 sm:mb-6 ${showButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'} transition-all duration-300`}>
                   <AnimatedButton
                     onClick={navigateToDesigns}
                     variant="yellow"
-                    className="px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-semibold uppercase"
+                    className="px-6 sm:px-8 md:px-10 lg:px-12 py-3 sm:py-4 md:py-5 text-sm sm:text-base md:text-lg lg:text-xl font-semibold uppercase"
                   >
                     Explore Our Homes
                   </AnimatedButton>
@@ -108,7 +108,7 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
                           </svg>
                         </div>
                         <h3 className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold text-gray-900 mb-0.5 sm:mb-1 md:mb-1.5 tracking-tight leading-tight">Energy Efficiency</h3>
-                        <p className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-gray-900/80 leading-snug max-w-xs mx-auto font-normal">A+++ rated, sustainable, and cost-saving performance.</p>
+                        <p className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-gray-900/80 leading-snug max-w-xs mx-auto font-normal">Highly energy efficient, sustainable, and cost-saving performance.</p>
                       </div>
                     </div>
 

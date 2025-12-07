@@ -181,79 +181,90 @@ const GalleryPage: React.FC = () => {
           {/* Case Studies Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {filteredCaseStudies.map((study) => (
-              <div key={study.id} className="group relative overflow-hidden bg-white shadow-lg hover:shadow-2xl transition-all duration-500 rounded-lg">
-                {/* Media Type Badge */}
-                <div className="absolute top-4 left-4 z-10 bg-primary text-white py-1 px-3 text-xs font-medium rounded-lg">
-                  {study.type === 'video' ? 'VIDEO' : 'PHOTO'}
-                </div>
-                
-                {/* Category Badge */}
-                <div className="absolute top-4 right-4 z-10 bg-gray-900 text-white py-1 px-3 text-xs font-medium rounded-lg">
-                  {study.category}
-                </div>
-                
-                {/* Thumbnail */}
-                <div className="relative overflow-hidden h-64">
+              <div 
+                key={study.id} 
+                className="group flex flex-col bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer"
+                onClick={() => openLightbox({ type: study.type, src: study.fullSrc })}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openLightbox({ type: study.type, src: study.fullSrc });
+                  }
+                }}
+                aria-label={`View ${study.type === 'video' ? 'video' : 'full image'} of ${study.title}`}
+              >
+                {/* Image Section - Fixed Height */}
+                <div className="relative overflow-hidden h-64 bg-white">
+                  {/* Media Type Badge */}
+                  <div className="absolute top-3 left-3 z-10 bg-primary text-white py-1.5 px-3 text-xs font-bold rounded uppercase tracking-wide">
+                    {study.type === 'video' ? 'VIDEO' : 'PHOTO'}
+                  </div>
+                  
+                  {/* Category Badge */}
+                  <div className="absolute top-3 right-3 z-10 bg-gray-900 text-white py-1.5 px-3 text-xs font-medium rounded-lg">
+                    {study.category}
+                  </div>
+                  
                   <img 
                     src={study.thumbnail} 
                     alt={`${study.title} - ${study.category} case study ${study.type === 'video' ? 'video' : 'photo'}`}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
-                    onClick={() => openLightbox({ type: study.type, src: study.fullSrc })}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        openLightbox({ type: study.type, src: study.fullSrc });
-                      }
-                    }}
-                    aria-label={`View ${study.type === 'video' ? 'video' : 'full image'} of ${study.title}`}
                   />
                   
                   {/* Video Play Button */}
                   {study.type === 'video' && (
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="bg-primary/90 text-white w-16 h-16 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <svg className="w-6 h-6 ml-1\" fill="currentColor\" viewBox="0 0 24 24">
+                        <svg className="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M8 5v14l11-7z"/>
                         </svg>
                       </div>
                     </div>
                   )}
                   
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
-                  
-                  {/* Overlay Info */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <p className="text-sm opacity-90">
-                      {study.type === 'video' ? 'Click to play video' : 'Click to view full size'}
-                    </p>
-                  </div>
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
                 </div>
 
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-2">{study.title}</h3>
-                  <p className="text-gray-600 mb-4">{study.description}</p>
+                {/* Content Section - Flex Grow for Equal Heights */}
+                <div className="flex flex-col flex-grow p-6">
+                  {/* Title */}
+                  <h3 className="text-xl font-heading font-semibold text-gray-900 mb-2 line-clamp-1">
+                    {study.title}
+                  </h3>
                   
-                  {/* Details Grid */}
-                  <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div>
-                      <span className="text-gray-500">Size:</span>
-                      <span className="font-medium ml-2">{study.details.size}</span>
+                  {/* Description */}
+                  <p className="text-sm text-gray-900 mb-4 line-clamp-2 flex-grow">
+                    {study.description}
+                  </p>
+                  
+                  {/* Details Grid - Consistent Spacing */}
+                  <div className="space-y-2.5 mb-5">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-900">Size</span>
+                      <span className="font-medium text-gray-900">{study.details.size}</span>
                     </div>
-                    <div>
-                      <span className="text-gray-500">Type:</span>
-                      <span className="font-medium ml-2">{study.details.type}</span>
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-900">Type</span>
+                      <span className="font-medium text-gray-900">{study.details.type}</span>
                     </div>
-                    <div>
-                      <span className="text-gray-500">Year:</span>
-                      <span className="font-medium ml-2">{study.details.completion}</span>
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-900">Year</span>
+                      <span className="font-medium text-gray-900">{study.details.completion}</span>
                     </div>
-                    <div>
-                      <span className="text-gray-500">Location:</span>
-                      <span className="font-medium ml-2">{study.details.location}</span>
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-gray-900">Location</span>
+                      <span className="font-medium text-gray-900">{study.details.location}</span>
+                    </div>
+                  </div>
+
+                  {/* CTA Button - Always at Bottom */}
+                  <div className="mt-auto flex justify-center">
+                    <div className="w-full bg-gray-900 text-white py-3 px-4 rounded-lg text-center font-medium text-sm">
+                      {study.type === 'video' ? 'Watch Video' : 'View Full Size'}
                     </div>
                   </div>
                 </div>
@@ -281,7 +292,7 @@ const GalleryPage: React.FC = () => {
                 <div className="text-gray-600">Avg. Assembly Days</div>
               </div>
               <div>
-                <div className="text-4xl font-bold text-primary mb-2">A+++</div>
+                <div className="text-4xl font-bold text-primary mb-2">Highly Energy Efficient</div>
                 <div className="text-gray-600">Energy Rating</div>
               </div>
             </div>

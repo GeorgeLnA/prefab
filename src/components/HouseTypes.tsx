@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import { houseData } from '../data/houses';
 import { AnimatedButton } from './ui/animated-button';
 import { InteractiveHoverButton } from './ui/interactive-hover-button';
+import { gsap } from 'gsap';
 
 const HouseTypes: React.FC = () => {
   const houseTypes = [
@@ -59,6 +61,137 @@ const HouseTypes: React.FC = () => {
   // Get modular houses from data
   const modularHouses = houseData.filter(house => house.category === 'MODULAR');
 
+  // ViewModelsButton component with expanding animation (div-based, not a link since it's inside a Link)
+  const ViewModelsButton: React.FC = () => {
+    const buttonRef = useRef<HTMLDivElement>(null);
+    const textSpanRef = useRef<HTMLSpanElement>(null);
+    const hoverContentRef = useRef<HTMLDivElement>(null);
+    const bgCircleRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+      const button = buttonRef.current;
+      if (!button) return;
+
+      const handleMouseEnter = () => {
+        // Create a timeline for smoother coordinated animation
+        const tl = gsap.timeline();
+        
+        // Animate initial text out (fade and move right)
+        if (textSpanRef.current) {
+          tl.to(textSpanRef.current, {
+            x: 48,
+            opacity: 0,
+            duration: 0.4,
+            ease: "power2.in",
+          }, 0);
+        }
+        
+        // Animate expanding circle (starts slightly before text fades completely)
+        if (bgCircleRef.current) {
+          tl.to(bgCircleRef.current, {
+            left: "0%",
+            top: "0%",
+            width: "100%",
+            height: "100%",
+            scale: 1.8,
+            duration: 0.5,
+            ease: "power2.out",
+          }, 0.1);
+        }
+        
+        // Animate hover text in (fade and move from right, starts when initial text is mostly gone)
+        if (hoverContentRef.current) {
+          tl.to(hoverContentRef.current, {
+            x: -4,
+            opacity: 1,
+            duration: 0.4,
+            ease: "power2.out",
+          }, 0.3);
+        }
+      };
+
+      const handleMouseLeave = () => {
+        // Create a timeline for smoother coordinated animation
+        const tl = gsap.timeline();
+        
+        // Animate hover text out first (fade and move right) - must complete before color changes
+        if (hoverContentRef.current) {
+          tl.to(hoverContentRef.current, {
+            x: 48,
+            opacity: 0,
+            duration: 0.3,
+            ease: "power2.in",
+          }, 0);
+        }
+        
+        // Animate circle back to small size - starts AFTER text is completely gone
+        if (bgCircleRef.current) {
+          tl.to(bgCircleRef.current, {
+            left: "20%",
+            top: "40%",
+            width: "8px",
+            height: "8px",
+            scale: 1,
+            duration: 0.4,
+            ease: "power2.out",
+          }, 0.3);
+        }
+        
+        // Animate initial text back in - starts when circle is shrinking
+        if (textSpanRef.current) {
+          tl.to(textSpanRef.current, {
+            x: 4,
+            opacity: 1,
+            duration: 0.35,
+            ease: "power2.out",
+          }, 0.4);
+        }
+      };
+
+      button.addEventListener("mouseenter", handleMouseEnter);
+      button.addEventListener("mouseleave", handleMouseLeave);
+
+      return () => {
+        button.removeEventListener("mouseenter", handleMouseEnter);
+        button.removeEventListener("mouseleave", handleMouseLeave);
+      };
+    }, []);
+
+    return (
+      <div
+        ref={buttonRef}
+        className="relative block w-full overflow-hidden text-center rounded-lg font-medium bg-primary text-white py-2 sm:py-2.5 px-3 sm:px-4 text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base"
+      >
+        <span 
+          ref={textSpanRef}
+          className="relative z-10 inline-block whitespace-nowrap"
+          style={{ transform: "translateX(4px)" }}
+        >
+          View Models
+        </span>
+        <div 
+          ref={bgCircleRef}
+          className="absolute rounded-lg bg-gray-900 z-20"
+          style={{ 
+            left: "20%", 
+            top: "40%", 
+            width: "8px", 
+            height: "8px",
+            transform: "scale(1)"
+          }}
+        ></div>
+        <div 
+          ref={hoverContentRef}
+          className="absolute top-0 z-30 flex h-full w-full items-center justify-center gap-2 text-white"
+          style={{ transform: "translateX(48px)", opacity: 0 }}
+        >
+          <span className="whitespace-nowrap">View Models</span>
+          <ArrowRight className="w-4 h-4" />
+        </div>
+      </div>
+    );
+  };
+
   return (
     <section className="py-16 sm:py-20 bg-white">
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -106,9 +239,7 @@ const HouseTypes: React.FC = () => {
                 {/* Price and CTA - Fixed at bottom with consistent padding */}
                 <div className="flex flex-col gap-2 sm:gap-3 mt-auto">
                   <span className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-bold text-primary">{type.price}</span>
-                  <div className="w-full bg-gray-900 text-white py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg text-center font-medium text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base">
-                    View Models
-                  </div>
+                  <ViewModelsButton />
                 </div>
               </div>
             </Link>
@@ -177,7 +308,7 @@ const HouseTypes: React.FC = () => {
               <AnimatedButton
                 asLink={true}
                 href="/contact"
-                variant="white"
+                variant="whiteOnYellow"
                 className="px-6 sm:px-8 py-3 sm:py-4 font-semibold text-sm sm:text-base md:text-lg"
               >
                 Schedule Consultation
@@ -185,7 +316,7 @@ const HouseTypes: React.FC = () => {
               <AnimatedButton
                 asLink={true}
                 href="/designs"
-                variant="white"
+                variant="whiteOnYellow"
                 className="px-6 sm:px-8 py-3 sm:py-4 font-semibold text-sm sm:text-base md:text-lg"
               >
                 Browse All Designs

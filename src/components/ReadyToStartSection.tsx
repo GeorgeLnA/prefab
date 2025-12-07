@@ -26,7 +26,7 @@ const ReadyToStartSection: React.FC = () => {
               </div>
               <div className="hidden sm:block w-px h-6 sm:h-8 md:h-10 bg-black/30"></div>
               <div className="text-center">
-                <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold text-black mb-0.5 sm:mb-1">A+++</div>
+                <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold text-black mb-0.5 sm:mb-1">Highly Energy Efficient</div>
                 <div className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base font-normal text-black/80">Energy Rating</div>
               </div>
             </div>
@@ -35,13 +35,13 @@ const ReadyToStartSection: React.FC = () => {
             <AnimatedButton
               asLink={true}
               href="/contact"
-              variant="white"
+              variant="whiteOnYellow"
               className="px-6 sm:px-8 py-3 sm:py-4 font-semibold text-sm sm:text-base md:text-lg"
             >
               Schedule Consultation
             </AnimatedButton>
             <AnimatedButton
-              variant="white"
+              variant="greyToYellow"
               className="px-6 sm:px-8 py-3 sm:py-4 font-semibold text-sm sm:text-base md:text-lg"
             >
               Download Brochure

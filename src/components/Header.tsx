@@ -9,11 +9,14 @@ const Header: React.FC = () => {
   const [mobileHouseTypesOpen, setMobileHouseTypesOpen] = useState(false);
   const [isScrollingDown, setIsScrollingDown] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [houseTypesDropdownOpen, setHouseTypesDropdownOpen] = useState(false);
+  const [hoveredHouseType, setHoveredHouseType] = useState<string | null>(null);
 
-  // Close mobile menu when location changes
+  // Close mobile menu and dropdown when location changes
   useEffect(() => {
     setMobileMenuOpen(false);
     setMobileHouseTypesOpen(false);
+    setHouseTypesDropdownOpen(false);
   }, [location.pathname]);
 
   // Prevent body scroll when mobile menu is open
@@ -65,13 +68,13 @@ const Header: React.FC = () => {
   };
 
   const houseTypes = [
-    { name: 'Skandy', path: '/skandy' },
-    { name: 'Nordy', path: '/skandy-nordy' },
-    { name: 'Modern', path: '/modern' },
-    { name: 'Mobile', path: '/mobile' },
-    { name: 'Smart', path: '/smart' },
-    { name: 'Bungalow', path: '/bungalow' },
-    { name: 'Modular', path: '/modular' }
+    { name: 'Skandy', path: '/skandy-nordy', image: '/Skandy 120 front-1 2.png' },
+    { name: 'Nordy', path: '/skandy-nordy', image: '/Nordy-65-3D-2.jpg' },
+    { name: 'Modern', path: '/modern', image: '/2p.jpg' },
+    { name: 'Mobile', path: '/mobile', image: '/prefab_homes_lounge_30_front_view.jpg' },
+    { name: 'Smart', path: '/smart', image: '/S-18-1.jpg' },
+    { name: 'Bungalow', path: '/bungalow', image: '/fasad-1.jpg' },
+    { name: 'Modular', path: '/modular', image: '/modular-home-1.jpg' }
   ];
 
   const handleMobileHouseTypesToggle = () => {
@@ -141,7 +144,7 @@ const Header: React.FC = () => {
     <header className={`fixed top-0 left-0 right-0 z-50 pt-2 px-2 sm:pt-3 sm:px-3 md:pt-4 md:px-4 lg:pt-4 lg:px-6 xl:px-8 transition-transform duration-300 ${
       isScrollingDown ? '-translate-y-full' : 'translate-y-0'
     }`}>
-      <nav className={`bg-white rounded-xl sm:rounded-2xl shadow-lg transition-all duration-300 max-w-[1920px] mx-auto`} role="navigation" aria-label="Main navigation">
+      <nav className={`bg-white rounded-xl sm:rounded-2xl shadow-lg transition-all duration-300 max-w-[1920px] mx-auto relative group`} role="navigation" aria-label="Main navigation">
         <div className="px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12">
           <div className="flex items-center justify-between h-14 sm:h-16 md:h-16 lg:h-20">
             {/* Logo */}
@@ -190,31 +193,17 @@ const Header: React.FC = () => {
                     Designs
                   </NavbarItem>
                 </li>
-                <li className="relative group">
+                <li 
+                  className="group"
+                  onMouseEnter={() => setHouseTypesDropdownOpen(true)}
+                  onMouseLeave={() => setHouseTypesDropdownOpen(false)}
+                >
                   <NavbarItem className="text-gray-900 text-xs lg:text-sm xl:text-base">
                     House Types
                     <svg className="w-3 h-3 lg:w-4 lg:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </NavbarItem>
-                  <div className="absolute top-full left-0 mt-2 w-56 bg-white shadow-lg border border-gray-900 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 rounded-lg z-50">
-                    {houseTypes.map((type) => (
-                      <Link
-                        key={type.name}
-                        to={type.path}
-                        className="block px-4 py-3 text-sm text-gray-900 hover:bg-primary hover:text-white transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg"
-                      >
-                        {type.name}
-                      </Link>
-                    ))}
-                    <div className="border-t border-gray-900 my-1"></div>
-                    <Link
-                      to="/design-form"
-                      className="block px-4 py-3 text-sm text-primary font-semibold bg-primary/10 hover:bg-primary hover:text-white transition-colors duration-200 text-center rounded-b-lg"
-                    >
-                      Modular Houses
-                    </Link>
-                  </div>
                 </li>
                 <li>
                   <NavbarItem as="a" href="/gallery" className="text-gray-900 text-xs lg:text-sm xl:text-base">
@@ -236,7 +225,7 @@ const Header: React.FC = () => {
 
             {/* Desktop Action Buttons */}
             <div className="hidden lg:flex items-center gap-2 xl:gap-3">
-              <Button variant="primary" href="/contact" className="text-[10px] lg:text-xs xl:text-sm px-2 py-1.5 lg:px-3 lg:py-1.5 xl:px-3 xl:py-2 whitespace-nowrap">
+              <Button variant="primary" href="/contact" className="text-[10px] lg:text-xs xl:text-sm px-3 py-2 lg:px-4 lg:py-2 xl:px-4 xl:py-2.5 whitespace-nowrap">
                 <span className="hidden xl:inline">Schedule Consultation</span>
                 <span className="xl:hidden">Consultation</span>
               </Button>
@@ -256,6 +245,81 @@ const Header: React.FC = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 18V16H21V18H3ZM3 13V11H21V13H3ZM3 8V6H21V8H3Z" />
               </svg>
             </button>
+          </div>
+        </div>
+        
+        {/* Dropdown Menu - Positioned relative to nav, full width, centered */}
+        <div 
+          className={`absolute top-full left-0 right-0 mt-2 w-full bg-white shadow-2xl transition-all duration-200 rounded-lg z-50 p-4 lg:p-6 ${
+            houseTypesDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+          }`}
+          onMouseEnter={() => setHouseTypesDropdownOpen(true)}
+          onMouseLeave={() => setHouseTypesDropdownOpen(false)}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] lg:grid-cols-[350px_1fr] xl:grid-cols-[500px_1fr] 2xl:grid-cols-[600px_1fr] gap-3 md:gap-4 lg:gap-5 xl:gap-6">
+            <div>
+              <h3 className="text-xs sm:text-sm md:text-base font-semibold text-gray-900 mb-2 md:mb-3">House Types</h3>
+              <ul className="space-y-1 md:space-y-1.5">
+                {houseTypes.filter(type => type.name !== 'Modular').map((type) => (
+                  <li key={type.name}>
+                    <Link
+                      to={type.path}
+                      className={`block px-2.5 md:px-3 py-1.5 md:py-2 text-xs sm:text-sm md:text-base transition-colors duration-200 rounded-lg ${
+                        hoveredHouseType === type.name
+                          ? 'bg-primary text-white'
+                          : 'text-gray-900 hover:bg-primary hover:text-white'
+                      }`}
+                      onMouseEnter={() => setHoveredHouseType(type.name)}
+                      onMouseLeave={() => setHoveredHouseType(null)}
+                    >
+                      {type.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t-2 border-gray-300">
+                <Link
+                  to="/design-form"
+                  className={`block px-3 md:px-4 py-2 md:py-3 text-sm md:text-base lg:text-lg font-bold transition-all duration-200 rounded-lg text-center ${
+                    hoveredHouseType === 'Modular'
+                      ? 'bg-primary text-white shadow-xl scale-105'
+                      : 'bg-primary text-black hover:bg-gray-900 hover:text-white shadow-lg'
+                  }`}
+                  onMouseEnter={() => setHoveredHouseType('Modular')}
+                  onMouseLeave={() => setHoveredHouseType(null)}
+                >
+                  Modular
+                </Link>
+              </div>
+            </div>
+            <div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-2 sm:gap-2.5 md:gap-3 lg:gap-3 xl:gap-4">
+                {houseTypes.filter(type => type.name !== 'Modular').slice(0, 6).map((type) => (
+                  <Link
+                    key={type.name}
+                    to={type.path}
+                    className={`group relative overflow-hidden rounded-lg shadow-md transition-all duration-200 cursor-pointer aspect-square ${
+                      hoveredHouseType === type.name
+                        ? 'shadow-xl ring-2 ring-primary scale-105'
+                        : 'hover:shadow-lg'
+                    }`}
+                    onMouseEnter={() => setHoveredHouseType(type.name)}
+                    onMouseLeave={() => setHoveredHouseType(null)}
+                  >
+                    <img 
+                      src={type.image} 
+                      alt={type.name}
+                      className={`w-full h-full object-cover transition-transform duration-300 ${
+                        hoveredHouseType === type.name
+                          ? 'scale-110'
+                          : 'group-hover:scale-110'
+                      }`}
+                      loading="lazy"
+                    />
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </nav>

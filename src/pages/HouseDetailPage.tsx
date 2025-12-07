@@ -52,7 +52,7 @@ const HouseDetailPage: React.FC = () => {
       'Foundation': 'Concrete slab or basement'
     },
     energy: {
-      'Energy Rating': 'A+++',
+      'Energy Rating': 'Highly Energy Efficient',
       'Heating System': 'Heat pump with underfloor heating',
       'Ventilation': 'Mechanical ventilation with heat recovery',
       'Solar Ready': 'Pre-wired for solar panels',
@@ -223,7 +223,7 @@ const HouseDetailPage: React.FC = () => {
                   <div className="text-gray-900">Days Assembly</div>
                 </div>
                 <div className="bg-white p-4 rounded-lg">
-                  <div className="text-2xl font-bold text-primary">A+++</div>
+                  <div className="text-2xl font-bold text-primary">Highly Energy Efficient</div>
                   <div className="text-gray-900">Energy Rating</div>
                 </div>
               </div>
@@ -264,13 +264,13 @@ const HouseDetailPage: React.FC = () => {
                 <AnimatedButton
                   asLink={true}
                   href="/contact"
-                  variant="yellow"
+                  variant="yellowOnWhite"
                   className="px-8 py-3 font-medium flex-1"
                 >
                   Request Quote
                 </AnimatedButton>
                 <AnimatedButton
-                  variant="yellow"
+                  variant="greyToYellow"
                   className="px-8 py-3 font-medium flex-1"
                 >
                   Download Brochure
@@ -435,13 +435,13 @@ const HouseDetailPage: React.FC = () => {
                     <AnimatedButton
                       asLink={true}
                       href="/contact"
-                      variant="yellow"
+                      variant="yellowOnWhite"
                       className="px-8 py-3 font-medium mr-4"
                     >
                       Schedule Consultation
                     </AnimatedButton>
                     <AnimatedButton
-                      variant="yellow"
+                      variant="yellowOnWhite"
                       className="px-8 py-3 font-medium"
                     >
                       View All Options
