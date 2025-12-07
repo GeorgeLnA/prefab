@@ -373,7 +373,7 @@ const HouseTypes: React.FC = () => {
               <AnimatedButton
                 asLink={true}
                 href="/contact"
-                variant="whiteOnYellow"
+                variant="whiteToGrey"
                 className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg"
               >
                 Schedule Consultation
@@ -381,7 +381,7 @@ const HouseTypes: React.FC = () => {
               <AnimatedButton
                 asLink={true}
                 href="/designs"
-                variant="greyToYellow"
+                variant="greyToWhite"
                 className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg"
               >
                 Browse All Designs
