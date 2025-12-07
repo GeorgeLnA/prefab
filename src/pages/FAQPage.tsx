@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SEO from '../components/SEO';
 
 const FAQPage: React.FC = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
@@ -116,8 +117,15 @@ const FAQPage: React.FC = () => {
   ];
 
   return (
-    <div className="pt-20">
-      {/* Hero Section */}
+    <>
+      <SEO
+        title="Frequently Asked Questions"
+        description="Get answers to common questions about prefab homes, construction process, energy efficiency, pricing, warranties, and more."
+        url="/faq"
+      />
+      <div className="bg-white">
+      <div className="pt-20">
+        {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -213,6 +221,8 @@ const FAQPage: React.FC = () => {
         </div>
       </section>
     </div>
+    </div>
+    </>
   );
 };
 

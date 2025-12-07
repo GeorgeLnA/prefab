@@ -4,21 +4,25 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'Helvetica', 'Arial', 'sans-serif'],
-        heading: ['Space Grotesk', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
+        sans: ['Manrope', 'sans-serif'],
+        heading: ['Manrope', 'sans-serif'],
+        body: ['Manrope', 'sans-serif'],
       },
       colors: {
-        primary: '#F5B800',
-        'primary-hover': '#E6A600',
-        'primary-light': '#FFC933',
-        'primary-dark': '#CC9900',
+        primary: '#ffbf00',
+        'primary-hover': '#ffbf00',
+        'primary-light': '#ffbf00',
+        'primary-dark': '#ffbf00',
         secondary: '#6366F1',
         'secondary-hover': '#5856EB',
         'secondary-light': '#818CF8',
         'secondary-dark': '#4F46E5',
         accent: '#FF8C00',
         'accent-hover': '#E67E00',
+        // shadcn/ui compatibility
+        background: '#ffffff',
+        foreground: '#000000',
+        'primary-foreground': '#000000',
       },
       animation: {
         'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SEO from '../components/SEO';
 
 const GalleryPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
@@ -142,7 +143,14 @@ const GalleryPage: React.FC = () => {
   };
 
   return (
-    <div className="pt-20">
+    <>
+      <SEO
+        title="Gallery - Prefab Homes"
+        description="Browse our gallery of completed prefab home projects. See real homes, case studies, photos, and videos showcasing our quality and craftsmanship."
+        url="/gallery"
+      />
+      <div className="bg-white">
+      <div className="pt-20">
       <section className="py-20 bg-white">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
@@ -188,9 +196,19 @@ const GalleryPage: React.FC = () => {
                 <div className="relative overflow-hidden h-64">
                   <img 
                     src={study.thumbnail} 
-                    alt={study.title}
+                    alt={`${study.title} - ${study.category} case study ${study.type === 'video' ? 'video' : 'photo'}`}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
                     onClick={() => openLightbox({ type: study.type, src: study.fullSrc })}
+                    loading="lazy"
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openLightbox({ type: study.type, src: study.fullSrc });
+                      }
+                    }}
+                    aria-label={`View ${study.type === 'video' ? 'video' : 'full image'} of ${study.title}`}
                   />
                   
                   {/* Video Play Button */}
@@ -275,11 +293,15 @@ const GalleryPage: React.FC = () => {
           <div 
             className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center p-4"
             onClick={closeLightbox}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Media viewer"
           >
             <div className="relative max-w-6xl max-h-full w-full">
               <button
                 onClick={closeLightbox}
-                className="absolute top-4 right-4 text-white text-4xl hover:text-gray-300 transition-colors z-10"
+                className="absolute top-4 right-4 text-white text-4xl hover:text-gray-300 transition-colors z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black rounded"
+                aria-label="Close media viewer"
               >
                 &times;
               </button>
@@ -287,7 +309,7 @@ const GalleryPage: React.FC = () => {
               {selectedMedia.type === 'image' ? (
                 <img 
                   src={selectedMedia.src} 
-                  alt="Case study"
+                  alt="Case study - enlarged view"
                   className="max-w-full max-h-full object-contain mx-auto"
                 />
               ) : (
@@ -298,6 +320,7 @@ const GalleryPage: React.FC = () => {
                     frameBorder="0"
                     allowFullScreen
                     title="Case study video"
+                    aria-label="Case study video player"
                   />
                 </div>
               )}
@@ -306,6 +329,8 @@ const GalleryPage: React.FC = () => {
         )}
       </section>
     </div>
+    </div>
+    </>
   );
 };
 

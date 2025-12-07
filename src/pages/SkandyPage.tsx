@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { houseData } from '../data/houses';
+import SEO from '../components/SEO';
+import { AnimatedButton } from '../components/ui/animated-button';
+import { ExpandingButton } from '../components/ui/expanding-button';
 
 const SkandyPage: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -22,7 +25,13 @@ const SkandyPage: React.FC = () => {
   };
 
   return (
-    <div>
+    <>
+      <SEO
+        title="Skandy Collection - Scandinavian Prefab Homes"
+        description="Scandinavian-inspired minimalist prefab homes. Natural materials, clean lines, and sustainable living. Starting from £295,000."
+        url="/skandy"
+      />
+      <div>
       {/* Hero Section */}
       <section className="relative h-screen">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
@@ -50,12 +59,6 @@ const SkandyPage: React.FC = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a 
-                  href="#models" 
-                  className="inline-block bg-primary hover:bg-primary-hover text-white px-8 py-3 font-medium transition-colors duration-200 rounded-lg"
-                >
-                  Explore Skandy Designs &rarr;
-                </a>
-                <a 
                   href="#consultation" 
                   className="inline-block border border-white text-white px-8 py-3 font-medium hover:bg-white hover:text-gray-900 transition-colors duration-200 rounded-lg"
                 >
@@ -71,9 +74,9 @@ const SkandyPage: React.FC = () => {
       <section id="models" className="py-20 bg-white">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="text-primary text-sm uppercase tracking-wider mb-4">SKANDY MODELS</div>
-            <h2 className="text-4xl font-heading font-bold text-gray-900 mb-6">Scandinavian Designs</h2>
-            <p className="text-xl text-gray-600 font-body font-normal max-w-3xl mx-auto">
+            <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">SKANDY MODELS</div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4 sm:mb-6">Scandinavian Designs</h2>
+            <p className="text-lg sm:text-xl font-body font-normal text-gray-900 max-w-3xl mx-auto">
               Nordic-inspired designs with minimalist aesthetics and natural materials.
             </p>
           </div>
@@ -82,15 +85,18 @@ const SkandyPage: React.FC = () => {
             {skandyHouses.map((house, index) => {
               const originalIndex = houseData.findIndex(h => h.name === house.name);
               return (
-                <div key={index} className="group cursor-pointer">
-                  <div className="relative overflow-hidden bg-gray-100 transition-all duration-500 hover:bg-gray-200 rounded-lg">
+                <Link 
+                  key={index} 
+                  to={`/house/${originalIndex}`}
+                  className="group flex flex-col bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden h-full cursor-pointer"
+                >
+                  <div className="relative overflow-hidden bg-white">
                     {/* Image Container */}
-                    <div className="relative overflow-hidden h-80">
+                    <div className="relative overflow-hidden h-64">
                       <img 
                         src={house.imageUrl} 
                         alt={house.name} 
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        onClick={() => openLightbox(house.imageUrl)}
                       />
                       {/* Overlay */}
                       <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-500"></div>
@@ -100,44 +106,36 @@ const SkandyPage: React.FC = () => {
                           SKANDY-NORDY
                         </div>
                       </div>
-                      {/* Hover Content */}
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-                        <div className="text-center">
-                          <div className="text-primary text-sm uppercase tracking-wider mb-2">{'< EXPLORE >'}</div>
-                          <div className="text-gray-900 font-light text-lg">{house.category}</div>
-                          <div className="text-gray-700 text-sm mt-2">
-                            {house.squareFeet} ft² • £{house.price.toLocaleString()}
-                          </div>
-                        </div>
-                      </div>
                     </div>
                     {/* Content */}
-                    <div className="p-8">
-                      <h3 className="text-gray-900 text-2xl font-light mb-3 group-hover:text-primary transition-colors duration-300">
+                    <div className="flex flex-col flex-grow p-6">
+                      <h3 className="text-xl font-heading font-semibold text-gray-900 mb-2 line-clamp-1">
                         {house.name}
                       </h3>
                       {house.description && (
-                        <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                        <p className="text-sm text-gray-900 mb-4 line-clamp-2 flex-grow">
                           {house.description}
                         </p>
                       )}
                       <div className="flex items-center justify-between text-sm mb-4">
-                        <span className="text-gray-500">
+                        <span className="text-gray-900">
                           {house.squareMeters} m² • {house.type}
                         </span>
                         <span className="text-primary font-medium">
                           £{house.price.toLocaleString()}
                         </span>
                       </div>
-                      <Link 
-                        to={`/house/${originalIndex}`}
-                        className="block w-full bg-primary hover:bg-primary-hover text-white py-3 px-4 font-medium transition-colors duration-200 text-center rounded-lg"
-                      >
-                        View Details &rarr;
-                      </Link>
+                      <div className="mt-auto">
+                        <ExpandingButton
+                          to={`/house/${originalIndex}`}
+                          className="bg-primary text-white py-3 px-4"
+                        >
+                          View Details &rarr;
+                        </ExpandingButton>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>
@@ -149,7 +147,7 @@ const SkandyPage: React.FC = () => {
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-heading font-bold text-gray-800 mb-6">Nordic Comfort</h2>
-            <p className="text-xl text-gray-600 font-body font-normal max-w-3xl mx-auto">
+            <p className="text-xl text-gray-900 font-body font-normal max-w-3xl mx-auto">
               Our Skandy collection brings the best of Scandinavian design and comfort to your home.
             </p>
           </div>
@@ -161,7 +159,7 @@ const SkandyPage: React.FC = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-heading font-semibold mb-3">Minimalist Design</h3>
-              <p className="text-gray-600 font-body font-normal">Clean lines and uncluttered spaces for peaceful living</p>
+              <p className="text-gray-900 font-body font-normal">Clean lines and uncluttered spaces for peaceful living</p>
             </div>
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
@@ -170,7 +168,7 @@ const SkandyPage: React.FC = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-heading font-semibold mb-3">Natural Materials</h3>
-              <p className="text-gray-600 font-body font-normal">Sustainably sourced wood and eco-friendly finishes</p>
+              <p className="text-gray-900 font-body font-normal">Sustainably sourced wood and eco-friendly finishes</p>
             </div>
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
@@ -179,60 +177,61 @@ const SkandyPage: React.FC = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-heading font-semibold mb-3">Energy Efficient</h3>
-              <p className="text-gray-600 font-body font-normal">High-performance insulation and sustainable energy solutions</p>
+              <p className="text-gray-900 font-body font-normal">High-performance insulation and sustainable energy solutions</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section id="consultation" className="py-20 bg-primary">
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-4xl font-heading font-bold text-black mb-6">Ready to Experience Scandinavian Living?</h2>
-            <p className="text-xl text-black/80 font-body font-normal mb-8 max-w-2xl mx-auto">
-              Discover the perfect balance of minimalist design and natural comfort with our Skandy-Nordy collection.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="/contact" 
-                className="inline-block bg-black text-primary px-8 py-3 font-medium hover:bg-white transition-colors duration-200 rounded-lg"
-              >
-                Schedule Consultation
-              </a>
-              <a 
-                href="/designs" 
-                className="inline-block border-2 border-black text-black px-8 py-3 font-medium hover:bg-black hover:text-primary transition-colors duration-200 rounded-lg"
-              >
-                View All Designs
-              </a>
-            </div>
+      <section className="py-20 bg-gradient-to-br from-primary to-primary-dark">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl font-heading font-bold text-white mb-6">Experience Scandinavian Living</h2>
+          <p className="text-xl text-white/90 font-body font-normal mb-8 max-w-2xl mx-auto">
+            Discover the perfect balance of minimalist design and natural comfort with our Skandy collection.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <AnimatedButton
+              variant="white"
+              className="px-6 sm:px-8 py-3 sm:py-4 font-semibold text-sm sm:text-base md:text-lg"
+            >
+              Schedule Viewing
+            </AnimatedButton>
+            <AnimatedButton
+              asLink={true}
+              href="/gallery"
+              variant="white"
+              className="px-6 sm:px-8 py-3 sm:py-4 font-semibold text-sm sm:text-base md:text-lg"
+            >
+              View All Models
+            </AnimatedButton>
           </div>
         </div>
       </section>
 
-      {/* Lightbox */}
+      {/* Lightbox Modal */}
       {selectedImage && (
         <div 
           className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
           onClick={closeLightbox}
         >
           <div className="relative max-w-4xl max-h-full">
+            <button
+              onClick={closeLightbox}
+              className="absolute top-4 right-4 text-white text-4xl hover:text-white transition-colors z-10"
+            >
+              &times;
+            </button>
             <img 
               src={selectedImage} 
-              alt="Full size" 
-              className="w-full h-auto max-h-[90vh] object-contain"
+              alt="Skandy house design"
+              className="max-w-full max-h-full object-contain"
             />
-            <button 
-              onClick={closeLightbox}
-              className="absolute top-4 right-4 text-white text-2xl hover:text-primary transition-colors duration-200"
-            >
-              ×
-            </button>
           </div>
         </div>
       )}
     </div>
+    </>
   );
 };
 

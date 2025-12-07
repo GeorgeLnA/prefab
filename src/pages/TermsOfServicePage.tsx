@@ -1,8 +1,17 @@
 import React from 'react';
+import SEO from '../components/SEO';
 
 const TermsOfServicePage: React.FC = () => {
   return (
-    <div className="pt-20">
+    <>
+      <SEO
+        title="Terms of Service - Prefab Homes"
+        description="Terms of Service for Prefab Homes. These terms govern your use of our services and establish the legal framework for our business relationship."
+        url="/terms-of-service"
+        noindex={true}
+      />
+      <div className="bg-white">
+      <div className="pt-20">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -147,6 +156,8 @@ const TermsOfServicePage: React.FC = () => {
         </div>
       </section>
     </div>
+    </div>
+    </>
   );
 };
 

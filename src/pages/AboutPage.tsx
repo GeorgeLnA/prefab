@@ -1,8 +1,16 @@
 import React from 'react';
+import SEO from '../components/SEO';
 
 const AboutPage: React.FC = () => {
   return (
-    <div className="pt-20">
+    <>
+      <SEO
+        title="About Prefab Homes"
+        description="Learn about Prefab Homes - building the future of housing with innovative prefab technology, sustainable construction, and exceptional quality."
+        url="/about"
+      />
+      <div className="bg-white">
+      <div className="pt-20">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
@@ -85,6 +93,8 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
     </div>
+    </div>
+    </>
   );
 };
 

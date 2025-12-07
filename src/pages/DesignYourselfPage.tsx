@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { houseData } from '../data/houses';
+import SEO from '../components/SEO';
+import { InteractiveHoverButton } from '../components/ui/interactive-hover-button';
 
 const DesignYourselfPage: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -22,8 +24,15 @@ const DesignYourselfPage: React.FC = () => {
   };
 
   return (
-    <div className="pt-20">
-      {/* Hero Section */}
+    <>
+      <SEO
+        title="Design Yourself - Custom Modular Prefab Homes"
+        description="Design your own modular prefab home. Browse modular designs and customize your perfect home with flexible layouts and premium features."
+        url="/design-yourself"
+      />
+      <div className="bg-white">
+      <div className="pt-20">
+        {/* Hero Section */}
       <section className="relative h-screen">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         
@@ -57,11 +66,11 @@ const DesignYourselfPage: React.FC = () => {
       </section>
 
       {/* Modular Houses Grid */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-light text-gray-900 mb-4">Our Modular Collection</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-900 max-w-2xl mx-auto">
               Start with these base designs and customize them to your exact specifications
             </p>
           </div>
@@ -71,10 +80,10 @@ const DesignYourselfPage: React.FC = () => {
               const originalIndex = houseData.findIndex(h => h.name === house.name);
               
               return (
-                <div key={index} className="group cursor-pointer">
-                  <div className="relative overflow-hidden bg-white transition-all duration-500 hover:shadow-xl rounded-lg">
+                <div key={index} className="group flex flex-col bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden h-full">
+                  <div className="relative overflow-hidden">
                     {/* Image Container */}
-                    <div className="relative overflow-hidden h-80">
+                    <div className="relative overflow-hidden h-64">
                       <img 
                         src={house.imageUrl} 
                         alt={house.name} 
@@ -105,13 +114,13 @@ const DesignYourselfPage: React.FC = () => {
                     </div>
 
                     {/* Content */}
-                    <div className="p-8">
-                      <h3 className="text-gray-900 text-2xl font-light mb-3 group-hover:text-primary transition-colors duration-300">
+                    <div className="flex flex-col flex-grow p-6">
+                      <h3 className="text-xl font-heading font-semibold text-gray-900 mb-2 line-clamp-1">
                         {house.name}
                       </h3>
                       
                       {house.description && (
-                        <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                        <p className="text-sm text-gray-900 mb-4 line-clamp-2 flex-grow">
                           {house.description}
                         </p>
                       )}
@@ -125,19 +134,25 @@ const DesignYourselfPage: React.FC = () => {
                         </span>
                       </div>
 
-                      <Link 
-                        to={`/house/${originalIndex}`}
-                        className="block w-full bg-primary hover:bg-primary-hover text-white py-3 px-4 font-medium transition-colors duration-200 text-center rounded-lg mb-2"
-                      >
-                        View Details →
-                      </Link>
-                      
-                      <Link 
-                        to="/design-form"
-                        className="block w-full border-2 border-primary text-primary hover:bg-primary hover:text-white py-3 px-4 font-medium transition-colors duration-200 text-center rounded-lg"
-                      >
-                        Customize This Design
-                      </Link>
+                      <div className="mt-auto space-y-2">
+                        <div className="flex justify-center">
+                          <InteractiveHoverButton
+                            asLink={true}
+                            to={`/house/${originalIndex}`}
+                            text="View Details"
+                            className="w-full bg-primary text-white"
+                          />
+                        </div>
+                        
+                        <div className="flex justify-center">
+                          <InteractiveHoverButton
+                            asLink={true}
+                            to="/design-form"
+                            text="Customize This Design"
+                            className="w-full text-primary bg-transparent"
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -190,12 +205,12 @@ const DesignYourselfPage: React.FC = () => {
             Our modular system gives you the freedom to create exactly what you envision. 
             Start your journey today.
           </p>
-          <Link 
-            to="/contact" 
-            className="inline-block bg-white text-primary px-12 py-4 text-xl font-semibold hover:bg-gray-100 transition-colors duration-200 rounded-lg"
-          >
-            Get Started Now
-          </Link>
+          <InteractiveHoverButton
+            asLink={true}
+            to="/contact"
+            text="Get Started Now"
+            className="bg-white text-primary border-white px-12 py-4 text-xl"
+          />
               </div>
       </section>
 
@@ -214,6 +229,8 @@ const DesignYourselfPage: React.FC = () => {
         </div>
       )}
     </div>
+    </div>
+    </>
   );
 };
 

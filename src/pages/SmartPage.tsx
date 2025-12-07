@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { houseData } from '../data/houses';
+import SEO from '../components/SEO';
+import { AnimatedButton } from '../components/ui/animated-button';
+import { ExpandingButton } from '../components/ui/expanding-button';
 
 const SmartPage: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -22,7 +25,13 @@ const SmartPage: React.FC = () => {
   };
 
   return (
-    <div>
+    <>
+      <SEO
+        title="Smart Homes - Intelligent Prefab Living"
+        description="Advanced home automation and energy efficiency. Experience the future of living with AI-powered systems. Starting from £320,000."
+        url="/smart"
+      />
+      <div>
       {/* Hero Section */}
       <section className="relative h-screen">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
@@ -50,12 +59,6 @@ const SmartPage: React.FC = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a 
-                  href="#models" 
-                  className="inline-block bg-primary hover:bg-primary-hover text-white px-8 py-3 font-medium transition-colors duration-200 rounded-lg"
-                >
-                  Explore Smart Homes &rarr;
-                </a>
-                <a 
                   href="#consultation" 
                   className="inline-block border border-white text-white px-8 py-3 font-medium hover:bg-white hover:text-gray-900 transition-colors duration-200 rounded-lg"
                 >
@@ -71,9 +74,9 @@ const SmartPage: React.FC = () => {
       <section id="models" className="py-20 bg-white">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="text-primary text-sm uppercase tracking-wider mb-4">SMART MODELS</div>
-            <h2 className="text-4xl font-heading font-bold text-gray-900 mb-6">Intelligent Designs</h2>
-            <p className="text-xl text-gray-600 font-body font-normal max-w-3xl mx-auto">
+            <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">SMART MODELS</div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4 sm:mb-6">Intelligent Designs</h2>
+            <p className="text-lg sm:text-xl font-body font-normal text-gray-900 max-w-3xl mx-auto">
               Each model features integrated smart technology and energy-efficient systems.
             </p>
           </div>
@@ -82,15 +85,18 @@ const SmartPage: React.FC = () => {
             {smartHouses.map((house, index) => {
               const originalIndex = houseData.findIndex(h => h.name === house.name);
               return (
-                <div key={index} className="group cursor-pointer">
-                  <div className="relative overflow-hidden bg-gray-100 transition-all duration-500 hover:bg-gray-200 rounded-lg">
+                <Link 
+                  key={index} 
+                  to={`/house/${originalIndex}`}
+                  className="group flex flex-col bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden h-full cursor-pointer"
+                >
+                  <div className="relative overflow-hidden bg-white">
                     {/* Image Container */}
-                    <div className="relative overflow-hidden h-80">
+                    <div className="relative overflow-hidden h-64">
                       <img 
                         src={house.imageUrl} 
                         alt={house.name} 
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        onClick={() => openLightbox(house.imageUrl)}
                       />
                       {/* Overlay */}
                       <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-500"></div>
@@ -100,44 +106,36 @@ const SmartPage: React.FC = () => {
                           SMART
                         </div>
                       </div>
-                      {/* Hover Content */}
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-                        <div className="text-center">
-                          <div className="text-primary text-sm uppercase tracking-wider mb-2">{'< EXPLORE >'}</div>
-                          <div className="text-gray-900 font-light text-lg">{house.category}</div>
-                          <div className="text-gray-700 text-sm mt-2">
-                            {house.squareFeet} ft² • £{house.price.toLocaleString()}
-                          </div>
-                        </div>
-                      </div>
                     </div>
                     {/* Content */}
-                    <div className="p-8">
-                      <h3 className="text-gray-900 text-2xl font-light mb-3 group-hover:text-primary transition-colors duration-300">
+                    <div className="flex flex-col flex-grow p-6">
+                      <h3 className="text-xl font-heading font-semibold text-gray-900 mb-2 line-clamp-1">
                         {house.name}
                       </h3>
                       {house.description && (
-                        <p className="text-gray-600 text-sm font-body font-normal leading-relaxed mb-4">
+                        <p className="text-sm text-gray-900 mb-4 line-clamp-2 flex-grow">
                           {house.description}
                         </p>
                       )}
                       <div className="flex items-center justify-between text-sm mb-4">
-                        <span className="text-gray-500">
+                        <span className="text-gray-900">
                           {house.squareMeters} m² • {house.type}
                         </span>
                         <span className="text-primary font-medium">
                           £{house.price.toLocaleString()}
                         </span>
                       </div>
-                      <Link 
-                        to={`/house/${originalIndex}`}
-                        className="block w-full bg-primary hover:bg-primary-hover text-white py-3 px-4 font-medium transition-colors duration-200 text-center rounded-lg"
-                      >
-                        View Details &rarr;
-                      </Link>
+                      <div className="mt-auto">
+                        <ExpandingButton
+                          to={`/house/${originalIndex}`}
+                          className="bg-primary text-white py-3 px-4"
+                        >
+                          View Details &rarr;
+                        </ExpandingButton>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>
@@ -150,11 +148,11 @@ const SmartPage: React.FC = () => {
           <div className="text-center mb-16">
             {/* Removed colored heading */}
             <h2 className="text-4xl font-heading font-bold text-gray-800 mb-6">Smart Home Advantages</h2>
-            <p className="text-xl text-gray-600 font-body font-normal max-w-3xl mx-auto">
+            <p className="text-xl text-gray-900 font-body font-normal max-w-3xl mx-auto">
               Our Smart homes integrate cutting-edge technology with sustainable design for unparalleled comfort, efficiency, and convenience.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                 <svg className="w-10 h-10 text-primary group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -162,7 +160,7 @@ const SmartPage: React.FC = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-heading font-semibold mb-3">Smart Lighting</h3>
-              <p className="text-gray-600 font-body font-normal">Automated lighting with mood controls and energy optimization</p>
+              <p className="text-gray-900 font-body font-normal">Automated lighting with mood controls and energy optimization</p>
             </div>
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
@@ -171,7 +169,7 @@ const SmartPage: React.FC = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-heading font-semibold mb-3">Climate Control</h3>
-              <p className="text-gray-600 font-body font-normal">AI-powered HVAC systems for optimal comfort and efficiency</p>
+              <p className="text-gray-900 font-body font-normal">AI-powered HVAC systems for optimal comfort and efficiency</p>
             </div>
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
@@ -180,16 +178,7 @@ const SmartPage: React.FC = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-heading font-semibold mb-3">Security System</h3>
-              <p className="text-gray-600 font-body font-normal">Advanced security with smart locks and surveillance integration</p>
-            </div>
-            <div className="text-center group">
-              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                <svg className="w-10 h-10 text-primary group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-heading font-semibold mb-3">Energy Management</h3>
-              <p className="text-gray-600 font-body font-normal">Real-time monitoring and optimization systems</p>
+              <p className="text-gray-900 font-body font-normal">Advanced security with smart locks and surveillance integration</p>
             </div>
           </div>
         </div>
@@ -203,15 +192,20 @@ const SmartPage: React.FC = () => {
             Experience the convenience and efficiency of smart home technology with our intelligent prefab designs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-primary px-8 py-3 font-medium hover:bg-gray-100 transition-colors duration-200 rounded-lg">
+            <AnimatedButton
+              variant="white"
+              className="px-6 sm:px-8 py-3 sm:py-4 font-semibold text-sm sm:text-base md:text-lg"
+            >
               Schedule Demo
-            </button>
-            <Link 
-              to="/gallery"
-              className="border border-white text-white px-8 py-3 font-medium hover:bg-white hover:text-primary transition-colors duration-200 rounded-lg"
+            </AnimatedButton>
+            <AnimatedButton
+              asLink={true}
+              href="/gallery"
+              variant="white"
+              className="px-6 sm:px-8 py-3 sm:py-4 font-semibold text-sm sm:text-base md:text-lg"
             >
               View All Models
-            </Link>
+            </AnimatedButton>
           </div>
         </div>
       </section>
@@ -225,7 +219,7 @@ const SmartPage: React.FC = () => {
           <div className="relative max-w-4xl max-h-full">
             <button
               onClick={closeLightbox}
-              className="absolute top-4 right-4 text-white text-4xl hover:text-gray-300 transition-colors z-10"
+              className="absolute top-4 right-4 text-white text-4xl hover:text-white transition-colors z-10"
             >
               &times;
             </button>
@@ -238,6 +232,7 @@ const SmartPage: React.FC = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

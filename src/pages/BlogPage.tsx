@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import SEO from '../components/SEO';
+import { InteractiveHoverButton } from '../components/ui/interactive-hover-button';
 
 const BlogPage: React.FC = () => {
   const [selectedPost, setSelectedPost] = useState<number | null>(null);
@@ -138,8 +140,15 @@ The future of prefab living is smart, connected, and responsive to our needs. As
   const selectedPostData = selectedPost ? blogPosts.find(post => post.id === selectedPost) : null;
 
   return (
-    <div>
-      {/* Hero Section */}
+    <>
+      <SEO
+        title="Prefab Homes Blog"
+        description="Discover the latest insights, trends, and expert advice in prefab construction, energy efficiency, and modern living."
+        url="/blog"
+      />
+      <div className="bg-white">
+      <div>
+        {/* Hero Section */}
       <section className="py-32 bg-gradient-to-br from-gray-900 to-gray-800 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -315,18 +324,19 @@ The future of prefab living is smart, connected, and responsive to our needs. As
                     </button>
                   </div>
                 </div>
-                <button 
+                <InteractiveHoverButton
+                  text="Close Article"
                   onClick={closePost}
-                  className="bg-primary hover:bg-primary-hover text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200"
-                >
-                  Close Article
-                </button>
+                  className="bg-primary text-white px-6 py-2"
+                />
               </div>
             </div>
           </div>
         </div>
       )}
     </div>
+    </div>
+    </>
   );
 };
 

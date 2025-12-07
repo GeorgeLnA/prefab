@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AnimatedButton } from '../components/ui/animated-button';
+import SEO from '../components/SEO';
 
 const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -24,8 +25,13 @@ const ContactPage: React.FC = () => {
   };
 
   return (
-    <div>
-      {/* Hero Section */}
+    <>
+      <SEO
+        title="Contact Us"
+        description="Get in touch with Prefab Homes. Schedule a consultation, discuss your project, or request a quote. Our expert team is ready to help build your dream home."
+        url="/contact"
+      />
+      <div>
       <section className="py-32 bg-gradient-to-br from-gray-900 to-gray-800 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -38,7 +44,7 @@ const ContactPage: React.FC = () => {
             <h1 className="text-5xl md:text-6xl font-heading font-bold text-white mb-6 leading-tight">
               Let's Build Your Dream Home
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-body font-normal">
+            <p className="text-xl text-white max-w-3xl mx-auto leading-relaxed font-body font-normal">
               Ready to start your prefab home journey? Our expert team is here to guide you 
               through every step of the process.
             </p>
@@ -52,16 +58,16 @@ const ContactPage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Contact Form */}
             <div>
-              <div className="bg-gray-50 p-8 rounded-lg shadow-lg">
+              <div className="bg-white p-8 rounded-lg shadow-lg">
                 <h2 className="text-3xl font-light text-gray-800 mb-6 font-heading font-bold">Start Your Project</h2>
-                <p className="text-gray-600 mb-8 font-body font-normal">
+                <p className="text-gray-900 mb-8 font-body font-normal">
                   Fill out the form below and we'll get back to you within 24 hours to discuss your project.
                 </p>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-900 mb-2">
                         Full Name *
                       </label>
                       <input
@@ -71,12 +77,12 @@ const ContactPage: React.FC = () => {
                         required
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                         placeholder="Your full name"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-900 mb-2">
                         Email Address *
                       </label>
                       <input
@@ -86,7 +92,7 @@ const ContactPage: React.FC = () => {
                         required
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                         placeholder="your@email.com"
                       />
                     </div>
@@ -94,7 +100,7 @@ const ContactPage: React.FC = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-900 mb-2">
                         Phone Number
                       </label>
                       <input
@@ -103,12 +109,12 @@ const ContactPage: React.FC = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                         placeholder="+44 123 456 7890"
                       />
                     </div>
                     <div>
-                      <label htmlFor="projectType" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="projectType" className="block text-sm font-medium text-gray-900 mb-2">
                         Project Type
                       </label>
                       <select
@@ -116,7 +122,7 @@ const ContactPage: React.FC = () => {
                         name="projectType"
                         value={formData.projectType}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                       >
                         <option value="">Select project type</option>
                         <option value="modular">Modular Home</option>
@@ -130,7 +136,7 @@ const ContactPage: React.FC = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="budget" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="budget" className="block text-sm font-medium text-gray-900 mb-2">
                       Budget Range
                     </label>
                     <select
@@ -138,7 +144,7 @@ const ContactPage: React.FC = () => {
                       name="budget"
                       value={formData.budget}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                     >
                       <option value="">Select budget range</option>
                       <option value="250-300k">£250,000 - £300,000</option>
@@ -149,7 +155,7 @@ const ContactPage: React.FC = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-900 mb-2">
                       Project Details *
                     </label>
                     <textarea
@@ -159,7 +165,7 @@ const ContactPage: React.FC = () => {
                       rows={6}
                       value={formData.message}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                       placeholder="Tell us about your project, timeline, location, and any specific requirements..."
                     ></textarea>
                   </div>
@@ -178,7 +184,7 @@ const ContactPage: React.FC = () => {
             {/* Contact Information */}
             <div className="space-y-8">
               {/* Office Info */}
-              <div className="bg-white p-8 border border-gray-200 rounded-lg">
+              <div className="bg-white p-8 border border-gray-900 rounded-lg">
                 <div className="flex items-start">
                   <div className="bg-primary/10 p-3 rounded-lg mr-6">
                     <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -188,11 +194,11 @@ const ContactPage: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-800 mb-2 font-heading font-bold">Visit Our Showroom</h3>
-                    <p className="text-gray-600 mb-2 font-body font-normal">
+                    <p className="text-gray-900 mb-2 font-body font-normal">
                       123 Construction Avenue<br />
                       London, UK SW1A 1AA
                     </p>
-                    <p className="text-sm text-gray-500 font-body font-medium">
+                    <p className="text-sm text-gray-900 font-body font-medium">
                       Open Monday - Friday: 9:00 AM - 6:00 PM<br />
                       Saturday: 10:00 AM - 4:00 PM
                     </p>
@@ -201,7 +207,7 @@ const ContactPage: React.FC = () => {
               </div>
 
               {/* Phone */}
-              <div className="bg-white p-8 border border-gray-200 rounded-lg">
+              <div className="bg-white p-8 border border-gray-900 rounded-lg">
                 <div className="flex items-start">
                   <div className="bg-primary/10 p-3 rounded-lg mr-6">
                     <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -210,12 +216,12 @@ const ContactPage: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-800 mb-2 font-heading font-bold">Call Us</h3>
-                    <p className="text-gray-600 mb-2 font-body font-normal">
+                    <p className="text-gray-900 mb-2 font-body font-normal">
                       <a href="tel:+447985602627" className="text-primary hover:text-primary-hover transition-colors">
                         +44-798-5602627
                       </a>
                     </p>
-                    <p className="text-sm text-gray-500 font-body font-medium">
+                    <p className="text-sm text-gray-900 font-body font-medium">
                       Monday - Friday: 8:00 AM - 5:00 PM
                     </p>
                   </div>
@@ -223,7 +229,7 @@ const ContactPage: React.FC = () => {
               </div>
 
               {/* Email */}
-              <div className="bg-white p-8 border border-gray-200 rounded-lg">
+              <div className="bg-white p-8 border border-gray-900 rounded-lg">
                 <div className="flex items-start">
                   <div className="bg-primary/10 p-3 rounded-lg mr-6">
                     <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -232,12 +238,12 @@ const ContactPage: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-800 mb-2 font-heading font-bold">Email Us</h3>
-                    <p className="text-gray-600 mb-2 font-body font-normal">
+                    <p className="text-gray-900 mb-2 font-body font-normal">
                       <a href="mailto:info@prefabhomes.co.uk" className="text-primary hover:text-primary-hover transition-colors">
                         info@prefabhomes.co.uk
                       </a>
                     </p>
-                    <p className="text-sm text-gray-500 font-body font-medium">
+                    <p className="text-sm text-gray-900 font-body font-medium">
                       We respond within 24 hours
                     </p>
                   </div>
@@ -254,7 +260,7 @@ const ContactPage: React.FC = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-800 font-heading font-bold">Initial Consultation</h4>
-                      <p className="text-gray-600 text-sm font-body font-normal">We'll discuss your vision, requirements, and timeline</p>
+                      <p className="text-gray-900 text-sm font-body font-normal">We'll discuss your vision, requirements, and timeline</p>
                     </div>
                   </div>
                   <div className="flex items-start">
@@ -263,7 +269,7 @@ const ContactPage: React.FC = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-800 font-heading font-bold">Design & Quote</h4>
-                      <p className="text-gray-600 text-sm font-body font-normal">Custom design proposal with detailed pricing</p>
+                      <p className="text-gray-900 text-sm font-body font-normal">Custom design proposal with detailed pricing</p>
                     </div>
                   </div>
                   <div className="flex items-start">
@@ -272,7 +278,7 @@ const ContactPage: React.FC = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-800 font-heading font-bold">Project Start</h4>
-                      <p className="text-gray-600 text-sm font-body font-normal">Begin manufacturing and site preparation</p>
+                      <p className="text-gray-900 text-sm font-body font-normal">Begin manufacturing and site preparation</p>
                     </div>
                   </div>
                 </div>
@@ -283,23 +289,24 @@ const ContactPage: React.FC = () => {
       </section>
 
       {/* Map Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-light text-gray-800 mb-4 font-heading font-bold">Find Us</h2>
-            <p className="text-gray-600 font-body font-normal">Visit our showroom to see our prefab homes up close</p>
+            <p className="text-gray-900 font-body font-normal">Visit our showroom to see our prefab homes up close</p>
           </div>
           
-          <div className="bg-gray-300 h-96 rounded-lg flex items-center justify-center">
+          <div className="bg-gray-900 h-96 rounded-lg flex items-center justify-center">
             <div className="text-center">
-              <div className="text-6xl text-gray-500 mb-4">🗺️</div>
-              <h3 className="text-xl font-semibold text-gray-700 mb-2 font-heading font-bold">Interactive Map</h3>
-              <p className="text-gray-600 font-body font-normal">Map integration coming soon</p>
+              <div className="text-6xl text-gray-900 mb-4">🗺️</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2 font-heading font-bold">Interactive Map</h3>
+              <p className="text-gray-900 font-body font-normal">Map integration coming soon</p>
             </div>
           </div>
         </div>
       </section>
     </div>
+    </>
   );
 };
 

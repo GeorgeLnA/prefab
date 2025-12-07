@@ -1,8 +1,17 @@
 import React from 'react';
+import SEO from '../components/SEO';
 
 const PrivacyPolicyPage: React.FC = () => {
   return (
-    <div className="pt-20">
+    <>
+      <SEO
+        title="Privacy Policy - Prefab Homes"
+        description="Privacy Policy for Prefab Homes. Your privacy is important to us. This policy explains how we collect, use, and protect your personal information."
+        url="/privacy-policy"
+        noindex={true}
+      />
+      <div className="bg-white">
+      <div className="pt-20">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -117,6 +126,8 @@ const PrivacyPolicyPage: React.FC = () => {
         </div>
       </section>
     </div>
+    </div>
+    </>
   );
 };
 

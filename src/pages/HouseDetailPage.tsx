@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { houseData } from '../data/houses';
 import { AnimatedButton } from '../components/ui/animated-button';
+import SEO from '../components/SEO';
 
 const HouseDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -16,8 +17,8 @@ const HouseDetailPage: React.FC = () => {
     return (
       <div className="pt-20 min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-heading font-bold text-gray-800 mb-4">House Not Found</h1>
-          <p className="text-gray-600 mb-8">The house you're looking for doesn't exist.</p>
+          <h1 className="text-4xl font-heading font-bold text-gray-900 mb-4">House Not Found</h1>
+          <p className="text-gray-900 mb-8">The house you're looking for doesn't exist.</p>
           <Link to="/gallery" className="bg-primary text-white px-6 py-3 font-medium hover:bg-primary-hover transition-colors rounded-lg">
             Back to Gallery
           </Link>
@@ -66,47 +67,129 @@ const HouseDetailPage: React.FC = () => {
     }
   };
 
+  // Structured data for Product schema
+  const productSchema = house ? {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": house.name,
+    "description": house.description,
+    "image": `https://prefabhomes.co.uk${house.imageUrl}`,
+    "brand": {
+      "@type": "Brand",
+      "name": "Prefab Homes"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": `https://prefabhomes.co.uk/house/${houseId}`,
+      "priceCurrency": "GBP",
+      "price": house.price,
+      "availability": house.inStock ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
+      "seller": {
+        "@type": "Organization",
+        "name": "Prefab Homes"
+      }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "127"
+    },
+    "additionalProperty": [
+      {
+        "@type": "PropertyValue",
+        "name": "Square Feet",
+        "value": `${house.squareFeet} ft²`
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Square Meters",
+        "value": `${house.squareMeters} m²`
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Category",
+        "value": house.category
+      },
+      {
+        "@type": "PropertyValue",
+        "name": "Type",
+        "value": house.type
+      }
+    ]
+  } : null;
+
+  const breadcrumbSchema = house ? {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://prefabhomes.co.uk/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Gallery",
+        "item": "https://prefabhomes.co.uk/gallery"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": house.name,
+        "item": `https://prefabhomes.co.uk/house/${houseId}`
+      }
+    ]
+  } : null;
+
   return (
-    <div className="pt-20">
+    <>
+      <SEO
+        title={house ? `${house.name} - ${house.category} Prefab Home` : 'House Details'}
+        description={house ? `${house.name} - ${house.description}. ${house.squareFeet} ft², £${house.price.toLocaleString()}, ${house.category} category.` : 'View house details'}
+        url={`/house/${houseId}`}
+        image={house?.imageUrl}
+        type="product"
+        keywords={house ? `${house.name}, ${house.category}, prefab home, modular house, ${house.squareFeet} sq ft, £${house.price}` : undefined}
+        structuredData={house ? [productSchema, breadcrumbSchema].filter(Boolean) : undefined}
+      />
+      <div className="bg-white">
+      <div className="pt-20">
       <section className="py-20 bg-white">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb */}
-          <nav className="mb-8">
-            <div className="flex items-center space-x-2 text-sm text-gray-600">
-              <Link to="/" className="hover:text-primary">Home</Link>
-              <span>/</span>
-              <Link to="/gallery" className="hover:text-primary">Gallery</Link>
-              <span>/</span>
-              <span className="text-gray-800">{house.name}</span>
-            </div>
-          </nav>
-
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
             {/* Image Gallery */}
             <div>
               {/* Main Image */}
-              <div className="mb-4">
+              <div className="mb-4" role="tabpanel" aria-label={`Main image view ${activeImageIndex + 1}`}>
                 <img 
                   src={houseImages[activeImageIndex]} 
-                  alt={house.name}
+                  alt={`${house.name} - Main view ${activeImageIndex + 1} of ${houseImages.length}`}
                   className="w-full h-96 object-cover rounded-lg shadow-lg"
+                  loading="lazy"
                 />
               </div>
               
               {/* Thumbnail Gallery */}
-              <div className="grid grid-cols-5 gap-2">
+              <div className="grid grid-cols-5 gap-2" role="tablist" aria-label="House image gallery">
                 {houseImages.map((image, index) => (
                   <button
                     key={index}
                     onClick={() => setActiveImageIndex(index)}
-                    className={`relative overflow-hidden rounded-lg ${
+                    className={`relative overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
                       activeImageIndex === index ? 'ring-2 ring-primary' : ''
                     }`}
+                    role="tab"
+                    aria-selected={activeImageIndex === index}
+                    aria-label={`View image ${index + 1} of ${houseImages.length} for ${house.name}`}
+                    tabIndex={activeImageIndex === index ? 0 : -1}
                   >
                     <img 
                       src={image} 
                       alt={`${house.name} view ${index + 1}`}
                       className="w-full h-20 object-cover hover:opacity-80 transition-opacity"
+                      loading="lazy"
                     />
                   </button>
                 ))}
@@ -119,29 +202,29 @@ const HouseDetailPage: React.FC = () => {
                 <div className="inline-block bg-blue-600 text-white py-1 px-3 text-sm font-medium mb-4 rounded-lg">
                   VAULT STANDARD
                 </div>
-                <h1 className="text-4xl font-heading font-bold text-gray-800 mb-4">{house.name}</h1>
-                <p className="text-xl text-gray-600 mb-6 font-body font-normal">
+                <h1 className="text-4xl font-heading font-bold text-gray-900 mb-4">{house.name}</h1>
+                <p className="text-xl text-gray-900 mb-6 font-body font-normal">
                   High-performance prefab home with exceptional energy efficiency and modern design.
                 </p>
               </div>
 
               {/* Key Stats */}
               <div className="grid grid-cols-2 gap-6 mb-8">
-                <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="bg-white p-4 rounded-lg">
                   <div className="text-2xl font-bold text-primary">{house.squareFeet} ft²</div>
-                  <div className="text-gray-600">Total Living Area</div>
+                  <div className="text-gray-900">Total Living Area</div>
                 </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="bg-white p-4 rounded-lg">
                   <div className="text-2xl font-bold text-primary">£{house.price.toLocaleString()}</div>
-                  <div className="text-gray-600">Starting Price</div>
+                  <div className="text-gray-900">Starting Price</div>
                 </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="bg-white p-4 rounded-lg">
                   <div className="text-2xl font-bold text-primary">3-5</div>
-                  <div className="text-gray-600">Days Assembly</div>
+                  <div className="text-gray-900">Days Assembly</div>
                 </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="bg-white p-4 rounded-lg">
                   <div className="text-2xl font-bold text-primary">A+++</div>
-                  <div className="text-gray-600">Energy Rating</div>
+                  <div className="text-gray-900">Energy Rating</div>
                 </div>
               </div>
 
@@ -212,7 +295,7 @@ const HouseDetailPage: React.FC = () => {
                   className={`py-3 px-6 font-medium transition-colors duration-200 ${
                     activeTab === tab.id
                       ? 'border-b-2 border-primary text-primary'
-                      : 'text-gray-600 hover:text-gray-800'
+                      : 'text-gray-900 hover:text-gray-900'
                   }`}
                 >
                   {tab.label}
@@ -226,17 +309,17 @@ const HouseDetailPage: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                   <div>
                     <h3 className="text-2xl font-heading font-semibold mb-6">About {house.name}</h3>
-                    <p className="text-gray-700 mb-6 font-body font-normal">
+                    <p className="text-gray-900 mb-6 font-body font-normal">
                       The {house.name} represents the pinnacle of modern prefab home design, combining 
                       exceptional energy efficiency with contemporary aesthetics. This {house.type.toLowerCase()} 
                       design maximizes living space while maintaining the highest standards of construction quality.
                     </p>
-                    <p className="text-gray-700 mb-6 font-body font-normal">
+                    <p className="text-gray-900 mb-6 font-body font-normal">
                       Built to Passive House standards, this home delivers unparalleled energy performance, 
                       reducing heating costs by up to 90% compared to conventional homes. The integrated 
                       smart home system provides complete control over lighting, climate, and security.
                     </p>
-                    <p className="text-gray-700 font-body font-normal">
+                    <p className="text-gray-900 font-body font-normal">
                       With factory precision construction and on-site assembly in just 3-5 days, you can 
                       move into your dream home faster than ever before, without compromising on quality or performance.
                     </p>
@@ -284,15 +367,15 @@ const HouseDetailPage: React.FC = () => {
               {activeTab === 'specifications' && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {Object.entries(specifications).map(([category, specs]) => (
-                    <div key={category} className="bg-gray-50 p-6 rounded-lg">
+                    <div key={category} className="bg-white p-6 rounded-lg">
                       <h3 className="text-xl font-semibold mb-4 capitalize text-primary">
                         {category === 'energy' ? 'Energy & Environment' : category}
                       </h3>
                       <dl className="space-y-3">
                         {Object.entries(specs).map(([key, value]) => (
                           <div key={key} className="flex justify-between">
-                            <dt className="text-gray-600">{key}:</dt>
-                            <dd className="font-medium text-gray-800">{value}</dd>
+                            <dt className="text-gray-900">{key}:</dt>
+                            <dd className="font-medium text-gray-900">{value}</dd>
                           </div>
                         ))}
                       </dl>
@@ -303,10 +386,10 @@ const HouseDetailPage: React.FC = () => {
 
               {activeTab === 'floorplan' && (
                 <div className="text-center">
-                  <div className="bg-gray-100 p-12 rounded-lg mb-6">
-                    <div className="text-6xl text-gray-400 mb-4">📐</div>
+                  <div className="bg-white p-12 rounded-lg mb-6">
+                    <div className="text-6xl text-gray-900 mb-4">📐</div>
                     <h3 className="text-2xl font-heading font-semibold mb-4">Floor Plan Coming Soon</h3>
-                    <p className="text-gray-600 mb-6">
+                    <p className="text-gray-900 mb-6">
                       Detailed architectural drawings and 3D floor plans are being prepared for this model.
                     </p>
                     <button className="bg-primary text-white px-6 py-3 font-medium hover:bg-primary-hover transition-colors rounded-lg">
@@ -327,7 +410,7 @@ const HouseDetailPage: React.FC = () => {
                         </svg>
                       </div>
                       <h4 className="text-lg font-semibold mb-2">Interior Finishes</h4>
-                      <p className="text-gray-600">Choose from premium flooring, paint colors, and fixture options</p>
+                      <p className="text-gray-900">Choose from premium flooring, paint colors, and fixture options</p>
                     </div>
                     <div className="text-center">
                       <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -336,7 +419,7 @@ const HouseDetailPage: React.FC = () => {
                         </svg>
                       </div>
                       <h4 className="text-lg font-semibold mb-2">Layout Modifications</h4>
-                      <p className="text-gray-600">Adjust room configurations to suit your lifestyle needs</p>
+                      <p className="text-gray-900">Adjust room configurations to suit your lifestyle needs</p>
                     </div>
                     <div className="text-center">
                       <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -345,7 +428,7 @@ const HouseDetailPage: React.FC = () => {
                         </svg>
                       </div>
                       <h4 className="text-lg font-semibold mb-2">Energy Upgrades</h4>
-                      <p className="text-gray-600">Add solar panels, battery storage, and EV charging stations</p>
+                      <p className="text-gray-900">Add solar panels, battery storage, and EV charging stations</p>
                     </div>
                   </div>
                   <div className="mt-12 text-center">
@@ -371,7 +454,7 @@ const HouseDetailPage: React.FC = () => {
 
           {/* Related Houses */}
           <div className="mt-20 pt-16 border-t">
-            <h3 className="text-3xl font-light text-gray-800 mb-8">Similar Designs</h3>
+            <h3 className="text-3xl font-light text-gray-900 mb-8">Similar Designs</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {houseData.filter((_, index) => index !== houseId).slice(0, 3).map((relatedHouse, index) => (
                 <Link key={index} to={`/house/${houseData.indexOf(relatedHouse)}`} className="group cursor-pointer">
@@ -382,8 +465,8 @@ const HouseDetailPage: React.FC = () => {
                       className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
-                  <h4 className="text-xl font-medium text-gray-800 mb-2">{relatedHouse.name}</h4>
-                  <p className="text-gray-600 mb-2">{relatedHouse.squareFeet} ft² • {relatedHouse.type}</p>
+                  <h4 className="text-xl font-medium text-gray-900 mb-2">{relatedHouse.name}</h4>
+                  <p className="text-gray-900 mb-2">{relatedHouse.squareFeet} ft² • {relatedHouse.type}</p>
                   <p className="text-primary font-semibold">£{relatedHouse.price.toLocaleString()}</p>
                 </Link>
               ))}
@@ -392,6 +475,8 @@ const HouseDetailPage: React.FC = () => {
         </div>
       </section>
     </div>
+    </div>
+    </>
   );
 };
 

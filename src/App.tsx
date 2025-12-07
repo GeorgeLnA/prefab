@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import { GoogleAnalytics } from './components/GoogleAnalytics';
+import SkipLink from './components/SkipLink';
 import HomePage from './pages/HomePage';
 import DesignsPage from './pages/DesignsPage';
 import GalleryPage from './pages/GalleryPage';
@@ -24,6 +26,7 @@ import TechnologyPage from './pages/TechnologyPage';
 import SkandyPage from './pages/SkandyPage';
 import MobilePage from './pages/MobilePage';
 import BungalowPage from './pages/BungalowPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 function ScrollToTop() {
   const location = useLocation();
@@ -36,10 +39,12 @@ function ScrollToTop() {
 function App() {
   return (
     <Router>
+      <GoogleAnalytics />
+      <SkipLink />
       <ScrollToTop />
       <div className="font-body text-gray-800">
         <Header />
-        <main className="max-w-[1920px] mx-auto">
+        <main id="main-content" className="max-w-[1920px] mx-auto" role="main" tabIndex={-1}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/designs" element={<DesignsPage />} />
@@ -63,6 +68,7 @@ function App() {
             <Route path="/skandy" element={<SkandyPage />} />
             <Route path="/mobile" element={<MobilePage />} />
             <Route path="/bungalow" element={<BungalowPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
         <Footer />

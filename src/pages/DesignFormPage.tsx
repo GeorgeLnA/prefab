@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { houseData } from '../data/houses';
+import { InteractiveHoverButton } from '../components/ui/interactive-hover-button';
 
 const DesignFormPage: React.FC = () => {
   const [step, setStep] = useState(1);
@@ -60,7 +61,14 @@ const DesignFormPage: React.FC = () => {
   };
 
   return (
-    <div className="pt-24 min-h-screen bg-gray-50">
+    <>
+      <SEO
+        title="Design Your Modular House - Custom Prefab Home Builder"
+        description="Design your own modular prefab home with our custom builder. Choose size, rooms, materials, features, and more. Create your dream home in minutes."
+        url="/design-form"
+      />
+      <div className="bg-white">
+      <div className="pt-24 min-h-screen bg-gray-50">
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
@@ -539,19 +547,17 @@ const DesignFormPage: React.FC = () => {
               </div>
               
               <div className="flex gap-4">
-                <button
-                  className="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-bold transition-colors"
+                <InteractiveHoverButton
+                  text="← Back"
                   onClick={prevStep}
-                >
-                  ← Back
-                </button>
-                <button
-                  className="bg-primary hover:bg-primary-hover text-white px-12 py-4 rounded-lg font-bold text-lg transition-colors disabled:opacity-50"
-                  disabled={!formData.name || !formData.email || !formData.phone}
+                  className="bg-gray-500 text-white"
+                />
+                <InteractiveHoverButton
+                  text="Submit Design Request 🏠"
                   onClick={handleSubmit}
-                >
-                  Submit Design Request 🏠
-                </button>
+                  disabled={!formData.name || !formData.email || !formData.phone}
+                  className="bg-primary text-white px-12 py-4 text-lg disabled:opacity-50"
+                />
               </div>
             </div>
           )}
@@ -559,6 +565,8 @@ const DesignFormPage: React.FC = () => {
         </div>
       </div>
     </div>
+    </div>
+    </>
   );
 };
 

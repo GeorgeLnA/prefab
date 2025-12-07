@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://prefabhomes.co.uk/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /private/
+
+# Allow all pages
+Allow: /
+Allow: /designs
+Allow: /gallery
+Allow: /blog
+Allow: /contact
+Allow: /technology
+Allow: /about
+

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { houseData } from '../data/houses';
+import SEO from '../components/SEO';
+import { AnimatedButton } from '../components/ui/animated-button';
+import { ExpandingButton } from '../components/ui/expanding-button';
 
 const BungalowPage: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -22,7 +25,13 @@ const BungalowPage: React.FC = () => {
   };
 
   return (
-    <div>
+    <>
+      <SEO
+        title="Bungalow Collection - Single-Story Prefab Homes"
+        description="Single-story bungalow prefab homes. Accessible, spacious, and perfect for comfortable living. Starting from £290,000."
+        url="/bungalow"
+      />
+      <div>
       {/* Hero Section */}
       <section className="relative h-screen">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
@@ -38,18 +47,17 @@ const BungalowPage: React.FC = () => {
           <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl">
               <div className="text-primary text-sm uppercase tracking-wider mb-4">BUNGALOW COLLECTION</div>
-              <h1 className="text-5xl font-heading font-bold text-white mb-6">Single-Storey Living</h1>
-              <p className="text-xl font-body font-normal text-white mb-8 leading-relaxed">
+              <h1 className="text-5xl md:text-6xl font-heading font-bold text-white mb-6 leading-tight">
+                Single-Storey Living
+                <span className="relative">
+                  <div className="absolute -bottom-2 left-0 w-8 h-8 border-2 border-primary rounded-lg"></div>
+                </span>
+              </h1>
+              <p className="text-white text-xl font-body font-normal mb-8 leading-relaxed">
                 Spacious single-storey bungalows with open plan living and accessible design. 
                 Perfect for comfortable family living, starting from £250,000.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a 
-                  href="#models" 
-                  className="inline-block bg-primary hover:bg-primary-hover text-white px-8 py-3 font-medium transition-colors duration-200 rounded-lg"
-                >
-                  Explore Bungalow Designs &rarr;
-                </a>
                 <a 
                   href="#consultation" 
                   className="inline-block border border-white text-white px-8 py-3 font-medium hover:bg-white hover:text-gray-900 transition-colors duration-200 rounded-lg"
@@ -66,9 +74,9 @@ const BungalowPage: React.FC = () => {
       <section id="models" className="py-20 bg-white">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="text-primary text-sm uppercase tracking-wider mb-4">BUNGALOW MODELS</div>
-            <h2 className="text-4xl font-heading font-bold text-gray-900 mb-6">Spacious Designs</h2>
-            <p className="text-xl font-body font-normal text-gray-600 max-w-3xl mx-auto">
+            <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">BUNGALOW MODELS</div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4 sm:mb-6">Spacious Designs</h2>
+            <p className="text-lg sm:text-xl font-body font-normal text-gray-900 max-w-3xl mx-auto">
               Single-storey bungalows designed for comfortable and accessible family living.
             </p>
           </div>
@@ -77,15 +85,18 @@ const BungalowPage: React.FC = () => {
             {bungalowHouses.map((house, index) => {
               const originalIndex = houseData.findIndex(h => h.name === house.name);
               return (
-                <div key={index} className="group cursor-pointer">
-                  <div className="relative overflow-hidden bg-gray-100 transition-all duration-500 hover:bg-gray-200 rounded-lg">
+                <Link 
+                  key={index} 
+                  to={`/house/${originalIndex}`}
+                  className="group flex flex-col bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden h-full cursor-pointer"
+                >
+                  <div className="relative overflow-hidden bg-white">
                     {/* Image Container */}
-                    <div className="relative overflow-hidden h-80">
+                    <div className="relative overflow-hidden h-64">
                       <img 
                         src={house.imageUrl} 
                         alt={house.name} 
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        onClick={() => openLightbox(house.imageUrl)}
                       />
                       {/* Overlay */}
                       <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-500"></div>
@@ -95,44 +106,36 @@ const BungalowPage: React.FC = () => {
                           BUNGALOW
                         </div>
                       </div>
-                      {/* Hover Content */}
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-                        <div className="text-center">
-                          <div className="text-primary text-sm uppercase tracking-wider mb-2">{'< EXPLORE >'}</div>
-                          <div className="text-gray-900 font-light text-lg">{house.category}</div>
-                          <div className="text-gray-700 text-sm mt-2">
-                            {house.squareFeet} ft² • £{house.price.toLocaleString()}
-                          </div>
-                        </div>
-                      </div>
                     </div>
                     {/* Content */}
-                    <div className="p-8">
-                      <h3 className="text-gray-900 text-2xl font-light mb-3 group-hover:text-primary transition-colors duration-300">
+                    <div className="flex flex-col flex-grow p-6">
+                      <h3 className="text-xl font-heading font-semibold text-gray-900 mb-2 line-clamp-1">
                         {house.name}
                       </h3>
                       {house.description && (
-                        <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                        <p className="text-sm text-gray-900 mb-4 line-clamp-2 flex-grow">
                           {house.description}
                         </p>
                       )}
                       <div className="flex items-center justify-between text-sm mb-4">
-                        <span className="text-gray-500">
+                        <span className="text-gray-900">
                           {house.squareMeters} m² • {house.type}
                         </span>
                         <span className="text-primary font-medium">
                           £{house.price.toLocaleString()}
                         </span>
                       </div>
-                      <Link 
-                        to={`/house/${originalIndex}`}
-                        className="block w-full bg-primary hover:bg-primary-hover text-white py-3 px-4 font-medium transition-colors duration-200 text-center rounded-lg"
-                      >
-                        View Details &rarr;
-                      </Link>
+                      <div className="mt-auto">
+                        <ExpandingButton
+                          to={`/house/${originalIndex}`}
+                          className="bg-primary text-white py-3 px-4"
+                        >
+                          View Details &rarr;
+                        </ExpandingButton>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>
@@ -145,7 +148,7 @@ const BungalowPage: React.FC = () => {
           <div className="text-center mb-16">
             {/* Removed colored heading */}
             <h2 className="text-4xl font-heading font-bold text-gray-800 mb-6">Accessible Comfort</h2>
-            <p className="text-xl font-body font-normal text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl font-body font-normal text-gray-900 max-w-3xl mx-auto">
               Our Bungalow collection offers spacious single-storey living with open plan designs and accessibility features for comfortable family life.
             </p>
           </div>
@@ -157,7 +160,7 @@ const BungalowPage: React.FC = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-heading font-semibold mb-3">Single-Storey</h3>
-              <p className="text-gray-600 font-body font-normal">No stairs, easy navigation and accessible design</p>
+              <p className="text-gray-900 font-body font-normal">No stairs, easy navigation and accessible design</p>
             </div>
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
@@ -166,7 +169,7 @@ const BungalowPage: React.FC = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-heading font-semibold mb-3">Open Plan</h3>
-              <p className="text-gray-600">Spacious layouts with seamless flow between rooms</p>
+              <p className="text-gray-900">Spacious layouts with seamless flow between rooms</p>
             </div>
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-300">
@@ -175,60 +178,61 @@ const BungalowPage: React.FC = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-heading font-semibold mb-3">Family Friendly</h3>
-              <p className="text-gray-600">Perfect for families with children and elderly members</p>
+              <p className="text-gray-900">Perfect for families with children and elderly members</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section id="consultation" className="py-20 bg-primary">
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-4xl font-heading font-bold text-black mb-6">Ready for Bungalow Living?</h2>
-            <p className="text-xl font-body font-normal text-black/80 mb-8 max-w-2xl mx-auto">
-              Experience the comfort and accessibility of single-storey living with our spacious bungalow designs.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="/contact" 
-                className="inline-block bg-black text-primary px-8 py-3 font-medium hover:bg-white transition-colors duration-200 rounded-lg"
-              >
-                Schedule Consultation
-              </a>
-              <a 
-                href="/designs" 
-                className="inline-block border-2 border-black text-black px-8 py-3 font-medium hover:bg-black hover:text-primary transition-colors duration-200 rounded-lg"
-              >
-                View All Designs
-              </a>
-            </div>
+      <section className="py-20 bg-gradient-to-br from-primary to-primary-dark">
+        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl font-heading font-bold text-white mb-6">Experience Bungalow Living</h2>
+          <p className="text-xl text-white/90 font-body font-normal mb-8 max-w-2xl mx-auto">
+            Experience the comfort and accessibility of single-storey living with our spacious bungalow designs.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <AnimatedButton
+              variant="white"
+              className="px-6 sm:px-8 py-3 sm:py-4 font-semibold text-sm sm:text-base md:text-lg"
+            >
+              Schedule Viewing
+            </AnimatedButton>
+            <AnimatedButton
+              asLink={true}
+              href="/gallery"
+              variant="white"
+              className="px-6 sm:px-8 py-3 sm:py-4 font-semibold text-sm sm:text-base md:text-lg"
+            >
+              View All Models
+            </AnimatedButton>
           </div>
         </div>
       </section>
 
-      {/* Lightbox */}
+      {/* Lightbox Modal */}
       {selectedImage && (
         <div 
           className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
           onClick={closeLightbox}
         >
           <div className="relative max-w-4xl max-h-full">
+            <button
+              onClick={closeLightbox}
+              className="absolute top-4 right-4 text-white text-4xl hover:text-white transition-colors z-10"
+            >
+              &times;
+            </button>
             <img 
               src={selectedImage} 
-              alt="Full size" 
-              className="w-full h-auto max-h-[90vh] object-contain"
+              alt="Bungalow house design"
+              className="max-w-full max-h-full object-contain"
             />
-            <button 
-              onClick={closeLightbox}
-              className="absolute top-4 right-4 text-white text-2xl hover:text-primary transition-colors duration-200"
-            >
-              ×
-            </button>
           </div>
         </div>
       )}
     </div>
+    </>
   );
 };
 
