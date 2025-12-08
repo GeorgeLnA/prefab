@@ -90,6 +90,15 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
                 </div>
               </div>
             </div>
+
+            {/* Logo - Bottom Right Corner */}
+            <div className="absolute bottom-2 sm:bottom-3 md:bottom-4 right-[11px] sm:right-[15px] md:right-[19px] z-20">
+              <img 
+                src="/sharp_logo_high_res.png" 
+                alt="Sharp Logo" 
+                className="h-[27px] sm:h-[31px] md:h-[35px] lg:h-[43px] w-auto object-contain opacity-100"
+              />
+            </div>
           </section>
 
           {/* Strengths + HouseTypes - normal scroll */}

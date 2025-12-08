@@ -58,6 +58,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Base styles */
+html, body {
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  background-color: white;
+  min-height: 100vh;
+}
+
 /* Accessibility utilities */
 @layer utilities {
   .sr-only {

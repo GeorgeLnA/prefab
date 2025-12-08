@@ -316,6 +316,18 @@ const HouseTypes: React.FC = () => {
               </p>
             </div>
 
+            {/* Video */}
+            <div className="mb-8 sm:mb-10 md:mb-12 rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
+              <video
+                src="/prefab clip.mp4"
+                autoPlay
+                playsInline
+                muted
+                loop
+                className="w-full h-auto object-cover"
+              />
+            </div>
+
             {/* Modular Houses Grid */}
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8 mb-8 sm:mb-10 md:mb-12">
               {modularHouses.map((house, index) => {

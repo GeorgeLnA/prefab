@@ -40,9 +40,9 @@ function App() {
       <GoogleAnalytics />
       <SkipLink />
       <ScrollToTop />
-      <div className="font-body text-gray-800">
+      <div className="font-body text-gray-800 bg-white min-h-screen">
         <Header />
-        <main id="main-content" className="max-w-[1920px] mx-auto" role="main" tabIndex={-1}>
+        <main id="main-content" className="max-w-[1920px] mx-auto bg-white" role="main" tabIndex={-1}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/designs" element={<DesignsPage />} />

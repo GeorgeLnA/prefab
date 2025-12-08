@@ -787,27 +787,72 @@ const HouseDetailPage: React.FC = () => {
         className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
         onClick={closeLightbox}
       >
-        {/* Close Button */}
-        <button
-          onClick={closeLightbox}
-          className="absolute top-4 right-4 sm:top-6 sm:right-6 z-60 text-white hover:text-gray-300 transition-colors duration-200"
-          aria-label="Close lightbox"
-        >
-          <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-
         {/* Image */}
         <div 
-          className="relative max-w-7xl max-h-full w-full h-full flex items-center justify-center"
+          className="relative w-full h-full flex items-center justify-center"
           onClick={(e) => e.stopPropagation()}
         >
           <img 
             src={houseImages[lightboxImageIndex]} 
             alt={`${house.name} - Full screen view ${lightboxImageIndex + 1} of ${houseImages.length}`}
-            className="max-w-full max-h-full object-contain"
+            className="max-w-full max-h-full w-auto h-auto object-contain"
           />
+        </div>
+
+        {/* Bottom Controls Bar */}
+        <div 
+          className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-60 flex items-center gap-3 sm:gap-4 bg-black/30 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Previous Button */}
+          {houseImages.length > 1 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                prevImage();
+              }}
+              className="text-white hover:text-gray-300 transition-colors duration-200 p-1 sm:p-2"
+              aria-label="Previous image"
+            >
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+          )}
+
+          {/* Image Counter */}
+          {houseImages.length > 1 && (
+            <div className="text-white text-sm sm:text-base px-2 sm:px-3">
+              {lightboxImageIndex + 1} / {houseImages.length}
+            </div>
+          )}
+
+          {/* Next Button */}
+          {houseImages.length > 1 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                nextImage();
+              }}
+              className="text-white hover:text-gray-300 transition-colors duration-200 p-1 sm:p-2"
+              aria-label="Next image"
+            >
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          )}
+
+          {/* Close Button */}
+          <button
+            onClick={closeLightbox}
+            className="text-white hover:text-gray-300 transition-colors duration-200 p-1 sm:p-2 ml-2 sm:ml-3 border-l border-white/20 pl-3 sm:pl-4"
+            aria-label="Close lightbox"
+          >
+            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
       </div>
     )}
