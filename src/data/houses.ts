@@ -1754,14 +1754,6 @@ export const houseData: HouseType[] = [
   }
 ];
 
-// Helper function to generate slug from name
-const generateSlug = (name: string): string => {
-  return name
-    .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[^a-z0-9-]/g, '');
-};
-
 // Helper function to get houses by category
 export const getHousesByCategory = (category: string) => {
   if (category === 'ALL') return houseData;
