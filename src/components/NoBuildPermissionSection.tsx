@@ -19,7 +19,15 @@ const houses = [
 ];
 
 const NoBuildPermissionSection: React.FC = () => (
-  <section className="min-h-[60vh] md:h-screen md:min-h-screen w-full bg-white flex flex-col items-center justify-center relative overflow-hidden py-8 sm:py-10 md:py-4 lg:py-8 xl:py-12">
+  <section 
+    className="min-h-[60vh] md:h-screen md:min-h-screen w-full bg-white flex flex-col items-center justify-center relative overflow-hidden py-8 sm:py-10 md:py-4 lg:py-8 xl:py-12"
+    style={{ 
+      width: '100vw',
+      marginLeft: '50%',
+      transform: 'translateX(-50%)',
+      maxWidth: 'none'
+    }}
+  >
     <div className="w-full max-w-[1920px] mx-auto flex flex-col items-center justify-center px-2 sm:px-3 md:px-4 lg:px-6 xl:px-8 2xl:px-12 flex-1 overflow-y-auto">
       <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-light text-black mb-1 sm:mb-1.5 md:mb-2 lg:mb-3 xl:mb-4 leading-tight text-center px-1 sm:px-2 md:px-0">
         HOUSES WITH <span className="text-primary font-light">NO BUILD PERMISSION</span>

@@ -4,7 +4,16 @@ import { AnimatedButton } from './ui/animated-button';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-900 text-white pt-16 sm:pt-20 md:pt-24 pb-0" role="contentinfo">
+    <footer 
+      className="bg-gray-900 text-white pt-16 sm:pt-20 md:pt-24 pb-0" 
+      role="contentinfo"
+      style={{ 
+        width: '100vw',
+        marginLeft: '50%',
+        transform: 'translateX(-50%)',
+        maxWidth: 'none'
+      }}
+    >
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12 lg:mb-16">

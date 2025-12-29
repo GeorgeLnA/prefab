@@ -3,7 +3,15 @@ import { AnimatedButton } from './ui/animated-button';
 
 const ReadyToStartSection: React.FC = () => {
   return (
-    <section className="py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-br from-primary to-primary-dark">
+    <section 
+      className="py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-br from-primary to-primary-dark"
+      style={{ 
+        width: '100vw',
+        marginLeft: '50%',
+        transform: 'translateX(-50%)',
+        maxWidth: 'none'
+      }}
+    >
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
             <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-light text-black mb-2 sm:mb-3 md:mb-4 lg:mb-5 xl:mb-6 leading-tight px-1 sm:px-2 md:px-0">
