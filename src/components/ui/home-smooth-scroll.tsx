@@ -108,7 +108,7 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
           </section>
 
           {/* Strengths + HouseTypes - normal scroll */}
-          <section className='text-black'>
+          <section className='text-black' style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}>
             <div className="relative z-10 w-full">
               {/* Strengths Section */}
               <section className="bg-white pt-8 sm:pt-10 md:pt-12 pb-2 sm:pb-3 md:pb-4 strengths-section">
@@ -177,14 +177,14 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
           </section>
 
           {/* First slide: 7 Day Houses slideshow (Desktop only) */}
-          <section className='text-black sticky top-0 overflow-hidden hidden md:block'>
+          <section className='text-black sticky top-0 overflow-hidden hidden md:block' style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}>
             <div className="relative z-10 w-full">
               <HouseDesigns />
             </div>
           </section>
 
           {/* Second slide: TurnKey slideshow */}
-          <section className='text-black sticky top-0 overflow-hidden hidden md:block'>
+          <section className='text-black sticky top-0 overflow-hidden hidden md:block' style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}>
             <div className="relative z-10 w-full">
               <TurnKey />
             </div>
