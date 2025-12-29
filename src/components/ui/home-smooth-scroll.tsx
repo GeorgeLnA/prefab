@@ -196,14 +196,20 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
           </div>
 
           {/* Third slide: NoBuildPermissionSection slideshow (Desktop only) */}
-          <section className='text-black sticky top-0 overflow-hidden hidden md:block'>
+          <section 
+            className='text-black sticky top-0 overflow-hidden hidden md:block'
+            style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
+          >
             <div className="relative z-10 w-full">
               <NoBuildPermissionSection />
             </div>
           </section>
 
           {/* Mobile NoBuildPermissionSection - normal scroll */}
-          <div className="block md:hidden">
+          <div 
+            className="block md:hidden"
+            style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
+          >
             <NoBuildPermissionSection />
           </div>
 
