@@ -67,7 +67,16 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
       <main ref={ref} className="w-full">
         <article className="w-full">
           {/* First slide: both videos in sequence */}
-          <section ref={sectionRef} className={`relative text-white h-[60vh] md:h-screen w-full max-w-none bg-slate-950 ${isFirstSlideSticky ? 'sticky top-0' : ''} overflow-hidden`}>
+          <section 
+            ref={sectionRef} 
+            className={`relative text-white h-[60vh] md:h-screen bg-slate-950 ${isFirstSlideSticky ? 'sticky top-0' : ''} overflow-hidden`}
+            style={{ 
+              width: '100vw',
+              marginLeft: '50%',
+              transform: 'translateX(-50%)',
+              maxWidth: 'none'
+            }}
+          >
             <video
               ref={videoRef}
               key={currentVideo}
@@ -77,7 +86,7 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
               muted
               loop={currentVideo === 1}
               onEnded={handleVideoEnd}
-              className="absolute inset-0 w-full h-full min-w-full min-h-full object-cover object-[40%] md:object-center z-0"
+              className="absolute inset-0 w-full h-full object-cover object-[40%] md:object-center z-0"
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
             
