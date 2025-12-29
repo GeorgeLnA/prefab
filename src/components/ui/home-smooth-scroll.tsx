@@ -14,8 +14,6 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
   const [currentVideo, setCurrentVideo] = useState(0);
   const [showButton, setShowButton] = useState(true);
   const [isFirstSlideSticky, setIsFirstSlideSticky] = useState(true);
-  const [logoSize, setLogoSize] = useState(35);
-  const [logoPosition, setLogoPosition] = useState({ bottom: 8, right: 11 });
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const videos = [
@@ -33,60 +31,6 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
     navigate('/designs');
   };
 
-  // Calculate logo size and position based on screen width and video visibility
-  useEffect(() => {
-    const calculateLogoSizeAndPosition = () => {
-      if (!sectionRef.current || typeof window === 'undefined') return;
-      
-      const sectionWidth = sectionRef.current.offsetWidth;
-      const windowWidth = window.innerWidth;
-      
-      // Calculate logo size as percentage of screen width
-      // Typical watermark area is bottom-right 10-15% of video width
-      // Logo should cover this area, so we calculate based on screen width
-      let size = 35; // base size
-      
-      if (sectionWidth < 640) {
-        // Mobile: 2.5-3% of width
-        size = Math.max(25, Math.min(35, sectionWidth * 0.03));
-      } else if (sectionWidth < 768) {
-        // Small tablets: 2.5-3% of width
-        size = Math.max(30, Math.min(40, sectionWidth * 0.025));
-      } else if (sectionWidth < 1024) {
-        // Tablets/MacBook: 2-2.5% of width
-        size = Math.max(35, Math.min(45, sectionWidth * 0.02));
-      } else if (sectionWidth < 1280) {
-        // Small desktops: 1.8-2% of width
-        size = Math.max(40, Math.min(50, sectionWidth * 0.018));
-      } else {
-        // Large desktops: 1.5-1.8% of width
-        size = Math.max(45, Math.min(60, sectionWidth * 0.015));
-      }
-      
-      // Calculate position based on screen width to cover watermark area
-      const bottom = Math.max(8, Math.min(16, windowWidth * 0.015));
-      const right = Math.max(11, Math.min(19, windowWidth * 0.02));
-      
-      setLogoSize(Math.round(size));
-      setLogoPosition({ bottom, right });
-    };
-
-    calculateLogoSizeAndPosition();
-    
-    const handleResize = () => {
-      calculateLogoSizeAndPosition();
-    };
-
-    window.addEventListener('resize', handleResize);
-    
-    // Recalculate when video changes
-    const timer = setTimeout(calculateLogoSizeAndPosition, 100);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      clearTimeout(timer);
-    };
-  }, [currentVideo]);
 
   // Handle scroll to show/hide button and first slide stickiness
   useEffect(() => {
@@ -133,28 +77,6 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
               muted
               loop={currentVideo === 1}
               onEnded={handleVideoEnd}
-              onLoadedMetadata={() => {
-                // Recalculate logo size when video metadata loads
-                const timer = setTimeout(() => {
-                  if (sectionRef.current) {
-                    const sectionWidth = sectionRef.current.offsetWidth;
-                    let size = 35;
-                    if (sectionWidth < 640) {
-                      size = Math.max(25, Math.min(35, sectionWidth * 0.03));
-                    } else if (sectionWidth < 768) {
-                      size = Math.max(30, Math.min(40, sectionWidth * 0.025));
-                    } else if (sectionWidth < 1024) {
-                      size = Math.max(35, Math.min(45, sectionWidth * 0.02));
-                    } else if (sectionWidth < 1280) {
-                      size = Math.max(40, Math.min(50, sectionWidth * 0.018));
-                    } else {
-                      size = Math.max(45, Math.min(60, sectionWidth * 0.015));
-                    }
-                    setLogoSize(Math.round(size));
-                  }
-                }, 100);
-                return () => clearTimeout(timer);
-              }}
               className="absolute inset-0 w-full h-full object-cover object-[40%] md:object-center z-0"
             />
             
@@ -173,21 +95,6 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
               </div>
             </div>
 
-            {/* Logo - Bottom Right Corner - Dynamically sized to cover watermarks */}
-            <div 
-              className="absolute z-30"
-              style={{
-                bottom: `${logoPosition.bottom}px`,
-                right: `${logoPosition.right}px`
-              }}
-            >
-              <img 
-                src="/sharp_logo_high_res.png" 
-                alt="Sharp Logo" 
-                style={{ height: `${logoSize}px`, width: 'auto' }}
-                className="object-contain opacity-100"
-              />
-            </div>
           </section>
 
           {/* Strengths + HouseTypes - normal scroll */}
