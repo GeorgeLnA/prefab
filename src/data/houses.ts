@@ -685,7 +685,8 @@ export const houseData: HouseType[] = [
       "/SKANDY/SK120FR 6 Large.jpeg"
     ],
     floorPlans: [
-      "/SKANDY/Skandy 120. Floor plan. Version 3_page-0001.jpg"
+      "/SKANDY/Skandy 120. Floor plan. Version 3_page-0001.jpg",
+      "/gallery/Skandy 120. Floor plan. Version 4_page-0001.jpg"
     ],
     facades: [
       "/SKANDY/Skandy 120_New_2. Facades_page-0001.jpg"
@@ -811,7 +812,8 @@ export const houseData: HouseType[] = [
       "/SKANDY/SKANDY 130 2_2K Large.jpeg"
     ],
     floorPlans: [
-      "/SKANDY/Skandy 130. Floor plan. Version 1_page-0001.jpg"
+      "/SKANDY/Skandy 130. Floor plan. Version 1_page-0001.jpg",
+      "/gallery/Skandy 130. Floor plan. Version 2_page-0001.jpg"
     ],
     facades: [
       "/SKANDY/Skandy 130_New. Facades_page-0001.jpg"
