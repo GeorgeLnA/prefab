@@ -39,7 +39,10 @@ const LoungePage: React.FC = () => {
       <div className="bg-white">
       <div className="pt-20">
         {/* Hero Section */}
-      <section className="relative h-96 bg-gradient-to-r from-primary to-primary-dark">
+      <section 
+        className="relative h-96 bg-gradient-to-r from-primary to-primary-dark"
+        style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
+      >
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <div className="text-white">
@@ -161,7 +164,10 @@ const LoungePage: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="pt-8 md:pt-20 pb-20 bg-gradient-to-br from-primary to-primary-dark">
+      <section 
+        className="pt-8 md:pt-20 pb-20 bg-gradient-to-br from-primary to-primary-dark"
+        style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
+      >
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-heading font-thin text-white mb-6">Experience Lounge Living</h2>
           <p className="text-xl text-white/90 font-body font-normal mb-8 max-w-2xl mx-auto">

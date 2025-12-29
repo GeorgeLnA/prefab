@@ -32,7 +32,10 @@ const ContactPage: React.FC = () => {
         url="/contact"
       />
       <div>
-      <section className="py-32 bg-gray-900 relative overflow-hidden">
+      <section 
+        className="py-32 bg-gray-900 relative overflow-hidden"
+        style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
+      >
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
             <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">GET IN TOUCH</div>

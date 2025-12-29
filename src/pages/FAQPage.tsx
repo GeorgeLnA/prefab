@@ -127,7 +127,10 @@ const FAQPage: React.FC = () => {
       <div className="bg-white">
       <div className="pt-20">
         {/* Hero Section */}
-      <section className="py-20 bg-gray-900 relative overflow-hidden">
+      <section 
+        className="py-20 bg-gray-900 relative overflow-hidden"
+        style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
+      >
         
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">

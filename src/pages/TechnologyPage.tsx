@@ -12,7 +12,10 @@ const TechnologyPage: React.FC = () => {
       />
       <div>
       {/* Hero Section */}
-      <section className="py-24 sm:py-32 bg-gray-900 relative overflow-hidden">
+      <section 
+        className="py-24 sm:py-32 bg-gray-900 relative overflow-hidden"
+        style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
+      >
         
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
@@ -158,7 +161,10 @@ const TechnologyPage: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-primary to-primary-dark">
+      <section 
+        className="py-20 bg-gradient-to-br from-primary to-primary-dark"
+        style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
+      >
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-black mb-4 sm:mb-6 leading-tight">

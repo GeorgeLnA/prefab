@@ -43,7 +43,10 @@ const ModularPage: React.FC = () => {
       />
       <div>
       {/* Hero Section */}
-      <section className="relative h-[60vh] md:h-screen">
+      <section 
+        className="relative h-[60vh] md:h-screen"
+        style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
+      >
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         
         <div 
@@ -145,7 +148,10 @@ const ModularPage: React.FC = () => {
       </section>
 
       {/* Design Yourself Section */}
-      <section className="pt-12 sm:pt-16 md:pt-20 pb-12 sm:pb-16 md:pb-20 bg-gray-900">
+      <section 
+        className="pt-12 sm:pt-16 md:pt-20 pb-12 sm:pb-16 md:pb-20 bg-gray-900"
+        style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
+      >
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-white mb-4 sm:mb-6 leading-tight">
@@ -211,7 +217,10 @@ const ModularPage: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="pt-8 md:pt-20 pb-20 bg-gradient-to-br from-primary to-primary-dark">
+      <section 
+        className="pt-8 md:pt-20 pb-20 bg-gradient-to-br from-primary to-primary-dark"
+        style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
+      >
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-heading font-thin text-white mb-6">Build Your Future, One Module at a Time</h2>
           <p className="text-xl text-white/90 font-body font-normal mb-8 max-w-2xl mx-auto">

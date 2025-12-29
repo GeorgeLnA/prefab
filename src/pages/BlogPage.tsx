@@ -149,7 +149,10 @@ The future of prefab living is smart, connected, and responsive to our needs. As
       <div className="bg-white">
       <div>
         {/* Hero Section */}
-      <section className="py-32 bg-gray-900 relative overflow-hidden">
+      <section 
+        className="py-32 bg-gray-900 relative overflow-hidden"
+        style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
+      >
         
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">

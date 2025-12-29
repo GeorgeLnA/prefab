@@ -13,7 +13,10 @@ const PrivacyPolicyPage: React.FC = () => {
       <div className="bg-white">
       <div className="pt-20">
       {/* Hero Section */}
-      <section className="py-20 bg-gray-900">
+      <section 
+        className="py-20 bg-gray-900"
+        style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
+      >
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-5xl font-light text-white mb-6">Privacy Policy</h1>
