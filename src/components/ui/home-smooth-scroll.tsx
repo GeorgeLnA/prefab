@@ -96,7 +96,7 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
               <img 
                 src="/sharp_logo_high_res.png" 
                 alt="Sharp Logo" 
-                className="h-[27px] sm:h-[31px] md:h-[35px] lg:h-[43px] w-auto object-contain opacity-100"
+                className="h-[35px] w-auto object-contain opacity-100"
               />
             </div>
           </section>
