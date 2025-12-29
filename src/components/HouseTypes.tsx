@@ -177,15 +177,7 @@ const HouseTypes: React.FC = () => {
         </div>
 
         {/* Call to Action */}
-        <section 
-          className="py-24 sm:py-28 md:py-32 lg:py-36 bg-gradient-to-br from-primary to-primary-dark mt-12 sm:mt-16 md:mt-20 lg:mt-24 rounded-2xl sm:rounded-3xl"
-          style={{ 
-            width: '100vw',
-            marginLeft: '50%',
-            transform: 'translateX(-50%)',
-            maxWidth: 'none'
-          }}
-        >
+        <section className="py-24 sm:py-28 md:py-32 lg:py-36 bg-gradient-to-br from-primary to-primary-dark mt-12 sm:mt-16 md:mt-20 lg:mt-24 rounded-2xl sm:rounded-3xl">
           <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-light text-black mb-3 sm:mb-4 md:mb-5 lg:mb-6 xl:mb-8 leading-tight px-1 sm:px-2 md:px-0">
               Can't decide which type suits you best?
