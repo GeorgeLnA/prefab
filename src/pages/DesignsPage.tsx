@@ -63,7 +63,7 @@ const DesignsPage: React.FC = () => {
           </div>
 
           {/* Designs Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 lg:gap-6 xl:gap-8 auto-rows-fr">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 lg:gap-4 auto-rows-fr">
             {filteredHouses.map((house, index) => {
               const houseMatch = houseData.find(h => h.name === house.name);
               return (

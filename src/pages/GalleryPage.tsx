@@ -332,7 +332,7 @@ const GalleryPage: React.FC = () => {
 
 
           {/* Case Studies Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 lg:gap-6 xl:gap-8 auto-rows-fr">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 lg:gap-4 auto-rows-fr">
             {filteredCaseStudies.map((study, index) => (
               <div 
                 key={study.id} 
