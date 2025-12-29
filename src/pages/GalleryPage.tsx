@@ -1,146 +1,315 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SEO from '../components/SEO';
 
 const GalleryPage: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
-  const [selectedMedia, setSelectedMedia] = useState<{ type: 'image' | 'video', src: string } | null>(null);
-
-  const categories = ['ALL', 'COMPLETED PROJECTS', 'CONSTRUCTION PROCESS', 'INTERIORS', 'EXTERIORS'];
+  const [selectedMediaIndex, setSelectedMediaIndex] = useState<number | null>(null);
 
   const caseStudies = [
     {
-      id: 1,
-      title: 'Modern Family Home - Surrey',
-      category: 'COMPLETED PROJECTS',
+      id: 21,
+      title: 'Modern Nordic Exterior',
+      category: 'EXTERIORS',
       type: 'image' as const,
-      thumbnail: '/modular-home-1.jpg',
-      fullSrc: '/modular-home-1.jpg',
-      description: 'A stunning 3-bedroom modular home completed in just 4 days',
+      thumbnail: '/gallery/SK_ND 21 Large.jpeg',
+      fullSrc: '/gallery/SK_ND 21 Large.jpeg',
+      description: 'Modern Nordic prefab home exterior',
+      details: {
+        size: '1,500 sq ft',
+        completion: '2024',
+        type: 'Skandy',
+        location: 'UK'
+      }
+    },
+    {
+      id: 20,
+      title: 'Scandinavian Home Exterior',
+      category: 'EXTERIORS',
+      type: 'image' as const,
+      thumbnail: '/gallery/SK_ND 20 Large.jpeg',
+      fullSrc: '/gallery/SK_ND 20 Large.jpeg',
+      description: 'Scandinavian prefab home exterior',
+      details: {
+        size: '1,600 sq ft',
+        completion: '2024',
+        type: 'Skandy',
+        location: 'UK'
+      }
+    },
+    {
+      id: 19,
+      title: 'Nordic Exterior Design',
+      category: 'EXTERIORS',
+      type: 'image' as const,
+      thumbnail: '/gallery/SK_ND 19 Large.jpeg',
+      fullSrc: '/gallery/SK_ND 19 Large.jpeg',
+      description: 'Nordic prefab home exterior',
       details: {
         size: '1,400 sq ft',
         completion: '2024',
-        type: 'Modular',
-        location: 'Surrey, UK'
+        type: 'Skandy',
+        location: 'UK'
       }
     },
     {
-      id: 2,
-      title: 'Nordy Forest Retreat',
-      category: 'COMPLETED PROJECTS',
-      type: 'image' as const,
-      thumbnail: '/Nordy-65-3D-2.jpg',
-      fullSrc: '/Nordy-65-3D-2.jpg',
-      description: 'Nordic-inspired design nestled in natural woodland setting',
-      details: {
-        size: '2,200 sq ft',
-        completion: '2024',
-        type: 'Nordy',
-        location: 'Lake District, UK'
-      }
-    },
-    {
-      id: 3,
-      title: 'Smart Home Assembly Process',
-      category: 'CONSTRUCTION PROCESS',
-      type: 'video' as const,
-      thumbnail: '/S-18-1.jpg',
-      fullSrc: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      description: 'Time-lapse of complete smart home assembly in 3 days',
-      details: {
-        size: '1,292 sq ft',
-        completion: '2024',
-        type: 'Smart',
-        location: 'Manchester, UK'
-      }
-    },
-    {
-      id: 4,
-      title: 'Modern Interior Design',
-      category: 'INTERIORS',
-      type: 'image' as const,
-      thumbnail: '/2p.jpg',
-      fullSrc: '/2p.jpg',
-      description: 'Contemporary interior with premium finishes and smart technology',
-      details: {
-        size: '1,900 sq ft',
-        completion: '2024',
-        type: 'Modern',
-        location: 'London, UK'
-      }
-    },
-    {
-      id: 5,
-      title: 'Factory Production Process',
-      category: 'CONSTRUCTION PROCESS',
-      type: 'video' as const,
-      thumbnail: '/render1.jpg',
-      fullSrc: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      description: 'Inside our precision manufacturing facility',
-      details: {
-        size: 'Various',
-        completion: '2024',
-        type: 'All Types',
-        location: 'Factory, UK'
-      }
-    },
-    {
-      id: 6,
-      title: 'Modern-B Architectural Excellence',
+      id: 18,
+      title: 'Modern Scandinavian Exterior',
       category: 'EXTERIORS',
       type: 'image' as const,
-      thumbnail: '/prefab_homes_modern_b_80_front_perspective.jpg',
-      fullSrc: '/prefab_homes_modern_b_80_front_perspective.jpg',
-      description: 'Bold contemporary design with striking facade elements',
+      thumbnail: '/gallery/SK_ND 18 Large.jpeg',
+      fullSrc: '/gallery/SK_ND 18 Large.jpeg',
+      description: 'Modern Scandinavian prefab home exterior',
+      details: {
+        size: '1,500 sq ft',
+        completion: '2024',
+        type: 'Skandy',
+        location: 'UK'
+      }
+    },
+    {
+      id: 14,
+      title: 'Scandinavian Living Space',
+      category: 'INTERIORS',
+      type: 'image' as const,
+      thumbnail: '/gallery/SK_ND 14 Large.jpeg',
+      fullSrc: '/gallery/SK_ND 14 Large.jpeg',
+      description: 'Scandinavian interior design',
+      details: {
+        size: '1,500 sq ft',
+        completion: '2024',
+        type: 'Skandy',
+        location: 'UK'
+      }
+    },
+    {
+      id: 13,
+      title: 'Modern Nordic Home',
+      category: 'COMPLETED PROJECTS',
+      type: 'image' as const,
+      thumbnail: '/gallery/SK_ND 13 Large.jpeg',
+      fullSrc: '/gallery/SK_ND 13 Large.jpeg',
+      description: 'Modern Nordic prefab home',
       details: {
         size: '1,700 sq ft',
         completion: '2024',
-        type: 'Modern-B',
-        location: 'Birmingham, UK'
+        type: 'Skandy',
+        location: 'UK'
+      }
+    },
+    {
+      id: 12,
+      title: 'Scandinavian Prefab Design',
+      category: 'COMPLETED PROJECTS',
+      type: 'image' as const,
+      thumbnail: '/gallery/SK_ND 12 Large.jpeg',
+      fullSrc: '/gallery/SK_ND 12 Large.jpeg',
+      description: 'Scandinavian prefab home',
+      details: {
+        size: '1,400 sq ft',
+        completion: '2024',
+        type: 'Skandy',
+        location: 'UK'
+      }
+    },
+    {
+      id: 11,
+      title: 'Nordic Design Excellence',
+      category: 'COMPLETED PROJECTS',
+      type: 'image' as const,
+      thumbnail: '/gallery/SK_ND 11 Large.jpeg',
+      fullSrc: '/gallery/SK_ND 11 Large.jpeg',
+      description: 'Nordic prefab home design',
+      details: {
+        size: '1,500 sq ft',
+        completion: '2024',
+        type: 'Skandy',
+        location: 'UK'
+      }
+    },
+    {
+      id: 10,
+      title: 'Scandinavian Modern Home',
+      category: 'COMPLETED PROJECTS',
+      type: 'image' as const,
+      thumbnail: '/gallery/SK_ND 10 Large.jpeg',
+      fullSrc: '/gallery/SK_ND 10 Large.jpeg',
+      description: 'Modern Scandinavian prefab home',
+      details: {
+        size: '1,600 sq ft',
+        completion: '2024',
+        type: 'Skandy',
+        location: 'UK'
+      }
+    },
+    {
+      id: 9,
+      title: 'Nordic Prefab Home',
+      category: 'COMPLETED PROJECTS',
+      type: 'image' as const,
+      thumbnail: '/gallery/SK_ND 9 Large.jpeg',
+      fullSrc: '/gallery/SK_ND 9 Large.jpeg',
+      description: 'Nordic prefab home',
+      details: {
+        size: '1,400 sq ft',
+        completion: '2024',
+        type: 'Skandy',
+        location: 'UK'
       }
     },
     {
       id: 7,
-      title: 'Luxury Interior Showcase',
-      category: 'INTERIORS',
+      title: 'Scandinavian Architecture',
+      category: 'COMPLETED PROJECTS',
       type: 'image' as const,
-      thumbnail: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg',
-      fullSrc: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg',
-      description: 'Premium interior finishes and modern amenities',
+      thumbnail: '/gallery/SK_ND 7 Large.jpeg',
+      fullSrc: '/gallery/SK_ND 7 Large.jpeg',
+      description: 'Scandinavian prefab home design',
       details: {
-        size: '2,100 sq ft',
+        size: '1,300 sq ft',
         completion: '2024',
-        type: 'Modern',
-        location: 'Edinburgh, UK'
+        type: 'Skandy',
+        location: 'UK'
       }
     },
     {
-      id: 8,
-      title: 'Modular Home Extension',
+      id: 6,
+      title: 'Modern Scandinavian Home',
       category: 'COMPLETED PROJECTS',
       type: 'image' as const,
-      thumbnail: '/photo_2022-10-03-12.44.26.jpeg',
-      fullSrc: '/photo_2022-10-03-12.44.26.jpeg',
-      description: 'Seamless modular extension added to existing property',
+      thumbnail: '/gallery/SK_ND 6 Large.jpeg',
+      fullSrc: '/gallery/SK_ND 6 Large.jpeg',
+      description: 'Modern Scandinavian prefab home',
       details: {
-        size: '800 sq ft',
+        size: '1,500 sq ft',
         completion: '2024',
-        type: 'Modular',
-        location: 'Bristol, UK'
+        type: 'Skandy',
+        location: 'UK'
+      }
+    },
+    {
+      id: 5,
+      title: 'Nordic Design Home',
+      category: 'COMPLETED PROJECTS',
+      type: 'image' as const,
+      thumbnail: '/gallery/SK_ND 5 Large.jpeg',
+      fullSrc: '/gallery/SK_ND 5 Large.jpeg',
+      description: 'Nordic prefab home',
+      details: {
+        size: '1,400 sq ft',
+        completion: '2024',
+        type: 'Skandy',
+        location: 'UK'
+      }
+    },
+    {
+      id: 4,
+      title: 'Scandinavian Living',
+      category: 'COMPLETED PROJECTS',
+      type: 'image' as const,
+      thumbnail: '/gallery/SK_ND 4 Large.jpeg',
+      fullSrc: '/gallery/SK_ND 4 Large.jpeg',
+      description: 'Scandinavian prefab home',
+      details: {
+        size: '1,600 sq ft',
+        completion: '2024',
+        type: 'Skandy',
+        location: 'UK'
+      }
+    },
+    {
+      id: 3,
+      title: 'Modern Prefab Home',
+      category: 'COMPLETED PROJECTS',
+      type: 'image' as const,
+      thumbnail: '/gallery/SK_ND 3 Large.jpeg',
+      fullSrc: '/gallery/SK_ND 3 Large.jpeg',
+      description: 'Contemporary prefab home',
+      details: {
+        size: '1,300 sq ft',
+        completion: '2024',
+        type: 'Skandy',
+        location: 'UK'
+      }
+    },
+    {
+      id: 2,
+      title: 'Nordic Architecture',
+      category: 'COMPLETED PROJECTS',
+      type: 'image' as const,
+      thumbnail: '/gallery/SK_ND 2 Large.jpeg',
+      fullSrc: '/gallery/SK_ND 2 Large.jpeg',
+      description: 'Nordic-inspired prefab home design',
+      details: {
+        size: '1,500 sq ft',
+        completion: '2024',
+        type: 'Skandy',
+        location: 'UK'
+      }
+    },
+    {
+      id: 1,
+      title: 'Scandinavian Home Design',
+      category: 'COMPLETED PROJECTS',
+      type: 'image' as const,
+      thumbnail: '/gallery/SK_ND 1 Large.jpeg',
+      fullSrc: '/gallery/SK_ND 1 Large.jpeg',
+      description: 'Modern Scandinavian prefab home',
+      details: {
+        size: '1,400 sq ft',
+        completion: '2024',
+        type: 'Skandy',
+        location: 'UK'
       }
     }
   ];
 
-  const filteredCaseStudies = selectedCategory === 'ALL' 
-    ? caseStudies 
-    : caseStudies.filter(study => study.category === selectedCategory);
+  const filteredCaseStudies = caseStudies;
 
-  const openLightbox = (media: { type: 'image' | 'video', src: string }) => {
-    setSelectedMedia(media);
+  const openLightbox = (index: number) => {
+    setSelectedMediaIndex(index);
   };
 
   const closeLightbox = () => {
-    setSelectedMedia(null);
+    setSelectedMediaIndex(null);
   };
+
+  const goToPrevious = () => {
+    if (selectedMediaIndex !== null && selectedMediaIndex > 0) {
+      setSelectedMediaIndex(selectedMediaIndex - 1);
+    }
+  };
+
+  const goToNext = () => {
+    if (selectedMediaIndex !== null && selectedMediaIndex < filteredCaseStudies.length - 1) {
+      setSelectedMediaIndex(selectedMediaIndex + 1);
+    }
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (selectedMediaIndex === null) return;
+      
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        if (selectedMediaIndex > 0) {
+          setSelectedMediaIndex(selectedMediaIndex - 1);
+        }
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        if (selectedMediaIndex < filteredCaseStudies.length - 1) {
+          setSelectedMediaIndex(selectedMediaIndex + 1);
+        }
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        closeLightbox();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedMediaIndex, filteredCaseStudies.length]);
+
+  const currentMedia = selectedMediaIndex !== null ? filteredCaseStudies[selectedMediaIndex] : null;
 
   return (
     <>
@@ -161,36 +330,20 @@ const GalleryPage: React.FC = () => {
             </p>
           </div>
 
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-4 md:gap-6 mb-8 sm:mb-12">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-3 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-3 text-xs sm:text-sm md:text-base font-thin transition-all duration-300 rounded-lg ${
-                  selectedCategory === category
-                    ? 'bg-primary text-white shadow-lg'
-                    : 'bg-white text-gray-900 md:hover:bg-gray-900 md:hover:text-white'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
 
           {/* Case Studies Grid */}
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 lg:gap-6 xl:gap-8 auto-rows-fr">
-            {filteredCaseStudies.map((study) => (
+            {filteredCaseStudies.map((study, index) => (
               <div 
                 key={study.id} 
                 className="group flex flex-col bg-white rounded-lg shadow-lg md:hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer"
-                    onClick={() => openLightbox({ type: study.type, src: study.fullSrc })}
+                    onClick={() => openLightbox(index)}
                     role="button"
                     tabIndex={0}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
-                        openLightbox({ type: study.type, src: study.fullSrc });
+                        openLightbox(index);
                       }
                     }}
                     aria-label={`View ${study.type === 'video' ? 'video' : 'full image'} of ${study.title}`}
@@ -218,75 +371,31 @@ const GalleryPage: React.FC = () => {
                   {/* Hover overlay */}
                   <div className="absolute inset-0 bg-black/0 md:group-hover:bg-black/10 transition-all duration-300"></div>
                 </div>
-
-                {/* Content Section - Flex Grow for Equal Heights */}
-                <div className="flex flex-col flex-grow px-4 sm:px-5 md:px-6 pt-4 sm:pt-5 md:pt-6 pb-4 sm:pb-5 md:pb-6 min-h-0">
-                  <div className="flex-grow">
-                    {/* Title */}
-                    <h3 className="text-[10px] sm:text-xs md:text-sm lg:text-xl font-heading font-semibold text-gray-900 mb-0.5 sm:mb-1 md:mb-2 line-clamp-1">
-                      {study.title}
-                    </h3>
-                    
-                    {/* Details Grid - Consistent Spacing */}
-                    <div className="space-y-1 sm:space-y-1.5 md:space-y-2.5 mb-3 sm:mb-4 md:mb-5">
-                      <div className="flex items-center justify-between text-[9px] sm:text-[10px] md:text-xs lg:text-sm">
-                        <span className="text-gray-900">Size</span>
-                        <span className="font-medium text-gray-900">{study.details.size}</span>
-                      </div>
-                      <div className="flex items-center justify-between text-[9px] sm:text-[10px] md:text-xs lg:text-sm">
-                        <span className="text-gray-900">Type</span>
-                        <span className="font-medium text-gray-900">{study.details.type}</span>
-                      </div>
-                      <div className="flex items-center justify-between text-[9px] sm:text-[10px] md:text-xs lg:text-sm">
-                        <span className="text-gray-900">Year</span>
-                        <span className="font-medium text-gray-900">{study.details.completion}</span>
-                      </div>
-                      <div className="flex items-center justify-between text-[9px] sm:text-[10px] md:text-xs lg:text-sm">
-                        <span className="text-gray-900">Location</span>
-                        <span className="font-medium text-gray-900">{study.details.location}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* CTA Button - Always at Bottom */}
-                  <div className="mt-auto">
-                    <a 
-                      href="/contact" 
-                      className="inline-block w-full bg-gray-900 text-white py-2 sm:py-2.5 md:py-3 px-3 sm:px-4 rounded-lg text-center font-thin text-[9px] sm:text-[10px] md:text-xs lg:text-sm md:hover:bg-gray-800 transition-colors duration-200"
-                    >
-                      Schedule Consultation
-                    </a>
-                  </div>
-                </div>
               </div>
             ))}
           </div>
 
           {/* Stats Section */}
-          <div className="mt-20 bg-gray-50 py-16 px-8 rounded-lg">
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-semibold text-gray-800 mb-4">Our Track Record</h3>
-              <p className="text-gray-600">Real results from real projects</p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          <div className="mt-20 bg-white py-16 px-8 rounded-lg">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center max-w-4xl mx-auto">
               <div>
-                <div className="text-4xl font-bold text-primary mb-2">150+</div>
-                <div className="text-gray-600">Completed Projects</div>
+                <div className="text-4xl font-thin text-primary mb-2">150+</div>
+                <div className="text-gray-900">Completed Projects</div>
               </div>
               <div>
-                <div className="text-4xl font-bold text-primary mb-2">98%</div>
-                <div className="text-gray-600">Client Satisfaction</div>
+                <div className="text-4xl font-thin text-primary mb-2">98%</div>
+                <div className="text-gray-900">Client Satisfaction</div>
               </div>
               <div>
-                <div className="text-4xl font-bold text-primary mb-2">4.2</div>
-                <div className="text-gray-600">Avg. Assembly Days</div>
+                <div className="text-4xl font-thin text-primary mb-2">4.2</div>
+                <div className="text-gray-900">Avg. Assembly Days</div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Lightbox Modal */}
-        {selectedMedia && (
+        {currentMedia && selectedMediaIndex !== null && (
           <div 
             className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center p-4"
             onClick={closeLightbox}
@@ -294,7 +403,11 @@ const GalleryPage: React.FC = () => {
             aria-modal="true"
             aria-label="Media viewer"
           >
-            <div className="relative max-w-6xl max-h-full w-full">
+            <div 
+              className="relative max-w-6xl max-h-full w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
               <button
                 onClick={closeLightbox}
                 className="absolute top-4 right-4 text-white text-4xl hover:text-gray-300 transition-colors z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black rounded"
@@ -302,17 +415,45 @@ const GalleryPage: React.FC = () => {
               >
                 &times;
               </button>
+
+              {/* Previous Arrow */}
+              {selectedMediaIndex > 0 && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    goToPrevious();
+                  }}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-4xl md:text-5xl hover:text-gray-300 transition-colors z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black rounded p-2"
+                  aria-label="Previous image"
+                >
+                  &#8249;
+                </button>
+              )}
+
+              {/* Next Arrow */}
+              {selectedMediaIndex < filteredCaseStudies.length - 1 && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    goToNext();
+                  }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-4xl md:text-5xl hover:text-gray-300 transition-colors z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black rounded p-2"
+                  aria-label="Next image"
+                >
+                  &#8250;
+                </button>
+              )}
               
-              {selectedMedia.type === 'image' ? (
+              {currentMedia.type === 'image' ? (
                 <img 
-                  src={selectedMedia.src} 
+                  src={currentMedia.fullSrc} 
                   alt="Case study - enlarged view"
                   className="max-w-full max-h-full object-contain mx-auto"
                 />
               ) : (
                 <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                   <iframe
-                    src={selectedMedia.src}
+                    src={currentMedia.fullSrc}
                     className="absolute inset-0 w-full h-full"
                     frameBorder="0"
                     allowFullScreen

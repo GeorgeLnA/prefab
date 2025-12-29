@@ -60,7 +60,7 @@ const SkandyNordyPage: React.FC = () => {
                 Nordic Harmony
               </h1>
               <p className="text-white text-xl font-body font-normal mb-8 leading-relaxed">
-                Scandinavian-Nordic inspired minimalist design. Natural materials, clean lines, 
+                Nordic inspired minimalist design. Natural materials, clean lines, 
                 and sustainable living principles.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">

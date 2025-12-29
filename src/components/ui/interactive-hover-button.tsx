@@ -1,8 +1,6 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { gsap } from "gsap";
 
 interface InteractiveHoverButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -15,135 +13,41 @@ interface InteractiveHoverButtonProps
 const InteractiveHoverButton = React.forwardRef<
   HTMLButtonElement,
   InteractiveHoverButtonProps
->(({ text = "Button", className, asLink = false, href, to, ...props }, ref) => {
-  const buttonRef = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
-  const textSpanRef = useRef<HTMLSpanElement>(null);
-  const hoverContentRef = useRef<HTMLDivElement>(null);
-  const bgCircleRef = useRef<HTMLDivElement>(null);
-
+>(({ text = "Button", className, asLink = false, href, to, children, ...props }, ref) => {
   // Detect button background color from className
   const isYellow = className?.includes('bg-primary') || className?.includes('bg-yellow');
   const isGrey = className?.includes('bg-gray') || className?.includes('bg-grey');
-  const isWhite = className?.includes('bg-white');
   
   // Determine hover colors: 
   // - Yellow buttons -> Grey hover
   // - Grey buttons -> Yellow hover
-  // - White buttons -> Yellow hover (default)
-  // - Default (no bg specified) -> Yellow hover
+  // - Default -> Yellow hover
   const hoverBgColor = isYellow ? 'bg-gray-900' : 'bg-primary';
   const hoverTextColor = isYellow ? 'text-white' : 'text-black';
+  const initialBgColor = isYellow ? 'bg-primary' : (isGrey ? 'bg-gray-900' : 'bg-primary');
+  const initialTextColor = isYellow ? 'text-black' : (isGrey ? 'text-white' : 'text-black');
 
-  useEffect(() => {
-    const button = buttonRef.current;
-    if (!button) return;
-
-    // Check if device supports hover (desktop)
-    const supportsHover = window.matchMedia("(hover: hover)").matches;
-    if (!supportsHover) return;
-
-    const handleMouseEnter = () => {
-      if (textSpanRef.current) {
-        gsap.to(textSpanRef.current, {
-          x: 48,
-          opacity: 0,
-          duration: 0.6,
-          ease: "power2.out",
-        });
-      }
-      if (hoverContentRef.current) {
-        gsap.to(hoverContentRef.current, {
-          x: -4,
-          opacity: 1,
-          duration: 0.6,
-          ease: "power2.out",
-        });
-      }
-      if (bgCircleRef.current) {
-        gsap.to(bgCircleRef.current, {
-          left: "0%",
-          top: "0%",
-          width: "100%",
-          height: "100%",
-          scale: 1.8,
-          duration: 0.6,
-          ease: "power2.out",
-        });
-      }
-    };
-
-    const handleMouseLeave = () => {
-      if (textSpanRef.current) {
-        gsap.to(textSpanRef.current, {
-          x: 4,
-          opacity: 1,
-          duration: 0.6,
-          ease: "power2.out",
-        });
-      }
-      if (hoverContentRef.current) {
-        gsap.to(hoverContentRef.current, {
-          x: 48,
-          opacity: 0,
-          duration: 0.6,
-          ease: "power2.out",
-        });
-      }
-      if (bgCircleRef.current) {
-        gsap.to(bgCircleRef.current, {
-          left: "20%",
-          top: "40%",
-          width: "8px",
-          height: "8px",
-          scale: 1,
-          duration: 0.6,
-          ease: "power2.out",
-        });
-      }
-    };
-
-    button.addEventListener("mouseenter", handleMouseEnter);
-    button.addEventListener("mouseleave", handleMouseLeave);
-
-    return () => {
-      button.removeEventListener("mouseenter", handleMouseEnter);
-      button.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, []);
+  const displayText = text || children;
 
   const baseClasses = cn(
-    "relative cursor-pointer overflow-hidden rounded-lg bg-background py-2.5 px-6 text-center font-thin inline-flex items-center justify-center min-w-[140px]",
+    "group/btn relative cursor-pointer overflow-hidden rounded-lg py-2.5 px-6 text-center font-thin inline-flex items-center justify-center min-w-[140px]",
+    initialBgColor,
+    initialTextColor,
     className,
   );
 
   const content = (
     <>
-      <span 
-        ref={textSpanRef}
-        className="inline-block whitespace-nowrap"
-        style={{ transform: "translateX(4px)" }}
-      >
-        {text}
+      <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap">
+        {displayText}
       </span>
-      <div 
-        ref={hoverContentRef}
-        className={cn("absolute top-0 z-10 flex h-full w-full items-center justify-center gap-2", hoverTextColor)}
-        style={{ transform: "translateX(48px)", opacity: 0 }}
-      >
-        <span className="whitespace-nowrap">{text}</span>
-        <ArrowRight className="w-4 h-4" />
+      <div className={cn(
+        "flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap",
+        hoverBgColor,
+        hoverTextColor
+      )}>
+        <span>{displayText}</span>
       </div>
-      <div 
-        ref={bgCircleRef}
-        className={cn("absolute rounded-lg", hoverBgColor)}
-        style={{ 
-          left: "20%", 
-          top: "40%", 
-          width: "8px", 
-          height: "8px",
-          transform: "scale(1)"
-        }}
-      ></div>
     </>
   );
 
@@ -152,7 +56,7 @@ const InteractiveHoverButton = React.forwardRef<
     return (
       <Link
         {...linkProps}
-        ref={buttonRef as React.Ref<HTMLAnchorElement>}
+        ref={ref as React.Ref<HTMLAnchorElement>}
         className={baseClasses}
       >
         {content}
@@ -162,14 +66,7 @@ const InteractiveHoverButton = React.forwardRef<
 
   return (
     <button
-      ref={(node) => {
-        buttonRef.current = node;
-        if (typeof ref === 'function') {
-          ref(node);
-        } else if (ref) {
-          ref.current = node;
-        }
-      }}
+      ref={ref}
       className={baseClasses}
       {...props}
     >

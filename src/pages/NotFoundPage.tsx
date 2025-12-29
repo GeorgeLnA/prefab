@@ -76,7 +76,7 @@ const NotFoundPage: React.FC = () => {
                   </li>
                   <li>
                     <Link to="/modular" className="text-gray-600 hover:text-primary transition-colors font-body font-normal">
-                      → Modular
+                      → Modular Home
                     </Link>
                   </li>
                 </ul>

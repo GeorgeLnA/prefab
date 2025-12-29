@@ -603,15 +603,6 @@ const HouseDetailPage: React.FC = () => {
                 <div>
                   {house.floorPlans && house.floorPlans.length > 0 ? (
                     <div className="space-y-8 sm:space-y-10">
-                      <div>
-                        <h3 className="text-2xl sm:text-3xl font-heading font-thin mb-4 sm:mb-6 text-gray-900">Floor Plans</h3>
-                        <p className="text-gray-700 mb-6 sm:mb-8">
-                          {house.floorPlans.length === 1 
-                            ? 'View the floor plan for this model.' 
-                            : `View ${house.floorPlans.length} floor plan variations for this model.`}
-                        </p>
-                      </div>
-                      <div className="space-y-8 sm:space-y-10">
                         {house.floorPlans.map((floorPlan, index) => (
                           <div key={index} className="bg-white rounded-lg overflow-hidden shadow-sm">
                             <div className="p-4 sm:p-6 border-b border-gray-200">
@@ -629,7 +620,6 @@ const HouseDetailPage: React.FC = () => {
                             </div>
                           </div>
                         ))}
-                      </div>
                     </div>
                   ) : (
                 <div className="text-center">

@@ -42,32 +42,780 @@ export interface HouseType {
 }
 
 export const houseData: HouseType[] = [
-  // Mobile Houses
+  // Skandy Houses
   {
-    name: "MOBILE M-30",
-    slug: "mobile-m-30",
+    name: "SKANDY 70",
+    slug: "skandy-70",
     inStock: true,
-    imageUrl: "/prefab_homes_lounge_30_front_view.jpg",
-    squareFeet: 1076,
-    squareMeters: 100,
-    price: 120000,
-    type: "MOBILE",
+    imageUrl: "/SKANDY/SKANDY 70 1.jpeg",
+    squareFeet: 657,
+    squareMeters: 61,
+    price: 68560,
+    type: "ONE-BEDROOM",
     category: "MOBILE",
-    description: "Compact mobile home with flexible living space and easy relocation",
-    additionalImages: ["/prefab_homes_lounge_30_front_view.jpg", "/wive3.jpg"]
+    description: "A high-performance, energy-efficient SIP home designed for fast on-site assembly.",
+    livingArea: { feet: 474, meters: 44 },
+    coveredTerrace: { feet: 183, meters: 17 },
+    thermalPerformance: "~0.16–0.18 W/m²·K",
+    assemblyTime: "4–8 weeks",
+    keyFeatures: [
+      "High-performance SIP envelope with outstanding insulation",
+      "Factory-built precision with strict quality control",
+      "Natural timber cladding and interior finish options",
+      "Fast on-site assembly (4–8 weeks)",
+      "Designed for efficient energy use",
+      "10-year structural warranty"
+    ],
+    about: "The SKANDY 70 is a compact yet highly functional one-bedroom home, designed for comfortable year-round living. Its Scandinavian architectural language combines natural materials, clean lines and a strong connection to daylight, creating a bright, calm and welcoming interior.\n\nWith an internal living area of 474 ft² (44 m²), the layout is carefully planned to include a spacious open-plan living and kitchen area, a separate bedroom and a bathroom. The full-height front-facing glazing spans almost the entire width of the living space, allowing generous natural light to flood the interior and creating an open, airy atmosphere throughout the day. A 183 ft² (17 m²) covered patio further extends the living area outdoors, offering a sheltered space for relaxation and everyday use in all seasons.\n\nBuilt as a permanent residential home, the SKANDY 70 delivers excellent thermal comfort and energy efficiency. The highly insulated SIP construction provides stable indoor temperatures, reduced heat loss and low energy demand, ensuring a comfortable living environment all year round.\n\nAll structural elements are precision-manufactured in the factory and delivered ready for a clean, fast and predictable on-site assembly process.",
+    whatsIncluded: [
+      {
+        title: "Complete SIP structural shell",
+        description: "External SIP walls, internal SIP partitions, floor and roof panels manufactured in the factory."
+      },
+      {
+        title: "Exterior cladding system",
+        description: "Timber cladding or the model's selected exterior finish."
+      },
+      {
+        title: "Roofing package",
+        description: "Metal roofing sheets, fascias, soffits, guttering and downpipes."
+      },
+      {
+        title: "PVC double-glazed windows and exterior entrance door",
+        description: ""
+      },
+      {
+        title: "Internal plumbing and electrical routes (first-fix only)",
+        description: "Installed internal pipework, drainage routes and electrical cabling without sanitary ware, fittings or final connections."
+      },
+      {
+        title: "On-site assembly of the structural shell",
+        description: "Installation of SIP panels, roofing, exterior finishes and windows."
+      },
+      {
+        title: "Assembly drawings and technical documentation",
+        description: ""
+      }
+    ],
+    whatsNotIncluded: [
+      {
+        title: "Internal finishes",
+        description: "Wall and ceiling linings, plasterboard, painted surfaces, ceiling finishes and all finished floor coverings."
+      },
+      {
+        title: "Bathrooms and sanitary installations",
+        description: "Sanitary ware, bathroom furniture, tiling, waterproofing and all bathroom finishing works."
+      },
+      {
+        title: "Kitchen furniture and fittings",
+        description: "Kitchen units, worktops, appliances and built-in kitchen furniture."
+      },
+      {
+        title: "Mechanical and electrical systems",
+        description: "Final electrical fittings, lighting, heating systems, ventilation, MVHR, ASHP and all HVAC equipment."
+      },
+      {
+        title: "Foundations and site works",
+        description: "Supply and installation of foundations, groundworks, external drainage and utility connections."
+      },
+      {
+        title: "Mechanical lifting equipment",
+        description: "Crane hire, telehandlers, scaffolding and fall-arrest systems."
+      },
+      {
+        title: "Planning and regulatory fees",
+        description: "Planning applications, architectural services, engineering approvals and associated documentation."
+      },
+      {
+        title: "External utilities and site works",
+        description: "Groundworks, external drainage, mains connection for water, electricity or sewage."
+      }
+    ],
+    dimensions: {
+      totalArea: { feet: 657, meters: 61 },
+      livingArea: { feet: 474, meters: 44 },
+      coveredTerrace: { feet: 183, meters: 17 },
+      bedrooms: "1",
+      bathrooms: 1,
+      overallSize: "27.9 × 27.2 × 12.8 ft (8.5 × 8.3 × 3.9 m)"
+    },
+    construction: {
+      wallSystem: "SIP panels (structural insulated panels), thermal performance ~0.16–0.18 W/m²·K",
+      insulation: "High-performance SIP core with excellent airtightness",
+      windows: "PVC double-glazed units, U-value ~1.1–1.3 W/m²·K",
+      roof: "Standing seam clip-fixed metal roofing with integrated guttering",
+      foundation: "Screw-pile foundation (optional, not included in the base price)"
+    },
+    energyEnvironment: [
+      "High thermal performance SIP envelope",
+      "Low heat loss due to airtight construction",
+      "Reduced energy consumption for heating",
+      "Naturally bright interior with large glazing areas",
+      "Durable, low-maintenance external materials"
+    ],
+    features: [
+      "Open-plan living space with abundant natural light",
+      "Large floor-to-ceiling windows",
+      "Integrated covered terrace for year-round use",
+      "Modern Scandinavian-inspired layout",
+      "Compact footprint suitable for small plots",
+      "Precision-manufactured components for a clean build"
+    ],
+    additionalImages: [
+      "/SKANDY/SKANDY 70 2.jpeg",
+      "/SKANDY/SK70 3.jpeg"
+    ],
+    floorPlans: [
+      "/SKANDY/Skandy 70. Floor plan_New_page-0001.jpg"
+    ],
+    facades: [
+      "/SKANDY/Skandy 70. Facades_New_page-0001.jpg"
+    ]
   },
   {
-    name: "MOBILE M-45",
-    slug: "mobile-m-45",
+    name: "SKANDY 80",
+    slug: "skandy-80",
     inStock: true,
-    imageUrl: "/wive3.jpg",
-    squareFeet: 1292,
-    squareMeters: 120,
-    price: 145000,
-    type: "MOBILE",
+    imageUrl: "/SKANDY/Skandy 80_2 Large.jpeg",
+    squareFeet: 834,
+    squareMeters: 78,
+    price: 81460,
+    type: "THREE-BEDROOM",
     category: "MOBILE",
-    description: "Spacious mobile home with modern amenities and comfortable living",
-    additionalImages: ["/wive3.jpg", "/prefab_homes_lounge_30_front_view.jpg"]
+    description: "A high-performance, energy-efficient SIP home designed for fast on-site assembly.",
+    livingArea: { feet: 834, meters: 78 },
+    thermalPerformance: "~0.16–0.18 W/m²·K",
+    assemblyTime: "4–8 weeks",
+    keyFeatures: [
+      "High-performance SIP envelope with outstanding insulation",
+      "Factory-built precision with strict quality control",
+      "Natural timber cladding and interior finish options",
+      "Fast on-site assembly (4–8 weeks)",
+      "Designed for efficient energy use",
+      "10-year structural warranty"
+    ],
+    about: "The SKANDY 80 is a remarkably efficient and thoughtfully designed home that offers an exceptional level of functionality within a compact footprint. With a total internal area of 834 ft² (77.5 m²), the house delivers a layout rarely found at this size.\n\nDespite its modest overall area, the SKANDY 80 accommodates three full-sized bedrooms and two bathrooms, making it a highly practical solution for families or multi-occupancy living. This intelligent space planning allows the house to remain economical to build and operate, while still providing the comfort and flexibility of a much larger home.\n\nLarge front-facing glazing runs across the main living elevation, bringing abundant natural light into the open-plan living and kitchen space and enhancing the sense of openness throughout the interior. The result is a rational, well-balanced home that maximises every square metre without compromise.\n\nBuilt as a permanent residential home, the SKANDY 80 combines excellent thermal comfort with energy-efficient SIP construction, ensuring stable indoor temperatures and low heat loss for comfortable year-round living.",
+    whatsIncluded: [
+      {
+        title: "Complete SIP structural shell",
+        description: "External SIP walls, internal SIP partitions, floor and roof panels manufactured in the factory."
+      },
+      {
+        title: "Exterior cladding system",
+        description: "Timber cladding or the model's selected exterior finish."
+      },
+      {
+        title: "Roofing package",
+        description: "Metal roofing sheets, fascias, soffits, guttering and downpipes."
+      },
+      {
+        title: "PVC double-glazed windows and exterior entrance door",
+        description: ""
+      },
+      {
+        title: "Internal plumbing and electrical routes (first-fix only)",
+        description: "Installed internal pipework, drainage routes and electrical cabling without sanitary ware, fittings or final connections."
+      },
+      {
+        title: "On-site assembly of the structural shell",
+        description: "Installation of SIP panels, roofing, exterior finishes and windows."
+      },
+      {
+        title: "Assembly drawings and technical documentation",
+        description: ""
+      }
+    ],
+    whatsNotIncluded: [
+      {
+        title: "Internal finishes",
+        description: "Wall and ceiling linings, plasterboard, painted surfaces, ceiling finishes and all finished floor coverings."
+      },
+      {
+        title: "Bathrooms and sanitary installations",
+        description: "Sanitary ware, bathroom furniture, tiling, waterproofing and all bathroom finishing works."
+      },
+      {
+        title: "Kitchen furniture and fittings",
+        description: "Kitchen units, worktops, appliances and built-in kitchen furniture."
+      },
+      {
+        title: "Mechanical and electrical systems",
+        description: "Final electrical fittings, lighting, heating systems, ventilation, MVHR, ASHP and all HVAC equipment."
+      },
+      {
+        title: "Foundations and site works",
+        description: "Supply and installation of foundations, groundworks, external drainage and utility connections."
+      },
+      {
+        title: "Mechanical lifting equipment",
+        description: "Crane hire, telehandlers, scaffolding and fall-arrest systems."
+      },
+      {
+        title: "Planning and regulatory fees",
+        description: "Planning applications, architectural services, engineering approvals and associated documentation."
+      },
+      {
+        title: "External utilities and site works",
+        description: "Groundworks, external drainage, mains connection for water, electricity or sewage."
+      }
+    ],
+    dimensions: {
+      totalArea: { feet: 834, meters: 78 },
+      livingArea: { feet: 834, meters: 78 },
+      bedrooms: "3",
+      bathrooms: 1,
+      overallSize: "35.8 × 27.2 × 12.8 ft (10.9 × 8.3 × 3.9 m)"
+    },
+    construction: {
+      wallSystem: "SIP panels (structural insulated panels), thermal performance ~0.16–0.18 W/m²·K",
+      insulation: "High-performance SIP core with excellent airtightness",
+      windows: "PVC double-glazed units, U-value ~1.1–1.3 W/m²·K",
+      roof: "Standing seam clip-fixed metal roofing with integrated guttering",
+      foundation: "Screw-pile foundation (optional, not included in the base price)"
+    },
+    energyEnvironment: [
+      "High thermal performance SIP envelope",
+      "Low heat loss due to airtight construction",
+      "Reduced energy consumption for heating",
+      "Naturally bright interior with large glazing areas",
+      "Durable, low-maintenance external materials"
+    ],
+    features: [
+      "Open-plan living space with abundant natural light",
+      "Large floor-to-ceiling windows",
+      "Modern Scandinavian-inspired layout",
+      "Compact footprint suitable for small plots",
+      "Precision-manufactured components for a clean build",
+      "Three bedrooms in efficient space planning"
+    ],
+    additionalImages: [
+      "/SKANDY/Skandy 80_1 Large.jpeg"
+    ],
+    floorPlans: [
+      "/SKANDY/Skandy 80. Floor plan_New_page-0001.jpg"
+    ],
+    facades: [
+      "/SKANDY/Skandy 80. Facades_page-0001.jpg"
+    ]
+  },
+  {
+    name: "SKANDY 96",
+    slug: "skandy-96",
+    inStock: true,
+    imageUrl: "/SKANDY/SKANDY 96_1_4K Large.jpeg",
+    squareFeet: 958,
+    squareMeters: 89,
+    price: 97080,
+    type: "ONE-BEDROOM",
+    category: "MOBILE",
+    description: "A high-performance, energy-efficient SIP home designed for fast on-site assembly.",
+    livingArea: { feet: 753, meters: 70 },
+    coveredTerrace: { feet: 205, meters: 19 },
+    thermalPerformance: "~0.16–0.18 W/m²·K",
+    assemblyTime: "4–8 weeks",
+    keyFeatures: [
+      "High-performance SIP envelope with outstanding insulation",
+      "Factory-built precision with strict quality control",
+      "Natural timber cladding and interior finish options",
+      "Fast on-site assembly (4–8 weeks)",
+      "Designed for efficient energy use",
+      "10-year structural warranty"
+    ],
+    about: "The SKANDY 96 is a highly distinctive and spacious home, designed around an exceptionally large open-plan living, dining and kitchen area. Despite its compact bedroom arrangement, the house feels generous and open, making it ideal for social living, entertaining and relaxed gatherings.\n\nWith an internal living area of 753 ft² (70 m²), the layout is centred around a single, expansive living space that benefits from three-sided glazing, allowing daylight to enter from multiple directions throughout the day. This creates a bright, open atmosphere and a strong visual connection with the surrounding landscape.\n\nThe living area opens directly onto two separate terraces, extending the interior space outdoors and making the house particularly well suited for hosting friends, family events or informal summer living. While perfectly comfortable for a couple or two-person household, the SKANDY 96 is intentionally designed as a social home — spacious, open and ideal for countryside retreats, holiday use or weekend gatherings.\n\nBuilt as a permanent residential home, the SKANDY 96 combines excellent thermal comfort with energy-efficient SIP construction, ensuring stable indoor temperatures and a comfortable environment throughout the year.",
+    whatsIncluded: [
+      {
+        title: "Complete SIP structural shell",
+        description: "External SIP walls, internal SIP partitions, floor and roof panels manufactured in the factory."
+      },
+      {
+        title: "Exterior cladding system",
+        description: "Timber cladding or the model's selected exterior finish."
+      },
+      {
+        title: "Roofing package",
+        description: "Metal roofing sheets, fascias, soffits, guttering and downpipes."
+      },
+      {
+        title: "PVC double-glazed windows and exterior entrance door",
+        description: ""
+      },
+      {
+        title: "Internal plumbing and electrical routes (first-fix only)",
+        description: "Installed internal pipework, drainage routes and electrical cabling without sanitary ware, fittings or final connections."
+      },
+      {
+        title: "On-site assembly of the structural shell",
+        description: "Installation of SIP panels, roofing, exterior finishes and windows."
+      },
+      {
+        title: "Assembly drawings and technical documentation",
+        description: ""
+      }
+    ],
+    whatsNotIncluded: [
+      {
+        title: "Internal finishes",
+        description: "Wall and ceiling linings, plasterboard, painted surfaces, ceiling finishes and all finished floor coverings."
+      },
+      {
+        title: "Bathrooms and sanitary installations",
+        description: "Sanitary ware, bathroom furniture, tiling, waterproofing and all bathroom finishing works."
+      },
+      {
+        title: "Kitchen furniture and fittings",
+        description: "Kitchen units, worktops, appliances and built-in kitchen furniture."
+      },
+      {
+        title: "Mechanical and electrical systems",
+        description: "Final electrical fittings, lighting, heating systems, ventilation, MVHR, ASHP and all HVAC equipment."
+      },
+      {
+        title: "Foundations and site works",
+        description: "Supply and installation of foundations, groundworks, external drainage and utility connections."
+      },
+      {
+        title: "Mechanical lifting equipment",
+        description: "Crane hire, telehandlers, scaffolding and fall-arrest systems."
+      },
+      {
+        title: "Planning and regulatory fees",
+        description: "Planning applications, architectural services, engineering approvals and associated documentation."
+      },
+      {
+        title: "External utilities and site works",
+        description: "Groundworks, external drainage, mains connection for water, electricity or sewage."
+      }
+    ],
+    dimensions: {
+      totalArea: { feet: 958, meters: 89 },
+      livingArea: { feet: 753, meters: 70 },
+      coveredTerrace: { feet: 205, meters: 19 },
+      bedrooms: "1",
+      bathrooms: 1,
+      overallSize: "39.7 × 27.2 × 12.8 ft (12.1 × 8.3 × 3.9 m)"
+    },
+    construction: {
+      wallSystem: "SIP panels (structural insulated panels), thermal performance ~0.16–0.18 W/m²·K",
+      insulation: "High-performance SIP core with excellent airtightness",
+      windows: "PVC double-glazed units, U-value ~1.1–1.3 W/m²·K",
+      roof: "Standing seam clip-fixed metal roofing with integrated guttering",
+      foundation: "Screw-pile foundation (optional, not included in the base price)"
+    },
+    energyEnvironment: [
+      "High thermal performance SIP envelope",
+      "Low heat loss due to airtight construction",
+      "Reduced energy consumption for heating",
+      "Naturally bright interior with large glazing areas",
+      "Durable, low-maintenance external materials"
+    ],
+    features: [
+      "Open-plan living space with abundant natural light",
+      "Large floor-to-ceiling windows",
+      "Two separate terraces extending outdoor living",
+      "Modern Scandinavian-inspired layout",
+      "Compact footprint suitable for small plots",
+      "Precision-manufactured components for a clean build",
+      "Three-sided glazing for maximum daylight"
+    ],
+    additionalImages: [
+      "/SKANDY/SKANDY 96_2_2K Large.jpeg",
+      "/SKANDY/SK 96 Large.jpeg"
+    ],
+    floorPlans: [
+      "/SKANDY/Skandy 96. Floor plan_page-0001.jpg"
+    ],
+    facades: [
+      "/SKANDY/Skandy 96. Facades_New_page-0001.jpg"
+    ]
+  },
+  {
+    name: "SKANDY 100",
+    slug: "skandy-100",
+    inStock: true,
+    imageUrl: "/SKANDY/SKANDY 100_1Final 2k Large.jpeg",
+    squareFeet: 1184,
+    squareMeters: 110,
+    price: 106360,
+    type: "TWO-BEDROOM",
+    category: "MOBILE",
+    description: "A high-performance, energy-efficient SIP home designed for fast on-site assembly.",
+    livingArea: { feet: 1001, meters: 93 },
+    coveredTerrace: { feet: 183, meters: 17 },
+    thermalPerformance: "~0.16–0.18 W/m²·K",
+    assemblyTime: "4–8 weeks",
+    keyFeatures: [
+      "High-performance SIP envelope with outstanding insulation",
+      "Factory-built precision with strict quality control",
+      "Natural timber cladding and interior finish options",
+      "Fast on-site assembly (4–8 weeks)",
+      "Designed for efficient energy use",
+      "10-year structural warranty"
+    ],
+    about: "The SKANDY 100 is a refined and well-proportioned two-bedroom home, designed for relaxed, comfortable living with a strong emphasis on shared space and connection to the outdoors. While perfectly suited for a household of two, the house offers the scale and openness to comfortably host guests, gatherings and social occasions.\n\nWith an internal living area of 1,001 ft² (93 m²), the layout is centred around a spacious open-plan living, dining and kitchen area that forms the heart of the home. Large front-facing glazing spans the full width of the main elevation, filling the living space with natural daylight and creating a seamless visual link to the surrounding landscape.\n\nA generous 183 ft² (17 m²) terrace extends directly from the living area, providing an ideal outdoor setting for dining, entertaining or simply enjoying time with friends and family. The balance between indoor openness and outdoor space makes the SKANDY 100 an excellent choice for countryside living, holiday use or a comfortable permanent home with a strong social focus.\n\nBuilt as a permanent residential home, the SKANDY 100 combines excellent thermal comfort with energy-efficient SIP construction, ensuring stable indoor temperatures and a comfortable living environment throughout the year.",
+    whatsIncluded: [
+      {
+        title: "Complete SIP structural shell",
+        description: "External SIP walls, internal SIP partitions, floor and roof panels manufactured in the factory."
+      },
+      {
+        title: "Exterior cladding system",
+        description: "Timber cladding or the model's selected exterior finish."
+      },
+      {
+        title: "Roofing package",
+        description: "Metal roofing sheets, fascias, soffits, guttering and downpipes."
+      },
+      {
+        title: "PVC double-glazed windows and exterior entrance door",
+        description: ""
+      },
+      {
+        title: "Internal plumbing and electrical routes (first-fix only)",
+        description: "Installed internal pipework, drainage routes and electrical cabling without sanitary ware, fittings or final connections."
+      },
+      {
+        title: "On-site assembly of the structural shell",
+        description: "Installation of SIP panels, roofing, exterior finishes and windows."
+      },
+      {
+        title: "Assembly drawings and technical documentation",
+        description: ""
+      }
+    ],
+    whatsNotIncluded: [
+      {
+        title: "Internal finishes",
+        description: "Wall and ceiling linings, plasterboard, painted surfaces, ceiling finishes and all finished floor coverings."
+      },
+      {
+        title: "Bathrooms and sanitary installations",
+        description: "Sanitary ware, bathroom furniture, tiling, waterproofing and all bathroom finishing works."
+      },
+      {
+        title: "Kitchen furniture and fittings",
+        description: "Kitchen units, worktops, appliances and built-in kitchen furniture."
+      },
+      {
+        title: "Mechanical and electrical systems",
+        description: "Final electrical fittings, lighting, heating systems, ventilation, MVHR, ASHP and all HVAC equipment."
+      },
+      {
+        title: "Foundations and site works",
+        description: "Supply and installation of foundations, groundworks, external drainage and utility connections."
+      },
+      {
+        title: "Mechanical lifting equipment",
+        description: "Crane hire, telehandlers, scaffolding and fall-arrest systems."
+      },
+      {
+        title: "Planning and regulatory fees",
+        description: "Planning applications, architectural services, engineering approvals and associated documentation."
+      },
+      {
+        title: "External utilities and site works",
+        description: "Groundworks, external drainage, mains connection for water, electricity or sewage."
+      }
+    ],
+    dimensions: {
+      totalArea: { feet: 1184, meters: 110 },
+      livingArea: { feet: 1001, meters: 93 },
+      coveredTerrace: { feet: 183, meters: 17 },
+      bedrooms: "2",
+      bathrooms: 1,
+      overallSize: "47.6 × 27.2 × 12.8 ft (14.5 × 8.3 × 3.9 m)"
+    },
+    construction: {
+      wallSystem: "SIP panels (structural insulated panels), thermal performance ~0.16–0.18 W/m²·K",
+      insulation: "High-performance SIP core with excellent airtightness",
+      windows: "PVC double-glazed units, U-value ~1.1–1.3 W/m²·K",
+      roof: "Standing seam clip-fixed metal roofing with integrated guttering",
+      foundation: "Screw-pile foundation (optional, not included in the base price)"
+    },
+    energyEnvironment: [
+      "High thermal performance SIP envelope",
+      "Low heat loss due to airtight construction",
+      "Reduced energy consumption for heating",
+      "Naturally bright interior with large glazing areas",
+      "Durable, low-maintenance external materials"
+    ],
+    features: [
+      "Open-plan living space with abundant natural light",
+      "Large floor-to-ceiling windows",
+      "Integrated covered terrace for year-round use",
+      "Modern Scandinavian-inspired layout",
+      "Compact footprint suitable for small plots",
+      "Precision-manufactured components for a clean build"
+    ],
+    additionalImages: [
+      "/SKANDY/SKANDY 100_2Final 2k Large.jpeg",
+      "/SKANDY/SK100 3 Large.jpeg",
+      "/SKANDY/SK 100 4 Large.jpeg"
+    ],
+    floorPlans: [
+      "/SKANDY/Floor plan. Skandy 100. Version 2_page-0001.jpg"
+    ],
+    facades: [
+      "/SKANDY/Skandy 100_New. Facades_page-0001.jpg"
+    ]
+  },
+  {
+    name: "SKANDY 120",
+    slug: "skandy-120",
+    inStock: true,
+    imageUrl: "/SKANDY/SKANDY 120_ 1. 4K Large.jpeg",
+    squareFeet: 1399,
+    squareMeters: 130,
+    price: 118490,
+    type: "THREE-BEDROOM",
+    category: "MOBILE",
+    description: "A high-performance, energy-efficient SIP home designed for fast on-site assembly.",
+    livingArea: { feet: 1216, meters: 113 },
+    coveredTerrace: { feet: 183, meters: 17 },
+    thermalPerformance: "~0.16–0.18 W/m²·K",
+    assemblyTime: "4–8 weeks",
+    keyFeatures: [
+      "High-performance SIP envelope with outstanding insulation",
+      "Factory-built precision with strict quality control",
+      "Natural timber cladding and interior finish options",
+      "Fast on-site assembly (4–8 weeks)",
+      "Designed for efficient energy use",
+      "10-year structural warranty"
+    ],
+    about: "The SKANDY 120 is a highly flexible and well-balanced family home, designed to adapt to different lifestyles and household needs. A key feature of this model is the availability of two alternative base layouts, allowing the house to be configured either as a four-bedroom home with one bathroom or as a three-bedroom home with two bathrooms.\n\nThis flexibility significantly expands the functional possibilities of the house, making it suitable for larger families, multi-generational living or owners who value additional bathrooms and storage space. The ability to choose between layouts allows the SKANDY 120 to be tailored to individual priorities without increasing the overall footprint of the building.\n\nWith a generous internal living area, the house is organised around a spacious open-plan living, dining and kitchen zone, enhanced by large front-facing glazing. This creates a bright, open atmosphere and a strong visual connection to the outdoor terraces, supporting both everyday family life and social gatherings.\n\nBuilt as a permanent residential home, the SKANDY 120 combines excellent thermal comfort with energy-efficient SIP construction, ensuring stable indoor temperatures and comfortable year-round living.",
+    whatsIncluded: [
+      {
+        title: "Complete SIP structural shell",
+        description: "External SIP walls, internal SIP partitions, floor and roof panels manufactured in the factory."
+      },
+      {
+        title: "Exterior cladding system",
+        description: "Timber cladding or the model's selected exterior finish."
+      },
+      {
+        title: "Roofing package",
+        description: "Metal roofing sheets, fascias, soffits, guttering and downpipes."
+      },
+      {
+        title: "PVC double-glazed windows and exterior entrance door",
+        description: ""
+      },
+      {
+        title: "Internal plumbing and electrical routes (first-fix only)",
+        description: "Installed internal pipework, drainage routes and electrical cabling without sanitary ware, fittings or final connections."
+      },
+      {
+        title: "On-site assembly of the structural shell",
+        description: "Installation of SIP panels, roofing, exterior finishes and windows."
+      },
+      {
+        title: "Assembly drawings and technical documentation",
+        description: ""
+      }
+    ],
+    whatsNotIncluded: [
+      {
+        title: "Internal finishes",
+        description: "Wall and ceiling linings, plasterboard, painted surfaces, ceiling finishes and all finished floor coverings."
+      },
+      {
+        title: "Bathrooms and sanitary installations",
+        description: "Sanitary ware, bathroom furniture, tiling, waterproofing and all bathroom finishing works."
+      },
+      {
+        title: "Kitchen furniture and fittings",
+        description: "Kitchen units, worktops, appliances and built-in kitchen furniture."
+      },
+      {
+        title: "Mechanical and electrical systems",
+        description: "Final electrical fittings, lighting, heating systems, ventilation, MVHR, ASHP and all HVAC equipment."
+      },
+      {
+        title: "Foundations and site works",
+        description: "Supply and installation of foundations, groundworks, external drainage and utility connections."
+      },
+      {
+        title: "Mechanical lifting equipment",
+        description: "Crane hire, telehandlers, scaffolding and fall-arrest systems."
+      },
+      {
+        title: "Planning and regulatory fees",
+        description: "Planning applications, architectural services, engineering approvals and associated documentation."
+      },
+      {
+        title: "External utilities and site works",
+        description: "Groundworks, external drainage, mains connection for water, electricity or sewage."
+      }
+    ],
+    dimensions: {
+      totalArea: { feet: 1399, meters: 130 },
+      livingArea: { feet: 1216, meters: 113 },
+      coveredTerrace: { feet: 183, meters: 17 },
+      bedrooms: "3-4",
+      bathrooms: "1-2",
+      overallSize: "57.4 × 27.2 × 12.8 ft (17.5 × 8.3 × 3.9 m)"
+    },
+    construction: {
+      wallSystem: "SIP panels (structural insulated panels), thermal performance ~0.16–0.18 W/m²·K",
+      insulation: "High-performance SIP core with excellent airtightness",
+      windows: "PVC double-glazed units, U-value ~1.1–1.3 W/m²·K",
+      roof: "Standing seam clip-fixed metal roofing with integrated guttering",
+      foundation: "Screw-pile foundation (optional, not included in the base price)"
+    },
+    energyEnvironment: [
+      "High thermal performance SIP envelope",
+      "Low heat loss due to airtight construction",
+      "Reduced energy consumption for heating",
+      "Naturally bright interior with large glazing areas",
+      "Durable, low-maintenance external materials"
+    ],
+    features: [
+      "Open-plan living space with abundant natural light",
+      "Large floor-to-ceiling windows",
+      "Integrated covered terrace for year-round use",
+      "Modern Scandinavian-inspired layout",
+      "Compact footprint suitable for small plots",
+      "Precision-manufactured components for a clean build",
+      "Flexible layout options: 3-bedroom/2-bathroom or 4-bedroom/1-bathroom"
+    ],
+    additionalImages: [
+      "/SKANDY/SKANDY 120_ 2 4K Large.jpeg",
+      "/SKANDY/SK 120 3 Large.jpeg",
+      "/SKANDY/SK120 4 Large.jpeg",
+      "/SKANDY/SK120F 5 Large.jpeg",
+      "/SKANDY/SK120FR 6 Large.jpeg"
+    ],
+    floorPlans: [
+      "/SKANDY/Skandy 120. Floor plan. Version 3_page-0001.jpg"
+    ],
+    facades: [
+      "/SKANDY/Skandy 120_New_2. Facades_page-0001.jpg"
+    ]
+  },
+  {
+    name: "SKANDY 130",
+    slug: "skandy-130",
+    inStock: true,
+    imageUrl: "/SKANDY/SKANDY 130 1_2K Large.jpeg",
+    squareFeet: 1074,
+    squareMeters: 99.8,
+    price: 118490,
+    type: "FOUR-BEDROOM",
+    category: "MOBILE",
+    description: "A high-performance, energy-efficient SIP home designed for fast on-site assembly.",
+    livingArea: { feet: 1074, meters: 99.8 },
+    thermalPerformance: "~0.16–0.18 W/m²·K",
+    assemblyTime: "4–8 weeks",
+    keyFeatures: [
+      "High-performance SIP envelope with outstanding insulation",
+      "Factory-built precision with strict quality control",
+      "Natural timber cladding and interior finish options",
+      "Fast on-site assembly (4–8 weeks)",
+      "Designed for efficient energy use",
+      "10-year structural warranty"
+    ],
+    about: "The SKANDY 130 is the largest home in the Scandi range, offering an exceptional level of flexibility and family accommodation within a carefully rationalised footprint. Despite its generous capacity, the house remains efficient in scale and thoughtfully planned, allowing it to comfortably accommodate larger households without unnecessary excess.\n\nA defining feature of the SKANDY 130 is the availability of multiple base configurations, enabling the home to be tailored to different family needs. It can be arranged either as a five-bedroom home with two bathrooms, or as a four-bedroom home with three bathrooms, providing a high degree of adaptability for growing families, multi-generational living or owners who value additional bathrooms and storage.\n\nThe internal layout is organised around a spacious central living, dining and kitchen area, supported by a clear separation between communal and private zones. This rational planning approach allows the SKANDY 130 to offer the comfort and functionality of a much larger house, while remaining economical to build, heat and maintain.\n\nBuilt as a permanent residential home, the SKANDY 130 combines excellent thermal comfort with energy-efficient SIP construction, ensuring stable indoor temperatures and comfortable year-round living for larger families.",
+    whatsIncluded: [
+      {
+        title: "Complete SIP structural shell",
+        description: "External SIP walls, internal SIP partitions, floor and roof panels manufactured in the factory."
+      },
+      {
+        title: "Exterior cladding system",
+        description: "Timber cladding or the model's selected exterior finish."
+      },
+      {
+        title: "Roofing package",
+        description: "Metal roofing sheets, fascias, soffits, guttering and downpipes."
+      },
+      {
+        title: "PVC double-glazed windows and exterior entrance door",
+        description: ""
+      },
+      {
+        title: "Internal plumbing and electrical routes (first-fix only)",
+        description: "Installed internal pipework, drainage routes and electrical cabling without sanitary ware, fittings or final connections."
+      },
+      {
+        title: "On-site assembly of the structural shell",
+        description: "Installation of SIP panels, roofing, exterior finishes and windows."
+      },
+      {
+        title: "Assembly drawings and technical documentation",
+        description: ""
+      }
+    ],
+    whatsNotIncluded: [
+      {
+        title: "Internal finishes",
+        description: "Wall and ceiling linings, plasterboard, painted surfaces, ceiling finishes and all finished floor coverings."
+      },
+      {
+        title: "Bathrooms and sanitary installations",
+        description: "Sanitary ware, bathroom furniture, tiling, waterproofing and all bathroom finishing works."
+      },
+      {
+        title: "Kitchen furniture and fittings",
+        description: "Kitchen units, worktops, appliances and built-in kitchen furniture."
+      },
+      {
+        title: "Mechanical and electrical systems",
+        description: "Final electrical fittings, lighting, heating systems, ventilation, MVHR, ASHP and all HVAC equipment."
+      },
+      {
+        title: "Foundations and site works",
+        description: "Supply and installation of foundations, groundworks, external drainage and utility connections."
+      },
+      {
+        title: "Mechanical lifting equipment",
+        description: "Crane hire, telehandlers, scaffolding and fall-arrest systems."
+      },
+      {
+        title: "Planning and regulatory fees",
+        description: "Planning applications, architectural services, engineering approvals and associated documentation."
+      },
+      {
+        title: "External utilities and site works",
+        description: "Groundworks, external drainage, mains connection for water, electricity or sewage."
+      }
+    ],
+    dimensions: {
+      totalArea: { feet: 1074, meters: 99.8 },
+      livingArea: { feet: 1074, meters: 99.8 },
+      bedrooms: "4-5",
+      bathrooms: "2-3",
+      overallSize: "45.9 × 27.2 × 12.8 ft (14.0 × 8.3 × 3.9 m)"
+    },
+    construction: {
+      wallSystem: "SIP panels (structural insulated panels), thermal performance ~0.16–0.18 W/m²·K",
+      insulation: "High-performance SIP core with excellent airtightness",
+      windows: "PVC double-glazed units, U-value ~1.1–1.3 W/m²·K",
+      roof: "Standing seam clip-fixed metal roofing with integrated guttering",
+      foundation: "Screw-pile foundation (optional, not included in the base price)"
+    },
+    energyEnvironment: [
+      "High thermal performance SIP envelope",
+      "Low heat loss due to airtight construction",
+      "Reduced energy consumption for heating",
+      "Naturally bright interior with large glazing areas",
+      "Durable, low-maintenance external materials"
+    ],
+    features: [
+      "Open-plan living space with abundant natural light",
+      "Large floor-to-ceiling windows",
+      "Modern Scandinavian-inspired layout",
+      "Compact footprint suitable for small plots",
+      "Precision-manufactured components for a clean build",
+      "Flexible layout options: 4-bedroom/3-bathroom or 5-bedroom/2-bathroom"
+    ],
+    additionalImages: [
+      "/SKANDY/SKANDY 130 2_2K Large.jpeg"
+    ],
+    floorPlans: [
+      "/SKANDY/Skandy 130. Floor plan. Version 1_page-0001.jpg"
+    ],
+    facades: [
+      "/SKANDY/Skandy 130_New. Facades_page-0001.jpg"
+    ]
   },
   
   // Bungalow Houses
@@ -790,7 +1538,7 @@ export const houseData: HouseType[] = [
     name: "NORDY 130",
     slug: "nordy-130",
     inStock: true,
-    imageUrl: "/NORDY/nordy 80 F1.jpg",
+    imageUrl: "/NORDY/NORDY 130_2F 2K Large.jpeg",
     squareFeet: 1109,
     squareMeters: 103.0,
     price: 156310,
@@ -910,6 +1658,7 @@ export const houseData: HouseType[] = [
       "Precision-manufactured components for a clean build"
     ],
     additionalImages: [
+      "/NORDY/NORDY 130_1F 2К Large.jpeg",
       "/NORDY/real 130 1.jpeg",
       "/NORDY/rel 130 2.jpeg",
       "/NORDY/real 130 3.jpeg"

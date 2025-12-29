@@ -173,9 +173,9 @@ const ModularPage: React.FC = () => {
       <section className="pt-8 md:pt-20 pb-20 bg-white">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Modular Flexibility</h2>
+            <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Modular Home Flexibility</h2>
             <p className="text-xl text-gray-900 font-body font-normal max-w-3xl mx-auto">
-              Our Modular collection offers flexible, customizable living spaces that adapt to your lifestyle and needs.
+              Our Modular Home collection offers flexible, customizable living spaces that adapt to your lifestyle and needs.
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-8">

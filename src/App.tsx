@@ -22,7 +22,7 @@ import ModernPage from './pages/ModernPage';
 import ModularPage from './pages/ModularPage';
 import DesignFormPage from './pages/DesignFormPage';
 import TechnologyPage from './pages/TechnologyPage';
-import MobilePage from './pages/MobilePage';
+import SkandyPage from './pages/SkandyPage';
 import BungalowPage from './pages/BungalowPage';
 import NotFoundPage from './pages/NotFoundPage';
 
@@ -62,7 +62,7 @@ function App() {
             <Route path="/modular" element={<ModularPage />} />
             <Route path="/design-form" element={<DesignFormPage />} />
             <Route path="/technology" element={<TechnologyPage />} />
-            <Route path="/mobile" element={<MobilePage />} />
+            <Route path="/skandy" element={<SkandyPage />} />
             <Route path="/bungalow" element={<BungalowPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

@@ -6,8 +6,24 @@ import SEO from '../components/SEO';
 const DesignsPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
 
-  const categories = getCategories();
-  const filteredHouses = getHousesByCategory(selectedCategory);
+  // Filter to only show Nordy and Skandy designs
+  const relevantHouses = houseData.filter(house => 
+    house.category === 'NORDY' || house.category === 'MOBILE'
+  );
+
+  // Category mapping for filtering (display name -> data category)
+  const categoryFilterMap: { [key: string]: string } = {
+    'ALL': 'ALL',
+    'Nordy': 'NORDY',
+    'Skandy': 'MOBILE'
+  };
+
+  // Only show relevant categories with display names
+  const categories = ['ALL', 'Nordy', 'Skandy'];
+  
+  const filteredHouses = selectedCategory === 'ALL' 
+    ? relevantHouses 
+    : relevantHouses.filter(house => house.category === categoryFilterMap[selectedCategory]);
 
   return (
     <>
@@ -106,9 +122,14 @@ const DesignsPage: React.FC = () => {
                     <div className="mt-auto">
                       <a 
                         href="/contact" 
-                        className="inline-block w-full bg-gray-900 text-white py-2 sm:py-2.5 md:py-3 px-3 sm:px-4 text-[9px] sm:text-[10px] md:text-xs lg:text-sm font-thin rounded-lg text-center md:hover:bg-gray-800 transition-colors duration-200"
+                        className="group/btn relative inline-block w-full bg-gray-900 text-white py-2 sm:py-2.5 md:py-3 px-3 sm:px-4 text-[9px] sm:text-[10px] md:text-xs lg:text-sm font-thin rounded-lg text-center overflow-hidden cursor-pointer"
                       >
-                        Schedule Consultation
+                        <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
+                          Schedule Consultation
+                        </span>
+                        <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-primary text-black w-full">
+                          <span>Schedule Consultation</span>
+                        </div>
                       </a>
                     </div>
                   </div>
@@ -119,9 +140,9 @@ const DesignsPage: React.FC = () => {
 
           {/* Stats Section */}
           <div className="mt-20 bg-white py-16 px-8 rounded-lg">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center max-w-4xl mx-auto">
               <div>
-                <div className="text-4xl font-thin text-primary mb-2">{houseData.length}+</div>
+                <div className="text-4xl font-thin text-primary mb-2">{relevantHouses.length}+</div>
                 <div className="text-gray-900">House Designs</div>
               </div>
               <div>
@@ -129,7 +150,7 @@ const DesignsPage: React.FC = () => {
                 <div className="text-gray-900">Year Warranty</div>
               </div>
               <div>
-                <div className="text-4xl font-thin text-primary mb-2">6</div>
+                <div className="text-4xl font-thin text-primary mb-2">2</div>
                 <div className="text-gray-900">House Categories</div>
               </div>
             </div>

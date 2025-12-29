@@ -73,7 +73,7 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
               muted
               loop={currentVideo === 1}
               onEnded={handleVideoEnd}
-              className="absolute inset-0 w-full h-full object-cover z-0"
+              className="absolute inset-0 w-full h-full object-cover object-[40%] md:object-center z-0"
             />
             
             {/* Text and Button Overlay */}

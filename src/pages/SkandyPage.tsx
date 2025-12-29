@@ -5,12 +5,12 @@ import SEO from '../components/SEO';
 import { AnimatedButton } from '../components/ui/animated-button';
 import { ExpandingButton } from '../components/ui/expanding-button';
 
-const MobilePage: React.FC = () => {
+const SkandyPage: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   
-  // Filter only Mobile category houses
-  const mobileHouses = houseData.filter(house => house.category === 'MOBILE');
+  // Filter only Skandy category houses (MOBILE category in data)
+  const skandyHouses = houseData.filter(house => house.category === 'MOBILE');
 
   // Scroll to top on component mount
   useEffect(() => {
@@ -37,9 +37,9 @@ const MobilePage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Mobile Homes - Movable Prefab Living"
+        title="Skandy Homes - Movable Prefab Living"
         description="Movable prefab homes that can be placed without building permits. Quick installation and flexible living solutions."
-        url="/mobile"
+        url="/skandy"
       />
       <div>
       {/* Hero Section */}
@@ -49,7 +49,7 @@ const MobilePage: React.FC = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
-            backgroundImage: "url('/prefab_homes_lounge_30_front_view.jpg')" 
+            backgroundImage: "url('/SKANDY/SKANDY 70 1.jpeg')" 
           }}
         ></div>
         
@@ -57,11 +57,11 @@ const MobilePage: React.FC = () => {
           <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl">
               <h1 className="text-5xl md:text-6xl font-heading font-thin text-white mb-6 leading-tight">
-                Freedom to Move
+                Scandinavian Excellence
               </h1>
               <p className="text-white text-xl font-body font-normal mb-8 leading-relaxed">
-                Flexible mobile homes for life on the move. Compact living with modern amenities 
-                and easy relocation.
+                High-performance SIP homes with Scandinavian design. Energy-efficient, precision-built, 
+                and designed for comfortable year-round living.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <AnimatedButton
@@ -82,14 +82,14 @@ const MobilePage: React.FC = () => {
       <section id="models" className="pt-8 md:pt-20 pb-20 bg-white">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Flexible Designs</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Scandinavian Craftsmanship</h2>
             <p className="text-lg sm:text-xl font-body font-normal text-gray-900 max-w-3xl mx-auto">
-              Mobile homes designed for modern living with the freedom to relocate.
+              Each Skandy model embodies Scandinavian design principles with natural materials, clean lines, and exceptional energy efficiency.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {mobileHouses.map((house, index) => {
+            {skandyHouses.map((house, index) => {
               const houseMatch = houseData.find(h => h.name === house.name);
               return (
                 <Link 
@@ -103,7 +103,8 @@ const MobilePage: React.FC = () => {
                       <img 
                         src={house.imageUrl} 
                         alt={house.name} 
-                        className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110"
+                        className={`w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110 ${house.name === 'SKANDY 80' ? 'object-[75%]' : ''}`}
+                        style={house.name === 'SKANDY 80' ? { objectPosition: '75% center' } : undefined}
                       />
                       {/* Overlay */}
                       <div className="absolute inset-0 bg-black bg-opacity-0 md:group-hover:bg-opacity-10 transition-all duration-500"></div>
@@ -143,9 +144,9 @@ const MobilePage: React.FC = () => {
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             {/* Removed colored heading */}
-            <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Flexible Living</h2>
+            <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Our Core Principles</h2>
             <p className="text-xl text-gray-900 font-body font-normal max-w-3xl mx-auto">
-              Our Mobile collection offers the perfect solution for those who value flexibility and freedom, without compromising on comfort and modern amenities.
+              Skandy homes combine high-performance SIP construction with Scandinavian design aesthetics for comfortable, energy-efficient living.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -155,26 +156,26 @@ const MobilePage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                 </svg>
               </div>
-              <h3 className="text-xl font-thin mb-3">Easy Relocation</h3>
-              <p className="text-gray-900">Move your home wherever life takes you with ease</p>
+              <h3 className="text-xl font-thin mb-3">High-Performance SIP</h3>
+              <p className="text-gray-900">Outstanding thermal insulation with excellent airtightness for energy efficiency</p>
             </div>
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
                 <svg className="w-10 h-10 text-primary md:group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-thin mb-3">Compact Design</h3>
-              <p className="text-gray-900">Efficient use of space with smart storage solutions</p>
+              <h3 className="text-xl font-thin mb-3">Natural Materials</h3>
+              <p className="text-gray-900">Timber cladding and Scandinavian-inspired finishes for authentic warmth</p>
             </div>
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
                 <svg className="w-10 h-10 text-primary md:group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-thin mb-3">Modern Amenities</h3>
-              <p className="text-gray-900">All the comforts of home in a mobile package</p>
+              <h3 className="text-xl font-thin mb-3">Fast Assembly</h3>
+              <p className="text-gray-900">Precision-manufactured components for clean, fast on-site assembly</p>
             </div>
           </div>
         </div>
@@ -183,9 +184,9 @@ const MobilePage: React.FC = () => {
       {/* CTA Section */}
       <section className="pt-8 md:pt-20 pb-20 bg-gradient-to-br from-primary to-primary-dark">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-heading font-thin text-white mb-6">Experience Mobile Living</h2>
+          <h2 className="text-4xl font-heading font-thin text-white mb-6">Embrace Scandinavian Living</h2>
           <p className="text-xl text-white/90 font-body font-normal mb-8 max-w-2xl mx-auto">
-            Experience the freedom of mobile living with our flexible and comfortable mobile home designs.
+            Experience the tranquility and sustainability of Scandinavian design with our carefully crafted Skandy collection.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <AnimatedButton
@@ -223,7 +224,7 @@ const MobilePage: React.FC = () => {
             </button>
             <img 
               src={selectedImage} 
-              alt="Mobile house design"
+              alt="Skandy house design"
               className="max-w-full max-h-full object-contain"
             />
           </div>
@@ -234,4 +235,5 @@ const MobilePage: React.FC = () => {
   );
 };
 
-export default MobilePage; 
+export default SkandyPage;
+

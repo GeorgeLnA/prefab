@@ -64,7 +64,7 @@ const DesignFormPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Design Your Modular House - Custom Prefab Home Builder"
+        title="Design Your Modular Home - Custom Prefab Home Builder"
         description="Design your own modular prefab home with our custom builder. Choose size, rooms, materials, features, and more. Create your dream home in minutes."
         url="/design-form"
       />

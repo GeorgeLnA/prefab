@@ -1,20 +1,25 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
 import { houseData } from '../data/houses';
 import { AnimatedButton } from './ui/animated-button';
-import { InteractiveHoverButton } from './ui/interactive-hover-button';
-import { gsap } from 'gsap';
 
 const HouseTypes: React.FC = () => {
   const houseTypes = [
     {
       name: 'Nordy',
       description: 'Nordic elegance and comfort for modern living.',
-      imageUrl: '/NORDY/NORDY 65_1F.jpg',
+      imageUrl: '/NORDY/NORDY 35_1.2F 4K.jpg',
       features: ['Nordic style', 'Warm interiors', 'Sustainable build'],
       price: 'From £39,960',
       path: '/skandy-nordy'
+    },
+    {
+      name: 'Skandy',
+      description: 'Scandinavian-inspired SIP homes with exceptional energy efficiency.',
+      imageUrl: '/SKANDY/SKANDY 70 1.jpeg',
+      features: ['High-performance SIP', 'Scandinavian design', 'Energy efficient'],
+      price: 'From £68,560',
+      path: '/skandy'
     },
     {
       name: 'Modern',
@@ -23,14 +28,6 @@ const HouseTypes: React.FC = () => {
       features: ['Sleek design', 'Modern amenities', 'Premium materials'],
       price: 'From £315,000',
       path: '/modern'
-    },
-    {
-      name: 'Mobile',
-      description: 'Flexible mobile homes for life on the move.',
-      imageUrl: '/prefab_homes_lounge_30_front_view.jpg',
-      features: ['Mobility', 'Compact living', 'Easy relocation'],
-      price: 'From £120,000',
-      path: '/mobile'
     },
     {
       name: 'Smart',
@@ -53,207 +50,15 @@ const HouseTypes: React.FC = () => {
   // Get modular houses from data
   const modularHouses = houseData.filter(house => house.category === 'MODULAR');
 
-  // ViewModelsButton component with expanding animation (div-based, not a link since it's inside a Link)
+  // ViewModelsButton component with sliding hover effect (div-based, not a link since it's inside a Link)
   const ViewModelsButton: React.FC = () => {
-    const buttonRef = useRef<HTMLDivElement>(null);
-    const textSpanRef = useRef<HTMLSpanElement>(null);
-    const hoverContentRef = useRef<HTMLDivElement>(null);
-    const bgCircleRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-      const button = buttonRef.current;
-      if (!button) return;
-
-      // Check if device supports hover (desktop)
-      const supportsHover = window.matchMedia("(hover: hover)").matches;
-      if (!supportsHover) return;
-
-      let enterTimeline: gsap.core.Timeline | null = null;
-      let leaveTimeline: gsap.core.Timeline | null = null;
-
-      const handleMouseEnter = () => {
-        // Kill any running leave animation
-        if (leaveTimeline) {
-          leaveTimeline.kill();
-          leaveTimeline = null;
-        }
-        
-        // Kill any running enter animation
-        if (enterTimeline) {
-          enterTimeline.kill();
-        }
-
-        // Create a timeline for smoother coordinated animation
-        enterTimeline = gsap.timeline();
-        
-        // Animate initial text out (fade and move right)
-        if (textSpanRef.current) {
-          enterTimeline.to(textSpanRef.current, {
-            x: 48,
-            opacity: 0,
-            duration: 0.35,
-            ease: "power2.in",
-            force3D: true
-          }, 0);
-        }
-        
-        // Animate expanding circle (starts slightly before text fades completely)
-        if (bgCircleRef.current) {
-          enterTimeline.set(bgCircleRef.current, {
-            opacity: 1,
-            scale: 0,
-            xPercent: -50,
-            yPercent: -50,
-            force3D: true
-          }, 0.1);
-          enterTimeline.to(bgCircleRef.current, {
-            left: "50%",
-            top: "50%",
-            width: "100%",
-            height: "100%",
-            scale: 1.8,
-            xPercent: -50,
-            yPercent: -50,
-            duration: 0.4,
-            ease: "power2.out",
-            force3D: true
-          }, 0.1);
-        }
-        
-        // Animate hover text in (fade and move from right, starts when initial text is mostly gone)
-        if (hoverContentRef.current) {
-          enterTimeline.to(hoverContentRef.current, {
-            x: -9,
-            opacity: 1,
-            duration: 0.35,
-            ease: "power2.out",
-            force3D: true
-          }, 0.3);
-        }
-      };
-
-      const handleMouseLeave = () => {
-        // Kill any running enter animation
-        if (enterTimeline) {
-          enterTimeline.kill();
-          enterTimeline = null;
-        }
-        
-        // Kill any running leave animation
-        if (leaveTimeline) {
-          leaveTimeline.kill();
-        }
-
-        // Create a timeline for smoother coordinated animation
-        leaveTimeline = gsap.timeline({
-          onComplete: () => {
-            leaveTimeline = null;
-            // Ensure final state is correct
-            if (textSpanRef.current) {
-              gsap.set(textSpanRef.current, { x: 4, opacity: 1 });
-            }
-            if (hoverContentRef.current) {
-              gsap.set(hoverContentRef.current, { x: 48, opacity: 0 });
-            }
-            if (bgCircleRef.current) {
-              gsap.set(bgCircleRef.current, {
-                left: "50%",
-                top: "50%",
-                width: "8px",
-                height: "8px",
-                scale: 0,
-                opacity: 0,
-                xPercent: -50,
-                yPercent: -50
-              });
-            }
-          }
-        });
-        
-        // Animate hover text out first (fade and move right) - must complete before color changes
-        if (hoverContentRef.current) {
-          leaveTimeline.to(hoverContentRef.current, {
-            x: 48,
-            opacity: 0,
-            duration: 0.3,
-            ease: "power2.in",
-            force3D: true
-          }, 0);
-        }
-        
-        // Animate circle back to small size - starts AFTER text is completely gone
-        if (bgCircleRef.current) {
-          leaveTimeline.to(bgCircleRef.current, {
-            left: "50%",
-            top: "50%",
-            width: "8px",
-            height: "8px",
-            scale: 0,
-            opacity: 0,
-            xPercent: -50,
-            yPercent: -50,
-            duration: 0.35,
-            ease: "power2.in",
-            force3D: true
-          }, 0.3);
-        }
-        
-        // Animate initial text back in - starts when circle is shrinking
-        if (textSpanRef.current) {
-          leaveTimeline.to(textSpanRef.current, {
-            x: 4,
-            opacity: 1,
-            duration: 0.3,
-            ease: "power2.out",
-            force3D: true
-          }, 0.4);
-        }
-      };
-
-      button.addEventListener("mouseenter", handleMouseEnter);
-      button.addEventListener("mouseleave", handleMouseLeave);
-
-      return () => {
-        // Clean up animations
-        if (enterTimeline) enterTimeline.kill();
-        if (leaveTimeline) leaveTimeline.kill();
-        button.removeEventListener("mouseenter", handleMouseEnter);
-        button.removeEventListener("mouseleave", handleMouseLeave);
-      };
-    }, []);
-
     return (
-      <div
-        ref={buttonRef}
-        className="relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-white py-2 sm:py-2.5 px-3 sm:px-4 text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base"
-      >
-        <span 
-          ref={textSpanRef}
-          className="relative z-10 inline-block whitespace-nowrap"
-          style={{ transform: "translateX(4px)" }}
-        >
+      <div className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2 sm:py-2.5 px-3 sm:px-4 text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base">
+        <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
           View Models
         </span>
-        <div 
-          ref={bgCircleRef}
-          className="absolute rounded-lg bg-gray-900 z-20"
-          style={{ 
-            left: "50%", 
-            top: "50%", 
-            width: "8px", 
-            height: "8px",
-            transform: "translate(-50%, -50%) scale(0)",
-            opacity: 0,
-            willChange: "transform, opacity"
-          }}
-        ></div>
-        <div 
-          ref={hoverContentRef}
-          className="absolute top-0 z-30 flex h-full w-full items-center justify-center gap-2 text-white"
-          style={{ transform: "translateX(48px)", opacity: 0 }}
-        >
-          <span className="whitespace-nowrap">View Models</span>
-          <ArrowRight className="w-4 h-4" />
+        <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
+          <span>View Models</span>
         </div>
       </div>
     );

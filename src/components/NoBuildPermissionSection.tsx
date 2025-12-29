@@ -11,7 +11,7 @@ const houses = [
     explanation: 'Exempt from standard building permits due to size and modular design.'
   },
   {
-    name: 'Mobile',
+    name: 'Skandy',
     image: '/wive3.jpg',
     subtext: 'Movable and quick to install',
     explanation: 'Classified as movable property, so no traditional building permit needed.'
@@ -25,7 +25,7 @@ const NoBuildPermissionSection: React.FC = () => (
         HOUSES WITH <span className="text-primary font-light">NO BUILD PERMISSION</span>
       </h2>
       <p className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl text-black/80 mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-14 max-w-3xl mx-auto leading-relaxed text-center px-1 sm:px-2 md:px-0">
-        Some homes can be placed without the hassle of a building permit. Choose a Nordy or Mobile home and enjoy a faster, simpler path to your dream space.
+        Some homes can be placed without the hassle of a building permit. Choose a Nordy or Skandy home and enjoy a faster, simpler path to your dream space.
       </p>
       {/* Row of Houses - Fully Responsive */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12 mb-1.5 sm:mb-2 md:mb-2.5 lg:mb-3 xl:mb-4 w-full">
@@ -34,7 +34,7 @@ const NoBuildPermissionSection: React.FC = () => (
           const houseMatch = houseData.find(h => h.name.toUpperCase().includes(house.name.toUpperCase()));
           
           // If no match found, link to category page instead
-          const linkTo = houseMatch ? `/house/${houseMatch.slug}` : (house.name === 'Nordy' ? '/skandy-nordy' : '/mobile');
+          const linkTo = houseMatch ? `/house/${houseMatch.slug}` : (house.name === 'Nordy' ? '/skandy-nordy' : '/skandy');
           
           return (
           <Link 

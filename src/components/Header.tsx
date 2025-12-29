@@ -68,9 +68,9 @@ const Header: React.FC = () => {
   };
 
   const houseTypes = [
-    { name: 'Nordy', path: '/skandy-nordy', image: '/NORDY/NORDY 65_1F.jpg' },
+    { name: 'Nordy', path: '/skandy-nordy', image: '/NORDY/NORDY 35_1.2F 4K.jpg' },
+    { name: 'Skandy', path: '/skandy', image: '/SKANDY/SKANDY 70 1.jpeg' },
     { name: 'Modern', path: '/modern', image: '/2p.jpg' },
-    { name: 'Mobile', path: '/mobile', image: '/prefab_homes_lounge_30_front_view.jpg' },
     { name: 'Smart', path: '/smart', image: '/S-18-1.jpg' },
     { name: 'Bungalow', path: '/bungalow', image: '/fasad-1.jpg' },
     { name: 'Modular', path: '/modular', image: '/modular-home-1.jpg' }
@@ -87,7 +87,7 @@ const Header: React.FC = () => {
     as?: 'button' | 'a';
     href?: string;
   }> = ({ children, onClick, className = '', as = 'button', href }) => {
-    const baseClass = 'inline-flex items-center gap-1.5 lg:gap-2 px-0 py-2 font-thin text-gray-900 md:hover:text-primary transition-all duration-300 bg-transparent border-none cursor-pointer whitespace-nowrap';
+    const baseClass = 'inline-flex items-center gap-1 md:gap-1.5 lg:gap-2 px-0 py-2 font-thin text-gray-900 md:hover:text-primary transition-all duration-300 bg-transparent border-none cursor-pointer whitespace-nowrap';
     
     if (as === 'a' && href) {
       return (
@@ -176,20 +176,20 @@ const Header: React.FC = () => {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center flex-1 justify-center">
-              <ul className="flex items-center gap-4 lg:gap-5 xl:gap-6 2xl:gap-8">
+            <div className="hidden md:flex items-center flex-1 justify-center">
+              <ul className="flex items-center gap-2 md:gap-3 lg:gap-4 xl:gap-5 2xl:gap-6">
                 <li>
-                  <NavbarItem as="a" href="/" className="text-gray-900 text-xs lg:text-sm xl:text-base">
+                  <NavbarItem as="a" href="/" className="text-gray-900 text-[10px] md:text-xs lg:text-sm xl:text-base">
                     Home
                   </NavbarItem>
                 </li>
                 <li>
-                  <NavbarItem as="a" href="/technology" className="text-gray-900 text-xs lg:text-sm xl:text-base">
+                  <NavbarItem as="a" href="/technology" className="text-gray-900 text-[10px] md:text-xs lg:text-sm xl:text-base">
                     Technology
                   </NavbarItem>
                 </li>
                 <li>
-                  <NavbarItem as="a" href="/designs" className="text-gray-900 text-xs lg:text-sm xl:text-base">
+                  <NavbarItem as="a" href="/designs" className="text-gray-900 text-[10px] md:text-xs lg:text-sm xl:text-base">
                     Designs
                   </NavbarItem>
                 </li>
@@ -198,25 +198,25 @@ const Header: React.FC = () => {
                   onMouseEnter={() => setHouseTypesDropdownOpen(true)}
                   onMouseLeave={() => setHouseTypesDropdownOpen(false)}
                 >
-                  <NavbarItem className="text-gray-900 text-xs lg:text-sm xl:text-base">
+                  <NavbarItem className="text-gray-900 text-[10px] md:text-xs lg:text-sm xl:text-base">
                     House Types
-                    <svg className="w-3 h-3 lg:w-4 lg:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </NavbarItem>
                 </li>
                 <li>
-                  <NavbarItem as="a" href="/gallery" className="text-gray-900 text-xs lg:text-sm xl:text-base">
+                  <NavbarItem as="a" href="/gallery" className="text-gray-900 text-[10px] md:text-xs lg:text-sm xl:text-base">
                     Gallery
                   </NavbarItem>
                 </li>
                 <li>
-                  <NavbarItem as="a" href="/contact" className="text-gray-900 text-xs lg:text-sm xl:text-base">
+                  <NavbarItem as="a" href="/contact" className="text-gray-900 text-[10px] md:text-xs lg:text-sm xl:text-base">
                     Contact
                   </NavbarItem>
                 </li>
                 <li>
-                  <NavbarItem as="a" href="/blog" className="text-gray-900 text-xs lg:text-sm xl:text-base">
+                  <NavbarItem as="a" href="/blog" className="text-gray-900 text-[10px] md:text-xs lg:text-sm xl:text-base">
                     Blog
                   </NavbarItem>
                 </li>
@@ -224,8 +224,8 @@ const Header: React.FC = () => {
             </div>
 
             {/* Desktop Action Buttons */}
-            <div className="hidden lg:flex items-center gap-2 xl:gap-3">
-              <Button variant="primary" href="/contact" className="text-[10px] lg:text-xs xl:text-sm px-3 py-2 lg:px-4 lg:py-2 xl:px-4 xl:py-2.5 whitespace-nowrap">
+            <div className="hidden md:flex items-center gap-1.5 md:gap-2 lg:gap-2 xl:gap-3">
+              <Button variant="primary" href="/contact" className="text-[9px] md:text-[10px] lg:text-xs xl:text-sm px-2 md:px-3 lg:px-4 py-1.5 md:py-2 lg:py-2 xl:py-2.5 whitespace-nowrap">
                 <span className="hidden xl:inline">Schedule Consultation</span>
                 <span className="xl:hidden">Consultation</span>
               </Button>
@@ -233,7 +233,7 @@ const Header: React.FC = () => {
 
             {/* Mobile Menu Button */}
             <button 
-              className="lg:hidden flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-2 text-xs sm:text-sm font-thin text-gray-900 active:opacity-70 transition-opacity bg-transparent border-none cursor-pointer min-h-[44px] min-w-[44px]"
+              className="md:hidden flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-2 text-xs sm:text-sm font-thin text-gray-900 active:opacity-70 transition-opacity bg-transparent border-none cursor-pointer min-h-[44px] min-w-[44px]"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileMenuOpen}
@@ -304,7 +304,7 @@ const Header: React.FC = () => {
                     }
                   }}
                 >
-                  Modular
+                  Modular Home
                 </Link>
               </div>
             </div>
@@ -354,7 +354,7 @@ const Header: React.FC = () => {
     {/* Mobile Menu - Outside header to prevent clipping */}
     <div 
       id="mobile-menu"
-      className={`fixed inset-0 z-[100] lg:hidden transition-opacity duration-300 ${
+      className={`fixed inset-0 z-[100] md:hidden transition-opacity duration-300 ${
         mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
       }`}
       role="dialog"

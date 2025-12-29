@@ -111,13 +111,13 @@ const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/modern" className="text-sm sm:text-base text-white md:hover:text-primary transition-colors duration-300 font-thin">
-                  Modern
+                <Link to="/skandy" className="text-sm sm:text-base text-white md:hover:text-primary transition-colors duration-300 font-thin">
+                  Skandy
                 </Link>
               </li>
               <li>
-                <Link to="/mobile" className="text-sm sm:text-base text-white md:hover:text-primary transition-colors duration-300 font-thin">
-                  Mobile
+                <Link to="/modern" className="text-sm sm:text-base text-white md:hover:text-primary transition-colors duration-300 font-thin">
+                  Modern
                 </Link>
               </li>
               <li>
@@ -132,7 +132,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <Link to="/modular" className="text-sm sm:text-base text-white md:hover:text-primary transition-colors duration-300 font-thin">
-                  Modular
+                  Modular Home
                 </Link>
               </li>
             </ul>

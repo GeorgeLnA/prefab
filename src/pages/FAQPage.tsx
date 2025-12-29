@@ -40,7 +40,7 @@ const FAQPage: React.FC = () => {
         },
         {
           question: "What house types do you offer?",
-          answer: "We offer five main house types: Modular (flexible, expandable designs), Nordy (Scandinavian-inspired minimalist), Smart (advanced home automation), Modern (contemporary aesthetics), and Modern-B (bold architectural elements)."
+          answer: "We offer five main house types: Modular Home (flexible, expandable designs), Nordy (Scandinavian-inspired minimalist), Smart (advanced home automation), Modern (contemporary aesthetics), and Modern-B (bold architectural elements)."
         },
         {
           question: "Do you provide architectural services?",
@@ -78,7 +78,7 @@ const FAQPage: React.FC = () => {
       faqs: [
         {
           question: "What's the price range for your homes?",
-          answer: "Our homes start from £275,000 for Modular designs and go up to £395,000+ for larger Nordy models. Final pricing depends on size, customization, site conditions, and finish selections."
+          answer: "Our homes start from £275,000 for Modular Home designs and go up to £395,000+ for larger Nordy models. Final pricing depends on size, customization, site conditions, and finish selections."
         },
         {
           question: "What's included in the base price?",
