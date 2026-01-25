@@ -17,13 +17,13 @@ const AboutPage: React.FC = () => {
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
         
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="w-full px-4 sm:px-5 relative">
           <div className="text-center">
             <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">ABOUT PREFAB HOMES</div>
             <h1 className="text-5xl md:text-6xl font-heading font-light text-white mb-6 leading-tight">
               Building the Future of Housing
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-body font-normal">
+            <p className="text-xl text-gray-300 leading-relaxed font-body font-normal">
               [This section is ready for your custom content. Please provide the specific 
               information you'd like to include about your company, mission, and values.]
             </p>
@@ -33,8 +33,8 @@ const AboutPage: React.FC = () => {
 
       {/* Placeholder Content Section */}
       <section className="pt-8 md:pt-20 pb-20 bg-white">
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
+        <div className="w-full px-4 sm:px-5">
+          <div className="w-full">
             <div className="bg-gray-50 p-12 rounded-lg text-center">
               <div className="text-6xl text-gray-400 mb-6">✏️</div>
               <h2 className="text-3xl font-light text-gray-800 mb-6 font-heading">Content Ready for Customization</h2>
@@ -62,10 +62,10 @@ const AboutPage: React.FC = () => {
 
       {/* Stats Section (Generic) */}
       <section className="pt-8 md:pt-20 pb-20 bg-gray-50">
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-light text-gray-800 mb-6 font-heading">Our Impact</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto font-body font-normal">
+            <p className="text-xl text-gray-600 font-body font-normal">
               Numbers that reflect our commitment to quality and innovation
             </p>
           </div>

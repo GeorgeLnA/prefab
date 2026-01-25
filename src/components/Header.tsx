@@ -70,7 +70,7 @@ const Header: React.FC = () => {
   const houseTypes = [
     { name: 'Nordy', path: '/skandy-nordy', image: '/NORDY/NORDY 35_1.2F 4K.jpg' },
     { name: 'Skandy', path: '/skandy', image: '/SKANDY/SKANDY 70 1.jpeg' },
-    { name: 'Modern', path: '/modern', image: '/2p.jpg' },
+    { name: 'Modern', path: '/modern', image: '/MODERN/1_2k Final Large.jpeg' },
     { name: 'Smart', path: '/smart', image: '/S-18-1.jpg' },
     { name: 'Bungalow', path: '/bungalow', image: '/fasad-1.jpg' },
     { name: 'Modular', path: '/modular', image: '/modular-home-1.jpg' }
@@ -141,11 +141,11 @@ const Header: React.FC = () => {
 
   return (
     <>
-    <header className={`fixed top-0 left-0 right-0 z-50 pt-2 px-2 sm:pt-3 sm:px-3 md:pt-4 md:px-4 lg:pt-4 lg:px-6 xl:px-8 transition-transform duration-300 ${
+    <header className={`fixed top-0 left-0 right-0 z-50 pt-2 px-4 sm:pt-3 sm:px-5 transition-transform duration-300 ${
       isScrollingDown ? '-translate-y-full' : 'translate-y-0'
     }`}>
-      <nav className={`bg-white rounded-xl sm:rounded-2xl shadow-lg transition-all duration-300 max-w-[1920px] mx-auto relative group`} role="navigation" aria-label="Main navigation">
-        <div className="px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12">
+      <nav className={`bg-white rounded-xl sm:rounded-2xl shadow-lg transition-all duration-300 w-full relative group`} role="navigation" aria-label="Main navigation">
+        <div className="px-4 sm:px-5">
           <div className="flex items-center justify-between h-14 sm:h-16 md:h-16 lg:h-20">
             {/* Logo */}
             <div className="flex items-center flex-shrink-0 min-w-0">
@@ -260,17 +260,79 @@ const Header: React.FC = () => {
             <div className="flex flex-col">
               <h3 className="text-xs sm:text-sm md:text-base font-thin text-gray-900 mb-3 md:mb-4">House Types</h3>
               <ul className="space-y-1.5 md:space-y-2 flex-1">
-                {houseTypes.filter(type => type.name !== 'Modular').map((type) => (
-                  <li key={type.name}>
-                    <Link
-                      to={type.path}
-                      className={`block px-3 md:px-4 py-2 md:py-2.5 text-xs sm:text-sm md:text-base transition-colors duration-200 rounded-lg ${
-                        hoveredHouseType === type.name
-                          ? 'bg-primary text-white'
-                          : 'text-gray-900 md:hover:bg-primary md:hover:text-white'
+                {houseTypes.filter(type => type.name !== 'Modular').map((type) => {
+                  const comingSoonTypes = ['Smart', 'Bungalow'];
+                  const isComingSoon = comingSoonTypes.includes(type.name);
+                  
+                  if (isComingSoon) {
+                    return (
+                      <li key={type.name}>
+                        <div
+                          onClick={(e) => e.preventDefault()}
+                          className="block px-3 md:px-4 py-2 md:py-2.5 text-xs sm:text-sm md:text-base transition-colors duration-200 rounded-lg text-gray-900 opacity-60 cursor-not-allowed"
+                        >
+                          {type.name} <span className="text-[10px] md:text-xs text-primary">(Coming Soon)</span>
+                        </div>
+                      </li>
+                    );
+                  }
+                  
+                  return (
+                    <li key={type.name}>
+                      <Link
+                        to={type.path}
+                        className={`block px-3 md:px-4 py-2 md:py-2.5 text-xs sm:text-sm md:text-base transition-colors duration-200 rounded-lg ${
+                          hoveredHouseType === type.name
+                            ? 'bg-primary text-white'
+                            : 'text-gray-900 md:hover:bg-primary md:hover:text-white'
+                        }`}
+                        onMouseEnter={() => {
+                          if (window.matchMedia("(hover: hover)").matches) {
+                            setHoveredHouseType(type.name);
+                          }
+                        }}
+                        onMouseLeave={() => {
+                          if (window.matchMedia("(hover: hover)").matches) {
+                            setHoveredHouseType(null);
+                          }
+                        }}
+                      >
+                        {type.name}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+              <div className="mt-4 md:mt-5 pt-4 md:pt-5 border-t-2 border-gray-300">
+                <div
+                  onClick={(e) => e.preventDefault()}
+                  className={`block px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base font-thin transition-all duration-200 rounded-lg text-center opacity-60 cursor-not-allowed ${
+                    hoveredHouseType === 'Modular'
+                      ? 'bg-primary/60 text-black shadow-xl'
+                      : 'bg-primary/60 text-black shadow-lg'
+                  }`}
+                >
+                  Modular Home <span className="text-xs text-gray-900">(Coming Soon)</span>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center min-h-0">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-2.5 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6 w-full h-full">
+                {houseTypes.map((type) => {
+                  const comingSoonTypes = ['Smart', 'Bungalow', 'Modular'];
+                  const isComingSoon = comingSoonTypes.includes(type.name);
+                  
+                  const content = (
+                    <div
+                      className={`group relative overflow-hidden rounded-lg shadow-md transition-all duration-200 h-[120px] sm:h-[140px] md:h-[160px] lg:h-[180px] xl:h-[200px] 2xl:h-[220px] ${
+                        isComingSoon ? 'cursor-not-allowed opacity-75' : 'cursor-pointer'
+                      } ${
+                        hoveredHouseType === type.name && !isComingSoon
+                          ? 'shadow-xl ring-2 ring-primary md:scale-105'
+                          : 'md:hover:shadow-lg'
                       }`}
                       onMouseEnter={() => {
-                        if (window.matchMedia("(hover: hover)").matches) {
+                        if (window.matchMedia("(hover: hover)").matches && !isComingSoon) {
                           setHoveredHouseType(type.name);
                         }
                       }}
@@ -280,70 +342,52 @@ const Header: React.FC = () => {
                         }
                       }}
                     >
-                      {type.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-4 md:mt-5 pt-4 md:pt-5 border-t-2 border-gray-300">
-                <Link
-                  to="/modular"
-                  className={`block px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base font-thin transition-all duration-200 rounded-lg text-center ${
-                    hoveredHouseType === 'Modular'
-                      ? 'bg-primary text-white shadow-xl md:scale-105'
-                      : 'bg-primary text-black md:hover:bg-gray-900 md:hover:text-white shadow-lg'
-                  }`}
-                  onMouseEnter={() => {
-                    if (window.matchMedia("(hover: hover)").matches) {
-                      setHoveredHouseType('Modular');
-                    }
-                  }}
-                  onMouseLeave={() => {
-                    if (window.matchMedia("(hover: hover)").matches) {
-                      setHoveredHouseType(null);
-                    }
-                  }}
-                >
-                  Modular Home
-                </Link>
-              </div>
-            </div>
-            <div className="flex items-center min-h-0">
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-2.5 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6 w-full h-full">
-                {houseTypes.map((type) => (
-                  <Link
-                    key={type.name}
-                    to={type.path}
-                    className={`group relative overflow-hidden rounded-lg shadow-md transition-all duration-200 cursor-pointer h-[120px] sm:h-[140px] md:h-[160px] lg:h-[180px] xl:h-[200px] 2xl:h-[220px] ${
-                      hoveredHouseType === type.name
-                        ? 'shadow-xl ring-2 ring-primary md:scale-105'
-                        : 'md:hover:shadow-lg'
-                    }`}
-                    onMouseEnter={() => {
-                      if (window.matchMedia("(hover: hover)").matches) {
-                        setHoveredHouseType(type.name);
-                      }
-                    }}
-                    onMouseLeave={() => {
-                      if (window.matchMedia("(hover: hover)").matches) {
-                        setHoveredHouseType(null);
-                      }
-                    }}
-                  >
-                    <img 
-                      src={type.image} 
-                      alt={type.name}
-                      className="w-full h-full object-cover transition-transform duration-300 md:group-hover:scale-110"
-                      loading="lazy"
-                    />
-                    {/* Category Badge */}
-                    <div className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 md:top-3 md:left-3 z-10">
-                      <div className="bg-primary text-white py-1 px-2 sm:py-1.5 sm:px-2.5 md:px-3 text-[9px] sm:text-[10px] md:text-xs font-thin rounded-lg whitespace-nowrap">
-                        {type.name.toUpperCase()}
+                      <img 
+                        src={type.image} 
+                        alt={type.name}
+                        className={`w-full h-full object-cover transition-transform duration-300 ${
+                          isComingSoon ? '' : 'md:group-hover:scale-110'
+                        }`}
+                        loading="lazy"
+                      />
+                      {/* Tint overlay for coming soon */}
+                      {isComingSoon && (
+                        <div className="absolute inset-0 bg-black/40 z-10"></div>
+                      )}
+                      {/* Category Badge */}
+                      <div className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 md:top-3 md:left-3 z-10">
+                        <div className="bg-primary text-white py-1 px-2 sm:py-1.5 sm:px-2.5 md:px-3 text-[9px] sm:text-[10px] md:text-xs font-thin rounded-lg whitespace-nowrap">
+                          {type.name.toUpperCase()}
+                        </div>
                       </div>
+                      {/* Coming Soon Badge */}
+                      {isComingSoon && (
+                        <div className="absolute inset-0 flex items-center justify-center z-20">
+                          <div className="bg-white/95 text-gray-900 py-2 px-4 sm:py-2.5 sm:px-5 md:py-3 md:px-6 text-xs sm:text-sm md:text-base font-thin rounded-lg shadow-lg">
+                            Coming Soon
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  </Link>
-                ))}
+                  );
+
+                  if (isComingSoon) {
+                    return (
+                      <div key={type.name} onClick={(e) => e.preventDefault()}>
+                        {content}
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <Link
+                      key={type.name}
+                      to={type.path}
+                    >
+                      {content}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -369,7 +413,7 @@ const Header: React.FC = () => {
         ></div>
         
         {/* Menu Panel */}
-        <div className={`absolute right-0 top-0 bottom-0 w-full max-w-[280px] bg-white shadow-2xl overflow-y-auto transition-transform duration-300 ease-out ${
+        <div className={`absolute right-0 top-0 bottom-0 w-full bg-white shadow-2xl overflow-y-auto transition-transform duration-300 ease-out ${
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}>
             {/* Header */}
@@ -438,32 +482,52 @@ const Header: React.FC = () => {
                     }`}
                   >
                     <ul className="mt-2 space-y-1">
-                      {houseTypes.filter(type => type.name !== 'Modular').map((type) => (
-                        <li key={type.name}>
-                          <Link
-                            to={type.path}
-                            onClick={() => {
-                              setMobileMenuOpen(false);
-                              setMobileHouseTypesOpen(false);
-                            }}
-                            className="block w-full px-4 py-2.5 text-sm text-gray-700 rounded-lg active:bg-gray-100 transition-colors"
-                          >
-                            {type.name}
-                          </Link>
-                        </li>
-                      ))}
+                      {houseTypes.filter(type => type.name !== 'Modular').map((type) => {
+                        const comingSoonTypes = ['Smart', 'Bungalow'];
+                        const isComingSoon = comingSoonTypes.includes(type.name);
+                        
+                        if (isComingSoon) {
+                          return (
+                            <li key={type.name}>
+                              <div
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                }}
+                                className="block w-full px-4 py-2.5 text-sm text-gray-700 rounded-lg opacity-60 relative"
+                              >
+                                <span>{type.name}</span>
+                                <span className="ml-2 text-xs text-primary font-thin">(Coming Soon)</span>
+                              </div>
+                            </li>
+                          );
+                        }
+                        
+                        return (
+                          <li key={type.name}>
+                            <Link
+                              to={type.path}
+                              onClick={() => {
+                                setMobileMenuOpen(false);
+                                setMobileHouseTypesOpen(false);
+                              }}
+                              className="block w-full px-4 py-2.5 text-sm text-gray-700 rounded-lg active:bg-gray-100 transition-colors"
+                            >
+                              {type.name}
+                            </Link>
+                          </li>
+                        );
+                      })}
                     </ul>
                     <div className="mt-3 pt-3 border-t-2 border-gray-300">
-                      <Link
-                        to="/modular"
-                        onClick={() => {
-                          setMobileMenuOpen(false);
-                          setMobileHouseTypesOpen(false);
+                      <div
+                        onClick={(e) => {
+                          e.preventDefault();
                         }}
-                        className="block w-full px-4 py-3 text-sm font-thin bg-primary text-black rounded-lg active:bg-gray-900 active:text-white transition-colors text-center"
+                        className="block w-full px-4 py-3 text-sm font-thin bg-primary/60 text-black rounded-lg opacity-60 relative text-center cursor-not-allowed"
                       >
-                        Modular
-                      </Link>
+                        <span>Modular</span>
+                        <span className="ml-2 text-xs text-gray-900 font-thin">(Coming Soon)</span>
+                      </div>
                     </div>
                   </div>
                 </li>

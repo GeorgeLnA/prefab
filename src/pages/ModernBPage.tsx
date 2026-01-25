@@ -57,7 +57,7 @@ const ModernBPage: React.FC = () => {
         ></div>
         
         <div className="absolute inset-0 flex items-center justify-start z-20">
-          <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="w-full px-4 sm:px-5">
             <div className="max-w-2xl">
               <h1 className="text-5xl md:text-6xl font-heading font-thin text-white mb-6 leading-tight">
                 Bold Architecture
@@ -83,10 +83,10 @@ const ModernBPage: React.FC = () => {
 
       {/* Models Section */}
       <section id="models" className="pt-8 md:pt-20 pb-20 bg-white">
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Contemporary Innovation</h2>
-            <p className="text-lg sm:text-xl font-body font-normal text-gray-900 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl font-body font-normal text-gray-900">
               Bold contemporary architecture with innovative design solutions.
             </p>
           </div>
@@ -143,11 +143,11 @@ const ModernBPage: React.FC = () => {
 
       {/* Features Section */}
       <section className="pt-8 md:pt-20 pb-20 bg-white">
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
             {/* Removed colored heading */}
             <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Architectural Innovation</h2>
-            <p className="text-xl text-gray-900 font-body font-normal max-w-3xl mx-auto">
+            <p className="text-xl text-gray-900 font-body font-normal">
               Our Modern-B collection pushes the boundaries of contemporary design with striking architectural elements and innovative features.
             </p>
           </div>
@@ -188,9 +188,9 @@ const ModernBPage: React.FC = () => {
         className="pt-8 md:pt-20 pb-20 bg-gradient-to-br from-primary to-primary-dark"
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="w-full px-4 sm:px-5 text-center">
           <h2 className="text-4xl font-heading font-thin text-white mb-6">Experience Bold Modern Living</h2>
-          <p className="text-xl text-white/90 font-body font-normal mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-white/90 font-body font-normal mb-8">
             Experience contemporary architecture at its finest with our Modern-B collection's striking designs and innovative features.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -220,7 +220,7 @@ const ModernBPage: React.FC = () => {
           className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
           onClick={closeLightbox}
         >
-          <div className="relative max-w-4xl max-h-full">
+          <div className="relative w-full max-h-full">
             <button
               onClick={closeLightbox}
               className="absolute top-4 right-4 text-white text-4xl md:hover:text-white transition-colors z-10"

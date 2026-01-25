@@ -6,20 +6,21 @@ import SEO from '../components/SEO';
 const DesignsPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
 
-  // Filter to only show Nordy and Skandy designs
+  // Filter to show Nordy, Skandy, and Modern designs
   const relevantHouses = houseData.filter(house => 
-    house.category === 'NORDY' || house.category === 'MOBILE'
+    house.category === 'NORDY' || house.category === 'MOBILE' || house.category === 'MODERN'
   );
 
   // Category mapping for filtering (display name -> data category)
   const categoryFilterMap: { [key: string]: string } = {
     'ALL': 'ALL',
     'Nordy': 'NORDY',
-    'Skandy': 'MOBILE'
+    'Skandy': 'MOBILE',
+    'Modern': 'MODERN'
   };
 
-  // Only show relevant categories with display names
-  const categories = ['ALL', 'Nordy', 'Skandy'];
+  // Show relevant categories with display names
+  const categories = ['ALL', 'Nordy', 'Skandy', 'Modern'];
   
   const filteredHouses = selectedCategory === 'ALL' 
     ? relevantHouses 
@@ -35,11 +36,11 @@ const DesignsPage: React.FC = () => {
       <div className="bg-white">
       <div className="pt-20">
       <section className="py-16 sm:py-20 bg-white">
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-5">
           {/* Header */}
           <div className="text-center mb-12 sm:mb-16">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-thin text-gray-800 mb-4 sm:mb-6">House Designs</h1>
-            <p className="text-lg sm:text-xl font-body font-normal text-gray-900 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl font-body font-normal text-gray-900">
               Explore our collection of high-performance prefab homes. Each design combines 
               modern aesthetics with energy efficiency and sustainable construction.
             </p>
@@ -140,7 +141,7 @@ const DesignsPage: React.FC = () => {
 
           {/* Stats Section */}
           <div className="mt-20 bg-white py-16 px-8 rounded-lg">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
               <div>
                 <div className="text-4xl font-thin text-primary mb-2">{relevantHouses.length}+</div>
                 <div className="text-gray-900">House Designs</div>
@@ -150,7 +151,7 @@ const DesignsPage: React.FC = () => {
                 <div className="text-gray-900">Year Warranty</div>
               </div>
               <div>
-                <div className="text-4xl font-thin text-primary mb-2">2</div>
+                <div className="text-4xl font-thin text-primary mb-2">3</div>
                 <div className="text-gray-900">House Categories</div>
               </div>
             </div>

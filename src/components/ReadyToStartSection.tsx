@@ -12,12 +12,12 @@ const ReadyToStartSection: React.FC = () => {
         maxWidth: 'none'
       }}
     >
-      <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-5">
         <div className="text-center">
             <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-light text-black mb-2 sm:mb-3 md:mb-4 lg:mb-5 xl:mb-6 leading-tight px-1 sm:px-2 md:px-0">
               Ready to Start Your Journey?
             </h2>
-            <p className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl text-black/90 mb-4 sm:mb-5 md:mb-6 lg:mb-8 xl:mb-10 max-w-3xl mx-auto leading-relaxed px-1 sm:px-2 md:px-0">
+            <p className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl text-black/90 mb-4 sm:mb-5 md:mb-6 lg:mb-8 xl:mb-10 leading-relaxed px-1 sm:px-2 md:px-0">
               Transform your vision into reality with our expert team. From initial consultation 
               to final assembly, we're here to guide you every step of the way.
             </p>

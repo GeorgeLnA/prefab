@@ -321,15 +321,468 @@ const GalleryPage: React.FC = () => {
       <div className="bg-white">
       <div className="pt-20">
       <section className="pt-8 md:pt-20 pb-20 bg-white">
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-5">
           {/* Header */}
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-light text-black mb-6 leading-tight text-center">Case Studies & Gallery</h1>
-            <p className="text-xl text-black/90 mb-6 max-w-3xl mx-auto leading-relaxed text-center">
+            <p className="text-xl text-black/90 mb-6 leading-relaxed text-center">
               Explore real projects, construction processes, and the quality craftsmanship that goes into every Prefab Home. See our work in action.
             </p>
           </div>
 
+          {/* Featured Portfolio Case - Full Width */}
+          <div className="mb-16">
+            <div className="bg-white rounded-xl shadow-xl md:hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+              <div className="flex flex-col lg:flex-row">
+                {/* Thumbnail - Larger for featured */}
+                <div className="relative w-full lg:w-2/5 h-80 lg:h-auto overflow-hidden flex-shrink-0">
+                  <img 
+                    src="/gallery/pdfs/thumbs/188 Large.jpeg" 
+                    alt="Featured Portfolio Sample"
+                    className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  {/* Featured Badge */}
+                  <div className="absolute top-4 left-4 z-10">
+                    <div className="bg-primary text-black py-2 px-4 text-sm font-thin rounded-lg uppercase tracking-wide shadow-lg">
+                      Featured Portfolio
+                    </div>
+                  </div>
+                </div>
+                {/* Description - Enhanced for featured */}
+                <div className="w-full lg:w-3/5 p-8 md:p-12 flex flex-col justify-center">
+                  <div>
+                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-thin text-gray-900 mb-4">
+                      Portfolio Sample Collection
+                    </h3>
+                    <p className="text-gray-900 font-body font-normal mb-6 leading-relaxed text-lg">
+                      A comprehensive showcase of our diverse portfolio featuring multiple prefab home projects. This sample collection includes detailed case studies, design specifications, construction processes, and final results across different home series and sizes.
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      <span className="text-sm font-thin bg-primary/10 text-gray-900 px-4 py-2 rounded-full">
+                        Complete Portfolio
+                      </span>
+                      <span className="text-sm font-thin bg-primary/10 text-gray-900 px-4 py-2 rounded-full">
+                        Multiple Projects
+                      </span>
+                      <span className="text-sm font-thin bg-primary/10 text-gray-900 px-4 py-2 rounded-full">
+                        Detailed Documentation
+                      </span>
+                    </div>
+                  </div>
+                  <a
+                    href="/gallery/pdfs/PREFAB PORTFOLIO SAMPLE _compressed (3).pdf"
+                    download
+                    className="group/btn relative inline-block w-full sm:w-auto overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-3 sm:py-4 px-8 sm:px-12 text-base sm:text-lg"
+                  >
+                    <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap">
+                      Download Portfolio Sample
+                    </span>
+                    <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white">
+                      <span>Download Portfolio Sample</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Portfolio Cases Section */}
+          <div className="mb-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 auto-rows-fr">
+              {/* Portfolio Case 1 - Modern Home */}
+              <div className="bg-white rounded-xl shadow-lg md:hover:shadow-2xl transition-all duration-300 overflow-hidden group h-full flex flex-col">
+                <div className="flex flex-col md:flex-row h-full">
+                  {/* Thumbnail */}
+                  <div className="relative w-full md:w-1/2 h-64 md:h-full overflow-hidden flex-shrink-0">
+                    <img 
+                      src="/gallery/pdfs/thumbs/160 Large.jpeg" 
+                      alt="Modern Home 160 m² Case Study"
+                      className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110"
+                      loading="lazy"
+                    />
+                  </div>
+                  {/* Description */}
+                  <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between min-h-[280px]">
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-heading font-thin text-gray-900 mb-3">
+                        Modern Home 160 m²
+                      </h3>
+                      <p className="text-gray-900 font-body font-normal mb-4 leading-relaxed">
+                        Comprehensive case study documenting a modern prefab home project featuring contemporary design, energy-efficient SIP construction, and spacious living areas.
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          Modern Series
+                        </span>
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          160 m²
+                        </span>
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          SIP Construction
+                        </span>
+                      </div>
+                    </div>
+                    <a
+                      href="/gallery/pdfs/MODERN HOME 160 m2_compressed.pdf"
+                      download
+                      className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
+                    >
+                      <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
+                        View Full Case Study
+                      </span>
+                      <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
+                        <span>Download PDF</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Portfolio Case 2 - Modular Home 180 m² */}
+              <div className="bg-white rounded-xl shadow-lg md:hover:shadow-2xl transition-all duration-300 overflow-hidden group h-full flex flex-col">
+                <div className="flex flex-col md:flex-row h-full">
+                  {/* Thumbnail */}
+                  <div className="relative w-full md:w-1/2 h-64 md:h-full overflow-hidden flex-shrink-0">
+                    <img 
+                      src="/gallery/pdfs/thumbs/180 Large.jpeg" 
+                      alt="Modular Home 180 m² Case Study"
+                      className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110"
+                      loading="lazy"
+                    />
+                  </div>
+                  {/* Description */}
+                  <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between min-h-[280px]">
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-heading font-thin text-gray-900 mb-3">
+                        Modular Home 180 m²
+                      </h3>
+                      <p className="text-gray-900 font-body font-normal mb-4 leading-relaxed">
+                        Detailed documentation of a spacious modular prefab home project, showcasing flexible design, efficient construction methods, and premium finishes.
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          Modular Series
+                        </span>
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          180 m²
+                        </span>
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          Flexible Design
+                        </span>
+                      </div>
+                    </div>
+                    <a
+                      href="/gallery/pdfs/MODULAR HOME 180 m2_compressed.pdf"
+                      download
+                      className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
+                    >
+                      <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
+                        View Full Case Study
+                      </span>
+                      <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
+                        <span>Download PDF</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Portfolio Case 3 - Modular Home 220 m² */}
+              <div className="bg-white rounded-xl shadow-lg md:hover:shadow-2xl transition-all duration-300 overflow-hidden group h-full flex flex-col">
+                <div className="flex flex-col md:flex-row h-full">
+                  {/* Thumbnail */}
+                  <div className="relative w-full md:w-1/2 h-64 md:h-full overflow-hidden flex-shrink-0">
+                    <img 
+                      src="/gallery/pdfs/thumbs/220 Large.jpeg" 
+                      alt="Modular Home 220 m² Case Study"
+                      className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110"
+                      loading="lazy"
+                    />
+                  </div>
+                  {/* Description */}
+                  <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between min-h-[280px]">
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-heading font-thin text-gray-900 mb-3">
+                        Modular Home 220 m²
+                      </h3>
+                      <p className="text-gray-900 font-body font-normal mb-4 leading-relaxed">
+                        Extensive case study of a large modular prefab home featuring premium finishes, spacious layouts, and advanced construction techniques.
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          Modular Series
+                        </span>
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          220 m²
+                        </span>
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          Premium Design
+                        </span>
+                      </div>
+                    </div>
+                    <a
+                      href="/gallery/pdfs/MODULAR HOME 220 m2_compressed.pdf"
+                      download
+                      className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
+                    >
+                      <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
+                        View Full Case Study
+                      </span>
+                      <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
+                        <span>Download PDF</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Portfolio Case 4 - Modular Home 170 m² */}
+              <div className="bg-white rounded-xl shadow-lg md:hover:shadow-2xl transition-all duration-300 overflow-hidden group h-full flex flex-col">
+                <div className="flex flex-col md:flex-row h-full">
+                  {/* Thumbnail */}
+                  <div className="relative w-full md:w-1/2 h-64 md:h-full overflow-hidden flex-shrink-0">
+                    <img 
+                      src="/gallery/pdfs/thumbs/170 Large.jpeg" 
+                      alt="Modular Home 170 m² Case Study"
+                      className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110"
+                      loading="lazy"
+                    />
+                  </div>
+                  {/* Description */}
+                  <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between min-h-[280px]">
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-heading font-thin text-gray-900 mb-3">
+                        Modular Home 170 m²
+                      </h3>
+                      <p className="text-gray-900 font-body font-normal mb-4 leading-relaxed">
+                        Comprehensive documentation of a well-designed modular prefab home project with modern amenities and efficient space planning.
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          Modular Series
+                        </span>
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          170 m²
+                        </span>
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          Modern Amenities
+                        </span>
+                      </div>
+                    </div>
+                    <a
+                      href="/gallery/pdfs/MODULAR HOME 170 m2_compressed.pdf"
+                      download
+                      className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
+                    >
+                      <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
+                        View Full Case Study
+                      </span>
+                      <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
+                        <span>Download PDF</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Portfolio Case 5 - Modular Home 165 m² */}
+              <div className="bg-white rounded-xl shadow-lg md:hover:shadow-2xl transition-all duration-300 overflow-hidden group h-full flex flex-col">
+                <div className="flex flex-col md:flex-row h-full">
+                  {/* Thumbnail */}
+                  <div className="relative w-full md:w-1/2 h-64 md:h-full overflow-hidden flex-shrink-0">
+                    <img 
+                      src="/gallery/pdfs/thumbs/165 Large.jpeg" 
+                      alt="Modular Home 165 m² Case Study"
+                      className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110"
+                      loading="lazy"
+                    />
+                  </div>
+                  {/* Description */}
+                  <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between min-h-[280px]">
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-heading font-thin text-gray-900 mb-3">
+                        Modular Home 165 m²
+                      </h3>
+                      <p className="text-gray-900 font-body font-normal mb-4 leading-relaxed">
+                        Detailed case study of a mid-size modular prefab home featuring contemporary design, energy efficiency, and quality craftsmanship.
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          Modular Series
+                        </span>
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          165 m²
+                        </span>
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          Energy Efficient
+                        </span>
+                      </div>
+                    </div>
+                    <a
+                      href="/gallery/pdfs/MODULAR HOME 165 m2_compressed.pdf"
+                      download
+                      className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
+                    >
+                      <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
+                        View Full Case Study
+                      </span>
+                      <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
+                        <span>Download PDF</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Portfolio Case 6 - Modular Home 124 m² */}
+              <div className="bg-white rounded-xl shadow-lg md:hover:shadow-2xl transition-all duration-300 overflow-hidden group h-full flex flex-col">
+                <div className="flex flex-col md:flex-row h-full">
+                  {/* Thumbnail */}
+                  <div className="relative w-full md:w-1/2 h-64 md:h-full overflow-hidden flex-shrink-0">
+                    <img 
+                      src="/gallery/pdfs/thumbs/124 Large.jpeg" 
+                      alt="Modular Home 124 m² Case Study"
+                      className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110"
+                      loading="lazy"
+                    />
+                  </div>
+                  {/* Description */}
+                  <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between min-h-[280px]">
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-heading font-thin text-gray-900 mb-3">
+                        Modular Home 124 m²
+                      </h3>
+                      <p className="text-gray-900 font-body font-normal mb-4 leading-relaxed">
+                        Case study documenting a compact modular prefab home project with efficient space utilization and modern design principles.
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          Modular Series
+                        </span>
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          124 m²
+                        </span>
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          Compact Design
+                        </span>
+                      </div>
+                    </div>
+                    <a
+                      href="/gallery/pdfs/MODULAR HOME 124 m2_compressed.pdf"
+                      download
+                      className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
+                    >
+                      <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
+                        View Full Case Study
+                      </span>
+                      <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
+                        <span>Download PDF</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Portfolio Case 7 - Modular Home 106 m² */}
+              <div className="bg-white rounded-xl shadow-lg md:hover:shadow-2xl transition-all duration-300 overflow-hidden group h-full flex flex-col">
+                <div className="flex flex-col md:flex-row h-full">
+                  {/* Thumbnail */}
+                  <div className="relative w-full md:w-1/2 h-64 md:h-full overflow-hidden flex-shrink-0">
+                    <img 
+                      src="/gallery/pdfs/thumbs/106 Large.jpeg" 
+                      alt="Modular Home 106 m² Case Study"
+                      className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110"
+                      loading="lazy"
+                    />
+                  </div>
+                  {/* Description */}
+                  <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between min-h-[280px]">
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-heading font-thin text-gray-900 mb-3">
+                        Modular Home 106 m²
+                      </h3>
+                      <p className="text-gray-900 font-body font-normal mb-4 leading-relaxed">
+                        Comprehensive documentation of a compact modular prefab home featuring smart design solutions and efficient construction.
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          Modular Series
+                        </span>
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          106 m²
+                        </span>
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          Smart Design
+                        </span>
+                      </div>
+                    </div>
+                    <a
+                      href="/gallery/pdfs/MODULAR HOME 106 m2_compressed.pdf"
+                      download
+                      className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
+                    >
+                      <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
+                        View Full Case Study
+                      </span>
+                      <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
+                        <span>Download PDF</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Portfolio Case 8 - Modular Home 99 m² */}
+              <div className="bg-white rounded-xl shadow-lg md:hover:shadow-2xl transition-all duration-300 overflow-hidden group h-full flex flex-col">
+                <div className="flex flex-col md:flex-row h-full">
+                  {/* Thumbnail */}
+                  <div className="relative w-full md:w-1/2 h-64 md:h-full overflow-hidden flex-shrink-0">
+                    <img 
+                      src="/gallery/pdfs/thumbs/99 Large.jpeg" 
+                      alt="Modular Home 99 m² Case Study"
+                      className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110"
+                      loading="lazy"
+                    />
+                  </div>
+                  {/* Description */}
+                  <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between min-h-[280px]">
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-heading font-thin text-gray-900 mb-3">
+                        Modular Home 99 m²
+                      </h3>
+                      <p className="text-gray-900 font-body font-normal mb-4 leading-relaxed">
+                        Case study of a compact modular prefab home project demonstrating efficient space planning and modern prefab construction methods.
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          Modular Series
+                        </span>
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          99 m²
+                        </span>
+                        <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
+                          Efficient Planning
+                        </span>
+                      </div>
+                    </div>
+                    <a
+                      href="/gallery/pdfs/MODULAR HOME 99 m2_compressed.pdf"
+                      download
+                      className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
+                    >
+                      <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
+                        View Full Case Study
+                      </span>
+                      <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
+                        <span>Download PDF</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
           {/* Case Studies Grid */}
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 lg:gap-4 auto-rows-fr">
@@ -375,9 +828,33 @@ const GalleryPage: React.FC = () => {
             ))}
           </div>
 
+          {/* Download Portfolio CTA Section */}
+          <div className="mt-16 mb-20">
+            <div className="bg-gradient-to-br from-primary to-primary-dark rounded-xl shadow-lg p-8 md:p-12 text-center">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-thin text-white mb-4">
+                Download Our Complete Portfolio
+              </h2>
+              <p className="text-white/90 text-lg md:text-xl font-body font-normal mb-8 leading-relaxed">
+                Access our comprehensive collection of case studies, featuring detailed documentation of completed projects across all our home series.
+              </p>
+              <a
+                href="/gallery/pdfs/PREFAB HOMES PORTFOLIO_compressed.pdf"
+                download
+                className="group/btn relative inline-block overflow-hidden text-center rounded-lg font-thin bg-white text-black py-3 sm:py-4 px-8 sm:px-12 text-base sm:text-lg md:text-xl"
+              >
+                <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap">
+                  Download Portfolio PDF
+                </span>
+                <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white">
+                  <span>Download Portfolio PDF</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
           {/* Stats Section */}
           <div className="mt-20 bg-white py-16 px-8 rounded-lg">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
               <div>
                 <div className="text-4xl font-thin text-primary mb-2">150+</div>
                 <div className="text-gray-900">Completed Projects</div>
@@ -448,7 +925,7 @@ const GalleryPage: React.FC = () => {
                 <img 
                   src={currentMedia.fullSrc} 
                   alt="Case study - enlarged view"
-                  className="max-w-full max-h-full object-contain mx-auto"
+                  className="max-w-full max-h-full object-contain"
                 />
               ) : (
                 <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>

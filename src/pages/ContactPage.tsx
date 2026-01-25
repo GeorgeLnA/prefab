@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AnimatedButton } from '../components/ui/animated-button';
+import { supabase } from '../lib/supabase';
 import SEO from '../components/SEO';
 
 const ContactPage: React.FC = () => {
@@ -12,6 +13,10 @@ const ContactPage: React.FC = () => {
     budget: ''
   });
 
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitted, setSubmitted] = useState(false);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
@@ -19,9 +24,27 @@ const ContactPage: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
+    setSubmitError(null);
+    setSubmitting(true);
+    try {
+      const { error } = await supabase.from('submissions').insert({
+        form_type: 'contact',
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || null,
+        message: formData.message || null,
+        project_type: formData.projectType || null,
+        budget: formData.budget || null,
+      });
+      if (error) throw error;
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : 'Submission failed');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -36,13 +59,13 @@ const ContactPage: React.FC = () => {
         className="py-32 bg-gray-900 relative overflow-hidden"
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="w-full px-4 sm:px-5 relative">
           <div className="text-center">
             <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">GET IN TOUCH</div>
             <h1 className="text-5xl md:text-6xl font-heading font-light text-white mb-6 leading-tight">
               Let's Build Your Dream Home
             </h1>
-            <p className="text-xl text-white max-w-3xl mx-auto leading-relaxed font-body font-normal">
+            <p className="text-xl text-white leading-relaxed font-body font-normal">
               Ready to start your prefab home journey? Our expert team is here to guide you 
               through every step of the process.
             </p>
@@ -52,16 +75,21 @@ const ContactPage: React.FC = () => {
 
       {/* Contact Form & Info Section */}
       <section className="pt-8 md:pt-20 pb-20 bg-white">
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-5">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Contact Form */}
             <div>
               <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
                 <h2 className="text-2xl sm:text-3xl font-heading font-thin text-gray-800 mb-3 sm:mb-4">Start Your Project</h2>
                 <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8 font-body font-normal leading-relaxed">
-                  Fill out the form below and we'll get back to you within 24 hours to discuss your project.
+                  {submitted
+                    ? "We've received your message and will get back to you within 24 hours."
+                    : "Fill out the form below and we'll get back to you within 24 hours to discuss your project."}
                 </p>
 
+                {submitted ? (
+                  <p className="text-primary font-medium">Thanks! We&apos;ll be in touch soon.</p>
+                ) : (
                 <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     <div>
@@ -184,14 +212,18 @@ const ContactPage: React.FC = () => {
                     ></textarea>
                   </div>
 
+                  {submitError && <p className="text-red-600 text-sm">{submitError}</p>}
+
                   <AnimatedButton
                     type="submit"
                     variant="yellowOnWhite"
-                    className="w-full px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base"
+                    className="w-full px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base disabled:opacity-50"
+                    disabled={submitting}
                   >
-                    Send Message
+                    {submitting ? 'Sending…' : 'Send Message'}
                   </AnimatedButton>
                 </form>
+                )}
               </div>
             </div>
 

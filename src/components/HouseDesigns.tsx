@@ -7,13 +7,13 @@ import { AnimatedButton } from './ui/animated-button';
 const HouseDesigns: React.FC = () => {
   return (
     <section id="designs" className="min-h-[60vh] md:h-screen md:min-h-screen w-full bg-gray-900 flex flex-col items-center justify-center relative overflow-hidden py-8 sm:py-10 md:py-4 lg:py-8 xl:py-12 md:border-0 border-0">
-      <div className="w-full max-w-[1920px] mx-auto px-2 sm:px-3 md:px-4 lg:px-6 xl:px-8 2xl:px-12 flex flex-col items-center justify-center flex-1 overflow-y-auto">
+      <div className="w-full px-4 sm:px-5 flex flex-col items-center justify-center flex-1 overflow-y-auto">
         {/* Header Section */}
         <div className="text-center mb-1.5 sm:mb-2 md:mb-3 lg:mb-4 xl:mb-6 w-full">
           <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-light text-white mb-0.5 sm:mb-1 md:mb-1.5 lg:mb-2 xl:mb-3 leading-tight px-1 sm:px-2 md:px-0">
             READY-TO-GO <span className="text-primary font-light">7 DAY HOUSES</span>
           </h2>
-          <p className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl text-white/90 mb-1 sm:mb-1.5 md:mb-2 lg:mb-3 xl:mb-4 max-w-4xl mx-auto leading-relaxed px-1 sm:px-2 md:px-0">
+          <p className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl text-white/90 mb-1 sm:mb-1.5 md:mb-2 lg:mb-3 xl:mb-4 leading-relaxed px-1 sm:px-2 md:px-0">
             These homes are <span className="text-primary font-thin">in stock</span> and can be delivered, assembled, and finished on your site fast.
           </p>
         </div>
@@ -46,7 +46,7 @@ const HouseDesigns: React.FC = () => {
         
         <AnimatedButton
           variant="yellow"
-          className="px-3 sm:px-4 md:px-5 lg:px-6 xl:px-8 2xl:px-10 py-1.5 sm:py-2 md:py-2.5 lg:py-3 xl:py-4 text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg font-thin w-full max-w-[180px] sm:max-w-[200px] md:max-w-xs lg:w-auto mt-4 sm:mt-6 md:mt-8"
+          className="px-3 sm:px-4 md:px-5 lg:px-6 xl:px-8 2xl:px-10 py-1.5 sm:py-2 md:py-2.5 lg:py-3 xl:py-4 text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg font-thin w-full lg:w-auto mt-4 sm:mt-6 md:mt-8"
         >
           Reserve Your 7 Day House Now
         </AnimatedButton>

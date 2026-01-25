@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { houseData } from '../data/houses';
+import { supabase } from '../lib/supabase';
 import SEO from '../components/SEO';
 import { InteractiveHoverButton } from '../components/ui/interactive-hover-button';
 
@@ -57,8 +58,30 @@ const DesignFormPage: React.FC = () => {
   const nextStep = () => setStep(prev => prev + 1);
   const prevStep = () => setStep(prev => prev - 1);
 
-  const handleSubmit = () => {
-    alert('Design form submitted successfully! We will contact you soon.');
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = async () => {
+    setSubmitError(null);
+    setSubmitting(true);
+    try {
+      const { error } = await supabase.from('submissions').insert({
+        form_type: 'design_request',
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || null,
+        message: [formData.additionalComments, formData.specialRequirements].filter(Boolean).join('\n\n') || null,
+        budget: formData.budget || null,
+        payload: formData as unknown as Record<string, unknown>,
+      });
+      if (error) throw error;
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : 'Submission failed');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -70,8 +93,8 @@ const DesignFormPage: React.FC = () => {
       />
       <div className="bg-white">
       <div className="pt-28 sm:pt-32 md:pt-36 lg:pt-40 min-h-screen bg-gray-50">
-      <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
+      <div className="w-full px-4 sm:px-5">
+        <div className="w-full">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-thin text-primary mb-4">DESIGN YOUR DREAM HOME</h1>
           <p className="text-xl text-gray-600">Let's create something amazing together</p>
@@ -546,19 +569,29 @@ const DesignFormPage: React.FC = () => {
                 </div>
               </div>
               
-              <div className="flex gap-4">
-                <InteractiveHoverButton
-                  text="← Back"
-                  onClick={prevStep}
-                  className="bg-gray-500 text-white"
-                />
-                <InteractiveHoverButton
-                  text="Submit Design Request 🏠"
-                  onClick={handleSubmit}
-                  disabled={!formData.name || !formData.email || !formData.phone}
-                  className="bg-primary text-white px-12 py-4 text-lg disabled:opacity-50"
-                />
-              </div>
+              {submitted ? (
+                <div className="py-6 text-center">
+                  <p className="text-primary font-medium text-lg">Thanks! We&apos;ll contact you soon.</p>
+                </div>
+              ) : (
+                <>
+                  {submitError && <p className="text-red-600 text-sm mb-4">{submitError}</p>}
+                  <div className="flex gap-4">
+                    <InteractiveHoverButton
+                      text="← Back"
+                      onClick={prevStep}
+                      className="bg-gray-500 text-white"
+                      disabled={submitting}
+                    />
+                    <InteractiveHoverButton
+                      text={submitting ? 'Sending…' : 'Submit Design Request 🏠'}
+                      onClick={handleSubmit}
+                      disabled={!formData.name || !formData.email || !formData.phone || submitting}
+                      className="bg-primary text-white px-12 py-4 text-lg disabled:opacity-50"
+                    />
+                  </div>
+                </>
+              )}
             </div>
           )}
         </div>

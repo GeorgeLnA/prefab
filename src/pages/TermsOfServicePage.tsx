@@ -17,10 +17,10 @@ const TermsOfServicePage: React.FC = () => {
         className="py-20 bg-gray-900"
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-5">
           <div className="text-center">
             <h1 className="text-5xl font-light text-white mb-6">Terms of Service</h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300">
               These terms govern your use of our services and establish the legal 
               framework for our business relationship.
             </p>
@@ -31,8 +31,8 @@ const TermsOfServicePage: React.FC = () => {
 
       {/* Content Section */}
       <section className="py-20 bg-white">
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto prose prose-lg">
+        <div className="w-full px-4 sm:px-5">
+          <div className="w-full prose prose-lg">
             
             <h2 className="text-2xl font-heading font-semibold text-gray-800 mb-4">1. Acceptance of Terms</h2>
             <p className="text-gray-700 mb-6 font-body font-normal">

@@ -28,11 +28,11 @@ const NoBuildPermissionSection: React.FC = () => (
       maxWidth: 'none'
     }}
   >
-    <div className="w-full max-w-[1920px] mx-auto flex flex-col items-center justify-center px-2 sm:px-3 md:px-4 lg:px-6 xl:px-8 2xl:px-12 flex-1 overflow-y-auto">
+    <div className="w-full px-4 sm:px-5 flex flex-col items-center justify-center flex-1 overflow-y-auto">
       <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-light text-black mb-1 sm:mb-1.5 md:mb-2 lg:mb-3 xl:mb-4 leading-tight text-center px-1 sm:px-2 md:px-0">
         HOUSES WITH <span className="text-primary font-light">NO BUILD PERMISSION</span>
       </h2>
-      <p className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl text-black/80 mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-14 max-w-3xl mx-auto leading-relaxed text-center px-1 sm:px-2 md:px-0">
+      <p className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl text-black/80 mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-14 leading-relaxed text-center px-1 sm:px-2 md:px-0">
         Some homes can be placed without the hassle of a building permit. Choose a Nordy or Skandy home and enjoy a faster, simpler path to your dream space.
       </p>
       {/* Row of Houses - Fully Responsive */}
@@ -64,7 +64,7 @@ const NoBuildPermissionSection: React.FC = () => (
       </div>
       <AnimatedButton
         variant="yellowOnWhite"
-        className="px-3 sm:px-4 md:px-5 lg:px-6 xl:px-8 2xl:px-10 py-1.5 sm:py-2 md:py-2.5 lg:py-3 xl:py-4 text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg font-thin w-full max-w-[180px] sm:max-w-[200px] md:max-w-xs lg:w-auto mt-4 sm:mt-6 md:mt-8"
+        className="px-3 sm:px-4 md:px-5 lg:px-6 xl:px-8 2xl:px-10 py-1.5 sm:py-2 md:py-2.5 lg:py-3 xl:py-4 text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg font-thin w-full lg:w-auto mt-4 sm:mt-6 md:mt-8"
       >
         Explore More
       </AnimatedButton>

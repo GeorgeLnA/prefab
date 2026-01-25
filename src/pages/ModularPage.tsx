@@ -57,8 +57,8 @@ const ModularPage: React.FC = () => {
         ></div>
         
         <div className="absolute inset-0 flex items-center justify-start z-20">
-          <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-2xl">
+          <div className="w-full px-4 sm:px-5">
+            <div className="w-full">
               <h1 className="text-5xl md:text-6xl font-heading font-thin text-white mb-6 leading-tight">
                 Flexible Living
               </h1>
@@ -89,10 +89,10 @@ const ModularPage: React.FC = () => {
 
       {/* Models Section */}
       <section id="models" className="pt-8 md:pt-20 pb-20 bg-white">
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Flexible Designs</h2>
-            <p className="text-lg sm:text-xl font-body font-normal text-gray-900 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl font-body font-normal text-gray-900">
               Each model can be customized and expanded to meet your specific requirements.
             </p>
           </div>
@@ -152,8 +152,8 @@ const ModularPage: React.FC = () => {
         className="pt-12 sm:pt-16 md:pt-20 pb-12 sm:pb-16 md:pb-20 bg-gray-900"
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-4xl mx-auto">
+        <div className="w-full px-4 sm:px-5">
+          <div className="text-center w-full">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-white mb-4 sm:mb-6 leading-tight">
               Design Yourself
             </h2>
@@ -177,10 +177,10 @@ const ModularPage: React.FC = () => {
 
       {/* Features Section */}
       <section className="pt-8 md:pt-20 pb-20 bg-white">
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Modular Home Flexibility</h2>
-            <p className="text-xl text-gray-900 font-body font-normal max-w-3xl mx-auto">
+            <p className="text-xl text-gray-900 font-body font-normal">
               Our Modular Home collection offers flexible, customizable living spaces that adapt to your lifestyle and needs.
             </p>
           </div>
@@ -221,9 +221,9 @@ const ModularPage: React.FC = () => {
         className="pt-8 md:pt-20 pb-20 bg-gradient-to-br from-primary to-primary-dark"
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="w-full px-4 sm:px-5 text-center">
           <h2 className="text-4xl font-heading font-thin text-white mb-6">Build Your Future, One Module at a Time</h2>
-          <p className="text-xl text-white/90 font-body font-normal mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-white/90 font-body font-normal mb-8">
             Start with what you need today and expand tomorrow with our flexible modular construction system.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -12,8 +12,8 @@ const NotFoundPage: React.FC = () => {
         noindex={true}
       />
       <div className="min-h-screen flex items-center justify-center bg-white">
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-2xl mx-auto">
+        <div className="w-full px-4 sm:px-5 text-center">
+          <div className="w-full">
             <h1 className="text-9xl font-heading font-thin text-primary mb-4">404</h1>
             <h2 className="text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-6">
               Page Not Found

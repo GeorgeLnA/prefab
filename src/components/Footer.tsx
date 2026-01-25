@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
         maxWidth: 'none'
       }}
     >
-      <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-5">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12 lg:mb-16">
           {/* Company Info */}
@@ -211,6 +211,12 @@ const Footer: React.FC = () => {
                 className="text-xs sm:text-sm text-white md:hover:text-primary transition-colors duration-300 font-thin"
               >
                 FAQ
+              </Link>
+              <Link 
+                to="/admin" 
+                className="text-xs sm:text-sm text-white md:hover:text-primary transition-colors duration-300 font-thin"
+              >
+                Admin
               </Link>
             </div>
           </div>

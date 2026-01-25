@@ -112,7 +112,7 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
             <div className="relative z-10 w-full">
               {/* Strengths Section */}
               <section className="bg-white pt-8 sm:pt-10 md:pt-12 pb-2 sm:pb-3 md:pb-4 strengths-section">
-                <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="w-full px-4 sm:px-5">
                   <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
                     {/* Energy Efficiency */}
                     <div className="group relative bg-white/30 md:hover:bg-white rounded-lg p-3 sm:p-4 md:p-5 transition-all duration-500 ease-out shadow-md md:hover:shadow-lg md:hover:-translate-y-2 backdrop-blur-sm">
@@ -123,7 +123,7 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
                           </svg>
                         </div>
                         <h3 className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold text-gray-900 mb-0.5 sm:mb-1 md:mb-1.5 tracking-tight leading-tight">Energy Efficiency</h3>
-                        <p className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-gray-900/80 leading-snug max-w-xs mx-auto font-normal">Highly energy efficient, sustainable, and cost-saving performance.</p>
+                        <p className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-gray-900/80 leading-snug font-normal">Highly energy efficient, sustainable, and cost-saving performance.</p>
                       </div>
                     </div>
 
@@ -136,7 +136,7 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
                           </svg>
                         </div>
                         <h3 className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold text-gray-900 mb-0.5 sm:mb-1 md:mb-1.5 tracking-tight leading-tight">Speed</h3>
-                        <p className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-gray-900/80 leading-snug max-w-xs mx-auto font-normal">Move-in ready in record time.</p>
+                        <p className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-gray-900/80 leading-snug font-normal">Move-in ready in record time.</p>
                       </div>
                     </div>
 
@@ -149,7 +149,7 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
                           </svg>
                         </div>
                         <h3 className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold text-gray-900 mb-0.5 sm:mb-1 md:mb-1.5 tracking-tight leading-tight">Speed in Building</h3>
-                        <p className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-gray-900/80 leading-snug max-w-xs mx-auto font-normal">Move in within days thanks to precision engineering and rapid assembly.</p>
+                        <p className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-gray-900/80 leading-snug font-normal">Move in within days thanks to precision engineering and rapid assembly.</p>
                       </div>
                     </div>
 
@@ -162,7 +162,7 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
                           </svg>
                         </div>
                         <h3 className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold text-gray-900 mb-0.5 sm:mb-1 md:mb-1.5 tracking-tight leading-tight">Eco-Friendly</h3>
-                        <p className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-gray-900/80 leading-snug max-w-xs mx-auto font-normal">Built with the environment in mind, using green materials and methods.</p>
+                        <p className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-gray-900/80 leading-snug font-normal">Built with the environment in mind, using green materials and methods.</p>
                       </div>
                     </div>
                   </div>

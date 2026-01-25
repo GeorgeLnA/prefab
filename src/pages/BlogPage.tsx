@@ -154,13 +154,13 @@ The future of prefab living is smart, connected, and responsive to our needs. As
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
         
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="w-full px-4 sm:px-5 relative">
           <div className="text-center">
             <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">INSIGHTS & EXPERTISE</div>
             <h1 className="text-5xl md:text-6xl font-heading font-light text-white mb-6 leading-tight">
               Prefab Homes Blog
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-body font-normal">
+            <p className="text-xl text-gray-300 leading-relaxed font-body font-normal">
               Discover the latest insights, trends, and expert advice in prefab construction, 
               energy efficiency, and modern living.
             </p>
@@ -170,7 +170,7 @@ The future of prefab living is smart, connected, and responsive to our needs. As
 
       {/* Blog Posts Grid */}
       <section className="pt-8 md:pt-20 pb-20 bg-white">
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-5">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
             {blogPosts.map((post, index) => (
               <article 
@@ -238,7 +238,7 @@ The future of prefab living is smart, connected, and responsive to our needs. As
       {/* Full Post Modal */}
       {selectedPostData && (
         <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-white max-w-4xl w-full max-h-full overflow-y-auto rounded-lg">
+          <div className="bg-white w-full max-h-full overflow-y-auto rounded-lg">
             {/* Header */}
             <div className="relative">
               <img 

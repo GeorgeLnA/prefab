@@ -57,7 +57,7 @@ const SmartPage: React.FC = () => {
         ></div>
         
         <div className="absolute inset-0 flex items-center justify-start z-20">
-          <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="w-full px-4 sm:px-5">
             <div className="max-w-2xl">
               <h1 className="text-5xl md:text-6xl font-heading font-thin text-white mb-6 leading-tight">
                 Intelligent Living
@@ -83,10 +83,10 @@ const SmartPage: React.FC = () => {
 
       {/* Models Section */}
       <section id="models" className="pt-8 md:pt-20 pb-20 bg-white">
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Intelligent Designs</h2>
-            <p className="text-lg sm:text-xl font-body font-normal text-gray-900 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl font-body font-normal text-gray-900">
               Each model features integrated smart technology and energy-efficient systems.
             </p>
           </div>
@@ -143,17 +143,17 @@ const SmartPage: React.FC = () => {
 
       {/* Features Section */}
       <section className="pt-8 md:pt-20 pb-20 bg-white">
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
             {/* Removed colored heading */}
             <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Smart Home Advantages</h2>
-            <p className="text-xl text-gray-900 font-body font-normal max-w-3xl mx-auto">
+            <p className="text-xl text-gray-900 font-body font-normal">
               Our Smart homes integrate cutting-edge technology with sustainable design for unparalleled comfort, efficiency, and convenience.
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
             <div className="text-center group">
-              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
+              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
                 <svg className="w-10 h-10 text-primary md:group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
@@ -162,7 +162,7 @@ const SmartPage: React.FC = () => {
               <p className="text-gray-900 font-body font-normal">Automated lighting with mood controls and energy optimization</p>
             </div>
             <div className="text-center group">
-              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
+              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
                 <svg className="w-10 h-10 text-primary md:group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
                 </svg>
@@ -171,7 +171,7 @@ const SmartPage: React.FC = () => {
               <p className="text-gray-900 font-body font-normal">AI-powered HVAC systems for optimal comfort and efficiency</p>
             </div>
             <div className="text-center group">
-              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
+              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
                 <svg className="w-10 h-10 text-primary md:group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
@@ -188,9 +188,9 @@ const SmartPage: React.FC = () => {
         className="pt-8 md:pt-20 pb-20 bg-gradient-to-br from-primary to-primary-dark"
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="w-full px-4 sm:px-5 text-center">
           <h2 className="text-4xl font-heading font-thin text-white mb-6">Ready for the Future of Living?</h2>
-          <p className="text-xl text-white/90 font-body font-normal mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-white/90 font-body font-normal mb-8">
             Experience the convenience and efficiency of smart home technology with our intelligent prefab designs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -220,7 +220,7 @@ const SmartPage: React.FC = () => {
           className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
           onClick={closeLightbox}
         >
-          <div className="relative max-w-4xl max-h-full">
+          <div className="relative w-full max-h-full">
             <button
               onClick={closeLightbox}
               className="absolute top-4 right-4 text-white text-4xl md:hover:text-white transition-colors z-10"

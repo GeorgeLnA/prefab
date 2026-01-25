@@ -4,13 +4,13 @@ import { AnimatedButton } from './ui/animated-button';
 const SmartChoice: React.FC = () => {
   return (
     <section id="smart-choice" className="min-h-[60vh] md:h-screen md:min-h-screen w-full bg-gray-900 flex flex-col items-center justify-center py-8 sm:py-10 md:py-4 lg:py-8 xl:py-12 md:border-0 border-0">
-      <div className="w-full max-w-[1920px] mx-auto px-2 sm:px-3 md:px-4 lg:px-6 xl:px-8 2xl:px-12 flex flex-col items-center justify-center flex-1 overflow-y-auto">
+      <div className="w-full px-4 sm:px-5 flex flex-col items-center justify-center flex-1 overflow-y-auto">
         {/* Text Section - Full width, centered */}
         <div className="w-full mb-4 sm:mb-6 md:mb-8 lg:mb-8 xl:mb-10 2xl:mb-12">
           <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-light text-white mb-2 sm:mb-3 md:mb-4 lg:mb-5 xl:mb-6 leading-tight drop-shadow-lg text-center px-1 sm:px-2 md:px-0">
             The Smart Choice for Modern Living
           </h2>
-          <p className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl text-white/90 mb-0 leading-relaxed max-w-2xl text-center mx-auto px-1 sm:px-2 md:px-0">
+          <p className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl text-white/90 mb-0 leading-relaxed text-center px-1 sm:px-2 md:px-0">
             Experience the future of home living with advanced automation, energy efficiency, and integrated security. Every home is designed to be intelligent, sustainable, and effortless to control.
           </p>
         </div>

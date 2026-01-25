@@ -2,17 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { houseData, getHouseBySlug } from '../data/houses';
 import { AnimatedButton } from '../components/ui/animated-button';
+import { useRequestModal } from '../contexts/RequestModalContext';
 import SEO from '../components/SEO';
 
 const HouseDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
+  const { openRequestModal } = useRequestModal();
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [activeTab, setActiveTab] = useState('overview');
   const [notIncludedOpen, setNotIncludedOpen] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImageIndex, setLightboxImageIndex] = useState(0);
-  
-  // Get the house data by slug
+
   const house = slug ? getHouseBySlug(slug) : null;
   const houseId = house ? houseData.indexOf(house) : -1;
   
@@ -196,7 +197,7 @@ const HouseDetailPage: React.FC = () => {
       <div className="bg-white">
       <div className="pt-20">
       <section className="pt-8 md:pt-20 pb-20 bg-white">
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-5">
           <div className="mb-12 lg:mb-16">
             {/* Main Content Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
@@ -286,10 +287,9 @@ const HouseDetailPage: React.FC = () => {
               {/* CTA Buttons */}
                 <div className="flex flex-col gap-3 sm:gap-4 pt-4">
                 <AnimatedButton
-                  asLink={true}
-                  href="/contact"
                   variant="yellowOnWhite"
-                    className="px-6 sm:px-8 py-3 sm:py-3.5 font-thin w-full text-center text-sm sm:text-base"
+                  className="px-6 sm:px-8 py-3 sm:py-3.5 font-thin w-full text-center text-sm sm:text-base"
+                  onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug })}
                 >
                   Request Quote
                 </AnimatedButton>
@@ -629,7 +629,11 @@ const HouseDetailPage: React.FC = () => {
                     <p className="text-gray-900 mb-6">
                       Detailed architectural drawings and 3D floor plans are being prepared for this model.
                     </p>
-                    <button className="bg-primary text-white px-6 py-3 font-thin hover:bg-primary-hover transition-colors rounded-lg">
+                    <button
+                      type="button"
+                      className="bg-primary text-white px-6 py-3 font-thin hover:bg-primary-hover transition-colors rounded-lg touch-manipulation"
+                      onClick={() => house && openRequestModal({ requestType: 'floor_plan', sourceSlug: house.slug, context: 'Floor Plan' })}
+                    >
                       Request Floor Plan
                     </button>
                   </div>
@@ -648,10 +652,9 @@ const HouseDetailPage: React.FC = () => {
                         <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Sanitary Ware & Bathroom Equipment</h4>
                         <p className="text-sm text-gray-600 font-body font-normal mb-3">WC, shower, taps, boiler, cabinets and all bathroom fixtures</p>
                         <AnimatedButton
-                          asLink={true}
-                          href="/contact"
                           variant="yellowOnWhite"
-                          className="px-4 py-2 text-sm font-thin w-full sm:w-auto"
+                          className="px-4 py-2 text-sm font-thin w-full sm:w-auto touch-manipulation"
+                          onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug, context: 'Sanitary Ware & Bathroom Equipment' })}
                         >
                           Request Quote
                         </AnimatedButton>
@@ -660,10 +663,9 @@ const HouseDetailPage: React.FC = () => {
                         <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Heating & Ventilation Systems</h4>
                         <p className="text-sm text-gray-600 font-body font-normal mb-3">ASHP, radiators, underfloor heating, MVHR or any HVAC equipment</p>
                         <AnimatedButton
-                          asLink={true}
-                          href="/contact"
                           variant="yellowOnWhite"
-                          className="px-4 py-2 text-sm font-thin w-full sm:w-auto"
+                          className="px-4 py-2 text-sm font-thin w-full sm:w-auto touch-manipulation"
+                          onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug, context: 'Heating & Ventilation Systems' })}
                         >
                           Request Quote
                         </AnimatedButton>
@@ -672,10 +674,9 @@ const HouseDetailPage: React.FC = () => {
                         <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Fire Safety Systems</h4>
                         <p className="text-sm text-gray-600 font-body font-normal mb-3">Smoke detectors, heat detectors, fire alarm panels and emergency lighting</p>
                         <AnimatedButton
-                          asLink={true}
-                          href="/contact"
                           variant="yellowOnWhite"
-                          className="px-4 py-2 text-sm font-thin w-full sm:w-auto"
+                          className="px-4 py-2 text-sm font-thin w-full sm:w-auto touch-manipulation"
+                          onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug, context: 'Fire Safety Systems' })}
                         >
                           Request Quote
                         </AnimatedButton>
@@ -684,22 +685,20 @@ const HouseDetailPage: React.FC = () => {
                         <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Foundations</h4>
                         <p className="text-sm text-gray-600 font-body font-normal mb-3">Supply and installation of screw-pile foundations or any concrete foundation system</p>
                         <AnimatedButton
-                          asLink={true}
-                          href="/contact"
                           variant="yellowOnWhite"
-                          className="px-4 py-2 text-sm font-thin w-full sm:w-auto"
+                          className="px-4 py-2 text-sm font-thin w-full sm:w-auto touch-manipulation"
+                          onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug, context: 'Foundations' })}
                         >
                           Request Quote
                         </AnimatedButton>
-                    </div>
+                      </div>
                       <div className="bg-white border border-gray-200 rounded-lg p-4 md:p-5">
                         <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Mechanical Lifting Equipment</h4>
                         <p className="text-sm text-gray-600 font-body font-normal mb-3">Crane hire, telehandlers, fall-arrest systems and scaffolding</p>
                         <AnimatedButton
-                          asLink={true}
-                          href="/contact"
                           variant="yellowOnWhite"
-                          className="px-4 py-2 text-sm font-thin w-full sm:w-auto"
+                          className="px-4 py-2 text-sm font-thin w-full sm:w-auto touch-manipulation"
+                          onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug, context: 'Mechanical Lifting Equipment' })}
                         >
                           Request Quote
                         </AnimatedButton>
@@ -708,22 +707,20 @@ const HouseDetailPage: React.FC = () => {
                         <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Planning Permission & Regulatory Fees</h4>
                         <p className="text-sm text-gray-600 font-body font-normal mb-3">Submission, architectural fees, engineering approvals and associated documentation</p>
                         <AnimatedButton
-                          asLink={true}
-                          href="/contact"
                           variant="yellowOnWhite"
-                          className="px-4 py-2 text-sm font-thin w-full sm:w-auto"
+                          className="px-4 py-2 text-sm font-thin w-full sm:w-auto touch-manipulation"
+                          onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug, context: 'Planning Permission & Regulatory Fees' })}
                         >
                           Request Quote
                         </AnimatedButton>
-                    </div>
+                      </div>
                       <div className="bg-white border border-gray-200 rounded-lg p-4 md:p-5 md:col-span-2">
                         <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">External Utilities & Site Works</h4>
                         <p className="text-sm text-gray-600 font-body font-normal mb-3">Groundworks, external drainage, mains connection for water, electricity or sewage</p>
                         <AnimatedButton
-                          asLink={true}
-                          href="/contact"
                           variant="yellowOnWhite"
-                          className="px-4 py-2 text-sm font-thin w-full sm:w-auto"
+                          className="px-4 py-2 text-sm font-thin w-full sm:w-auto touch-manipulation"
+                          onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug, context: 'External Utilities & Site Works' })}
                         >
                           Request Quote
                         </AnimatedButton>

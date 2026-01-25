@@ -17,13 +17,13 @@ const TechnologyPage: React.FC = () => {
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
         
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="w-full px-4 sm:px-5 relative">
           <div className="text-center">
             <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">TECHNOLOGY</div>
             <h1 className="text-5xl md:text-6xl font-heading font-light text-white mb-6 leading-tight">
               Built for Performance
             </h1>
-            <p className="text-xl text-white max-w-3xl mx-auto leading-relaxed font-body font-normal">
+            <p className="text-xl text-white leading-relaxed font-body font-normal">
               Advanced systems and precision engineering that deliver exceptional quality, efficiency, and comfort.
             </p>
           </div>
@@ -32,7 +32,7 @@ const TechnologyPage: React.FC = () => {
 
       {/* Main Content */}
       <section className="py-16 sm:py-20 bg-white">
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-5">
           {/* Energy Efficiency */}
           <div className="mb-12 sm:mb-16 md:mb-20">
             <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">ENERGY EFFICIENCY</div>
@@ -165,12 +165,12 @@ const TechnologyPage: React.FC = () => {
         className="py-20 bg-gradient-to-br from-primary to-primary-dark"
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
-        <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-5">
           <div className="text-center">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-black mb-4 sm:mb-6 leading-tight">
               Experience the Difference
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-black/90 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-black/90 mb-6 sm:mb-8 leading-relaxed">
               See how our technology and engineering create homes that are more efficient, faster to build, and built to last.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">

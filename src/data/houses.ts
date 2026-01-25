@@ -1691,28 +1691,658 @@ export const houseData: HouseType[] = [
   
   // Modern Houses
   {
-    name: "MODERN M-65",
-    slug: "modern-m-65",
-    imageUrl: "/2p.jpg",
-    squareFeet: 1900,
-    squareMeters: 176,
-    price: 315000,
-    type: "2-STOREY",
+    name: "MODERN 20",
+    slug: "modern-20",
+    inStock: true,
+    imageUrl: "/MODERN/Front  2K Large.jpeg",
+    squareFeet: 461,
+    squareMeters: 42.8,
+    price: 58100,
+    type: "COMPACT",
     category: "MODERN",
-    description: "Sleek modern design with cutting-edge features and contemporary aesthetics",
-    additionalImages: ["/2p.jpg", "/render1.jpg"]
+    description: "A compact, modern SIP home designed for comfortable year-round use with a strong connection to outdoor living.",
+    livingArea: { feet: 240, meters: 22.3 },
+    coveredTerrace: { feet: 221, meters: 20.5 },
+    thermalPerformance: "High-performance SIP core with excellent airtightness",
+    assemblyTime: "4–8 weeks",
+    keyFeatures: [
+      "Compact modern layout with highly efficient space planning",
+      "Bright open-plan living area with full-height front glazing",
+      "Generous covered terrace extending the living space outdoors",
+      "Energy-efficient SIP construction",
+      "Internal finishes and internal doors included",
+      "Factory-manufactured system for fast and predictable assembly"
+    ],
+    about: "The MODERN 20 is a compact yet expressive modern home, designed around light, simplicity and everyday comfort. Despite its modest internal footprint, the house feels open and spacious thanks to its clear layout and strong visual connection to the terrace.\n\nWith an internal living area of 240 ft² (22.3 m²), the layout combines an open-plan living, dining and kitchen space with a separate shower room. Full-height front-facing glazing spans the main elevation, allowing natural light to fill the interior throughout the day and visually extending the living space towards the terrace.\n\nA defining feature of the MODERN 20 is its generous covered terrace of 221 ft² (20.5 m²), which significantly enhances the usability of the house. This outdoor space is ideal for relaxation, social gatherings or informal dining, effectively expanding the living area during warmer months.\n\nBuilt as a permanent residential structure, the MODERN 20 combines modern architectural language with energy-efficient SIP construction, delivering comfort, clarity and flexibility in a compact format.\n\nAll structural elements are precision-manufactured in the factory and delivered ready for a clean, fast and predictable on-site assembly process.",
+    whatsIncluded: [
+      {
+        title: "Complete SIP structural shell",
+        description: "External SIP walls, internal SIP partitions, floor and roof panels manufactured in the factory."
+      },
+      {
+        title: "Exterior cladding system",
+        description: "Model-specific exterior finish."
+      },
+      {
+        title: "Roofing package",
+        description: "Metal roofing sheets, fascias, soffits, guttering and downpipes."
+      },
+      {
+        title: "PVC double-glazed windows and exterior entrance door",
+        description: ""
+      },
+      {
+        title: "Internal finishes and internal doors",
+        description: "Wall and ceiling linings, plasterboard, painted surfaces, ceiling finishes, finished floor coverings and internal doors."
+      },
+      {
+        title: "Internal plumbing and electrical cabling (first-fix only)",
+        description: "Installed internal water supply pipework, waste and drainage routes, and electrical cabling only, without sanitary ware, electrical fittings or final connections."
+      },
+      {
+        title: "On-site assembly of the structural shell",
+        description: "Installation of SIP panels, roofing, exterior finishes, windows, internal finishes and internal doors."
+      },
+      {
+        title: "Assembly drawings and technical documentation",
+        description: ""
+      }
+    ],
+    whatsNotIncluded: [
+      {
+        title: "Bathrooms and sanitary installations",
+        description: "Sanitary ware, shower units, taps, WC, bathroom furniture, tiling, waterproofing and all bathroom finishing works."
+      },
+      {
+        title: "Kitchen furniture and fittings",
+        description: "Kitchen units, worktops, appliances and built-in kitchen furniture."
+      },
+      {
+        title: "Electrical fittings and fixtures",
+        description: "Sockets, switches, light fittings, decorative lighting and any electrical devices."
+      },
+      {
+        title: "Mechanical and electrical systems",
+        description: "Heating systems, ventilation, MVHR, ASHP, radiators, underfloor heating and all HVAC equipment."
+      },
+      {
+        title: "Foundations and site works",
+        description: "Supply and installation of foundations, groundworks, external drainage and utility connections."
+      },
+      {
+        title: "Mechanical lifting equipment",
+        description: "Crane hire, telehandlers, scaffolding and fall-arrest systems."
+      },
+      {
+        title: "Planning and regulatory fees",
+        description: "Planning applications, architectural services, engineering approvals and associated documentation."
+      }
+    ],
+    dimensions: {
+      totalArea: { feet: 461, meters: 42.8 },
+      livingArea: { feet: 240, meters: 22.3 },
+      coveredTerrace: { feet: 221, meters: 20.5 },
+      bathrooms: 1,
+      overallSize: "approx. 31.4 × 16.4 × 12.8 ft (9.56 × 5.05 × 3 m)"
+    },
+    construction: {
+      wallSystem: "SIP panels (structural insulated panels)",
+      insulation: "High-performance SIP core with excellent airtightness",
+      windows: "Full-height front-facing glazed elevation",
+      roof: "Metal roofing system",
+      foundation: "Factory-built for clean, fast on-site installation"
+    },
+    energyEnvironment: [
+      "High thermal performance insulated SIP envelope",
+      "Stable indoor comfort suitable for year-round use",
+      "Reduced heat loss and efficient energy demand",
+      "Abundant natural daylight through large glazed areas",
+      "Durable, low-maintenance external materials"
+    ],
+    features: [
+      "Open-plan living space with strong indoor–outdoor connection",
+      "Full-height front glazing",
+      "Large covered terrace for extended living",
+      "Modern minimalist architectural language",
+      "Compact footprint with efficient internal layout",
+      "Precision-manufactured system for predictable installation"
+    ],
+    additionalImages: [
+      "/MODERN/Rear 2K Large.jpeg"
+    ],
+    floorPlans: [
+      "/MODERN/Screenshot 2026-01-25 at 14.02.27.png"
+    ],
+    facades: [
+      "/MODERN/Screenshot 2026-01-25 at 14.02.00.png",
+      "/MODERN/Screenshot 2026-01-25 at 14.02.36.png"
+    ]
   },
   {
-    name: "MODERN M-85",
-    slug: "modern-m-85",
-    imageUrl: "/render1.jpg",
-    squareFeet: 2100,
-    squareMeters: 195,
-    price: 385000,
-    type: "2-STOREY",
+    name: "MODERN 30",
+    slug: "modern-30",
+    inStock: true,
+    imageUrl: "/MODERN/1 2K Large.jpeg",
+    squareFeet: 614,
+    squareMeters: 57.1,
+    price: 73600,
+    type: "ONE-BEDROOM",
     category: "MODERN",
-    description: "Premium modern home with sophisticated design and luxury finishes",
-    additionalImages: ["/render1.jpg", "/2p.jpg"]
+    description: "A well-balanced modern SIP home offering comfortable everyday living with a strong indoor–outdoor connection.",
+    livingArea: { feet: 359, meters: 33.4 },
+    coveredTerrace: { feet: 255, meters: 23.7 },
+    thermalPerformance: "High-performance SIP core with excellent airtightness",
+    assemblyTime: "4–8 weeks",
+    keyFeatures: [
+      "Efficient single-bedroom layout with clear zoning",
+      "Bright open-plan living, dining and kitchen area",
+      "Full-height front glazing for maximum natural daylight",
+      "Generous covered terrace extending the living space outdoors",
+      "Energy-efficient SIP construction",
+      "Internal finishes and internal doors included",
+      "Factory-manufactured system for fast and predictable assembly"
+    ],
+    about: "The MODERN 30 is a compact yet highly functional modern home, designed for comfortable everyday living with an emphasis on light, clarity and a strong connection to outdoor space. Its well-considered layout provides a clear separation between private and shared zones, creating a calm and practical interior.\n\nWith an internal living area of 359 ft² (33.4 m²), the house features an open-plan living, dining and kitchen space, a separate bedroom and a dedicated shower room. Full-height front-facing glazing runs along the main elevation, filling the living area with natural light and visually extending the interior towards the terrace.\n\nA defining element of the MODERN 30 is its generous covered terrace of 255 ft² (23.7 m²), which functions as a natural extension of the living space. It is ideal for outdoor dining, social gatherings or quiet relaxation, making the house equally suitable as a compact permanent home, guest house or countryside retreat.\n\nBuilt as a permanent residential structure, the MODERN 30 combines modern architectural language with energy-efficient SIP construction, delivering a comfortable and rational living environment suitable for year-round use.\n\nAll structural elements are precision-manufactured in the factory and delivered ready for a clean, fast and predictable on-site assembly process.",
+    whatsIncluded: [
+      {
+        title: "Complete SIP structural shell",
+        description: "External SIP walls, internal SIP partitions, floor and roof panels manufactured in the factory."
+      },
+      {
+        title: "Exterior cladding system",
+        description: "Model-specific exterior finish."
+      },
+      {
+        title: "Roofing package",
+        description: "Metal roofing sheets, fascias, soffits, guttering and downpipes."
+      },
+      {
+        title: "PVC double-glazed windows and exterior entrance door",
+        description: ""
+      },
+      {
+        title: "Internal finishes and internal doors",
+        description: "Wall and ceiling linings, plasterboard, painted surfaces, ceiling finishes, finished floor coverings and internal doors."
+      },
+      {
+        title: "Internal plumbing and electrical cabling (first-fix only)",
+        description: "Installed internal water supply pipework, waste and drainage routes, and electrical cabling only, without sanitary ware, electrical fittings or final connections."
+      },
+      {
+        title: "On-site assembly of the structural shell",
+        description: "Installation of SIP panels, roofing, exterior finishes, windows, internal finishes and internal doors."
+      },
+      {
+        title: "Assembly drawings and technical documentation",
+        description: ""
+      }
+    ],
+    whatsNotIncluded: [
+      {
+        title: "Bathrooms and sanitary installations",
+        description: "Sanitary ware, shower units, taps, WC, bathroom furniture, tiling, waterproofing and all bathroom finishing works."
+      },
+      {
+        title: "Kitchen furniture and fittings",
+        description: "Kitchen units, worktops, appliances and built-in kitchen furniture."
+      },
+      {
+        title: "Electrical fittings and fixtures",
+        description: "Sockets, switches, light fittings, decorative lighting and any electrical devices."
+      },
+      {
+        title: "Mechanical and electrical systems",
+        description: "Heating systems, ventilation, MVHR, ASHP, radiators, underfloor heating and all HVAC equipment."
+      },
+      {
+        title: "Foundations and site works",
+        description: "Supply and installation of foundations, groundworks, external drainage and utility connections."
+      },
+      {
+        title: "Mechanical lifting equipment",
+        description: "Crane hire, telehandlers, scaffolding and fall-arrest systems."
+      },
+      {
+        title: "Planning and regulatory fees",
+        description: "Planning applications, architectural services, engineering approvals and associated documentation."
+      }
+    ],
+    dimensions: {
+      totalArea: { feet: 614, meters: 57.1 },
+      livingArea: { feet: 359, meters: 33.4 },
+      coveredTerrace: { feet: 255, meters: 23.7 },
+      bedrooms: "1",
+      bathrooms: 1,
+      overallSize: "approx. 41.9 × 16.4 × 12.8 ft (12.76 × 5.05 × 3 m)"
+    },
+    construction: {
+      wallSystem: "SIP panels (structural insulated panels)",
+      insulation: "High-performance SIP core with excellent airtightness",
+      windows: "Full-height front-facing glazed elevation",
+      roof: "Metal roofing system",
+      foundation: "Factory-built for clean, fast on-site installation"
+    },
+    energyEnvironment: [
+      "High thermal performance insulated SIP envelope",
+      "Stable indoor comfort suitable for year-round use",
+      "Reduced heat loss and efficient energy demand",
+      "Abundant natural daylight through large glazed areas",
+      "Durable, low-maintenance external materials"
+    ],
+    features: [
+      "Open-plan living with clear functional zoning",
+      "Separate bedroom for privacy and comfort",
+      "Full-height front glazing",
+      "Large covered terrace for extended outdoor living",
+      "Modern minimalist architectural language",
+      "Compact footprint with efficient internal layout"
+    ],
+    additionalImages: [
+      "/MODERN/2 2K Large.jpeg"
+    ],
+    floorPlans: [
+      "/MODERN/Screenshot 2026-01-25 at 14.07.44.png"
+    ],
+    facades: [
+      "/MODERN/Screenshot 2026-01-25 at 14.07.51.png"
+    ]
+  },
+  {
+    name: "MODERN 60",
+    slug: "modern-60",
+    inStock: true,
+    imageUrl: "/MODERN/1 2K (1) Large.jpeg",
+    squareFeet: 958,
+    squareMeters: 89.01,
+    price: 115100,
+    type: "TWO-BEDROOM",
+    category: "MODERN",
+    description: "A spacious modern SIP home designed for comfortable year-round living, combining clear zoning, functional planning and a strong connection to outdoor space.",
+    livingArea: { feet: 630, meters: 58.51 },
+    coveredTerrace: { feet: 328, meters: 30.50 },
+    thermalPerformance: "High-performance SIP core with excellent airtightness",
+    assemblyTime: "4–8 weeks",
+    keyFeatures: [
+      "Well-balanced two-bedroom layout with clear separation of private and living areas",
+      "Open-plan kitchen–living space with strong daylight penetration",
+      "Master bedroom with a dedicated dressing room",
+      "Two separate shower rooms for everyday comfort",
+      "Generous covered terrace extending the living space outdoors",
+      "Energy-efficient SIP construction",
+      "Internal finishes and internal doors included",
+      "Factory-manufactured system for fast and predictable assembly"
+    ],
+    about: "The MODERN 60 is a thoughtfully designed modern home offering a high level of comfort within a compact and rational footprint. Its layout is organised to provide clear functional zoning, making it suitable for permanent living, holiday use or a high-quality guest house.\n\nWith an internal living area of 630 ft² (58.51 m²), the house features a bright open-plan kitchen–living space, two bedrooms and two shower rooms. A key feature of the layout is the master bedroom with its own dressing room, providing additional storage and everyday convenience while maintaining privacy from the main living areas.\n\nThe second bedroom is well suited for guests, children or use as a home office, while the presence of two independent shower rooms allows the house to function comfortably for families or shared use.\n\nA defining characteristic of the MODERN 60 is its generous covered terrace of 328 ft² (30.5 m²), which acts as a natural extension of the living space. This outdoor area is ideal for dining, social gatherings or quiet relaxation, enhancing the overall usability of the house throughout the year.\n\nBuilt as a permanent residential structure, the MODERN 60 combines contemporary architectural language with high-performance SIP construction, delivering comfort, efficiency and clarity in everyday living.\n\nAll structural elements are precision-manufactured in the factory and delivered ready for a clean, fast and predictable on-site assembly process.",
+    whatsIncluded: [
+      {
+        title: "Complete SIP structural shell",
+        description: "External SIP walls, internal SIP partitions, floor and roof panels manufactured in the factory."
+      },
+      {
+        title: "Exterior cladding system",
+        description: "Model-specific exterior finish."
+      },
+      {
+        title: "Roofing package",
+        description: "Metal roofing sheets, fascias, soffits, guttering and downpipes."
+      },
+      {
+        title: "PVC double-glazed windows and exterior entrance door",
+        description: ""
+      },
+      {
+        title: "Internal finishes and internal doors",
+        description: "Wall and ceiling linings, plasterboard, painted surfaces, ceiling finishes, finished floor coverings and internal doors."
+      },
+      {
+        title: "Internal plumbing and electrical cabling (first-fix only)",
+        description: "Installed internal water supply pipework, waste and drainage routes, and electrical cabling only, without sanitary ware, electrical fittings or final connections."
+      },
+      {
+        title: "On-site assembly of the structural shell",
+        description: "Installation of SIP panels, roofing, exterior finishes, windows, internal finishes and internal doors."
+      },
+      {
+        title: "Assembly drawings and technical documentation",
+        description: ""
+      }
+    ],
+    whatsNotIncluded: [
+      {
+        title: "Bathrooms and sanitary installations",
+        description: "Sanitary ware, shower units, taps, WC, bathroom furniture, tiling, waterproofing and all bathroom finishing works."
+      },
+      {
+        title: "Kitchen furniture and fittings",
+        description: "Kitchen units, worktops, appliances and built-in kitchen furniture."
+      },
+      {
+        title: "Electrical fittings and fixtures",
+        description: "Sockets, switches, light fittings, decorative lighting and any electrical devices."
+      },
+      {
+        title: "Mechanical and electrical systems",
+        description: "Heating systems, ventilation, MVHR, ASHP, radiators, underfloor heating and all HVAC equipment."
+      },
+      {
+        title: "Foundations and site works",
+        description: "Supply and installation of foundations, groundworks, external drainage and utility connections."
+      },
+      {
+        title: "Mechanical lifting equipment",
+        description: "Crane hire, telehandlers, scaffolding and fall-arrest systems."
+      },
+      {
+        title: "Planning and regulatory fees",
+        description: "Planning applications, architectural services, engineering approvals and associated documentation."
+      }
+    ],
+    dimensions: {
+      totalArea: { feet: 958, meters: 89.01 },
+      livingArea: { feet: 630, meters: 58.51 },
+      coveredTerrace: { feet: 328, meters: 30.50 },
+      bedrooms: "2",
+      bathrooms: 2,
+      overallSize: "approx. 52.3 × 20.7 × 9.8 ft (15.93 × 6.30 × 3.0 m)"
+    },
+    construction: {
+      wallSystem: "SIP panels (structural insulated panels)",
+      insulation: "High-performance SIP core with excellent airtightness",
+      windows: "Large glazed openings to living areas",
+      roof: "Metal roofing system",
+      foundation: "Factory-built for clean, fast on-site installation"
+    },
+    energyEnvironment: [
+      "High thermal performance insulated SIP envelope",
+      "Stable indoor comfort suitable for year-round use",
+      "Reduced heat loss and efficient energy demand",
+      "Abundant natural daylight through large glazed areas",
+      "Durable, low-maintenance external materials"
+    ],
+    features: [
+      "Open-plan kitchen–living area",
+      "Master bedroom with dressing room",
+      "Second bedroom with flexible use",
+      "Two independent shower rooms",
+      "Large covered terrace for extended outdoor living",
+      "Modern minimalist architectural language",
+      "Efficient and rational layout"
+    ],
+    additionalImages: [
+      "/MODERN/2 2K (1) Large.jpeg"
+    ],
+    floorPlans: [
+      "/MODERN/Screenshot 2026-01-25 at 14.09.52.png"
+    ],
+    facades: [
+      "/MODERN/Screenshot 2026-01-25 at 14.09.36.png",
+      "/MODERN/Screenshot 2026-01-25 at 14.09.44.png"
+    ]
+  },
+  {
+    name: "MODERN 95",
+    slug: "modern-95",
+    inStock: true,
+    imageUrl: "/MODERN/1 2K (2) Large.jpeg",
+    squareFeet: 1043,
+    squareMeters: 96.84,
+    price: 126990,
+    type: "THREE-BEDROOM",
+    category: "MODERN",
+    description: "A spacious modern SIP home designed for comfortable year-round living, offering a well-balanced layout for family life with clear zoning and generous shared spaces.",
+    livingArea: { feet: 764, meters: 70.94 },
+    coveredTerrace: { feet: 279, meters: 25.90 },
+    thermalPerformance: "High-performance SIP core with excellent airtightness",
+    assemblyTime: "4–8 weeks",
+    keyFeatures: [
+      "Well-balanced three-bedroom layout suitable for family living",
+      "Master bedroom with en-suite shower room",
+      "Open-plan kitchen–living space with strong natural daylight",
+      "Clear separation between private and shared zones",
+      "Two shower rooms for everyday comfort",
+      "Generous covered terrace extending the living space outdoors",
+      "Energy-efficient SIP construction",
+      "Internal finishes and internal doors included",
+      "Factory-manufactured system for fast and predictable assembly"
+    ],
+    about: "The MODERN 95 is a thoughtfully designed modern family home that combines everyday comfort with rational planning and a strong connection to outdoor space. Its layout is organised to support both private living and shared family time, making it suitable for permanent residence or high-quality countryside living.\n\nWith an internal living area of 764 ft² (70.94 m²), the house features a bright open-plan kitchen–living area, three bedrooms, a central hallway and two shower rooms. One of the bedrooms is designed as a master bedroom with its own en-suite shower room, providing privacy and comfort for the homeowners.\n\nThe remaining two bedrooms are well proportioned and can be used as children's rooms, guest bedrooms or a home office, offering flexibility as family needs evolve. The internal circulation is clear and efficient, minimising wasted space while maintaining comfortable room sizes.\n\nA defining element of the MODERN 95 is its covered terrace of 279 ft² (25.90 m²), positioned directly off the main living area. This outdoor space naturally extends the interior, creating an ideal setting for dining, relaxation or social gatherings throughout the warmer months.\n\nBuilt as a permanent residential structure, the MODERN 95 combines contemporary architectural language with high-performance SIP construction, delivering a comfortable, energy-efficient home suitable for year-round use.\n\nAll structural elements are precision-manufactured in the factory and delivered ready for a clean, fast and predictable on-site assembly process.",
+    whatsIncluded: [
+      {
+        title: "Complete SIP structural shell",
+        description: "External SIP walls, internal SIP partitions, floor and roof panels manufactured in the factory."
+      },
+      {
+        title: "Exterior cladding system",
+        description: "Model-specific exterior finish."
+      },
+      {
+        title: "Roofing package",
+        description: "Metal roofing sheets, fascias, soffits, guttering and downpipes."
+      },
+      {
+        title: "PVC double-glazed windows and exterior entrance door",
+        description: ""
+      },
+      {
+        title: "Internal finishes and internal doors",
+        description: "Wall and ceiling linings, plasterboard, painted surfaces, ceiling finishes, finished floor coverings and internal doors."
+      },
+      {
+        title: "Internal plumbing and electrical cabling (first-fix only)",
+        description: "Installed internal water supply pipework, waste and drainage routes, and electrical cabling only, without sanitary ware, electrical fittings or final connections."
+      },
+      {
+        title: "On-site assembly of the structural shell",
+        description: "Installation of SIP panels, roofing, exterior finishes, windows, internal finishes and internal doors."
+      },
+      {
+        title: "Assembly drawings and technical documentation",
+        description: ""
+      }
+    ],
+    whatsNotIncluded: [
+      {
+        title: "Bathrooms and sanitary installations",
+        description: "Sanitary ware, shower units, taps, WC, bathroom furniture, tiling, waterproofing and all bathroom finishing works."
+      },
+      {
+        title: "Kitchen furniture and fittings",
+        description: "Kitchen units, worktops, appliances and built-in kitchen furniture."
+      },
+      {
+        title: "Electrical fittings and fixtures",
+        description: "Sockets, switches, light fittings, decorative lighting and any electrical devices."
+      },
+      {
+        title: "Mechanical and electrical systems",
+        description: "Heating systems, ventilation, MVHR, ASHP, radiators, underfloor heating and all HVAC equipment."
+      },
+      {
+        title: "Foundations and site works",
+        description: "Supply and installation of foundations, groundworks, external drainage and utility connections."
+      },
+      {
+        title: "Mechanical lifting equipment",
+        description: "Crane hire, telehandlers, scaffolding and fall-arrest systems."
+      },
+      {
+        title: "Planning and regulatory fees",
+        description: "Planning applications, architectural services, engineering approvals and associated documentation."
+      }
+    ],
+    dimensions: {
+      totalArea: { feet: 1043, meters: 96.84 },
+      livingArea: { feet: 764, meters: 70.94 },
+      coveredTerrace: { feet: 279, meters: 25.90 },
+      bedrooms: "3",
+      bathrooms: 2,
+      overallSize: "approx. 52.2 × 20.7 × 9.8 ft (15.90 × 6.30 × 3.0 m)"
+    },
+    construction: {
+      wallSystem: "SIP panels (structural insulated panels)",
+      insulation: "High-performance SIP core with excellent airtightness",
+      windows: "Large glazed openings to living areas",
+      roof: "Metal roofing system",
+      foundation: "Factory-built for clean, fast on-site installation"
+    },
+    energyEnvironment: [
+      "High thermal performance insulated SIP envelope",
+      "Stable indoor comfort suitable for year-round use",
+      "Reduced heat loss and efficient energy demand",
+      "Abundant natural daylight through large glazed areas",
+      "Durable, low-maintenance external materials"
+    ],
+    features: [
+      "Open-plan kitchen–living space",
+      "Three-bedroom family layout",
+      "Master bedroom with en-suite shower room",
+      "Two additional flexible bedrooms",
+      "Two shower rooms",
+      "Covered terrace for extended outdoor living",
+      "Modern minimalist architectural language",
+      "Efficient and rational planning"
+    ],
+    additionalImages: [
+      "/MODERN/2 2K (2) Large.jpeg"
+    ],
+    floorPlans: [
+      "/MODERN/Screenshot 2026-01-25 at 14.12.42.png"
+    ],
+    facades: [
+      "/MODERN/Screenshot 2026-01-25 at 14.12.07.png",
+      "/MODERN/Screenshot 2026-01-25 at 14.12.36.png"
+    ]
+  },
+  {
+    name: "MODERN 120",
+    slug: "modern-120",
+    inStock: true,
+    imageUrl: "/MODERN/1_2k Final Large.jpeg",
+    squareFeet: 1336,
+    squareMeters: 124.12,
+    price: 184200,
+    type: "FOUR-BEDROOM",
+    category: "MODERN",
+    description: "A unique modern SIP home designed around privacy, comfort and balanced family living, featuring four en-suite bedrooms and a central covered terrace.",
+    livingArea: { feet: 1153, meters: 107.10 },
+    coveredTerrace: { feet: 183, meters: 17.02 },
+    thermalPerformance: "High-performance SIP core with excellent airtightness",
+    assemblyTime: "4–8 weeks",
+    keyFeatures: [
+      "Rare four-bedroom layout with en-suite bathroom to every bedroom",
+      "Central open-plan kitchen–living area",
+      "Covered internal terrace creating a private outdoor space",
+      "Excellent separation between private and shared zones",
+      "Ideal solution for families, guest accommodation or co-living",
+      "Energy-efficient SIP construction",
+      "Internal finishes and internal doors included",
+      "Factory-manufactured system for fast and predictable assembly"
+    ],
+    about: "The MODERN 120 is a distinctive and highly functional modern home, designed to provide an exceptional level of privacy and comfort for all occupants. Its layout is centred around a shared living space, while each bedroom functions as a self-contained private zone.\n\nWith an internal living area of 1,153 ft² (107.10 m²), the house features a spacious open-plan kitchen–living room at its core, surrounded by four generously sized bedrooms. A defining feature of the design is that each bedroom is equipped with its own private bathroom, making the MODERN 120 particularly well suited for larger families, multi-generational living or guest-oriented use.\n\nAt the heart of the house is a covered internal terrace (patio) of 183 ft² (17.02 m²). This sheltered outdoor space enhances natural light and ventilation while providing a quiet, private area for relaxation, independent of weather conditions. The terrace also strengthens the connection between interior spaces, creating a calm and balanced atmosphere throughout the home.\n\nThe clear zoning and symmetrical planning allow the MODERN 120 to function efficiently both as a permanent family residence and as a high-quality holiday or guest accommodation property.\n\nBuilt as a permanent residential structure, the MODERN 120 combines contemporary architectural language with high-performance SIP construction, delivering comfort, energy efficiency and long-term durability.\n\nAll structural elements are precision-manufactured in the factory and delivered ready for a clean, fast and predictable on-site assembly process.",
+    whatsIncluded: [
+      {
+        title: "Complete SIP structural shell",
+        description: "External SIP walls, internal SIP partitions, floor and roof panels manufactured in the factory."
+      },
+      {
+        title: "Exterior cladding system",
+        description: "Model-specific exterior finish."
+      },
+      {
+        title: "Roofing package",
+        description: "Metal roofing sheets, fascias, soffits, guttering and downpipes."
+      },
+      {
+        title: "PVC double-glazed windows and exterior entrance door",
+        description: ""
+      },
+      {
+        title: "Internal finishes and internal doors",
+        description: "Wall and ceiling linings, plasterboard, painted surfaces, ceiling finishes, finished floor coverings and internal doors."
+      },
+      {
+        title: "Internal plumbing and electrical cabling (first-fix only)",
+        description: "Installed internal water supply pipework, waste and drainage routes, and electrical cabling only, without sanitary ware, electrical fittings or final connections."
+      },
+      {
+        title: "On-site assembly of the structural shell",
+        description: "Installation of SIP panels, roofing, exterior finishes, windows, internal finishes and internal doors."
+      },
+      {
+        title: "Assembly drawings and technical documentation",
+        description: ""
+      }
+    ],
+    whatsNotIncluded: [
+      {
+        title: "Bathrooms and sanitary installations",
+        description: "Sanitary ware, taps, WC, shower equipment, bathroom furniture, tiling, waterproofing and all bathroom finishing works."
+      },
+      {
+        title: "Kitchen furniture and fittings",
+        description: "Kitchen units, worktops, appliances and built-in kitchen furniture."
+      },
+      {
+        title: "Electrical fittings and fixtures",
+        description: "Sockets, switches, light fittings, decorative lighting and any electrical devices."
+      },
+      {
+        title: "Mechanical and electrical systems",
+        description: "Heating systems, ventilation, MVHR, ASHP, radiators, underfloor heating and all HVAC equipment."
+      },
+      {
+        title: "Foundations and site works",
+        description: "Supply and installation of foundations, groundworks, external drainage and utility connections."
+      },
+      {
+        title: "Mechanical lifting equipment",
+        description: "Crane hire, telehandlers, scaffolding and fall-arrest systems."
+      },
+      {
+        title: "Planning and regulatory fees",
+        description: "Planning applications, architectural services, engineering approvals and associated documentation."
+      }
+    ],
+    dimensions: {
+      totalArea: { feet: 1336, meters: 124.12 },
+      livingArea: { feet: 1153, meters: 107.10 },
+      coveredTerrace: { feet: 183, meters: 17.02 },
+      bedrooms: "4",
+      bathrooms: 4,
+      overallSize: "approx. 36.1 × 41.7 × 9.8 ft (11.00 × 12.70 × 3.0 m)"
+    },
+    construction: {
+      wallSystem: "SIP panels (structural insulated panels)",
+      insulation: "High-performance SIP core with excellent airtightness",
+      windows: "Large glazed openings to living areas and terrace",
+      roof: "Metal roofing system",
+      foundation: "Factory-built for clean, fast on-site installation"
+    },
+    energyEnvironment: [
+      "High thermal performance insulated SIP envelope",
+      "Stable indoor comfort suitable for year-round use",
+      "Reduced heat loss and efficient energy demand",
+      "Balanced daylight and natural ventilation via internal terrace",
+      "Durable, low-maintenance external materials"
+    ],
+    features: [
+      "Four-bedroom layout with en-suite bathrooms",
+      "Private sleeping zones for all occupants",
+      "Central open-plan living space",
+      "Covered internal terrace (patio)",
+      "Excellent functional zoning",
+      "Modern minimalist architectural language",
+      "Efficient and rational planning"
+    ],
+    additionalImages: [
+      "/MODERN/2_2k Final Large.jpeg"
+    ],
+    floorPlans: [
+      "/MODERN/Screenshot 2026-01-25 at 14.14.45.png"
+    ],
+    facades: [
+      "/MODERN/Screenshot 2026-01-25 at 14.14.25.png"
+    ]
   },
   
   // Modular Houses
