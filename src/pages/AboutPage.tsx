@@ -1,13 +1,15 @@
 import React from 'react';
 import SEO from '../components/SEO';
+import { buildKeywords } from '../data/seo-keywords';
 
 const AboutPage: React.FC = () => {
   return (
     <>
       <SEO
         title="About Prefab Homes"
-        description="Learn about Prefab Homes - building the future of housing with innovative prefab technology, sustainable construction, and exceptional quality."
+        description="About Prefab Homes UK: innovative prefab technology, sustainable construction, Oxford and nationwide. Building the future of housing with exceptional quality."
         url="/about"
+        keywords={buildKeywords('about prefab homes UK, prefabricated house builder Oxford London, sustainable construction, innovative prefab technology, Prefab Homes company')}
       />
       <div className="bg-white">
       <div className="pt-20">

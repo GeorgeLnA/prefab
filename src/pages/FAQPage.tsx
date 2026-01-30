@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO';
+import { buildKeywords } from '../data/seo-keywords';
 import { AnimatedButton } from '../components/ui/animated-button';
 
 const FAQPage: React.FC = () => {
@@ -121,8 +122,9 @@ const FAQPage: React.FC = () => {
     <>
       <SEO
         title="Frequently Asked Questions"
-        description="Get answers to common questions about prefab homes, construction process, energy efficiency, pricing, warranties, and more."
+        description="FAQ: prefab homes UK, construction, energy efficiency, pricing, warranties. Oxford, London, Oxfordshire. Common questions about prefabricated houses."
         url="/faq"
+        keywords={buildKeywords('prefab homes FAQ UK, prefabricated house questions Oxford London, modular home FAQ, prefab construction pricing warranties')}
       />
       <div className="bg-white">
       <div className="pt-20">
@@ -202,12 +204,12 @@ const FAQPage: React.FC = () => {
               Our expert team is here to help. Get in touch for personalized answers 
               and guidance on your prefab home project.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
               <AnimatedButton
                 asLink={true}
                 href="/contact"
                 variant="yellow"
-                className="px-8 py-3 font-thin text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
+                className="shrink-0 px-8 py-3 font-thin text-sm sm:text-base md:text-lg text-center"
               >
                 Contact Our Experts
               </AnimatedButton>
@@ -215,7 +217,7 @@ const FAQPage: React.FC = () => {
                 asLink={true}
                 href="tel:+447495788669"
                 variant="white"
-                className="px-8 py-3 font-thin text-sm sm:text-base md:text-lg"
+                className="shrink-0 px-8 py-3 font-thin text-sm sm:text-base md:text-lg text-center"
               >
                 Call +44 7495788669
               </AnimatedButton>

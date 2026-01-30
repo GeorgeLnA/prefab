@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SEO from '../components/SEO';
+import { buildKeywords } from '../data/seo-keywords';
 
 const GalleryPage: React.FC = () => {
   const [selectedMediaIndex, setSelectedMediaIndex] = useState<number | null>(null);
@@ -315,8 +316,9 @@ const GalleryPage: React.FC = () => {
     <>
       <SEO
         title="Gallery - Prefab Homes"
-        description="Browse our gallery of completed prefab home projects. See real homes, case studies, photos, and videos showcasing our quality and craftsmanship."
+        description="Gallery of completed prefab home projects across UK. Case studies, photos, videos. Oxford, London, Oxfordshire prefab homes. Quality and craftsmanship."
         url="/gallery"
+        keywords={buildKeywords('prefab home gallery UK, prefabricated house case studies Oxford London, modular home photos, completed prefab projects, prefab home portfolio')}
       />
       <div className="bg-white">
       <div className="pt-20">

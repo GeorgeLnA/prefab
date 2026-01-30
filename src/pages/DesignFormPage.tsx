@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { houseData } from '../data/houses';
 import { insertDesignRequest } from '../lib/submission-insert';
 import SEO from '../components/SEO';
+import { buildKeywords } from '../data/seo-keywords';
 import { InteractiveHoverButton } from '../components/ui/interactive-hover-button';
 
 const DesignFormPage: React.FC = () => {
@@ -87,8 +88,9 @@ const DesignFormPage: React.FC = () => {
     <>
       <SEO
         title="Design Your Modular Home - Custom Prefab Home Builder"
-        description="Design your own modular prefab home with our custom builder. Choose size, rooms, materials, features, and more. Create your dream home in minutes."
+        description="Design your modular prefab home online. Custom size, rooms, materials. UK wide. Oxford, London, Oxfordshire. Instant quote. Create your dream prefab home."
         url="/design-form"
+        keywords={buildKeywords('design modular home UK, custom prefab home builder Oxford London, prefabricated house design, modular home configurator, instant quote prefab', { includeServices: true })}
       />
       <div className="bg-white">
       <div className="pt-28 sm:pt-32 md:pt-36 lg:pt-40 min-h-screen bg-gray-50">

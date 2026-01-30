@@ -22,12 +22,12 @@ const NotFoundPage: React.FC = () => {
               The page you're looking for doesn't exist or has been moved. 
               Let's get you back on track.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
               <AnimatedButton
                 asLink={true}
                 href="/"
                 variant="yellowOnWhite"
-                className="px-8 py-4 font-thin text-base w-full sm:w-auto text-center"
+                className="shrink-0 px-8 py-4 font-thin text-base text-center"
               >
                 Go to Homepage
               </AnimatedButton>
@@ -35,7 +35,7 @@ const NotFoundPage: React.FC = () => {
                 asLink={true}
                 href="/designs"
                 variant="white"
-                className="px-8 py-4 font-thin text-base w-full sm:w-auto text-center"
+                className="shrink-0 px-8 py-4 font-thin text-base text-center"
               >
                 Browse Designs
               </AnimatedButton>

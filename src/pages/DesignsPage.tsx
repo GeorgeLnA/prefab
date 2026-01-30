@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { houseData, getCategories, getHousesByCategory } from '../data/houses';
 import SEO from '../components/SEO';
+import { buildKeywords } from '../data/seo-keywords';
 
 const DesignsPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
@@ -31,8 +32,9 @@ const DesignsPage: React.FC = () => {
     <>
       <SEO
         title="House Designs & Models"
-        description="Browse our complete collection of prefab home designs. From compact modular homes to spacious smart homes. View specifications, pricing, and availability."
+        description="Browse prefab home designs for Oxford, UK and nationwide. Nordy, Skandy, Modern and Modular house models. Specifications, pricing, availability. London, Oxfordshire delivery."
         url="/designs"
+        keywords={buildKeywords('prefab house designs UK, modular home models, prefabricated house plans Oxford London, Nordy Skandy Modern Modular, prefab home specifications pricing')}
       />
       <div className="bg-white">
       <div className="pt-20">

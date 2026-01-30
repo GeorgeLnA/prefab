@@ -3,6 +3,7 @@ import { AnimatedButton } from '../components/ui/animated-button';
 import { insertContact } from '../lib/submission-insert';
 import { houseData } from '../data/houses';
 import SEO from '../components/SEO';
+import { buildKeywords } from '../data/seo-keywords';
 
 const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -51,8 +52,9 @@ const ContactPage: React.FC = () => {
     <>
       <SEO
         title="Contact Us"
-        description="Get in touch with Prefab Homes. Schedule a consultation, discuss your project, or request a quote. Our expert team is ready to help build your dream home."
+        description="Contact Prefab Homes for Oxford, London and UK. Schedule a consultation, request a quote, discuss your prefab home project. Expert team ready to help."
         url="/contact"
+        keywords={buildKeywords('contact prefab homes, prefab home quote UK, consultation Oxford London, request quote prefabricated house, Prefab Homes contact', { includeServices: true })}
       />
       <div>
       <section 

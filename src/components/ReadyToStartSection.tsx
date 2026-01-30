@@ -34,18 +34,18 @@ const ReadyToStartSection: React.FC = () => {
               </div>
             </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 md:gap-6 justify-center">
+          <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
             <AnimatedButton
               asLink={true}
               href="/contact"
               variant="whiteOnYellow"
-              className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg"
+              className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
               Schedule Consultation
             </AnimatedButton>
             <AnimatedButton
               variant="greyToYellow"
-              className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg"
+              className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
               Download Brochure
             </AnimatedButton>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { houseData } from '../data/houses';
 import SEO from '../components/SEO';
+import { buildKeywords } from '../data/seo-keywords';
 import { AnimatedButton } from '../components/ui/animated-button';
 import { ExpandingButton } from '../components/ui/expanding-button';
 
@@ -38,8 +39,9 @@ const SkandyPage: React.FC = () => {
     <>
       <SEO
         title="Skandy Homes - Movable Prefab Living"
-        description="Movable prefab homes that can be placed without building permits. Quick installation and flexible living solutions."
+        description="Skandy movable prefab homes UK: no building permit options, quick installation. Oxford, London, Oxfordshire. SIP prefabricated houses. Flexible living."
         url="/skandy"
+        keywords={buildKeywords('Skandy prefab homes UK, movable prefabricated houses Oxford London, no permit prefab, SIP homes UK, Scandinavian prefab')}
       />
       <div>
       {/* Hero Section */}
@@ -194,12 +196,12 @@ const SkandyPage: React.FC = () => {
           <p className="text-xl text-white/90 font-body font-normal mb-8">
             Experience the tranquility and sustainability of Scandinavian design with our carefully crafted Skandy collection.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
             <AnimatedButton
               asLink={true}
               href="/contact"
               variant={isScrolled ? "greyToWhite" : "greyToYellow"}
-              className="px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
+              className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
               Schedule Viewing
             </AnimatedButton>
@@ -207,7 +209,7 @@ const SkandyPage: React.FC = () => {
               asLink={true}
               href="/gallery"
               variant={isScrolled ? "whiteToGrey" : "whiteOnYellow"}
-              className="px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
+              className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
               View All Models
             </AnimatedButton>

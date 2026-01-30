@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { houseData } from '../data/houses';
 import SEO from '../components/SEO';
+import { buildKeywords } from '../data/seo-keywords';
 import { AnimatedButton } from '../components/ui/animated-button';
 import { ExpandingButton } from '../components/ui/expanding-button';
 
@@ -38,8 +39,9 @@ const ModernBPage: React.FC = () => {
     <>
       <SEO
         title="Modern-B Collection - Contemporary Prefab Homes"
-        description="Contemporary prefab homes with modern design and premium features. Sleek aesthetics and cutting-edge technology for sophisticated living."
+        description="Modern-B prefab homes UK: bold contemporary design, premium features. Oxford, London delivery. Prefabricated houses with striking architecture."
         url="/modern-b"
+        keywords={buildKeywords('Modern-B prefab homes UK, contemporary prefabricated houses Oxford London, bold prefab design, architectural prefab homes')}
       />
       <div>
       {/* Hero Section */}
@@ -193,12 +195,12 @@ const ModernBPage: React.FC = () => {
           <p className="text-xl text-white/90 font-body font-normal mb-8">
             Experience contemporary architecture at its finest with our Modern-B collection's striking designs and innovative features.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
             <AnimatedButton
               asLink={true}
               href="/contact"
               variant={isScrolled ? "greyToWhite" : "greyToYellow"}
-              className="px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
+              className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
               Schedule Viewing
             </AnimatedButton>
@@ -206,7 +208,7 @@ const ModernBPage: React.FC = () => {
               asLink={true}
               href="/gallery"
               variant={isScrolled ? "whiteToGrey" : "whiteOnYellow"}
-              className="px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
+              className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
               View All Models
             </AnimatedButton>

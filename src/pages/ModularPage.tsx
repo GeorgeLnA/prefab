@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { houseData } from '../data/houses';
 import SEO from '../components/SEO';
+import { buildKeywords } from '../data/seo-keywords';
 import { AnimatedButton } from '../components/ui/animated-button';
 import { ExpandingButton } from '../components/ui/expanding-button';
 
@@ -38,8 +39,9 @@ const ModularPage: React.FC = () => {
     <>
       <SEO
         title="Modular Homes - Flexible Prefab Living"
-        description="Modular construction for customizable living. Expandable designs that grow with your needs."
+        description="Modular prefab homes UK: customizable, expandable designs. Oxford, London, Oxfordshire. Design your own prefabricated house. Flexible living."
         url="/modular"
+        keywords={buildKeywords('modular homes UK, modular prefab houses Oxford London, expandable prefab homes, customizable prefabricated houses, X10 X23 X40 modular')}
       />
       <div>
       {/* Hero Section */}
@@ -52,7 +54,7 @@ const ModularPage: React.FC = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
-            backgroundImage: "url('/MODULAR/x10/snapedit_1697487301153 Large.jpeg')" 
+            backgroundImage: "url('/MODULAR/x23/snapedit_1697572431807 Large.jpeg')" 
           }}
         ></div>
         
@@ -66,10 +68,10 @@ const ModularPage: React.FC = () => {
                 Modular construction for customizable living. Expandable designs that grow with your needs, 
                 .
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-row items-center gap-3 flex-nowrap">
                 <a 
                   href="/contact" 
-                  className="inline-block border border-white text-white px-8 py-3 font-thin text-sm sm:text-base md:text-lg md:hover:bg-white md:hover:text-gray-900 transition-colors duration-200 rounded-lg w-full sm:w-auto text-center leading-none"
+                  className="inline-flex items-center justify-center border border-white text-white px-8 py-3 font-thin text-sm sm:text-base md:text-lg md:hover:bg-white md:hover:text-gray-900 transition-colors duration-200 rounded-lg leading-none whitespace-nowrap shrink-0"
                 >
                   Plan Your Modules
                 </a>
@@ -77,7 +79,7 @@ const ModularPage: React.FC = () => {
                   asLink={true}
                   href="/design-form"
                   variant="yellow"
-                  className="px-8 py-3 font-thin text-sm sm:text-base md:text-lg w-full sm:w-auto leading-none"
+                  className="inline-flex items-center justify-center px-8 py-3 font-thin text-sm sm:text-base md:text-lg leading-none whitespace-nowrap shrink-0"
                 >
                   Design Yourself
                 </AnimatedButton>
@@ -226,12 +228,12 @@ const ModularPage: React.FC = () => {
           <p className="text-xl text-white/90 font-body font-normal mb-8">
             Start with what you need today and expand tomorrow with our flexible modular construction system.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
             <AnimatedButton
               asLink={true}
               href="/contact"
               variant={isScrolled ? "greyToWhite" : "greyToYellow"}
-              className="px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
+              className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
               Schedule Viewing
             </AnimatedButton>
@@ -239,7 +241,7 @@ const ModularPage: React.FC = () => {
               asLink={true}
               href="/gallery"
               variant={isScrolled ? "whiteToGrey" : "whiteOnYellow"}
-              className="px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
+              className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
               View All Models
             </AnimatedButton>

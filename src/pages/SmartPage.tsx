@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { houseData } from '../data/houses';
 import SEO from '../components/SEO';
+import { buildKeywords } from '../data/seo-keywords';
 import { AnimatedButton } from '../components/ui/animated-button';
 import { ExpandingButton } from '../components/ui/expanding-button';
 
@@ -38,8 +39,9 @@ const SmartPage: React.FC = () => {
     <>
       <SEO
         title="Smart Homes - Intelligent Prefab Living"
-        description="Advanced home automation and energy efficiency. Experience the future of living with AI-powered systems."
+        description="Smart prefab homes UK: home automation, energy efficient. Oxford, London, Oxfordshire. Intelligent prefabricated houses. Future of living."
         url="/smart"
+        keywords={buildKeywords('smart prefab homes UK, intelligent prefabricated houses Oxford London, home automation prefab, energy efficient smart homes')}
       />
       <div>
       {/* Hero Section */}
@@ -193,12 +195,12 @@ const SmartPage: React.FC = () => {
           <p className="text-xl text-white/90 font-body font-normal mb-8">
             Experience the convenience and efficiency of smart home technology with our intelligent prefab designs.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
             <AnimatedButton
               asLink={true}
               href="/contact"
               variant="whiteOnYellow"
-              className="px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
+              className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
               Schedule Demo
             </AnimatedButton>
@@ -206,7 +208,7 @@ const SmartPage: React.FC = () => {
               asLink={true}
               href="/gallery"
               variant={isScrolled ? "whiteToGrey" : "whiteOnYellow"}
-              className="px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
+              className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
               View All Models
             </AnimatedButton>

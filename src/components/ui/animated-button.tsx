@@ -135,8 +135,9 @@ const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
     );
 
     if (asLink && href) {
+      const linkClassName = className?.includes('w-full') ? 'block w-full' : 'inline-block';
       return (
-        <Link to={href} className="block w-full">
+        <Link to={href} className={linkClassName}>
           {buttonContent}
         </Link>
       );

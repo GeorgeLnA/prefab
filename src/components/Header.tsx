@@ -316,7 +316,7 @@ const Header: React.FC = () => {
             </div>
             <div className="flex items-center min-h-0">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-2.5 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6 w-full h-full">
-                {[...houseTypes, { name: 'Modular', path: '/modular', image: '/MODULAR/x10/snapedit_1697487301153 Large.jpeg' }].map((type) => {
+                {[...houseTypes, { name: 'Modular', path: '/modular', image: '/MODULAR/x23/snapedit_1697572431807 Large.jpeg' }].map((type) => {
                   const isComingSoon = false;
                   
                   const content = (

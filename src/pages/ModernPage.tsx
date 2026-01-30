@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { houseData } from '../data/houses';
 import SEO from '../components/SEO';
+import { buildKeywords } from '../data/seo-keywords';
 import { AnimatedButton } from '../components/ui/animated-button';
 import { ExpandingButton } from '../components/ui/expanding-button';
 
@@ -41,8 +42,9 @@ const ModernPage: React.FC = () => {
     <>
       <SEO
         title="Modern Collection - Contemporary Prefab Homes"
-        description="Sleek modern design with cutting-edge features. Premium materials and sophisticated aesthetics for contemporary living."
+        description="Modern prefab homes UK: sleek design, premium materials. Oxford, London, Oxfordshire. Contemporary prefabricated houses. View models and pricing."
         url="/modern"
+        keywords={buildKeywords('modern prefab homes UK, contemporary prefabricated houses Oxford London, sleek prefab design, premium prefab homes, Modern collection prefab')}
       />
       <div>
         {/* Hero Section */}
@@ -197,12 +199,12 @@ const ModernPage: React.FC = () => {
           <p className="text-xl text-white/90 font-body font-normal mb-8">
             Discover the perfect blend of contemporary design and sophisticated living with our Modern collection.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
             <AnimatedButton
               asLink={true}
               href="/contact"
               variant={isScrolled ? "greyToWhite" : "greyToYellow"}
-              className="px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
+              className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
               Schedule Viewing
             </AnimatedButton>
@@ -210,7 +212,7 @@ const ModernPage: React.FC = () => {
               asLink={true}
               href="/gallery"
               variant={isScrolled ? "whiteToGrey" : "whiteOnYellow"}
-              className="px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
+              className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
               View All Models
             </AnimatedButton>

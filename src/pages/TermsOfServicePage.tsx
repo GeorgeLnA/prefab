@@ -1,14 +1,16 @@
 import React from 'react';
 import SEO from '../components/SEO';
+import { buildKeywords } from '../data/seo-keywords';
 
 const TermsOfServicePage: React.FC = () => {
   return (
     <>
       <SEO
         title="Terms of Service - Prefab Homes"
-        description="Terms of Service for Prefab Homes. These terms govern your use of our services and establish the legal framework for our business relationship."
+        description="Terms of Service for Prefab Homes UK. Legal terms for prefab home services. Oxford, London, nationwide. Prefabricated houses modular homes."
         url="/terms-of-service"
         noindex={true}
+        keywords={buildKeywords('terms of service Prefab Homes UK, prefab homes terms Oxford London')}
       />
       <div className="bg-white">
       <div className="pt-20">

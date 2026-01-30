@@ -466,12 +466,12 @@ const HouseTypes: React.FC = () => {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
               <AnimatedButton
                 asLink={true}
                 href="/modular"
                 variant="white"
-                className="w-full sm:w-auto px-8 sm:px-10 md:px-12 py-3 sm:py-4 font-thin text-base sm:text-lg md:text-xl"
+                className="shrink-0 px-8 sm:px-10 md:px-12 py-3 sm:py-4 font-thin text-base sm:text-lg md:text-xl text-center"
               >
                 See More
               </AnimatedButton>
@@ -479,7 +479,7 @@ const HouseTypes: React.FC = () => {
                 asLink={true}
                 href="/design-form"
                 variant="yellow"
-                className="w-full sm:w-auto px-8 sm:px-10 md:px-12 py-3 sm:py-4 font-thin text-base sm:text-lg md:text-xl"
+                className="shrink-0 px-8 sm:px-10 md:px-12 py-3 sm:py-4 font-thin text-base sm:text-lg md:text-xl text-center"
               >
                 Instant Quote
               </AnimatedButton>
@@ -497,12 +497,12 @@ const HouseTypes: React.FC = () => {
               Our design consultants can help you choose the perfect house type based on your 
               lifestyle, budget, and preferences.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+            <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
               <AnimatedButton
                 asLink={true}
                 href="/contact"
                 variant="whiteToGrey"
-                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg"
+                className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
               >
                 Schedule Consultation
               </AnimatedButton>
@@ -510,7 +510,7 @@ const HouseTypes: React.FC = () => {
                 asLink={true}
                 href="/designs"
                 variant="greyToWhite"
-                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg"
+                className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
               >
                 Browse All Designs
               </AnimatedButton>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO';
+import { buildKeywords } from '../data/seo-keywords';
 import { InteractiveHoverButton } from '../components/ui/interactive-hover-button';
 
 const BlogPage: React.FC = () => {
@@ -143,8 +144,9 @@ The future of prefab living is smart, connected, and responsive to our needs. As
     <>
       <SEO
         title="Prefab Homes Blog"
-        description="Discover the latest insights, trends, and expert advice in prefab construction, energy efficiency, and modern living."
+        description="Prefab homes blog UK: insights, trends, expert advice. Prefabricated houses, energy efficiency, Oxford, London. Construction and modern living."
         url="/blog"
+        keywords={buildKeywords('prefab homes blog UK, prefabricated house advice Oxford London, modular home insights, prefab construction trends')}
       />
       <div className="bg-white">
       <div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import HomeSmoothScroll from '../components/ui/home-smooth-scroll';
 import SEO from '../components/SEO';
+import { buildKeywords } from '../data/seo-keywords';
 
 const HomePage: React.FC = () => {
   const organizationSchema = {
@@ -45,9 +46,9 @@ const HomePage: React.FC = () => {
     <>
       <SEO
         title="Prefab Homes | High-Performance, Energy Efficient, Built in Days"
-        description="Discover premium prefab homes engineered for efficiency. Highly energy efficient design, rapid 3-5 day assembly, and sustainable construction."
+        description="Premium prefab and prefabricated homes in Oxford, UK and nationwide. Highly energy efficient, rapid 3-5 day assembly, sustainable construction. London, Oxfordshire, Thames Valley delivery."
         url="/"
-        keywords="prefab homes, modular homes, energy efficient homes, sustainable construction, prefabricated houses UK, highly energy efficient"
+        keywords={buildKeywords('prefab homes Oxford, prefabricated houses London, modular homes UK, energy efficient homes, sustainable construction, 7 day house, turnkey prefab', { includeServices: true })}
         structuredData={[organizationSchema, websiteSchema]}
       />
       <HomeSmoothScroll />

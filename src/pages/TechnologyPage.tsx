@@ -1,14 +1,16 @@
 import React from 'react';
 import { AnimatedButton } from '../components/ui/animated-button';
 import SEO from '../components/SEO';
+import { buildKeywords } from '../data/seo-keywords';
 
 const TechnologyPage: React.FC = () => {
   return (
     <>
       <SEO
         title="Technology & Innovation"
-        description="Advanced prefab home technology: highly energy efficient design, precision CNC manufacturing, smart home integration, and sustainable materials. Built for performance."
+        description="Prefab home technology: energy efficient design, CNC manufacturing, SIP construction, smart home integration. UK prefab builder. Oxford, London, nationwide."
         url="/technology"
+        keywords={buildKeywords('prefab home technology UK, SIP construction, energy efficient prefab, CNC manufactured homes, smart prefab homes Oxford London, sustainable materials')}
       />
       <div>
       {/* Hero Section */}
@@ -173,12 +175,12 @@ const TechnologyPage: React.FC = () => {
             <p className="text-base sm:text-lg md:text-xl text-black/90 mb-6 sm:mb-8 leading-relaxed">
               See how our technology and engineering create homes that are more efficient, faster to build, and built to last.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+            <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
               <AnimatedButton
                 asLink={true}
-            href="/contact" 
+                href="/contact"
                 variant="whiteOnYellow"
-                className="px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
+                className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
               >
                 Schedule Consultation
               </AnimatedButton>
@@ -186,7 +188,7 @@ const TechnologyPage: React.FC = () => {
                 asLink={true}
                 href="/designs"
                 variant="whiteOnYellow"
-                className="px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg"
+                className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
               >
                 View Designs
               </AnimatedButton>

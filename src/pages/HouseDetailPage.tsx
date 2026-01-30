@@ -4,6 +4,7 @@ import { houseData, getHouseBySlug } from '../data/houses';
 import { AnimatedButton } from '../components/ui/animated-button';
 import { useRequestModal } from '../contexts/RequestModalContext';
 import SEO from '../components/SEO';
+import { buildKeywords } from '../data/seo-keywords';
 
 const HouseDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -187,11 +188,11 @@ const HouseDetailPage: React.FC = () => {
     <>
       <SEO
         title={house ? `${house.name} - ${house.category} Prefab Home` : 'House Details'}
-        description={house ? `${house.name} - ${house.description}. ${house.squareFeet} ft², £${house.price.toLocaleString()}, ${house.category} category.` : 'View house details'}
-        url={`/house/${house.slug}`}
+        description={house ? `${house.name} - ${house.description}. ${house.squareFeet} ft², £${house.price.toLocaleString()}. Prefab home UK, Oxford, London, Oxfordshire.` : 'View house details'}
+        url={house ? `/house/${house.slug}` : '/house'}
         image={house?.imageUrl}
         type="product"
-        keywords={house ? `${house.name}, ${house.category}, prefab home, modular house, ${house.squareFeet} sq ft, £${house.price}` : undefined}
+        keywords={house ? buildKeywords(`${house.name}, ${house.category} prefab home UK, prefabricated house Oxford London, ${house.squareFeet} sq ft, £${house.price}, modular house`) : undefined}
         structuredData={house ? [productSchema, breadcrumbSchema].filter(Boolean) : undefined}
       />
       <div className="bg-white">

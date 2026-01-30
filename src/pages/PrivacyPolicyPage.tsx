@@ -1,14 +1,16 @@
 import React from 'react';
 import SEO from '../components/SEO';
+import { buildKeywords } from '../data/seo-keywords';
 
 const PrivacyPolicyPage: React.FC = () => {
   return (
     <>
       <SEO
         title="Privacy Policy - Prefab Homes"
-        description="Privacy Policy for Prefab Homes. Your privacy is important to us. This policy explains how we collect, use, and protect your personal information."
+        description="Privacy Policy for Prefab Homes UK. How we collect, use, and protect your information. Oxford, London, nationwide. Prefab homes prefabricated houses."
         url="/privacy-policy"
         noindex={true}
+        keywords={buildKeywords('privacy policy Prefab Homes UK, prefab homes privacy Oxford London')}
       />
       <div className="bg-white">
       <div className="pt-20">
