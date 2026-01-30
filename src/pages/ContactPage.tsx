@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AnimatedButton } from '../components/ui/animated-button';
-import { supabase } from '../lib/supabase';
+import { insertContact } from '../lib/submission-insert';
+import { houseData } from '../data/houses';
 import SEO from '../components/SEO';
 
 const ContactPage: React.FC = () => {
@@ -29,14 +30,13 @@ const ContactPage: React.FC = () => {
     setSubmitError(null);
     setSubmitting(true);
     try {
-      const { error } = await supabase.from('submissions').insert({
-        form_type: 'contact',
+      const { error } = await insertContact({
         name: formData.name,
         email: formData.email,
-        phone: formData.phone || null,
-        message: formData.message || null,
-        project_type: formData.projectType || null,
-        budget: formData.budget || null,
+        phone: formData.phone || undefined,
+        message: formData.message || undefined,
+        projectType: formData.projectType || undefined,
+        budget: formData.budget || undefined,
       });
       if (error) throw error;
       setSubmitted(true);
@@ -79,7 +79,7 @@ const ContactPage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Contact Form */}
             <div>
-              <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+              <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg" data-contact-form-card>
                 <h2 className="text-2xl sm:text-3xl font-heading font-thin text-gray-800 mb-3 sm:mb-4">Start Your Project</h2>
                 <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8 font-body font-normal leading-relaxed">
                   {submitted
@@ -140,24 +140,24 @@ const ContactPage: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <label htmlFor="projectType" className="block text-sm font-thin text-gray-700 mb-1.5 sm:mb-2">
-                        Project Type
+                      <label htmlFor="budget" className="block text-sm font-thin text-gray-700 mb-1.5 sm:mb-2">
+                        Budget Range
                       </label>
                       <div className="relative">
                         <select
-                          id="projectType"
-                          name="projectType"
-                          value={formData.projectType}
+                          id="budget"
+                          name="budget"
+                          value={formData.budget}
                           onChange={handleInputChange}
                           className="w-full pl-4 pr-10 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-sm sm:text-base bg-white appearance-none"
                         >
-                          <option value="">Select project type</option>
-                          <option value="modular">Modular Home</option>
-                          <option value="nordy">Nordy</option>
-                          <option value="smart">Smart Home</option>
-                          <option value="modern">Modern Home</option>
-                          <option value="modern-b">Modern-B</option>
-                          <option value="custom">Custom Design</option>
+                          <option value="">Select budget range</option>
+                          <option value="100k-less">£100,000 or less</option>
+                          <option value="100k-250k">£100,000 - £250,000</option>
+                          <option value="250-300k">£250,000 - £300,000</option>
+                          <option value="300-400k">£300,000 - £400,000</option>
+                          <option value="400-500k">£400,000 - £500,000</option>
+                          <option value="500k+">£500,000+</option>
                         </select>
                         <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
                           <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -169,24 +169,40 @@ const ContactPage: React.FC = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="budget" className="block text-sm font-thin text-gray-700 mb-1.5 sm:mb-2">
-                      Budget Range
+                    <label htmlFor="projectType" className="block text-sm font-thin text-gray-700 mb-1.5 sm:mb-2">
+                      House that caught your eye
                     </label>
                     <div className="relative">
                       <select
-                        id="budget"
-                        name="budget"
-                        value={formData.budget}
+                        id="projectType"
+                        name="projectType"
+                        value={formData.projectType}
                         onChange={handleInputChange}
                         className="w-full pl-4 pr-10 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-sm sm:text-base bg-white appearance-none"
                       >
-                        <option value="">Select budget range</option>
-                        <option value="100k-less">£100,000 or less</option>
-                        <option value="100k-250k">£100,000 - £250,000</option>
-                        <option value="250-300k">£250,000 - £300,000</option>
-                        <option value="300-400k">£300,000 - £400,000</option>
-                        <option value="400-500k">£400,000 - £500,000</option>
-                        <option value="500k+">£500,000+</option>
+                        <option value="">Select a house model</option>
+                        <option value="Custom Design">Custom Design</option>
+                        <optgroup label="Skandy">
+                          {houseData.filter(h => h.name.startsWith('SKANDY')).map(h => (
+                            <option key={h.slug} value={h.name}>{h.name}</option>
+                          ))}
+                        </optgroup>
+                        <optgroup label="Nordy">
+                          {houseData.filter(h => h.name.startsWith('NORDY')).map(h => (
+                            <option key={h.slug} value={h.name}>{h.name}</option>
+                          ))}
+                        </optgroup>
+                        <optgroup label="Modern">
+                          {houseData.filter(h => h.name.startsWith('MODERN') && !h.name.startsWith('MODERN-B')).map(h => (
+                            <option key={h.slug} value={h.name}>{h.name}</option>
+                          ))}
+                        </optgroup>
+                        <optgroup label="Modular">
+                          {houseData.filter(h => h.category === 'MODULAR').map(h => (
+                            <option key={h.slug} value={h.name}>{h.name}</option>
+                          ))}
+                        </optgroup>
+                        <option value="Not sure">Not sure</option>
                       </select>
                       <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
                         <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -198,12 +214,11 @@ const ContactPage: React.FC = () => {
 
                   <div>
                     <label htmlFor="message" className="block text-sm font-thin text-gray-700 mb-1.5 sm:mb-2">
-                      Project Details *
+                      Project Details
                     </label>
                     <textarea
                       id="message"
                       name="message"
-                      required
                       rows={5}
                       value={formData.message}
                       onChange={handleInputChange}

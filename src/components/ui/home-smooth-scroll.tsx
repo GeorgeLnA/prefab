@@ -27,6 +27,12 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
     }
   };
 
+  const handleVideoCanPlay = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+    const video = e.currentTarget;
+    video.muted = true;
+    video.play().catch(() => {});
+  };
+
   const navigateToDesigns = () => {
     navigate('/designs');
   };
@@ -85,6 +91,7 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
               playsInline
               muted
               loop={currentVideo === 1}
+              onCanPlay={handleVideoCanPlay}
               onEnded={handleVideoEnd}
               className="absolute inset-0 w-full h-full object-cover object-[40%] md:object-center z-0"
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -122,8 +129,8 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
                             <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                           </svg>
                         </div>
-                        <h3 className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold text-gray-900 mb-0.5 sm:mb-1 md:mb-1.5 tracking-tight leading-tight">Energy Efficiency</h3>
-                        <p className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-gray-900/80 leading-snug font-normal">Highly energy efficient, sustainable, and cost-saving performance.</p>
+                        <h3 className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold text-gray-900 mb-0.5 sm:mb-1 md:mb-1.5 tracking-tight leading-tight">Energy Efficiency</h3>
+                        <p className="text-sm sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-gray-900/80 leading-snug font-normal">Highly energy efficient, sustainable, and cost-saving performance.</p>
                       </div>
                     </div>
 
@@ -135,8 +142,8 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
                         </div>
-                        <h3 className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold text-gray-900 mb-0.5 sm:mb-1 md:mb-1.5 tracking-tight leading-tight">Speed</h3>
-                        <p className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-gray-900/80 leading-snug font-normal">Move-in ready in record time.</p>
+                        <h3 className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold text-gray-900 mb-0.5 sm:mb-1 md:mb-1.5 tracking-tight leading-tight">Speed</h3>
+                        <p className="text-sm sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-gray-900/80 leading-snug font-normal">Move-in ready in record time.</p>
                       </div>
                     </div>
 
@@ -148,8 +155,8 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
                             <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
                           </svg>
                         </div>
-                        <h3 className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold text-gray-900 mb-0.5 sm:mb-1 md:mb-1.5 tracking-tight leading-tight">Speed in Building</h3>
-                        <p className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-gray-900/80 leading-snug font-normal">Move in within days thanks to precision engineering and rapid assembly.</p>
+                        <h3 className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold text-gray-900 mb-0.5 sm:mb-1 md:mb-1.5 tracking-tight leading-tight">Speed in Building</h3>
+                        <p className="text-sm sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-gray-900/80 leading-snug font-normal">Move in within days thanks to precision engineering and rapid assembly.</p>
                       </div>
                     </div>
 
@@ -161,8 +168,8 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
                           </svg>
                         </div>
-                        <h3 className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold text-gray-900 mb-0.5 sm:mb-1 md:mb-1.5 tracking-tight leading-tight">Eco-Friendly</h3>
-                        <p className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-gray-900/80 leading-snug font-normal">Built with the environment in mind, using green materials and methods.</p>
+                        <h3 className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold text-gray-900 mb-0.5 sm:mb-1 md:mb-1.5 tracking-tight leading-tight">Eco-Friendly</h3>
+                        <p className="text-sm sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-gray-900/80 leading-snug font-normal">Built with the environment in mind, using green materials and methods.</p>
                       </div>
                     </div>
                   </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { houseData } from '../data/houses';
-import { supabase } from '../lib/supabase';
+import { insertDesignRequest } from '../lib/submission-insert';
 import SEO from '../components/SEO';
 import { InteractiveHoverButton } from '../components/ui/interactive-hover-button';
 
@@ -66,13 +66,12 @@ const DesignFormPage: React.FC = () => {
     setSubmitError(null);
     setSubmitting(true);
     try {
-      const { error } = await supabase.from('submissions').insert({
-        form_type: 'design_request',
+      const { error } = await insertDesignRequest({
         name: formData.name,
         email: formData.email,
-        phone: formData.phone || null,
-        message: [formData.additionalComments, formData.specialRequirements].filter(Boolean).join('\n\n') || null,
-        budget: formData.budget || null,
+        phone: formData.phone || undefined,
+        message: [formData.additionalComments, formData.specialRequirements].filter(Boolean).join('\n\n') || undefined,
+        budget: formData.budget || undefined,
         payload: formData as unknown as Record<string, unknown>,
       });
       if (error) throw error;

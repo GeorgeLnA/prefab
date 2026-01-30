@@ -25,6 +25,7 @@ import DesignFormPage from './pages/DesignFormPage';
 import TechnologyPage from './pages/TechnologyPage';
 import SkandyPage from './pages/SkandyPage';
 import BungalowPage from './pages/BungalowPage';
+import { AdminAuthProvider } from './contexts/AdminAuthContext';
 import AdminPage from './pages/AdminPage';
 import NotFoundPage from './pages/NotFoundPage';
 
@@ -54,7 +55,7 @@ function App() {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/faq" element={<FAQPage />} />
               <Route path="/about" element={<AboutPage />} />
-              <Route path="/admin" element={<AdminPage />} />
+              <Route path="/admin" element={<AdminAuthProvider><AdminPage /></AdminAuthProvider>} />
               <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
               <Route path="/terms-of-service" element={<TermsOfServicePage />} />
               <Route path="/house/:slug" element={<HouseDetailPage />} />

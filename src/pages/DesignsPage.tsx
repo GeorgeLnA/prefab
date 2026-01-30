@@ -6,9 +6,9 @@ import SEO from '../components/SEO';
 const DesignsPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
 
-  // Filter to show Nordy, Skandy, and Modern designs
+  // Filter to show Nordy, Skandy, Modern, and Modular designs
   const relevantHouses = houseData.filter(house => 
-    house.category === 'NORDY' || house.category === 'MOBILE' || house.category === 'MODERN'
+    house.category === 'NORDY' || house.category === 'MOBILE' || house.category === 'MODERN' || house.category === 'MODULAR'
   );
 
   // Category mapping for filtering (display name -> data category)
@@ -16,11 +16,12 @@ const DesignsPage: React.FC = () => {
     'ALL': 'ALL',
     'Nordy': 'NORDY',
     'Skandy': 'MOBILE',
-    'Modern': 'MODERN'
+    'Modern': 'MODERN',
+    'Modular': 'MODULAR'
   };
 
   // Show relevant categories with display names
-  const categories = ['ALL', 'Nordy', 'Skandy', 'Modern'];
+  const categories = ['ALL', 'Nordy', 'Skandy', 'Modern', 'Modular'];
   
   const filteredHouses = selectedCategory === 'ALL' 
     ? relevantHouses 
@@ -75,13 +76,6 @@ const DesignsPage: React.FC = () => {
                 >
                   {/* Image Section - Fixed Height */}
                   <div className="relative overflow-hidden h-32 sm:h-36 md:h-40 lg:h-64 bg-white flex-shrink-0">
-                    {/* IN STOCK Badge */}
-                    {house.inStock && (
-                      <div className="absolute top-2 left-2 sm:top-3 sm:left-3 z-10 bg-primary text-black py-1 px-2 sm:py-1.5 sm:px-3 text-[9px] sm:text-[10px] md:text-xs font-thin rounded uppercase tracking-wide">
-                        In Stock
-                      </div>
-                    )}
-                    
                     <img 
                       src={house.imageUrl} 
                       alt={`${house.name} - ${house.category} prefab home`}
@@ -151,7 +145,7 @@ const DesignsPage: React.FC = () => {
                 <div className="text-gray-900">Year Warranty</div>
               </div>
               <div>
-                <div className="text-4xl font-thin text-primary mb-2">3</div>
+                <div className="text-4xl font-thin text-primary mb-2">4</div>
                 <div className="text-gray-900">House Categories</div>
               </div>
             </div>

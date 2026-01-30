@@ -156,8 +156,8 @@ const ModernPage: React.FC = () => {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center group">
-              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
+            <div className="text-center group flex flex-col items-center">
+              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300 shrink-0">
                 <svg className="w-10 h-10 text-primary md:group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
                 </svg>
@@ -165,8 +165,8 @@ const ModernPage: React.FC = () => {
               <h3 className="text-xl font-heading font-thin mb-3">Sleek Design</h3>
               <p className="text-gray-900 font-body font-normal">Clean lines and sophisticated aesthetics for contemporary living</p>
             </div>
-            <div className="text-center group">
-              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
+            <div className="text-center group flex flex-col items-center">
+              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300 shrink-0">
                 <svg className="w-10 h-10 text-primary md:group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                 </svg>
@@ -174,8 +174,8 @@ const ModernPage: React.FC = () => {
               <h3 className="text-xl font-heading font-thin mb-3">Premium Amenities</h3>
               <p className="text-gray-900">State-of-the-art features and luxury finishes throughout</p>
             </div>
-            <div className="text-center group">
-              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
+            <div className="text-center group flex flex-col items-center">
+              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300 shrink-0">
                 <svg className="w-10 h-10 text-primary md:group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>

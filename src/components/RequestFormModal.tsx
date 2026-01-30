@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { supabase } from '../lib/supabase';
-import type { RequestModalParams, FormType } from '../types/submissions';
+import { insertQuote, insertFloorPlan } from '../lib/submission-insert';
+import type { RequestModalParams } from '../types/submissions';
 import { cn } from '../lib/utils';
 
 interface RequestFormModalProps {
@@ -18,8 +18,6 @@ export function RequestFormModal({ params, onClose }: RequestFormModalProps) {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
-  const formType: FormType = requestType === 'floor_plan' ? 'floor_plan' : 'quote';
-
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -36,17 +34,12 @@ export function RequestFormModal({ params, onClose }: RequestFormModalProps) {
     e.preventDefault();
     setError('');
     setSubmitting(true);
+    const payload = { name, email, phone, message, source_slug: sourceSlug ?? undefined, context: context ?? undefined };
     try {
-      const { error: err } = await supabase.from('submissions').insert({
-        form_type: formType,
-        name,
-        email,
-        phone: phone || null,
-        message: message || null,
-        source_slug: sourceSlug || null,
-        context: context || null,
-      });
-      if (err) throw new Error(err.message);
+      const { error: err } = requestType === 'floor_plan'
+        ? await insertFloorPlan(payload)
+        : await insertQuote(payload);
+      if (err) throw err;
       setSuccess(true);
       setTimeout(() => onClose(), 1500);
     } catch (err) {

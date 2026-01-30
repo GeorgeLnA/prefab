@@ -1,0 +1,143 @@
+import emailjs from '@emailjs/browser';
+
+const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const adminTemplateId = import.meta.env.VITE_EMAILJS_ADMIN_TEMPLATE_ID;
+const adminEmail = import.meta.env.VITE_ADMIN_EMAIL;
+
+let initialized = false;
+
+function init(): boolean {
+  if (initialized) return true;
+  const key = typeof publicKey === 'string' && publicKey.length > 0 ? publicKey : '';
+  if (!key) return false;
+  try {
+    emailjs.init(key);
+    initialized = true;
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export function isEmailJsConfigured(): boolean {
+  return (
+    typeof publicKey === 'string' && publicKey.length > 0 &&
+    typeof serviceId === 'string' && serviceId.length > 0 &&
+    typeof adminTemplateId === 'string' && adminTemplateId.length > 0 &&
+    typeof adminEmail === 'string' && adminEmail.length > 0
+  );
+}
+
+/**
+ * Admin template variable schema (for EmailJS dashboard).
+ * Use these in your admin HTML template as {{variable_name}}.
+ *
+ * Required in template:
+ * - to_email (admin recipient)
+ *
+ * Submission fields (use in your HTML):
+ * - form_type     e.g. "contact" | "design_request" | "quote" | "floor_plan"
+ * - name          sender name
+ * - email         sender email
+ * - phone         sender phone or "—"
+ * - message       message body or "—"
+ * - project_type  (contact) or "—"
+ * - budget        (contact/design) or "—"
+ * - source_slug   (quote/floor_plan) or "—"
+ * - context       (quote/floor_plan) or "—"
+ * - payload_preview  (design_request JSON summary) or "—"
+ * - submitted_at  friendly date/time string
+ */
+export type AdminTemplateParams = {
+  to_email: string;
+  form_type: string;
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+  project_type: string;
+  budget: string;
+  source_slug: string;
+  context: string;
+  payload_preview: string;
+  submitted_at: string;
+};
+
+function buildAdminParams(partial: Partial<AdminTemplateParams>): AdminTemplateParams {
+  const def = (v: string | undefined) => (v != null && v !== '' ? String(v) : '—');
+  return {
+    to_email: def(partial.to_email) || adminEmail || '—',
+    form_type: def(partial.form_type),
+    name: def(partial.name),
+    email: def(partial.email),
+    phone: def(partial.phone),
+    message: def(partial.message),
+    project_type: def(partial.project_type),
+    budget: def(partial.budget),
+    source_slug: def(partial.source_slug),
+    context: def(partial.context),
+    payload_preview: def(partial.payload_preview),
+    submitted_at: def(partial.submitted_at) || new Date().toISOString(),
+  };
+}
+
+/**
+ * Send admin notification email. Non-blocking: returns immediately,
+ * sends in background. Does nothing if env is not configured.
+ */
+export function sendAdminNotification(params: Partial<AdminTemplateParams>): void {
+  if (!isEmailJsConfigured() || !init()) return;
+  const full = buildAdminParams({ ...params, to_email: adminEmail });
+  emailjs.send(serviceId!, adminTemplateId!, full).catch(() => {
+    // non-blocking: ignore errors (e.g. network)
+  });
+}
+
+/**
+ * Build admin template params from submission-like data and send (non-blocking).
+ * Call after successful Supabase insert. Safe to call with missing env.
+ */
+export function sendAdminNotificationForSubmission(data: {
+  form_type: string;
+  name: string;
+  email: string;
+  phone?: string | null;
+  message?: string | null;
+  project_type?: string | null;
+  budget?: string | null;
+  source_slug?: string | null;
+  context?: string | null;
+  payload?: Record<string, unknown> | null;
+}): void {
+  const payloadPreview =
+    data.payload != null
+      ? JSON.stringify(data.payload, null, 2).slice(0, 2000)
+      : '—';
+  sendAdminNotification({
+    form_type: data.form_type,
+    name: data.name,
+    email: data.email,
+    phone: data.phone ?? '—',
+    message: data.message ?? '—',
+    project_type: data.project_type ?? '—',
+    budget: data.budget ?? '—',
+    source_slug: data.source_slug ?? '—',
+    context: data.context ?? '—',
+    payload_preview: payloadPreview,
+    submitted_at: new Date().toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }),
+  });
+}
+
+/*
+  Example send usage:
+
+  // After successful form submit (non-blocking; already wired in submission-insert.ts):
+  import { sendAdminNotificationForSubmission } from '@/lib/emailjs';
+  const { data } = await insertContact({ name, email, phone, message, projectType, budget });
+  if (data) sendAdminNotificationForSubmission(data);  // optional: insert handlers already do this
+
+  // Direct admin notification with custom params:
+  import { sendAdminNotification } from '@/lib/emailjs';
+  sendAdminNotification({ form_type: 'contact', name: 'Jane', email: 'jane@example.com', message: 'Hello' });
+*/

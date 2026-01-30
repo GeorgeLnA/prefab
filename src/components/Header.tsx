@@ -70,10 +70,7 @@ const Header: React.FC = () => {
   const houseTypes = [
     { name: 'Nordy', path: '/skandy-nordy', image: '/NORDY/NORDY 35_1.2F 4K.jpg' },
     { name: 'Skandy', path: '/skandy', image: '/SKANDY/SKANDY 70 1.jpeg' },
-    { name: 'Modern', path: '/modern', image: '/MODERN/1_2k Final Large.jpeg' },
-    { name: 'Smart', path: '/smart', image: '/S-18-1.jpg' },
-    { name: 'Bungalow', path: '/bungalow', image: '/fasad-1.jpg' },
-    { name: 'Modular', path: '/modular', image: '/modular-home-1.jpg' }
+    { name: 'Modern', path: '/modern', image: '/MODERN/1_2k Final Large.jpeg' }
   ];
 
   const handleMobileHouseTypesToggle = () => {
@@ -260,9 +257,8 @@ const Header: React.FC = () => {
             <div className="flex flex-col">
               <h3 className="text-xs sm:text-sm md:text-base font-thin text-gray-900 mb-3 md:mb-4">House Types</h3>
               <ul className="space-y-1.5 md:space-y-2 flex-1">
-                {houseTypes.filter(type => type.name !== 'Modular').map((type) => {
-                  const comingSoonTypes = ['Smart', 'Bungalow'];
-                  const isComingSoon = comingSoonTypes.includes(type.name);
+                {houseTypes.map((type) => {
+                  const isComingSoon = false;
                   
                   if (isComingSoon) {
                     return (
@@ -304,23 +300,24 @@ const Header: React.FC = () => {
                 })}
               </ul>
               <div className="mt-4 md:mt-5 pt-4 md:pt-5 border-t-2 border-gray-300">
-                <div
-                  onClick={(e) => e.preventDefault()}
-                  className={`block px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base font-thin transition-all duration-200 rounded-lg text-center opacity-60 cursor-not-allowed ${
+                <Link
+                  to="/modular"
+                  onMouseEnter={() => setHoveredHouseType('Modular')}
+                  onMouseLeave={() => setHoveredHouseType(null)}
+                  className={`block px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base font-thin transition-all duration-200 rounded-lg text-center ${
                     hoveredHouseType === 'Modular'
-                      ? 'bg-primary/60 text-black shadow-xl'
-                      : 'bg-primary/60 text-black shadow-lg'
+                      ? 'bg-primary text-black shadow-xl'
+                      : 'bg-primary text-black shadow-lg md:hover:shadow-xl'
                   }`}
                 >
-                  Modular Home <span className="text-xs text-gray-900">(Coming Soon)</span>
-                </div>
+                  Modular Home
+                </Link>
               </div>
             </div>
             <div className="flex items-center min-h-0">
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-2.5 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6 w-full h-full">
-                {houseTypes.map((type) => {
-                  const comingSoonTypes = ['Smart', 'Bungalow', 'Modular'];
-                  const isComingSoon = comingSoonTypes.includes(type.name);
+                {[...houseTypes, { name: 'Modular', path: '/modular', image: '/MODULAR/x10/snapedit_1697487301153 Large.jpeg' }].map((type) => {
+                  const isComingSoon = false;
                   
                   const content = (
                     <div
@@ -482,9 +479,8 @@ const Header: React.FC = () => {
                     }`}
                   >
                     <ul className="mt-2 space-y-1">
-                      {houseTypes.filter(type => type.name !== 'Modular').map((type) => {
-                        const comingSoonTypes = ['Smart', 'Bungalow'];
-                        const isComingSoon = comingSoonTypes.includes(type.name);
+                      {houseTypes.map((type) => {
+                        const isComingSoon = false;
                         
                         if (isComingSoon) {
                           return (
@@ -519,15 +515,16 @@ const Header: React.FC = () => {
                       })}
                     </ul>
                     <div className="mt-3 pt-3 border-t-2 border-gray-300">
-                      <div
-                        onClick={(e) => {
-                          e.preventDefault();
+                      <Link
+                        to="/modular"
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          setMobileHouseTypesOpen(false);
                         }}
-                        className="block w-full px-4 py-3 text-sm font-thin bg-primary/60 text-black rounded-lg opacity-60 relative text-center cursor-not-allowed"
+                        className="block w-full px-4 py-3 text-sm font-thin bg-primary text-black rounded-lg relative text-center shadow-lg"
                       >
-                        <span>Modular</span>
-                        <span className="ml-2 text-xs text-gray-900 font-thin">(Coming Soon)</span>
-                      </div>
+                        <span>Modular Home</span>
+                      </Link>
                     </div>
                   </div>
                 </li>
@@ -561,12 +558,12 @@ const Header: React.FC = () => {
               </ul>
             </nav>
 
-            {/* CTA Button */}
-            <div className="px-4 pb-6 pt-4 border-t border-gray-200 flex justify-center">
+            {/* CTA Button - full width to match nav links */}
+            <div className="px-4 pb-6 pt-4 border-t border-gray-200">
               <Button 
                 variant="primary" 
                 href="/contact" 
-                className="w-full text-base px-6 py-4"
+                className="block w-full text-base px-4 py-3 text-center"
               >
                 Schedule Consultation
               </Button>

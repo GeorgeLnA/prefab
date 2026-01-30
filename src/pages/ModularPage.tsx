@@ -52,7 +52,7 @@ const ModularPage: React.FC = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
-            backgroundImage: "url('/modular-home-1.jpg')" 
+            backgroundImage: "url('/MODULAR/x10/snapedit_1697487301153 Large.jpeg')" 
           }}
         ></div>
         
@@ -69,7 +69,7 @@ const ModularPage: React.FC = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a 
                   href="/contact" 
-                  className="inline-block border border-white text-white px-8 py-3 font-thin md:hover:bg-white md:hover:text-gray-900 transition-colors duration-200 rounded-lg w-full sm:w-auto text-center"
+                  className="inline-block border border-white text-white px-8 py-3 font-thin text-sm sm:text-base md:text-lg md:hover:bg-white md:hover:text-gray-900 transition-colors duration-200 rounded-lg w-full sm:w-auto text-center leading-none"
                 >
                   Plan Your Modules
                 </a>
@@ -77,9 +77,9 @@ const ModularPage: React.FC = () => {
                   asLink={true}
                   href="/design-form"
                   variant="yellow"
-                  className="px-8 py-3 font-thin text-sm sm:text-base md:text-lg w-full sm:w-auto"
+                  className="px-8 py-3 font-thin text-sm sm:text-base md:text-lg w-full sm:w-auto leading-none"
                 >
-                  Instant Quote
+                  Design Yourself
                 </AnimatedButton>
               </div>
             </div>
@@ -184,9 +184,9 @@ const ModularPage: React.FC = () => {
               Our Modular Home collection offers flexible, customizable living spaces that adapt to your lifestyle and needs.
             </p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-            <div className="text-center group">
-              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center group flex flex-col items-center">
+              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300 shrink-0">
                 <svg className="w-10 h-10 text-primary md:group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
                 </svg>
@@ -194,8 +194,8 @@ const ModularPage: React.FC = () => {
               <h3 className="text-xl font-heading font-thin mb-3">Expandable Design</h3>
               <p className="text-gray-900 font-body font-normal">Easily add modules as your needs change</p>
             </div>
-            <div className="text-center group">
-              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
+            <div className="text-center group flex flex-col items-center">
+              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300 shrink-0">
                 <svg className="w-10 h-10 text-primary md:group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
@@ -203,8 +203,8 @@ const ModularPage: React.FC = () => {
               <h3 className="text-xl font-heading font-thin mb-3">Cost Effective</h3>
               <p className="text-gray-900 font-body font-normal">Start smaller and expand when budget allows, maximizing value</p>
             </div>
-            <div className="text-center group">
-              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
+            <div className="text-center group flex flex-col items-center">
+              <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300 shrink-0">
                 <svg className="w-10 h-10 text-primary md:group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>

@@ -1,13 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
+import { useAdminAuth } from '../contexts/AdminAuthContext';
 import { AdminLogin } from '../components/admin/AdminLogin';
 import { SubmissionsList } from '../components/admin/SubmissionsList';
 import { cn } from '../lib/utils';
 
 export default function AdminPage() {
   const navigate = useNavigate();
-  const { authenticated, checked, logout } = useAuth();
+  const { authenticated, checked, logout } = useAdminAuth();
 
   if (!checked) {
     return (

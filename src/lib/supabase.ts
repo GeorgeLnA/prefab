@@ -1,7 +1,20 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
-/** Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in .env when connecting Supabase. */
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://placeholder.supabase.co';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'placeholder-anon-key';
+const url = import.meta.env.VITE_SUPABASE_URL;
+const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+let client: SupabaseClient | null = null;
+
+function getClient(): SupabaseClient {
+  if (client) return client;
+  const baseUrl = typeof url === 'string' && url.length > 0 ? url : 'https://placeholder.supabase.co';
+  const key = typeof anonKey === 'string' && anonKey.length > 0 ? anonKey : 'placeholder-anon-key';
+  client = createClient(baseUrl, key);
+  return client;
+}
+
+export const supabase = getClient();
+
+export function isSupabaseConfigured(): boolean {
+  return typeof url === 'string' && url.length > 0 && typeof anonKey === 'string' && anonKey.length > 0;
+}

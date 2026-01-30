@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { useAuth } from '../../hooks/useAuth';
+import { useAdminAuth } from '../../contexts/AdminAuthContext';
 import { cn } from '../../lib/utils';
 
 interface AdminLoginProps {
-  onSuccess?: () => void;
   className?: string;
 }
 
-export function AdminLogin({ onSuccess, className }: AdminLoginProps) {
-  const { login } = useAuth();
+export function AdminLogin({ className }: AdminLoginProps) {
+  const { login } = useAdminAuth();
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -18,11 +17,11 @@ export function AdminLogin({ onSuccess, className }: AdminLoginProps) {
     setError('');
     setLoading(true);
     if (login(password)) {
-      onSuccess?.();
+      setLoading(false);
     } else {
       setError('Invalid password');
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (

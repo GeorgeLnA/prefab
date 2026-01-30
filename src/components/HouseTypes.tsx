@@ -146,34 +146,21 @@ const HouseTypes: React.FC = () => {
       description: 'Sleek modern design with cutting-edge features.',
       imageUrl: '/MODERN/1_2k Final Large.jpeg',
       features: ['Sleek design', 'Modern amenities', 'Premium materials'],
-      price: 'From £315,000',
+      price: 'From £58,100',
       path: '/modern'
-    },
-    {
-      name: 'Smart',
-      description: 'Intelligent home automation and energy efficiency.',
-      imageUrl: '/S-18-1.jpg',
-      features: ['Smart home tech', 'Energy efficient', 'Automated systems'],
-      price: 'From £320,000',
-      path: '/smart'
-    },
-    {
-      name: 'Bungalow',
-      description: 'Single-storey living with spacious comfort.',
-      imageUrl: '/fasad-1.jpg',
-      features: ['Single-storey', 'Open plan', 'Accessible design'],
-      price: 'From £250,000',
-      path: '/bungalow'
     }
   ];
 
-  // Get modular houses from data
-  const modularHouses = houseData.filter(house => house.category === 'MODULAR');
+  // Get modular houses from data - only show X10, X23, and X40
+  const modularHouses = houseData.filter(house => 
+    house.category === 'MODULAR' && 
+    (house.name.includes('X10') || house.name.includes('X23') || house.name.includes('X40'))
+  );
 
   // ViewModelsButton component with sliding hover effect (div-based, not a link since it's inside a Link)
   const ViewModelsButton: React.FC = () => {
     return (
-      <div className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2 sm:py-2.5 px-3 sm:px-4 text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base">
+      <div className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2 sm:py-2.5 px-3 sm:px-4 text-xs sm:text-[10px] md:text-xs lg:text-sm xl:text-base">
         <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
           View Models
         </span>
@@ -224,7 +211,7 @@ const HouseTypes: React.FC = () => {
                   {/* Coming Soon Badge */}
                   {isComingSoon && (
                     <div className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 md:top-3 md:left-3 z-20">
-                      <div className="bg-primary text-white py-1 px-2 sm:py-1.5 sm:px-2.5 md:px-3 text-[8px] sm:text-[9px] md:text-[10px] font-thin rounded-lg whitespace-nowrap">
+                      <div className="bg-primary text-white py-1 px-2 sm:py-1.5 sm:px-2.5 md:px-3 text-xs sm:text-[9px] md:text-[10px] font-thin rounded-lg whitespace-nowrap">
                         COMING SOON
                       </div>
                     </div>
@@ -234,17 +221,17 @@ const HouseTypes: React.FC = () => {
                 {/* Content */}
                 <div className="px-4 sm:px-5 md:px-6 pt-6 sm:pt-7 md:pt-8 lg:pt-10 pb-6 sm:pb-7 md:pb-8 lg:pb-10 flex flex-col flex-grow min-h-0">
                   <div className="flex-grow">
-                    <h3 className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-thin text-gray-900 mb-0.5 sm:mb-1 md:mb-1.5">
+                    <h3 className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-thin text-gray-900 mb-0.5 sm:mb-1 md:mb-1.5">
                       {type.name}
-                      {isComingSoon && <span className="ml-1.5 text-[8px] sm:text-[9px] md:text-[10px] text-primary">(Coming Soon)</span>}
+                      {isComingSoon && <span className="ml-1.5 text-xs sm:text-[9px] md:text-[10px] text-primary">(Coming Soon)</span>}
                     </h3>
                   </div>
 
                   {/* Price and CTA - Fixed at bottom with consistent padding */}
                   <div className="flex flex-col gap-2 sm:gap-3 mt-auto">
-                    <span className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-thin text-primary">{type.price}</span>
+                    <span className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-thin text-primary" data-house-type-price>{type.price}</span>
                     {isComingSoon ? (
-                      <div className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-gray-300 text-gray-600 py-2 sm:py-2.5 px-3 sm:px-4 text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base cursor-not-allowed">
+                      <div className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-gray-300 text-gray-600 py-2 sm:py-2.5 px-3 sm:px-4 text-xs sm:text-[10px] md:text-xs lg:text-sm xl:text-base cursor-not-allowed">
                         <span>Coming Soon</span>
                       </div>
                     ) : (
@@ -257,14 +244,14 @@ const HouseTypes: React.FC = () => {
 
             if (isComingSoon) {
               return (
-                <div key={index} onClick={(e) => e.preventDefault()}>
+                <div key={index} onClick={(e) => e.preventDefault()} data-house-type={type.name.toLowerCase()}>
                   {content}
                 </div>
               );
             }
 
             return (
-              <Link key={index} to={type.path}>
+              <Link key={index} to={type.path} data-house-type={type.name.toLowerCase()}>
                 {content}
               </Link>
             );
@@ -277,7 +264,7 @@ const HouseTypes: React.FC = () => {
             {/* Header */}
             <div className="text-center mb-8 sm:mb-10 md:mb-12">
               <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-light text-white mb-0.5 sm:mb-1 md:mb-1.5 lg:mb-2 xl:mb-3 leading-tight px-1 sm:px-2 md:px-0">MODULAR HOMES</h2>
-              <p className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl text-white/90 mb-1 sm:mb-1.5 md:mb-2 lg:mb-3 xl:mb-4 leading-relaxed px-1 sm:px-2 md:px-0">
+              <p className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl text-white/90 mb-1 sm:mb-1.5 md:mb-2 lg:mb-3 xl:mb-4 leading-relaxed px-1 sm:px-2 md:px-0">
                 Want something truly unique? Use our modular system to design your own home, 
                 tailored to your lifestyle and vision. Expandable, customizable, and built to grow with you.
               </p>
@@ -469,9 +456,9 @@ const HouseTypes: React.FC = () => {
                 >
                   <img src={house.imageUrl} alt={house.name} className="w-full h-32 sm:h-36 md:h-40 lg:h-44 object-cover" />
                   <div className="p-3 sm:p-4 md:p-5 lg:p-6 xl:p-7 2xl:p-8">
-                    <div className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-thin text-primary mb-0.5 sm:mb-1 md:mb-1.5">{house.name}</div>
-                    <div className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base font-medium text-white mb-0.5 sm:mb-1 md:mb-1.5">{house.squareFeet} ft² • {house.type}</div>
-                    <div className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-thin text-white">From £{house.price.toLocaleString()}</div>
+                    <div className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-thin text-primary mb-0.5 sm:mb-1 md:mb-1.5">{house.name}</div>
+                    <div className="text-xs sm:text-[10px] md:text-xs lg:text-sm xl:text-base font-medium text-white mb-0.5 sm:mb-1 md:mb-1.5">{house.squareFeet} ft² • {house.type}</div>
+                    <div className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl font-thin text-white">From £{house.price.toLocaleString()}</div>
                   </div>
                 </Link>
               );
@@ -506,7 +493,7 @@ const HouseTypes: React.FC = () => {
             <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-light text-black mb-3 sm:mb-4 md:mb-5 lg:mb-6 xl:mb-8 leading-tight px-1 sm:px-2 md:px-0">
               Can't decide which type suits you best?
             </h2>
-            <p className="text-[10px] sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl text-black/90 mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-14 leading-relaxed px-1 sm:px-2 md:px-0">
+            <p className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl text-black/90 mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-14 leading-relaxed px-1 sm:px-2 md:px-0">
               Our design consultants can help you choose the perfect house type based on your 
               lifestyle, budget, and preferences.
             </p>
