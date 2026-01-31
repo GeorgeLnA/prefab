@@ -6,12 +6,34 @@ import { buildKeywords } from '../data/seo-keywords';
 import { AnimatedButton } from '../components/ui/animated-button';
 import { ExpandingButton } from '../components/ui/expanding-button';
 
+type SortOption = 'name' | 'size' | 'price';
+type StoreyFilter = 'all' | '1' | '2';
+
+const isOneStorey = (house: { type?: string }) =>
+  house.type === 'SINGLE-STOREY';
+const isTwoStorey = (house: { type?: string }) =>
+  house.type === 'TWO-STOREY' || house.type === '1.5-STOREY';
+
 const ModularPage: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
-  
-  // Filter only Modular category houses
-  const modularHouses = houseData.filter(house => house.category === 'MODULAR');
+  const [sortBy, setSortBy] = useState<SortOption>('name');
+  const [storeyFilter, setStoreyFilter] = useState<StoreyFilter>('all');
+
+  // Filter only Modular category houses, apply storey filter, then sort (ascending)
+  const modularHouses = React.useMemo(() => {
+    let filtered = houseData.filter(house => house.category === 'MODULAR');
+    if (storeyFilter === '1') filtered = filtered.filter(isOneStorey);
+    if (storeyFilter === '2') filtered = filtered.filter(isTwoStorey);
+    const sorted = [...filtered].sort((a, b) => {
+      let cmp = 0;
+      if (sortBy === 'name') cmp = (a.name || '').localeCompare(b.name || '');
+      if (sortBy === 'size') cmp = (a.squareFeet || 0) - (b.squareFeet || 0);
+      if (sortBy === 'price') cmp = (a.price || 0) - (b.price || 0);
+      return cmp;
+    });
+    return sorted;
+  }, [sortBy, storeyFilter]);
 
   // Scroll to top on component mount
   useEffect(() => {
@@ -49,7 +71,7 @@ const ModularPage: React.FC = () => {
         className="relative h-[60vh] md:h-screen"
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
-        <div className="absolute inset-0 bg-black/40 z-10"></div>
+        <div className="absolute inset-0 bg-black/20 z-10"></div>
         
         <div 
           className="absolute inset-0 bg-cover bg-center"
@@ -97,6 +119,41 @@ const ModularPage: React.FC = () => {
             <p className="text-lg sm:text-xl font-body font-normal text-gray-900">
               Each model can be customized and expanded to meet your specific requirements.
             </p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-gray-700 font-body font-normal">Filter</span>
+              {(['all', '1', '2'] as const).map((value) => (
+                <button
+                  key={value}
+                  type="button"
+                  onClick={() => setStoreyFilter(value)}
+                  className={`inline-flex items-center justify-center rounded-lg px-4 py-2 h-[42px] text-gray-900 font-body transition-colors focus:outline-none focus:ring-2 focus:ring-primary/30 ${
+                    storeyFilter === value
+                      ? 'bg-primary text-black'
+                      : 'border border-gray-300 bg-white hover:bg-gray-50'
+                  }`}
+                >
+                  {value === 'all' ? 'All' : value === '1' ? '1 storey' : '2 storey'}
+                </button>
+              ))}
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="text-gray-700 font-body font-normal">Sort by</span>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as SortOption)}
+                className="border border-gray-300 rounded-lg pl-4 pr-8 py-2 h-[42px] text-gray-900 font-body bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary appearance-none bg-no-repeat bg-[length:12px] bg-[right_0.5rem_center]"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`
+                }}
+              >
+                <option value="name">Name</option>
+                <option value="size">Size (ft²)</option>
+                <option value="price">Price</option>
+              </select>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">

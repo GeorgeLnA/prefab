@@ -100,6 +100,9 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
             {/* Text and Button Overlay */}
             <div className="absolute bottom-12 sm:bottom-16 md:bottom-20 lg:bottom-24 left-0 right-0 p-4 sm:p-6 md:p-8 lg:p-12 z-20">
               <div className="text-center">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-thin text-white mb-4 sm:mb-6 leading-tight drop-shadow-lg">
+                  Premium Prefab Homes
+                </h1>
                 <div className={`mb-4 sm:mb-6 ${showButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'} transition-all duration-300`}>
                   <AnimatedButton
                     onClick={navigateToDesigns}

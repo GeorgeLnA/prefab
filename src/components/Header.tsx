@@ -69,8 +69,8 @@ const Header: React.FC = () => {
 
   const houseTypes = [
     { name: 'Nordy', path: '/skandy-nordy', image: '/NORDY/NORDY 35_1.2F 4K.jpg' },
-    { name: 'Skandy', path: '/skandy', image: '/SKANDY/SKANDY 70 1.jpeg' },
-    { name: 'Modern', path: '/modern', image: '/MODERN/1_2k Final Large.jpeg' }
+    { name: 'Skandy', path: '/skandy', image: '/SKANDY/SKANDY 120_ 1. 4K Large.jpeg' },
+    { name: 'Modern', path: '/modern', image: '/MODERN/1 2K (2) Large.jpeg' }
   ];
 
   const handleMobileHouseTypesToggle = () => {

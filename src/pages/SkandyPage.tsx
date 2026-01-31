@@ -13,6 +13,9 @@ const SkandyPage: React.FC = () => {
   // Filter only Skandy category houses (MOBILE category in data)
   const skandyHouses = houseData.filter(house => house.category === 'MOBILE');
 
+  // Get SKANDY 120 for hero section
+  const skandy120 = houseData.find(house => house.slug === 'skandy-120');
+
   // Scroll to top on component mount
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -49,12 +52,12 @@ const SkandyPage: React.FC = () => {
         className="relative h-[60vh] md:h-screen"
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
-        <div className="absolute inset-0 bg-black/40 z-10"></div>
+        <div className="absolute inset-0 bg-black/20 z-10"></div>
         
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
-            backgroundImage: "url('/SKANDY/SKANDY 70 1.jpeg')" 
+            backgroundImage: `url('${skandy120?.imageUrl || '/SKANDY/SKANDY 70 1.jpeg'}')` 
           }}
         ></div>
         
@@ -62,11 +65,10 @@ const SkandyPage: React.FC = () => {
           <div className="w-full px-4 sm:px-5">
             <div className="w-full">
               <h1 className="text-5xl md:text-6xl font-heading font-thin text-white mb-6 leading-tight">
-                Scandinavian Excellence
+                {skandy120?.name || 'Scandinavian Excellence'}
               </h1>
               <p className="text-white text-xl font-body font-normal mb-8 leading-relaxed">
-                High-performance SIP homes with Scandinavian design. Energy-efficient, precision-built, 
-                and designed for comfortable year-round living.
+                {skandy120?.description || 'High-performance SIP homes with Scandinavian design. Energy-efficient, precision-built, and designed for comfortable year-round living.'}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <AnimatedButton

@@ -14,10 +14,10 @@ const NotFoundPage: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="w-full px-4 sm:px-5 text-center">
           <div className="w-full">
-            <h1 className="text-9xl font-heading font-thin text-primary mb-4">404</h1>
-            <h2 className="text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-6">
-              Page Not Found
-            </h2>
+            <h1 className="mb-6">
+              <span className="block text-9xl font-heading font-thin text-primary mb-4">404</span>
+              <span className="block text-4xl md:text-5xl font-heading font-thin text-gray-900">Page Not Found</span>
+            </h1>
             <p className="text-xl text-gray-600 mb-10 font-body font-normal leading-relaxed">
               The page you're looking for doesn't exist or has been moved. 
               Let's get you back on track.

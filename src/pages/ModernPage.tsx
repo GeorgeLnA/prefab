@@ -52,7 +52,7 @@ const ModernPage: React.FC = () => {
         className="relative h-[60vh] md:h-screen"
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
-        <div className="absolute inset-0 bg-black/40 z-10"></div>
+        <div className="absolute inset-0 bg-black/20 z-10"></div>
         
         <video
           src="/prefab clip.mp4"

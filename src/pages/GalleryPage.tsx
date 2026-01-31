@@ -355,7 +355,7 @@ const GalleryPage: React.FC = () => {
                 <div className="w-full lg:w-3/5 p-8 md:p-12 flex flex-col justify-center">
                   <div>
                     <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-thin text-gray-900 mb-4">
-                      Portfolio Sample Collection
+                      Modular Home 188m²
                     </h3>
                     <p className="text-gray-900 font-body font-normal mb-6 leading-relaxed text-lg">
                       A comprehensive showcase of our diverse portfolio featuring multiple prefab home projects. This sample collection includes detailed case studies, design specifications, construction processes, and final results across different home series and sizes.
@@ -374,14 +374,15 @@ const GalleryPage: React.FC = () => {
                   </div>
                   <a
                     href="/gallery/pdfs/PREFAB PORTFOLIO SAMPLE _compressed (3).pdf"
-                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="group/btn relative inline-block w-full sm:w-auto overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-3 sm:py-4 px-8 sm:px-12 text-base sm:text-lg"
                   >
                     <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap">
-                      Download Portfolio Sample
+                      View Case Study
                     </span>
                     <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white">
-                      <span>Download Portfolio Sample</span>
+                      <span>View Case Study</span>
                     </div>
                   </a>
                 </div>
@@ -427,14 +428,15 @@ const GalleryPage: React.FC = () => {
                     </div>
                     <a
                       href="/gallery/pdfs/MODERN HOME 160 m2_compressed.pdf"
-                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
                     >
                       <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
-                        View Full Case Study
+                        View Case Study
                       </span>
                       <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
-                        <span>Download PDF</span>
+                        <span>View Case Study</span>
                       </div>
                     </a>
                   </div>
@@ -476,14 +478,15 @@ const GalleryPage: React.FC = () => {
                     </div>
                     <a
                       href="/gallery/pdfs/MODULAR HOME 180 m2_compressed.pdf"
-                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
                     >
                       <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
-                        View Full Case Study
+                        View Case Study
                       </span>
                       <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
-                        <span>Download PDF</span>
+                        <span>View Case Study</span>
                       </div>
                     </a>
                   </div>
@@ -525,14 +528,15 @@ const GalleryPage: React.FC = () => {
                     </div>
                     <a
                       href="/gallery/pdfs/MODULAR HOME 220 m2_compressed.pdf"
-                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
                     >
                       <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
-                        View Full Case Study
+                        View Case Study
                       </span>
                       <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
-                        <span>Download PDF</span>
+                        <span>View Case Study</span>
                       </div>
                     </a>
                   </div>
@@ -574,14 +578,15 @@ const GalleryPage: React.FC = () => {
                     </div>
                     <a
                       href="/gallery/pdfs/MODULAR HOME 170 m2_compressed.pdf"
-                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
                     >
                       <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
-                        View Full Case Study
+                        View Case Study
                       </span>
                       <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
-                        <span>Download PDF</span>
+                        <span>View Case Study</span>
                       </div>
                     </a>
                   </div>
@@ -623,14 +628,15 @@ const GalleryPage: React.FC = () => {
                     </div>
                     <a
                       href="/gallery/pdfs/MODULAR HOME 165 m2_compressed.pdf"
-                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
                     >
                       <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
-                        View Full Case Study
+                        View Case Study
                       </span>
                       <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
-                        <span>Download PDF</span>
+                        <span>View Case Study</span>
                       </div>
                     </a>
                   </div>
@@ -672,14 +678,15 @@ const GalleryPage: React.FC = () => {
                     </div>
                     <a
                       href="/gallery/pdfs/MODULAR HOME 124 m2_compressed.pdf"
-                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
                     >
                       <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
-                        View Full Case Study
+                        View Case Study
                       </span>
                       <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
-                        <span>Download PDF</span>
+                        <span>View Case Study</span>
                       </div>
                     </a>
                   </div>
@@ -721,14 +728,15 @@ const GalleryPage: React.FC = () => {
                     </div>
                     <a
                       href="/gallery/pdfs/MODULAR HOME 106 m2_compressed.pdf"
-                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
                     >
                       <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
-                        View Full Case Study
+                        View Case Study
                       </span>
                       <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
-                        <span>Download PDF</span>
+                        <span>View Case Study</span>
                       </div>
                     </a>
                   </div>
@@ -770,19 +778,45 @@ const GalleryPage: React.FC = () => {
                     </div>
                     <a
                       href="/gallery/pdfs/MODULAR HOME 99 m2_compressed.pdf"
-                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
                     >
                       <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
-                        View Full Case Study
+                        View Case Study
                       </span>
                       <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
-                        <span>Download PDF</span>
+                        <span>View Case Study</span>
                       </div>
                     </a>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* View Portfolio CTA Section */}
+          <div className="mb-16">
+            <div className="bg-gradient-to-br from-primary to-primary-dark rounded-xl shadow-lg p-8 md:p-12 text-center">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-thin text-white mb-4">
+                View Our Complete Portfolio
+              </h2>
+              <p className="text-white/90 text-lg md:text-xl font-body font-normal mb-8 leading-relaxed">
+                Access our comprehensive collection of case studies, featuring detailed documentation of completed projects across all our home series.
+              </p>
+              <a
+                href="/gallery/pdfs/PREFAB HOMES PORTFOLIO_compressed.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/btn relative inline-block overflow-hidden text-center rounded-lg font-thin bg-white text-black py-3 sm:py-4 px-8 sm:px-12 text-base sm:text-lg md:text-xl"
+              >
+                <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap">
+                  View Full Portfolio
+                </span>
+                <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white">
+                  <span>View Full Portfolio</span>
+                </div>
+              </a>
             </div>
           </div>
 
@@ -828,30 +862,6 @@ const GalleryPage: React.FC = () => {
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* Download Portfolio CTA Section */}
-          <div className="mt-16 mb-20">
-            <div className="bg-gradient-to-br from-primary to-primary-dark rounded-xl shadow-lg p-8 md:p-12 text-center">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-thin text-white mb-4">
-                Download Our Complete Portfolio
-              </h2>
-              <p className="text-white/90 text-lg md:text-xl font-body font-normal mb-8 leading-relaxed">
-                Access our comprehensive collection of case studies, featuring detailed documentation of completed projects across all our home series.
-              </p>
-              <a
-                href="/gallery/pdfs/PREFAB HOMES PORTFOLIO_compressed.pdf"
-                download
-                className="group/btn relative inline-block overflow-hidden text-center rounded-lg font-thin bg-white text-black py-3 sm:py-4 px-8 sm:px-12 text-base sm:text-lg md:text-xl"
-              >
-                <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap">
-                  Download Portfolio PDF
-                </span>
-                <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white">
-                  <span>Download Portfolio PDF</span>
-                </div>
-              </a>
-            </div>
           </div>
 
           {/* Stats Section */}

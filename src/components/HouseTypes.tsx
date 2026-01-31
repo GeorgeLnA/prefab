@@ -136,7 +136,7 @@ const HouseTypes: React.FC = () => {
     {
       name: 'Skandy',
       description: 'Scandinavian-inspired SIP homes with exceptional energy efficiency.',
-      imageUrl: '/SKANDY/SKANDY 70 1.jpeg',
+      imageUrl: '/SKANDY/SKANDY 120_ 1. 4K Large.jpeg',
       features: ['High-performance SIP', 'Scandinavian design', 'Energy efficient'],
       price: 'From £68,560',
       path: '/skandy'
@@ -144,7 +144,7 @@ const HouseTypes: React.FC = () => {
     {
       name: 'Modern',
       description: 'Sleek modern design with cutting-edge features.',
-      imageUrl: '/MODERN/1_2k Final Large.jpeg',
+      imageUrl: '/MODERN/1 2K (2) Large.jpeg',
       features: ['Sleek design', 'Modern amenities', 'Premium materials'],
       price: 'From £58,100',
       path: '/modern'

@@ -16,8 +16,7 @@ const HouseDetailPage: React.FC = () => {
   const [lightboxImageIndex, setLightboxImageIndex] = useState(0);
 
   const house = slug ? getHouseBySlug(slug) : null;
-  const houseId = house ? houseData.indexOf(house) : -1;
-  
+
   if (!house) {
     return (
       <div className="pt-20 min-h-screen flex items-center justify-center">
@@ -748,7 +747,7 @@ const HouseDetailPage: React.FC = () => {
           <div className="mt-20 pt-16 border-t">
             <h3 className="text-3xl font-light text-gray-900 mb-8">Similar Designs</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {houseData.filter((_, index) => index !== houseId).slice(0, 3).map((relatedHouse, index) => (
+              {houseData.filter((h) => h.category === house.category && h.slug !== house.slug).slice(0, 3).map((relatedHouse, index) => (
                 <Link key={index} to={`/house/${relatedHouse.slug}`} className="group cursor-pointer">
                   <div className="overflow-hidden rounded-lg mb-4">
                     <img 

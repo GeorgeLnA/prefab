@@ -267,9 +267,9 @@ The future of prefab living is smart, connected, and responsive to our needs. As
                 <span>{selectedPostData.readTime}</span>
               </div>
               
-              <h1 className="text-3xl lg:text-4xl font-heading font-light text-gray-800 mb-8 leading-tight">
+              <h2 className="text-3xl lg:text-4xl font-heading font-light text-gray-800 mb-8 leading-tight">
                 {selectedPostData.title}
-              </h1>
+              </h2>
               
               <div className="prose prose-lg max-w-none">
                 {selectedPostData.content.split('\n\n').map((paragraph, index) => {

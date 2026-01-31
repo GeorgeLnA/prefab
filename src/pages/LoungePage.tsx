@@ -45,7 +45,7 @@ const LoungePage: React.FC = () => {
         className="relative h-96 bg-gradient-to-r from-primary to-primary-dark"
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
-        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative w-full px-4 sm:px-5 h-full flex items-center">
           <div className="text-white">
             <h1 className="text-5xl font-heading font-thin mb-4">Lounge Collection</h1>
