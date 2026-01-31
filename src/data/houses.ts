@@ -4198,7 +4198,7 @@ export const houseData: HouseType[] = [
   {
     name: "MODULAR HOME X28",
     slug: "modular-home-x28",
-    imageUrl: "/MODULAR/x28/snapedit_1697574126885 Large.jpeg",
+    imageUrl: "/MODULAR/x28/snapedit_1697573997751 Large.jpeg",
     squareFeet: 3229,
     squareMeters: 300.0,
     price: 485848,
@@ -4206,7 +4206,7 @@ export const houseData: HouseType[] = [
     category: "MODULAR",
     description: "A contemporary single-storey SIP home with flat roof architecture, featuring expansive glazing, generous internal spaces and a clean modern design language.",
     additionalImages: [
-      "/MODULAR/x28/snapedit_1697573997751 Large.jpeg",
+      "/MODULAR/x28/snapedit_1697574126885 Large.jpeg",
       "/MODULAR/x28/snapedit_1697574261483 Large.jpeg",
       "/MODULAR/x28/facade 1 (7) Large.jpeg",
       "/MODULAR/x28/facade 2 (5) Large.jpeg",
