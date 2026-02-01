@@ -282,6 +282,7 @@ const HouseTypes: React.FC = () => {
               <video
                 ref={videoRef}
                 src="/Prefab Homes Exhibit Video.webm"
+                preload="auto"
                 playsInline
                 loop
                 muted={isMuted}

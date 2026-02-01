@@ -87,6 +87,7 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
               ref={videoRef}
               key={currentVideo}
               src={videos[currentVideo]}
+              preload="auto"
               autoPlay
               playsInline
               muted
