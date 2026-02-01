@@ -3,10 +3,22 @@ import SEO from '../components/SEO';
 import { buildKeywords } from '../data/seo-keywords';
 import { InteractiveHoverButton } from '../components/ui/interactive-hover-button';
 
+interface BlogPost {
+  id: number;
+  title: string;
+  excerpt: string;
+  date: string;
+  readTime: string;
+  category: string;
+  image: string;
+  contentImage?: string;
+  content: string;
+}
+
 const BlogPage: React.FC = () => {
   const [selectedPost, setSelectedPost] = useState<number | null>(null);
 
-  const blogPosts = [
+  const blogPosts: BlogPost[] = [
     {
       id: 1,
       title: "The Real-Life Benefits of an Energy-Efficient Home",
@@ -14,7 +26,8 @@ const BlogPage: React.FC = () => {
       date: "March 15, 2024",
       readTime: "5 min read",
       category: "Energy Efficiency",
-      image: "/Nordy-65-3D-2.jpg",
+      image: "/SKANDY/SKANDY 96_1_4K Large.jpeg",
+      contentImage: "/SKANDY/SKANDY 96_2_2K Large.jpeg",
       content: `Energy efficiency has become more than a buzzword in modern construction—it's a necessity. As energy prices continue to rise and environmental concerns grow, homeowners are looking for better ways to build. But what exactly makes an energy-efficient home different? And why are so many people choosing this route?
 
 In my years working with prefab homes, I've seen firsthand how much of a difference energy efficiency makes—not just in terms of money saved, but in quality of life. The concept goes beyond insulation and smart meters. It's a combination of thoughtful design, high-performance materials, and a long-term view on comfort and sustainability.
@@ -36,7 +49,8 @@ Energy efficiency is no longer a luxury—it's becoming the standard. And with t
       date: "March 12, 2024",
       readTime: "6 min read",
       category: "Technology",
-      image: "/2p.jpg",
+      image: "/SKANDY/SKANDY 100_1Final 2k Large.jpeg",
+      contentImage: "/SKANDY/SKANDY 100_2Final 2k Large.jpeg",
       content: `When I first encountered SIP construction, I was skeptical. Coming from a background in traditional wood-frame building, I didn't understand how something as simple as a panel could replace so many structural elements. But after just a few projects, I was convinced. SIPs are one of the most efficient and innovative technologies to enter the construction world in the past few decades.
 
 SIP stands for Structural Insulated Panel. At first glance, it looks like a thick, solid board. But it's much more than that. Each SIP is made of an insulating foam core sandwiched between two rigid boards, usually oriented strand board (OSB). This simple configuration creates a panel that is both lightweight and incredibly strong.
@@ -58,7 +72,8 @@ In short, SIP technology is not just a passing trend. It's a smart response to m
       date: "March 10, 2024",
       readTime: "7 min read",
       category: "Construction",
-      image: "/render1.jpg",
+      image: "/MODULAR/x6/snapedit_1697141569457 Large.jpeg",
+      contentImage: "/SKANDY/SKANDY 130 1_2K Large.jpeg",
       content: `If you've decided to build with SIPs, you've already made a great choice. But what many people don't realize is that there are several different ways to approach SIP construction, depending on your goals, timeline, and budget. Over the years, I've worked on a variety of SIP projects, and each one followed a slightly different path—even though they all started with the same core technology.
 
 The first and most straightforward method is using SIP kits. These are pre-manufactured panel sets that are delivered to your building site ready to assemble. It's a great option for people who want to manage part of the process themselves or work with a smaller crew. Everything comes labeled and pre-cut, and it's almost like assembling a life-sized puzzle. While it still requires construction knowledge, it significantly reduces the time and effort needed compared to building from raw materials.
@@ -78,7 +93,8 @@ SIP building is not only about how the panels are made—it's about how you use 
       date: "March 8, 2024",
       readTime: "8 min read",
       category: "Construction",
-      image: "/modular-home-1.jpg",
+      image: "/MODULAR/x1/snapedit_1696349707941 Large.jpeg",
+      contentImage: "/SKANDY/Skandy 80_1 Large.jpeg",
       content: `When considering a new home, one of the biggest decisions you'll face is choosing between modular and traditional construction. Both methods have their advantages, but understanding the differences can help you make the best choice for your situation.
 
 **Construction Timeline**
@@ -105,7 +121,8 @@ The choice between modular and traditional construction ultimately depends on yo
       date: "March 5, 2024",
       readTime: "6 min read",
       category: "Technology",
-      image: "/S-18-1.jpg",
+      image: "/SKANDY/SKANDY 70 1.jpeg",
+      contentImage: "/SKANDY/SKANDY 120_ 2 4K Large.jpeg",
       content: `The integration of smart home technology in prefab construction represents a perfect marriage of efficiency and innovation. As homes become more connected, prefab construction offers unique advantages for implementing comprehensive smart home systems.
 
 **Factory Integration Advantages**
@@ -155,8 +172,15 @@ The future of prefab living is smart, connected, and responsive to our needs. As
         className="py-32 bg-gray-900 relative overflow-hidden"
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
-        
-        <div className="w-full px-4 sm:px-5 relative">
+        <div className="absolute inset-0">
+          <img
+            src="/SKANDY/SKANDY 120_ 1. 4K Large.jpeg"
+            alt="Prefab homes"
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gray-900/70" />
+        </div>
+        <div className="w-full px-4 sm:px-5 relative z-10">
           <div className="text-center">
             <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">INSIGHTS & EXPERTISE</div>
             <h1 className="text-5xl md:text-6xl font-heading font-light text-white mb-6 leading-tight">
@@ -197,8 +221,14 @@ The future of prefab living is smart, connected, and responsive to our needs. As
                       {post.category}
                     </div>
                     
-                    {/* Read More Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 md:group-hover:opacity-100 transition-all duration-300">
+                    {/* Read More Overlay - visible on mobile for last card (no hover), hover on desktop */}
+                    <div
+                      className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${
+                        index === blogPosts.length - 1
+                          ? 'opacity-100 md:opacity-0 md:group-hover:opacity-100'
+                          : 'opacity-0 md:group-hover:opacity-100'
+                      }`}
+                    >
                       <div className="bg-primary text-white py-3 px-6 rounded-lg font-medium">
                         Read Full Article
                       </div>
@@ -280,10 +310,26 @@ The future of prefab living is smart, connected, and responsive to our needs. As
                       </h3>
                     );
                   }
+                  const paragraphs = selectedPostData.content.split('\n\n');
+                  const showInlineImage = selectedPostData.contentImage && index === Math.max(2, Math.floor(paragraphs.length / 2) - 1);
                   return (
-                    <p key={index} className="text-gray-700 leading-relaxed mb-6 font-body font-normal">
-                      {paragraph}
-                    </p>
+                    <React.Fragment key={index}>
+                      <p className="text-gray-700 leading-relaxed mb-6 font-body font-normal">
+                        {paragraph}
+                      </p>
+                      {showInlineImage && selectedPostData.contentImage && (
+                        <figure className="my-10 rounded-lg overflow-hidden shadow-md">
+                          <img
+                            src={selectedPostData.contentImage}
+                            alt=""
+                            className="w-full h-auto object-cover"
+                          />
+                          <figcaption className="text-sm text-gray-500 mt-2 text-center font-body">
+                            Prefab home by Prefab Homes
+                          </figcaption>
+                        </figure>
+                      )}
+                    </React.Fragment>
                   );
                 })}
               </div>
