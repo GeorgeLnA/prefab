@@ -7,7 +7,7 @@ const HomePage: React.FC = () => {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Prefab Homes",
+    "name": "PREFAB HOMES UK",
     "url": "https://prefabhomes.co.uk",
     "logo": "https://prefabhomes.co.uk/sharp_logo_high_res.png",
     "description": "High-performance prefab homes engineered for efficiency. Highly energy efficient design, rapid 3-5 day assembly, and sustainable construction.",
@@ -33,7 +33,7 @@ const HomePage: React.FC = () => {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Prefab Homes",
+    "name": "PREFAB HOMES UK",
     "url": "https://prefabhomes.co.uk",
     "potentialAction": {
       "@type": "SearchAction",

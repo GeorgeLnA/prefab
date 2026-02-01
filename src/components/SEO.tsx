@@ -36,6 +36,7 @@ const SEO: React.FC<SEOProps> = ({
     <Helmet>
       {/* Basic Meta Tags */}
       <title>{fullTitle}</title>
+      <meta name="application-name" content="PREFAB HOMES UK" />
       <meta name="description" content={description} />
       {noindex && <meta name="robots" content="noindex, nofollow" />}
       
@@ -48,7 +49,7 @@ const SEO: React.FC<SEOProps> = ({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={fullImage} />
-      <meta property="og:site_name" content="Prefab Homes" />
+      <meta property="og:site_name" content="PREFAB HOMES UK" />
       <meta property="og:locale" content="en_GB" />
       <meta property="og:locale:alternate" content="en_US" />
       
