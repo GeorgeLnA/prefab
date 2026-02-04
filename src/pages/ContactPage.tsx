@@ -262,7 +262,7 @@ const ContactPage: React.FC = () => {
                       </a>
                     </p>
                     <p className="text-sm text-gray-900 font-body font-medium">
-                      Monday - Friday: 8:00 AM - 5:00 PM
+                      Monday - Friday: 8:00 AM - 6:00 PM
                     </p>
                   </div>
                 </div>

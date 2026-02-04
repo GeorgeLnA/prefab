@@ -293,12 +293,6 @@ const HouseDetailPage: React.FC = () => {
                 >
                   Request Quote
                 </AnimatedButton>
-                <AnimatedButton
-                  variant="greyToYellow"
-                    className="px-6 sm:px-8 py-3 sm:py-3.5 font-thin w-full text-center text-sm sm:text-base"
-                >
-                  Download Brochure
-                </AnimatedButton>
                 </div>
               </div>
             </div>
