@@ -31,10 +31,11 @@ const HouseDetailPage: React.FC = () => {
     );
   }
   
-  // Use only actual house images (main image, additional images, and facades)
+  // Use main image, additional images, floor plan(s), then facades (floor plan duplicated here before facades)
   const houseImages = [
     house.imageUrl,
     ...(house.additionalImages || []),
+    ...(house.floorPlans || []),
     ...(house.facades || [])
   ];
 

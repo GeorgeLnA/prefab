@@ -449,7 +449,7 @@ const GalleryPage: React.FC = () => {
                   {/* Thumbnail */}
                   <div className="relative w-full md:w-1/2 h-64 md:h-full overflow-hidden flex-shrink-0">
                     <img 
-                      src="/gallery/pdfs/thumbs/180 Large.jpeg" 
+                      src="/gallery/pdfs/thumbs/124 Large.jpeg" 
                       alt="Modular Home 180 m² Case Study"
                       className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110"
                       loading="lazy"
@@ -649,7 +649,7 @@ const GalleryPage: React.FC = () => {
                   {/* Thumbnail */}
                   <div className="relative w-full md:w-1/2 h-64 md:h-full overflow-hidden flex-shrink-0">
                     <img 
-                      src="/gallery/pdfs/thumbs/124 Large.jpeg" 
+                      src="/gallery/pdfs/thumbs/180 Large.jpeg" 
                       alt="Modular Home 124 m² Case Study"
                       className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110"
                       loading="lazy"
