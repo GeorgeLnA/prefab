@@ -79,6 +79,14 @@ const HouseDetailPage: React.FC = () => {
     setLightboxImageIndex((prev) => (prev - 1 + houseImages.length) % houseImages.length);
   };
 
+  const goToPrevGalleryImage = () => {
+    setActiveImageIndex((prev) => (prev - 1 + houseImages.length) % houseImages.length);
+  };
+
+  const goToNextGalleryImage = () => {
+    setActiveImageIndex((prev) => (prev + 1) % houseImages.length);
+  };
+
   const specifications = {
     dimensions: {
       'Total Area': `${house.squareFeet} ft² (${house.squareMeters} m²)`,
@@ -245,6 +253,35 @@ const HouseDetailPage: React.FC = () => {
                   </div>
                 ))}
               </div>
+
+              {/* Arrows under thumbnails: previous / next image */}
+              {houseImages.length > 1 && (
+                <div className="flex items-center justify-center gap-4 pt-2 pb-1">
+                  <button
+                    type="button"
+                    onClick={goToPrevGalleryImage}
+                    aria-label="Previous image"
+                    className="p-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400 transition-colors touch-manipulation"
+                  >
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <span className="text-sm text-gray-500 font-thin">
+                    {activeImageIndex + 1} / {houseImages.length}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={goToNextGalleryImage}
+                    aria-label="Next image"
+                    className="p-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400 transition-colors touch-manipulation"
+                  >
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+              )}
             </div>
 
               {/* Right Column - Info & Features */}
