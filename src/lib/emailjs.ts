@@ -46,7 +46,7 @@ export function isEmailJsConfigured(): boolean {
  * - budget        (contact/design) or "—"
  * - source_slug   (quote/floor_plan) or "—"
  * - context       (quote/floor_plan) or "—"
- * - payload_preview  (design_request JSON summary) or "—"
+ * - payload_preview  (design_request: human-readable details, HTML-safe) or "—"
  * - submitted_at  friendly date/time string
  */
 export type AdminTemplateParams = {
@@ -94,6 +94,44 @@ export function sendAdminNotification(params: Partial<AdminTemplateParams>): voi
   });
 }
 
+/** Format camelCase key for display (e.g. selectedBase → Selected base) */
+function formatPayloadKey(key: string): string {
+  return key
+    .replace(/([A-Z])/g, ' $1')
+    .replace(/^./, (s) => s.toUpperCase())
+    .trim();
+}
+
+/** Escape for safe HTML insert (e.g. when using {{{ }}} in template). */
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+/** Turn design request payload into HTML-safe readable lines for email. */
+function formatPayloadForEmail(payload: Record<string, unknown>): string {
+  const skipKeys = new Set(['name', 'email', 'phone', 'message', 'budget']);
+  const entries = Object.entries(payload).filter(([k]) => !skipKeys.has(k));
+  if (entries.length === 0) return '—';
+  const lines = entries.map(([key, value]) => {
+    const label = escapeHtml(formatPayloadKey(key));
+    const displayValue =
+      value === null || value === undefined
+        ? '—'
+        : typeof value === 'boolean'
+          ? value ? 'Yes' : 'No'
+          : typeof value === 'object'
+            ? escapeHtml(JSON.stringify(value))
+            : escapeHtml(String(value));
+    return `${label}: ${displayValue}`;
+  });
+  return lines.join('<br>').slice(0, 4000);
+}
+
 /**
  * Build admin template params from submission-like data and send (non-blocking).
  * Call after successful Supabase insert. Safe to call with missing env.
@@ -111,8 +149,8 @@ export function sendAdminNotificationForSubmission(data: {
   payload?: Record<string, unknown> | null;
 }): void {
   const payloadPreview =
-    data.payload != null
-      ? JSON.stringify(data.payload, null, 2).slice(0, 2000)
+    data.payload != null && Object.keys(data.payload).length > 0
+      ? formatPayloadForEmail(data.payload)
       : '—';
   sendAdminNotification({
     form_type: data.form_type,

@@ -2,6 +2,49 @@ import React, { useState, useEffect } from 'react';
 import type { Submission, SubmissionUpdate } from '../../types/submissions';
 import { cn } from '../../lib/utils';
 
+/** Format camelCase key for display */
+function formatPayloadKey(key: string): string {
+  return key
+    .replace(/([A-Z])/g, ' $1')
+    .replace(/^./, (s) => s.toUpperCase())
+    .trim();
+}
+
+/** Design form (5-step) submission payload: base, size, budget/timeline, details, contact. */
+function DesignRequestDetails({ payload }: { payload: Record<string, unknown> }) {
+  const skipKeys = new Set(['name', 'email', 'phone', 'message', 'budget']);
+  const entries = Object.entries(payload).filter(([k]) => !skipKeys.has(k));
+  if (entries.length === 0) return null;
+
+  return (
+    <div className="border border-gray-200 rounded-lg bg-gray-50 overflow-hidden">
+      <div className="px-3 py-2 bg-gray-100 border-b border-gray-200">
+        <h3 className="text-sm font-medium text-gray-700">Design request details</h3>
+      </div>
+      <dl className="divide-y divide-gray-200">
+        {entries.map(([key, value]) => {
+          const displayValue =
+            value === null || value === undefined
+              ? '—'
+              : typeof value === 'boolean'
+                ? value ? 'Yes' : 'No'
+                : typeof value === 'object'
+                  ? JSON.stringify(value)
+                  : String(value);
+          return (
+            <div key={key} className="px-3 py-2 flex flex-wrap gap-x-2">
+              <dt className="text-xs font-medium text-gray-600 shrink-0">
+                {formatPayloadKey(key)}:
+              </dt>
+              <dd className="text-sm text-gray-800 break-words min-w-0">{displayValue}</dd>
+            </div>
+          );
+        })}
+      </dl>
+    </div>
+  );
+}
+
 interface EditSubmissionModalProps {
   submission: Submission | null;
   onClose: () => void;
@@ -182,6 +225,11 @@ export function EditSubmissionModal({
               )}
             />
           </div>
+          {submission.form_type === 'design_request' &&
+            submission.payload &&
+            Object.keys(submission.payload).length > 0 && (
+              <DesignRequestDetails payload={submission.payload} />
+            )}
           {error && <p className="text-sm text-red-600">{error}</p>}
           <div className="flex gap-2 pt-2">
             <button

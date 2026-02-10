@@ -141,6 +141,7 @@ const Header: React.FC = () => {
     <header className={`fixed top-0 left-0 right-0 z-50 pt-2 px-4 sm:pt-3 sm:px-5 transition-transform duration-300 ${
       isScrollingDown ? '-translate-y-full' : 'translate-y-0'
     }`}>
+      <div className="max-w-6xl mx-auto">
       <nav className={`bg-white rounded-xl sm:rounded-2xl shadow-lg transition-all duration-300 w-full relative group`} role="navigation" aria-label="Main navigation">
         <div className="px-4 sm:px-5">
           <div className="flex items-center justify-between h-14 sm:h-16 md:h-16 lg:h-20">
@@ -390,6 +391,7 @@ const Header: React.FC = () => {
           </div>
         </div>
       </nav>
+      </div>
     </header>
     
     {/* Mobile Menu - Outside header to prevent clipping */}

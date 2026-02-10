@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { houseData } from '../data/houses';
+import { houseData, getHousesByCategory } from '../data/houses';
 import { insertDesignRequest } from '../lib/submission-insert';
 import SEO from '../components/SEO';
 import { buildKeywords } from '../data/seo-keywords';
-import { InteractiveHoverButton } from '../components/ui/interactive-hover-button';
 
 const DesignFormPage: React.FC = () => {
   const [step, setStep] = useState(1);
@@ -47,7 +46,27 @@ const DesignFormPage: React.FC = () => {
     preferredContact: 'Email'
   });
 
-  const allBases = houseData;
+  // Same series as Designs page: only Nordy, Skandy, Modern, Modular (no placeholders)
+  const designSeriesMap: Record<string, string> = {
+    'ALL': 'ALL',
+    'Nordy': 'NORDY',
+    'Skandy': 'MOBILE',
+    'Modern': 'MODERN',
+    'Modular': 'MODULAR',
+  };
+  const designSeriesOptions = ['ALL', 'Nordy', 'Skandy', 'Modern', 'Modular'];
+  const [selectedSeries, setSelectedSeries] = useState<string>('ALL');
+
+  const basesForSelection =
+    selectedSeries === 'ALL'
+      ? houseData.filter(
+          (h) =>
+            h.category === 'NORDY' ||
+            h.category === 'MOBILE' ||
+            h.category === 'MODERN' ||
+            h.category === 'MODULAR'
+        )
+      : getHousesByCategory(designSeriesMap[selectedSeries] ?? 'ALL');
 
   const handleInputChange = (field: string, value: string | number | boolean) => {
     setFormData(prev => ({
@@ -62,6 +81,16 @@ const DesignFormPage: React.FC = () => {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  const nextStepLabels: Record<number, string> = {
+    1: 'Next: Design Details →',
+    2: 'Next: Budget & Timeline →',
+    3: 'Next: Additional Details →',
+    4: 'Next: Contact Information →',
+  };
+  const showNavBar = step < 5 || (step === 5 && !submitted);
+  const canProceedStep1 = step === 1 ? !!formData.selectedBase : true;
+  const canSubmitStep5 = step === 5 && !!formData.name && !!formData.email && !!formData.phone;
 
   const handleSubmit = async () => {
     setSubmitError(null);
@@ -93,7 +122,7 @@ const DesignFormPage: React.FC = () => {
         keywords={buildKeywords('design modular home UK, custom prefab home builder Oxford London, prefabricated house design, modular home configurator, instant quote prefab', { includeServices: true })}
       />
       <div className="bg-white">
-      <div className="pt-28 sm:pt-32 md:pt-36 lg:pt-40 min-h-screen bg-gray-50">
+      <div className="pt-28 sm:pt-32 md:pt-36 lg:pt-40 pb-24 sm:pb-28 min-h-screen bg-gray-50">
       <div className="w-full px-4 sm:px-5">
         <div className="w-full">
         <div className="text-center mb-8">
@@ -101,35 +130,40 @@ const DesignFormPage: React.FC = () => {
           <p className="text-xl text-gray-600">Let's create something amazing together</p>
         </div>
 
-        {/* Progress Bar */}
-        <div className="bg-white rounded-lg shadow-sm p-4 mb-8">
-          <div className="flex justify-between items-center mb-4">
-            <span className="text-sm font-thin text-gray-600">Step {step} of 6</span>
-            <span className="text-sm text-gray-500">{Math.round((step / 6) * 100)}% Complete</span>
-          </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
-            <div 
-              className="bg-primary h-2 rounded-full transition-all duration-300"
-              style={{ width: `${(step / 6) * 100}%` }}
-            ></div>
-          </div>
-        </div>
-
         <div className="bg-white rounded-xl shadow-lg p-8">
           {/* Step 1: House Base Selection */}
           {step === 1 && (
             <div>
               <h2 className="text-3xl font-thin text-gray-800 mb-2">Choose Your House Base</h2>
-              <p className="text-gray-600 mb-8">Select a foundation design to start with</p>
-              
+              <p className="text-gray-600 mb-6">Select a foundation design to start with</p>
+
+              {/* Series filter */}
+              <div className="flex flex-wrap gap-2 sm:gap-3 mb-6">
+                {designSeriesOptions.map((series) => (
+                  <button
+                    key={series}
+                    type="button"
+                    onClick={() => setSelectedSeries(series)}
+                    className={`px-4 py-2 rounded-lg text-sm font-thin transition-all duration-200 ${
+                      selectedSeries === series
+                        ? 'bg-primary text-black'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    {series}
+                  </button>
+                ))}
+              </div>
+
               <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                {allBases.slice(0, 9).map((house) => (
+                {basesForSelection.map((house) => (
                   <button
                     key={house.name}
+                    type="button"
                     onClick={() => handleInputChange('selectedBase', house.name)}
                     className={`rounded-xl overflow-hidden shadow-md border-3 transition-all duration-300 md:hover:scale-105 ${
-                      formData.selectedBase === house.name 
-                        ? 'border-primary ring-4 ring-primary/20' 
+                      formData.selectedBase === house.name
+                        ? 'border-primary ring-4 ring-primary/20'
                         : 'border-gray-200 md:hover:border-primary/50'
                     }`}
                   >
@@ -141,14 +175,6 @@ const DesignFormPage: React.FC = () => {
                   </button>
                 ))}
               </div>
-              
-              <button
-                className="bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-lg font-thin transition-colors disabled:opacity-50"
-                disabled={!formData.selectedBase}
-                onClick={nextStep}
-              >
-                Next: Design Details →
-              </button>
             </div>
           )}
 
@@ -211,132 +237,11 @@ const DesignFormPage: React.FC = () => {
                   />
                 </div>
               </div>
-              
-              <div className="flex gap-4">
-                <button
-                  className="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-thin transition-colors"
-                  onClick={prevStep}
-                >
-                  ← Back
-                </button>
-                <button
-                  className="bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-lg font-thin transition-colors"
-                  onClick={nextStep}
-                >
-                  Next: Materials & Features →
-                </button>
-              </div>
             </div>
           )}
 
-          {/* Step 3: Materials & Features */}
+          {/* Step 3: Budget & Timeline */}
           {step === 3 && (
-            <div>
-              <h2 className="text-3xl font-thin text-gray-800 mb-2">Materials & Features</h2>
-              <p className="text-gray-600 mb-8">Choose your preferred materials and smart features</p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div>
-                  <label className="block text-sm font-thin text-gray-700 mb-2">Wood Type</label>
-                  <select 
-                    value={formData.woodType} 
-                    onChange={(e) => handleInputChange('woodType', e.target.value)}
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent"
-                  >
-                    <option value="Pine">Pine</option>
-                    <option value="Oak">Oak</option>
-                    <option value="Spruce">Spruce</option>
-                    <option value="Cedar">Cedar</option>
-                    <option value="Birch">Birch</option>
-                  </select>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-thin text-gray-700 mb-2">Roof Type</label>
-                  <select 
-                    value={formData.roofType} 
-                    onChange={(e) => handleInputChange('roofType', e.target.value)}
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent"
-                  >
-                    <option value="Traditional">Traditional</option>
-                    <option value="Modern Flat">Modern Flat</option>
-                    <option value="Gabled">Gabled</option>
-                    <option value="Hip">Hip</option>
-                  </select>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-thin text-gray-700 mb-2">Insulation Level</label>
-                  <select 
-                    value={formData.insulation} 
-                    onChange={(e) => handleInputChange('insulation', e.target.value)}
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent"
-                  >
-                    <option value="Standard">Standard</option>
-                    <option value="Enhanced">Enhanced</option>
-                    <option value="Premium">Premium (Highly Energy Efficient)</option>
-                  </select>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-thin text-gray-700 mb-2">Heating System</label>
-                  <select 
-                    value={formData.heating} 
-                    onChange={(e) => handleInputChange('heating', e.target.value)}
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent"
-                  >
-                    <option value="Electric">Electric</option>
-                    <option value="Heat Pump">Heat Pump</option>
-                    <option value="Gas">Gas</option>
-                    <option value="Hybrid">Hybrid</option>
-                  </select>
-                </div>
-              </div>
-              
-              <div className="mb-8">
-                <h3 className="text-lg font-thin text-gray-800 mb-4">Additional Features</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <label className="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={formData.smartHome}
-                      onChange={(e) => handleInputChange('smartHome', e.target.checked)}
-                      className="w-5 h-5 text-primary"
-                    />
-                    <span className="text-gray-700">Smart Home System</span>
-                  </label>
-                  
-                  <label className="flex items-center space-x-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={formData.solarPanels}
-                      onChange={(e) => handleInputChange('solarPanels', e.target.checked)}
-                      className="w-5 h-5 text-primary"
-                    />
-                    <span className="text-gray-700">Solar Panels</span>
-                  </label>
-                </div>
-              </div>
-              
-              <div className="flex gap-4">
-                <button
-                  className="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-thin transition-colors"
-                  onClick={prevStep}
-                >
-                  ← Back
-                </button>
-                <button
-                  className="bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-lg font-thin transition-colors"
-                  onClick={nextStep}
-                >
-                  Next: Budget & Timeline →
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* Step 4: Budget & Timeline */}
-          {step === 4 && (
             <div>
               <h2 className="text-3xl font-thin text-gray-800 mb-2">Budget & Timeline</h2>
               <p className="text-gray-600 mb-8">Tell us about your budget and preferred timeline</p>
@@ -421,26 +326,11 @@ const DesignFormPage: React.FC = () => {
                   </select>
                 </div>
               </div>
-              
-              <div className="flex gap-4">
-                <button
-                  className="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-thin transition-colors"
-                  onClick={prevStep}
-                >
-                  ← Back
-                </button>
-                <button
-                  className="bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-lg font-thin transition-colors"
-                  onClick={nextStep}
-                >
-                  Next: Additional Details →
-                </button>
-              </div>
             </div>
           )}
 
-          {/* Step 5: Additional Details */}
-          {step === 5 && (
+          {/* Step 4: Additional Details */}
+          {step === 4 && (
             <div>
               <h2 className="text-3xl font-thin text-gray-800 mb-2">Additional Details</h2>
               <p className="text-gray-600 mb-8">Share any special requirements or comments</p>
@@ -468,26 +358,11 @@ const DesignFormPage: React.FC = () => {
                   />
                 </div>
               </div>
-              
-              <div className="flex gap-4">
-                <button
-                  className="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-thin transition-colors"
-                  onClick={prevStep}
-                >
-                  ← Back
-                </button>
-                <button
-                  className="bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-lg font-thin transition-colors"
-                  onClick={nextStep}
-                >
-                  Next: Contact Information →
-                </button>
-              </div>
             </div>
           )}
 
-          {/* Step 6: Contact Information & Summary */}
-          {step === 6 && (
+          {/* Step 5: Contact Information & Summary */}
+          {step === 5 && (
             <div>
               <h2 className="text-3xl font-thin text-gray-800 mb-2">Contact Information</h2>
               <p className="text-gray-600 mb-8">How can we reach you?</p>
@@ -575,29 +450,64 @@ const DesignFormPage: React.FC = () => {
                   <p className="text-primary font-medium text-lg">Thanks! We&apos;ll contact you soon.</p>
                 </div>
               ) : (
-                <>
-                  {submitError && <p className="text-red-600 text-sm mb-4">{submitError}</p>}
-                  <div className="flex gap-4">
-                    <InteractiveHoverButton
-                      text="← Back"
-                      onClick={prevStep}
-                      className="bg-gray-500 text-white"
-                      disabled={submitting}
-                    />
-                    <InteractiveHoverButton
-                      text={submitting ? 'Sending…' : 'Submit Design Request 🏠'}
-                      onClick={handleSubmit}
-                      disabled={!formData.name || !formData.email || !formData.phone || submitting}
-                      className="bg-primary text-white px-12 py-4 text-lg disabled:opacity-50"
-                    />
-                  </div>
-                </>
+                submitError && <p className="text-red-600 text-sm mb-4">{submitError}</p>
               )}
             </div>
           )}
         </div>
         </div>
       </div>
+
+      {/* Fixed bottom nav: island (same width/padding as header) */}
+      {showNavBar && (
+        <div className="fixed bottom-0 left-0 right-0 z-40 px-4 sm:px-5 pb-4 sm:pb-5">
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg border border-gray-200 p-4 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+            {step > 1 && (
+              <button
+                type="button"
+                onClick={prevStep}
+                className="px-5 py-2.5 rounded-lg text-sm font-thin bg-gray-200 text-gray-800 hover:bg-gray-300 transition-colors"
+              >
+                ← Back
+              </button>
+            )}
+            {step < 5 ? (
+              <button
+                type="button"
+                onClick={nextStep}
+                disabled={step === 1 && !canProceedStep1}
+                className="px-6 py-2.5 rounded-lg text-sm font-thin bg-primary text-black hover:bg-primary/90 disabled:opacity-50 disabled:pointer-events-none transition-colors"
+              >
+                {nextStepLabels[step]}
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={handleSubmit}
+                disabled={submitting || !canSubmitStep5}
+                className="px-6 py-2.5 rounded-lg text-sm font-thin bg-primary text-black hover:bg-primary/90 disabled:opacity-50 disabled:pointer-events-none transition-colors"
+              >
+                {submitting ? 'Sending…' : 'Submit Design Request'}
+              </button>
+            )}
+            </div>
+            <div className="flex flex-col items-stretch min-w-0 flex-1 ml-4">
+              <div className="flex items-center justify-end gap-2 text-sm">
+                <span className="text-gray-500">{Math.round((step / 5) * 100)}% Complete</span>
+              </div>
+              <div className="w-full mt-1.5 bg-gray-200 rounded-full h-1.5 overflow-hidden">
+                <div
+                  className="bg-primary h-full rounded-full transition-all duration-300"
+                  style={{ width: `${(step / 5) * 100}%` }}
+                />
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
     </div>
     </>

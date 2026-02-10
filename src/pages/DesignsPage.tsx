@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { houseData, getCategories, getHousesByCategory } from '../data/houses';
 import SEO from '../components/SEO';
 import { buildKeywords } from '../data/seo-keywords';
 
 const DesignsPage: React.FC = () => {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
 
   // Filter to show Nordy, Skandy, Modern, and Modular designs
@@ -115,10 +116,11 @@ const DesignsPage: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* CTA Button - Always at Bottom */}
-                    <div className="mt-auto">
-                      <a 
-                        href="/contact" 
+                    {/* CTA Button - Always at Bottom (button to avoid nested <a> inside Link) */}
+                    <div className="mt-auto" onClick={(e) => e.stopPropagation()}>
+                      <button
+                        type="button"
+                        onClick={() => navigate('/contact')}
                         className="group/btn relative inline-block w-full bg-gray-900 text-white py-2 sm:py-2.5 md:py-3 px-3 sm:px-4 text-[9px] sm:text-[10px] md:text-xs lg:text-sm font-thin rounded-lg text-center overflow-hidden cursor-pointer"
                       >
                         <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
@@ -127,7 +129,7 @@ const DesignsPage: React.FC = () => {
                         <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-primary text-black w-full">
                           <span>Schedule Consultation</span>
                         </div>
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </Link>
