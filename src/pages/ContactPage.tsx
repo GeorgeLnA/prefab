@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AnimatedButton } from '../components/ui/animated-button';
 import { insertContact } from '../lib/submission-insert';
 import { houseData } from '../data/houses';
@@ -6,6 +7,7 @@ import SEO from '../components/SEO';
 import { buildKeywords } from '../data/seo-keywords';
 
 const ContactPage: React.FC = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,7 +19,6 @@ const ContactPage: React.FC = () => {
 
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const [submitted, setSubmitted] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -40,7 +41,7 @@ const ContactPage: React.FC = () => {
         budget: formData.budget || undefined,
       });
       if (error) throw error;
-      setSubmitted(true);
+      navigate('/thanks');
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : 'Submission failed');
     } finally {
@@ -84,14 +85,9 @@ const ContactPage: React.FC = () => {
               <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg" data-contact-form-card>
                 <h2 className="text-2xl sm:text-3xl font-heading font-thin text-gray-800 mb-3 sm:mb-4">Start Your Project</h2>
                 <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8 font-body font-normal leading-relaxed">
-                  {submitted
-                    ? "We've received your message and will get back to you within 24 hours."
-                    : "Fill out the form below and we'll get back to you within 24 hours to discuss your project."}
+                  Fill out the form below and we&apos;ll get back to you within 24 hours to discuss your project.
                 </p>
 
-                {submitted ? (
-                  <p className="text-primary font-medium">Thanks! We&apos;ll be in touch soon.</p>
-                ) : (
                 <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     <div>
@@ -240,7 +236,6 @@ const ContactPage: React.FC = () => {
                     {submitting ? 'Sending…' : 'Send Message'}
                   </AnimatedButton>
                 </form>
-                )}
               </div>
             </div>
 

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { houseData, getHousesByCategory } from '../data/houses';
 import { insertDesignRequest } from '../lib/submission-insert';
 import SEO from '../components/SEO';
 import { buildKeywords } from '../data/seo-keywords';
 
 const DesignFormPage: React.FC = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     // House Base Selection
@@ -80,7 +82,6 @@ const DesignFormPage: React.FC = () => {
 
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
 
   const nextStepLabels: Record<number, string> = {
     1: 'Next: Design Details →',
@@ -88,7 +89,7 @@ const DesignFormPage: React.FC = () => {
     3: 'Next: Additional Details →',
     4: 'Next: Contact Information →',
   };
-  const showNavBar = step < 5 || (step === 5 && !submitted);
+  const showNavBar = step <= 5;
   const canProceedStep1 = step === 1 ? !!formData.selectedBase : true;
   const canSubmitStep5 = step === 5 && !!formData.name && !!formData.email && !!formData.phone;
 
@@ -105,7 +106,7 @@ const DesignFormPage: React.FC = () => {
         payload: formData as unknown as Record<string, unknown>,
       });
       if (error) throw error;
-      setSubmitted(true);
+      navigate('/thanks');
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : 'Submission failed');
     } finally {
@@ -445,13 +446,7 @@ const DesignFormPage: React.FC = () => {
                 </div>
               </div>
               
-              {submitted ? (
-                <div className="py-6 text-center">
-                  <p className="text-primary font-medium text-lg">Thanks! We&apos;ll contact you soon.</p>
-                </div>
-              ) : (
-                submitError && <p className="text-red-600 text-sm mb-4">{submitError}</p>
-              )}
+              {submitError && <p className="text-red-600 text-sm mb-4">{submitError}</p>}
             </div>
           )}
         </div>

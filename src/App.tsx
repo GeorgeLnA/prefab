@@ -28,6 +28,7 @@ import BungalowPage from './pages/BungalowPage';
 import { AdminAuthProvider } from './contexts/AdminAuthContext';
 import AdminPage from './pages/AdminPage';
 import NotFoundPage from './pages/NotFoundPage';
+import ThanksPage from './pages/ThanksPage';
 
 function ScrollToTop() {
   const location = useLocation();
@@ -53,6 +54,7 @@ function App() {
               <Route path="/gallery" element={<GalleryPage />} />
               <Route path="/blog" element={<BlogPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/thanks" element={<ThanksPage />} />
               <Route path="/faq" element={<FAQPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/admin" element={<AdminAuthProvider><AdminPage /></AdminAuthProvider>} />

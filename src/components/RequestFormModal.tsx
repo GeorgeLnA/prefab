@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { insertQuote, insertFloorPlan } from '../lib/submission-insert';
 import type { RequestModalParams } from '../types/submissions';
 import { cn } from '../lib/utils';
@@ -9,6 +10,7 @@ interface RequestFormModalProps {
 }
 
 export function RequestFormModal({ params, onClose }: RequestFormModalProps) {
+  const navigate = useNavigate();
   const { requestType, sourceSlug, context } = params;
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -16,7 +18,6 @@ export function RequestFormModal({ params, onClose }: RequestFormModalProps) {
   const [message, setMessage] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -40,8 +41,8 @@ export function RequestFormModal({ params, onClose }: RequestFormModalProps) {
         ? await insertFloorPlan(payload)
         : await insertQuote(payload);
       if (err) throw err;
-      setSuccess(true);
-      setTimeout(() => onClose(), 1500);
+      onClose();
+      navigate('/thanks');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong');
     } finally {
@@ -77,12 +78,7 @@ export function RequestFormModal({ params, onClose }: RequestFormModalProps) {
             <span className="text-xl leading-none">×</span>
           </button>
         </div>
-        {success ? (
-          <div className="text-center py-6">
-            <p className="text-primary font-medium">Thanks! We&apos;ll be in touch soon.</p>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-3 pb-4">
+        <form onSubmit={handleSubmit} className="space-y-3 pb-4">
             <div>
               <label htmlFor="request-name" className="block text-xs font-medium text-gray-600 mb-1">
                 Name *
@@ -170,7 +166,6 @@ export function RequestFormModal({ params, onClose }: RequestFormModalProps) {
               </button>
             </div>
           </form>
-        )}
       </div>
     </div>
   );

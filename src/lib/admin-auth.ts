@@ -3,7 +3,7 @@
  * Change ADMIN_PASSWORD before production use.
  */
 
-export const ADMIN_PASSWORD = '1234';
+export const ADMIN_PASSWORD = '1900';
 
 const SESSION_KEY = 'prefab_admin_session';
 
