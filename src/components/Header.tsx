@@ -138,10 +138,10 @@ const Header: React.FC = () => {
 
   return (
     <>
-    <header className={`fixed top-0 left-0 right-0 z-50 pt-2 px-4 sm:pt-3 sm:px-5 transition-transform duration-300 ${
+    <header className={`fixed top-0 left-0 right-0 z-50 pt-2 sm:pt-3 transition-transform duration-300 ${
       isScrollingDown ? '-translate-y-full' : 'translate-y-0'
     }`}>
-      <div className="max-w-6xl mx-auto">
+      <div className="w-full px-4 sm:px-5">
       <nav className={`bg-white rounded-xl sm:rounded-2xl shadow-lg transition-all duration-300 w-full relative group`} role="navigation" aria-label="Main navigation">
         <div className="px-4 sm:px-5">
           <div className="flex items-center justify-between h-14 sm:h-16 md:h-16 lg:h-20">
@@ -322,7 +322,7 @@ const Header: React.FC = () => {
                   
                   const content = (
                     <div
-                      className={`group relative overflow-hidden rounded-lg shadow-md transition-all duration-200 h-[120px] sm:h-[140px] md:h-[160px] lg:h-[180px] xl:h-[200px] 2xl:h-[220px] ${
+                      className={`group relative overflow-hidden rounded-lg shadow-md transition-all duration-200 h-[200px] ${
                         isComingSoon ? 'cursor-not-allowed opacity-75' : 'cursor-pointer'
                       } ${
                         hoveredHouseType === type.name && !isComingSoon

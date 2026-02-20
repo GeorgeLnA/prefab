@@ -98,8 +98,8 @@ const HomeSmoothScroll = forwardRef<HTMLElement>((props, ref) => {
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
             
-            {/* Text and Button Overlay */}
-            <div className="absolute bottom-12 sm:bottom-16 md:bottom-20 lg:bottom-24 left-0 right-0 p-4 sm:p-6 md:p-8 lg:p-12 z-20">
+            {/* Text and Button Overlay - same side padding as sections (px-4 sm:px-5) */}
+            <div className="absolute bottom-12 sm:bottom-16 md:bottom-20 lg:bottom-24 left-0 right-0 px-4 sm:px-5 py-4 sm:py-6 z-20">
               <div className="text-center">
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-thin text-white mb-4 sm:mb-6 leading-tight drop-shadow-lg">
                   Premium Prefab Homes
