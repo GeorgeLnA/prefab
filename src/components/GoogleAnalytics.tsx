@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 // Replace with your Google Analytics Measurement ID
 const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-VRFQSX71WS';
+const GOOGLE_ADS_ID = 'AW-18036713914';
 
 export const GoogleAnalytics = () => {
   const location = useLocation();
@@ -31,6 +32,11 @@ export const GoogleAnalytics = () => {
   useEffect(() => {
     if (GA_MEASUREMENT_ID && window.gtag) {
       window.gtag('config', GA_MEASUREMENT_ID, {
+        page_path: location.pathname + location.search,
+      });
+    }
+    if (GOOGLE_ADS_ID && window.gtag) {
+      window.gtag('config', GOOGLE_ADS_ID, {
         page_path: location.pathname + location.search,
       });
     }
