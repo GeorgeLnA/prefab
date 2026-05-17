@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Set in Netlify UI → Site settings → Environment variables:
+# VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY, VITE_EMAILJS_* , VITE_ADMIN_EMAIL
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

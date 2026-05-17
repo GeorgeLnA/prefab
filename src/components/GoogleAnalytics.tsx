@@ -2,7 +2,9 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 // Replace with your Google Analytics Measurement ID
-const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-VRFQSX71WS';
+import { env } from '../lib/env';
+
+const GA_MEASUREMENT_ID = env('VITE_GA_MEASUREMENT_ID') || 'G-VRFQSX71WS';
 const GOOGLE_ADS_ID = 'AW-18036713914';
 
 export const GoogleAnalytics = () => {

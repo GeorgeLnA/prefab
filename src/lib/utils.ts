@@ -1,3 +1,5 @@
+import { env } from './env';
+
 // Utility for conditional class names (shadcn/ui standard)
 export function cn(...inputs: (string | undefined | null | boolean)[]) {
   return inputs.filter(Boolean).join(' ');
@@ -20,7 +22,7 @@ const DEFAULT_UAH_PER_USD = 42;
 
 /** Hryvnia per 1 USD — set `VITE_UAH_PER_USD` in env to match your rate. */
 export function getUahPerUsd(): number {
-  const raw = import.meta.env.VITE_UAH_PER_USD;
+  const raw = env('VITE_UAH_PER_USD');
   const n = typeof raw === 'string' && raw !== '' ? Number(raw) : NaN;
   return Number.isFinite(n) && n > 0 ? n : DEFAULT_UAH_PER_USD;
 }

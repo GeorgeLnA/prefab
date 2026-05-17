@@ -1,11 +1,12 @@
 import emailjs from '@emailjs/browser';
 import { formTypeLabelUk } from '@/lib/form-type-labels';
+import { env } from '@/lib/env';
 import { SITE_ORIGIN } from '@/lib/utils';
 
-const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-const adminTemplateId = import.meta.env.VITE_EMAILJS_ADMIN_TEMPLATE_ID;
-const adminEmail = import.meta.env.VITE_ADMIN_EMAIL;
+const publicKey = env('VITE_EMAILJS_PUBLIC_KEY');
+const serviceId = env('VITE_EMAILJS_SERVICE_ID');
+const adminTemplateId = env('VITE_EMAILJS_ADMIN_TEMPLATE_ID');
+const adminEmail = env('VITE_ADMIN_EMAIL');
 
 let initialized = false;
 
@@ -23,12 +24,7 @@ function init(): boolean {
 }
 
 export function isEmailJsConfigured(): boolean {
-  return (
-    typeof publicKey === 'string' && publicKey.length > 0 &&
-    typeof serviceId === 'string' && serviceId.length > 0 &&
-    typeof adminTemplateId === 'string' && adminTemplateId.length > 0 &&
-    typeof adminEmail === 'string' && adminEmail.length > 0
-  );
+  return publicKey.length > 0 && serviceId.length > 0 && adminTemplateId.length > 0 && adminEmail.length > 0;
 }
 
 /**

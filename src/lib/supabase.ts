@@ -1,20 +1,22 @@
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+import { env } from './env';
 
-const url = import.meta.env.VITE_SUPABASE_URL;
-const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const url = env('VITE_SUPABASE_URL');
+const anonKey = env('VITE_SUPABASE_ANON_KEY');
 
 let client: SupabaseClient | null = null;
 
-function getClient(): SupabaseClient {
-  if (client) return client;
-  const baseUrl = typeof url === 'string' && url.length > 0 ? url : 'https://placeholder.supabase.co';
-  const key = typeof anonKey === 'string' && anonKey.length > 0 ? anonKey : 'placeholder-anon-key';
-  client = createClient(baseUrl, key);
-  return client;
+export function isSupabaseConfigured(): boolean {
+  return url.length > 0 && anonKey.length > 0;
 }
 
-export const supabase = getClient();
-
-export function isSupabaseConfigured(): boolean {
-  return typeof url === 'string' && url.length > 0 && typeof anonKey === 'string' && anonKey.length > 0;
+/** Supabase client — only when `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` are set at build time. */
+export function getSupabase(): SupabaseClient {
+  if (!isSupabaseConfigured()) {
+    throw new Error('Supabase is not configured');
+  }
+  if (!client) {
+    client = createClient(url, anonKey);
+  }
+  return client;
 }
