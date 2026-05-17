@@ -7,6 +7,8 @@ import { cn } from '../../lib/utils';
 interface AnimatedButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
   children: React.ReactNode;
   className?: string;
+  /** Applied to both visible label layers (top + hover) — use for uppercase/tracking so hover matches */
+  labelClassName?: string;
   asLink?: boolean;
   href?: string;
   variant?: 'primary' | 'secondary' | 'white' | 'whiteOnYellow' | 'yellow' | 'yellowOnWhite' | 'greyToYellow' | 'greyToWhite' | 'whiteToGrey' | 'dark';
@@ -17,6 +19,7 @@ const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
     {
       children,
       className,
+      labelClassName,
       asLink = false,
       href,
       variant = 'yellow',
@@ -121,6 +124,7 @@ const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
       >
         <span className={cn(
           'translate-y-0 md:group-hover/btn:-translate-y-12 md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap',
+          labelClassName,
         )}>
           {children}
         </span>
@@ -129,7 +133,7 @@ const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
           colors.bottomBg,
           colors.bottomText,
         )}>
-          <span>{children}</span>
+          <span className={labelClassName}>{children}</span>
         </div>
       </button>
     );

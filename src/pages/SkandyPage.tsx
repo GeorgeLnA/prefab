@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { houseData } from '../data/houses';
+import { getHouseTotalAreaSqm, houseData } from '../data/houses';
 import SEO from '../components/SEO';
 import { buildKeywords } from '../data/seo-keywords';
+import { getHousePrice } from '../lib/skandy-nordy-pricing';
+import { formatAreaSqm, formatUsdFromUah } from '../lib/utils';
 import { AnimatedButton } from '../components/ui/animated-button';
 import { ExpandingButton } from '../components/ui/expanding-button';
 
@@ -13,8 +15,8 @@ const SkandyPage: React.FC = () => {
   // Filter only Skandy category houses (MOBILE category in data)
   const skandyHouses = houseData.filter(house => house.category === 'MOBILE');
 
-  // Get SKANDY 120 for hero section
-  const skandy120 = houseData.find(house => house.slug === 'skandy-120');
+  // Hero backdrop only (title/subcopy are series-level, like Nordy / Modular)
+  const skandyHeroBackdrop = houseData.find((house) => house.slug === 'skandy-120');
 
   // Scroll to top on component mount
   useEffect(() => {
@@ -41,10 +43,10 @@ const SkandyPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Skandy Homes - Movable Prefab Living"
-        description="Skandy movable prefab homes UK: no building permit options, quick installation. Oxford, London, Oxfordshire. SIP prefabricated houses. Flexible living."
+        title="Skandy — мобільні модульні будинки"
+        description="Рухомі модульні будинки Skandy: варіанти без буддозволу, швидкий монтаж. Київ, Львів, Одеса. SIP-панельні конструкції. Гнучке проживання."
         url="/skandy"
-        keywords={buildKeywords('Skandy prefab homes UK, movable prefabricated houses Oxford London, no permit prefab, SIP homes UK, Scandinavian prefab')}
+        keywords={buildKeywords('Skandy модульні будинки Україна, рухомі скандинавські будинки, без дозволу SIP, модульні SIP Київ')}
       />
       <div>
       {/* Hero Section */}
@@ -57,7 +59,7 @@ const SkandyPage: React.FC = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ 
-            backgroundImage: `url('${skandy120?.imageUrl || '/SKANDY/SKANDY 70 1.jpeg'}')` 
+            backgroundImage: `url('${skandyHeroBackdrop?.imageUrl || '/SKANDY/SKANDY 70 1.jpeg'}')` 
           }}
         ></div>
         
@@ -65,10 +67,10 @@ const SkandyPage: React.FC = () => {
           <div className="w-full px-4 sm:px-5">
             <div className="w-full">
               <h1 className="text-5xl md:text-6xl font-heading font-thin text-white mb-6 leading-tight">
-                {skandy120?.name || 'Scandinavian Excellence'}
+                Скандинавська якість
               </h1>
               <p className="text-white text-xl font-body font-normal mb-8 leading-relaxed">
-                {skandy120?.description || 'High-performance SIP homes with Scandinavian design. Energy-efficient, precision-built, and designed for comfortable year-round living.'}
+                Високоефективні SIP-будинки у скандинавському стилі: енергоефективність, точне виробництво та комфорт цілий рік.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <AnimatedButton
@@ -77,7 +79,7 @@ const SkandyPage: React.FC = () => {
                   variant="yellow"
                   className="px-8 py-3 w-full sm:w-auto text-center"
                 >
-                  Schedule Consultation
+                  Записатися на консультацію
                 </AnimatedButton>
               </div>
             </div>
@@ -89,9 +91,9 @@ const SkandyPage: React.FC = () => {
       <section id="models" className="pt-8 md:pt-20 pb-20 bg-white">
         <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Scandinavian Craftsmanship</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Скандинавська майстерність</h2>
             <p className="text-lg sm:text-xl font-body font-normal text-gray-900">
-              Each Skandy model embodies Scandinavian design principles with natural materials, clean lines, and exceptional energy efficiency.
+              Кожна модель Skandy відображає принципи скандинавського дизайну: натуральні матеріали, чисті лінії та високу енергоефективність.
             </p>
           </div>
 
@@ -123,10 +125,10 @@ const SkandyPage: React.FC = () => {
                       </h3>
                       <div className="flex items-center justify-between text-sm mb-4">
                         <span className="text-gray-900">
-                          {house.squareFeet} ft² • {house.type}
+                          {formatAreaSqm(getHouseTotalAreaSqm(house))} • {house.type}
                         </span>
                         <span className="text-primary font-thin">
-                          £{house.price.toLocaleString()}
+                          {formatUsdFromUah(getHousePrice(house))}
                         </span>
                       </div>
                       <div className="mt-auto">
@@ -134,7 +136,7 @@ const SkandyPage: React.FC = () => {
                           to={`/house/${houseMatch?.slug || ''}`}
                           className="w-full bg-primary text-white py-3 px-4"
                         >
-                          View Details
+                          Детальніше
                         </ExpandingButton>
                       </div>
                     </div>
@@ -151,9 +153,9 @@ const SkandyPage: React.FC = () => {
         <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
             {/* Removed colored heading */}
-            <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Our Core Principles</h2>
+            <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Наші основні принципи</h2>
             <p className="text-xl text-gray-900 font-body font-normal">
-              Skandy homes combine high-performance SIP construction with Scandinavian design aesthetics for comfortable, energy-efficient living.
+              Будинки Skandy поєднують високоефективну SIP-конструкцію зі скандинавською естетикою для комфортного та енергоефективного життя.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -163,8 +165,8 @@ const SkandyPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                 </svg>
               </div>
-              <h3 className="text-xl font-thin mb-3">High-Performance SIP</h3>
-              <p className="text-gray-900">Outstanding thermal insulation with excellent airtightness for energy efficiency</p>
+              <h3 className="text-xl font-thin mb-3">Високоефективний SIP</h3>
+              <p className="text-gray-900">Видатна теплоізоляція та герметичність для максимальної енергоефективності</p>
             </div>
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
@@ -172,8 +174,8 @@ const SkandyPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-thin mb-3">Natural Materials</h3>
-              <p className="text-gray-900">Timber cladding and Scandinavian-inspired finishes for authentic warmth</p>
+              <h3 className="text-xl font-thin mb-3">Натуральні матеріали</h3>
+              <p className="text-gray-900">Дерев’яне облицювання та скандинавські фінішні рішення для теплої атмосфери</p>
             </div>
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
@@ -181,8 +183,8 @@ const SkandyPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-thin mb-3">Fast Assembly</h3>
-              <p className="text-gray-900">Precision-manufactured components for clean, fast on-site assembly</p>
+              <h3 className="text-xl font-thin mb-3">Швидкий монтаж</h3>
+              <p className="text-gray-900">Точно виготовлені елементи для акуратного та швидкого збирання на об’єкті</p>
             </div>
           </div>
         </div>
@@ -194,9 +196,9 @@ const SkandyPage: React.FC = () => {
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
         <div className="w-full px-4 sm:px-5 text-center">
-          <h2 className="text-4xl font-heading font-thin text-white mb-6">Embrace Scandinavian Living</h2>
+          <h2 className="text-4xl font-heading font-thin text-white mb-6">Живіть у стилі Скандинавії</h2>
           <p className="text-xl text-white/90 font-body font-normal mb-8">
-            Experience the tranquility and sustainability of Scandinavian design with our carefully crafted Skandy collection.
+            Відчуйте спокій та стійкість скандинавського дизайну з нашою ретельно продуманою колекцією Skandy.
           </p>
           <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
             <AnimatedButton
@@ -205,7 +207,7 @@ const SkandyPage: React.FC = () => {
               variant={isScrolled ? "greyToWhite" : "greyToYellow"}
               className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
-              Schedule Viewing
+              Запланувати перегляд
             </AnimatedButton>
             <AnimatedButton
               asLink={true}
@@ -213,7 +215,7 @@ const SkandyPage: React.FC = () => {
               variant={isScrolled ? "whiteToGrey" : "whiteOnYellow"}
               className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
-              View All Models
+              Усі моделі
             </AnimatedButton>
           </div>
         </div>
@@ -234,7 +236,7 @@ const SkandyPage: React.FC = () => {
             </button>
             <img 
               src={selectedImage} 
-              alt="Skandy house design"
+              alt="Проєкт будинку Skandy"
               className="max-w-full max-h-full object-contain"
             />
           </div>

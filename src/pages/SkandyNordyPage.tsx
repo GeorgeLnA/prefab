@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { houseData } from '../data/houses';
+import { getHouseTotalAreaSqm, houseData } from '../data/houses';
 import SEO from '../components/SEO';
 import { buildKeywords } from '../data/seo-keywords';
+import { getHousePrice } from '../lib/skandy-nordy-pricing';
+import { formatAreaSqm, formatUsdFromUah } from '../lib/utils';
 import { AnimatedButton } from '../components/ui/animated-button';
 import { ExpandingButton } from '../components/ui/expanding-button';
 
@@ -38,10 +40,10 @@ const SkandyNordyPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Nordy Collection - Scandinavian Prefab Homes"
-        description="Nordy Scandinavian prefab homes UK: minimalist design, natural materials. Oxford, London, Oxfordshire. Prefabricated houses with Nordic style."
+        title="Nordy — скандинавські модульні будинки"
+        description="Колекція Nordy: мінімалізм, натуральні матеріали. Доставка по Україні. Модульні будинки у скандинавському стилі."
         url="/skandy-nordy"
-        keywords={buildKeywords('Nordy prefab homes UK, Scandinavian prefabricated houses Oxford London, Nordic prefab, minimalist prefab homes, Nordy collection')}
+        keywords={buildKeywords('Nordy модульні будинки Україна, скандинавські prefab, мінімалістичні модульні Київ')}
       />
       <div>
       {/* Hero Section */}
@@ -62,11 +64,10 @@ const SkandyNordyPage: React.FC = () => {
           <div className="w-full px-4 sm:px-5">
             <div className="w-full">
               <h1 className="text-5xl md:text-6xl font-heading font-thin text-white mb-6 leading-tight">
-                Nordic Harmony
+                Північна гармонія
               </h1>
               <p className="text-white text-xl font-body font-normal mb-8 leading-relaxed">
-                Nordic inspired minimalist design. Natural materials, clean lines, 
-                and sustainable living principles.
+                Мінімалізм у дусі Півночі: натуральні матеріали, чисті лінії та стійке житло.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <AnimatedButton
@@ -75,7 +76,7 @@ const SkandyNordyPage: React.FC = () => {
                   variant="yellow"
                   className="px-8 py-3 w-full sm:w-auto text-center"
                 >
-                  Schedule Consultation
+                  Записатися на консультацію
                 </AnimatedButton>
               </div>
             </div>
@@ -87,9 +88,9 @@ const SkandyNordyPage: React.FC = () => {
       <section id="models" className="pt-8 md:pt-20 pb-20 bg-white">
         <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Nordic Craftsmanship</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Північна майстерність</h2>
             <p className="text-lg sm:text-xl font-body font-normal text-gray-900">
-              Each model embodies the essence of Scandinavian design philosophy and Nordic craftsmanship.
+              Кожна модель відображає філософію скандинавського дизайну та північну якість виконання.
             </p>
           </div>
 
@@ -120,10 +121,10 @@ const SkandyNordyPage: React.FC = () => {
                       </h3>
                       <div className="flex items-center justify-between text-sm mb-4">
                         <span className="text-gray-900">
-                          {house.squareFeet} ft² • {house.type}
+                          {formatAreaSqm(getHouseTotalAreaSqm(house))} • {house.type}
                         </span>
                         <span className="text-primary font-thin">
-                          £{house.price.toLocaleString()}
+                          {formatUsdFromUah(getHousePrice(house))}
                         </span>
                       </div>
                       <div className="mt-auto">
@@ -131,7 +132,7 @@ const SkandyNordyPage: React.FC = () => {
                           to={`/house/${houseMatch?.slug || ''}`}
                           className="w-full bg-primary text-white py-3 px-4"
                         >
-                          View Details
+                          Детальніше
                         </ExpandingButton>
                       </div>
                     </div>
@@ -147,7 +148,7 @@ const SkandyNordyPage: React.FC = () => {
       <section className="pt-8 md:pt-20 pb-20 bg-white">
         <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Our Core Principles</h2>
+            <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Наші принципи</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             <div className="text-center group">
@@ -156,7 +157,7 @@ const SkandyNordyPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
               </div>
-              <p className="text-gray-900 font-body font-normal">Natural materials for a warm and authentic living atmosphere</p>
+              <p className="text-gray-900 font-body font-normal">Натуральні матеріали для теплої та автентичної атмосфери</p>
             </div>
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
@@ -164,7 +165,7 @@ const SkandyNordyPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <p className="text-gray-900 font-body font-normal">High thermal comfort with advanced SIP insulation</p>
+              <p className="text-gray-900 font-body font-normal">Високий тепловий комфорт завдяки передовій SIP-ізоляції</p>
             </div>
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
@@ -172,7 +173,7 @@ const SkandyNordyPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <p className="text-gray-900 font-body font-normal">Faster move-in through precision off-site manufacturing</p>
+              <p className="text-gray-900 font-body font-normal">Швидше заселення завдяки точному заводському виробництву</p>
             </div>
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
@@ -180,7 +181,7 @@ const SkandyNordyPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <p className="text-gray-900 font-body font-normal">Clean, predictable assembly for effortless installation</p>
+              <p className="text-gray-900 font-body font-normal">Чистий та передбачуваний монтаж без зайвих ускладнень</p>
             </div>
           </div>
         </div>
@@ -192,9 +193,9 @@ const SkandyNordyPage: React.FC = () => {
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
         <div className="w-full px-4 sm:px-5 text-center">
-          <h2 className="text-4xl font-heading font-thin text-white mb-6">Embrace Nordic Living</h2>
+          <h2 className="text-4xl font-heading font-thin text-white mb-6">Північний стиль життя</h2>
           <p className="text-xl text-white/90 mb-8">
-            Experience the tranquility and sustainability of Scandinavian design with our carefully crafted Nordy collection.
+            Спокій і стійкість скандинавського дизайну в колекції Nordy.
           </p>
           <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
             <AnimatedButton
@@ -203,7 +204,7 @@ const SkandyNordyPage: React.FC = () => {
               variant={isScrolled ? "greyToWhite" : "greyToYellow"}
               className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
-              Schedule Viewing
+              Запланувати перегляд
             </AnimatedButton>
             <AnimatedButton
               asLink={true}
@@ -211,7 +212,7 @@ const SkandyNordyPage: React.FC = () => {
               variant={isScrolled ? "whiteToGrey" : "whiteOnYellow"}
               className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
-              View All Models
+              Усі моделі
             </AnimatedButton>
           </div>
         </div>
@@ -232,7 +233,7 @@ const SkandyNordyPage: React.FC = () => {
             </button>
             <img 
               src={selectedImage} 
-              alt="Nordy house design"
+              alt="Проєкт будинку Nordy"
               className="max-w-full max-h-full object-contain"
             />
           </div>

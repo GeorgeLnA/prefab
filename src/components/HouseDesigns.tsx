@@ -1,7 +1,9 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { houseData } from '../data/houses';
+import { getHouseTotalAreaSqm, houseData } from '../data/houses';
+import { getHousePrice } from '../lib/skandy-nordy-pricing';
+import { formatAreaSqm, formatUsdFromUah } from '../lib/utils';
 import { AnimatedButton } from './ui/animated-button';
 
 const HouseDesigns: React.FC = () => {
@@ -13,15 +15,15 @@ const HouseDesigns: React.FC = () => {
         {/* Header Section */}
         <div className="text-center mb-1.5 sm:mb-2 md:mb-3 lg:mb-4 xl:mb-6 w-full">
           <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-light text-white mb-0.5 sm:mb-1 md:mb-1.5 lg:mb-2 xl:mb-3 leading-tight px-1 sm:px-2 md:px-0">
-            READY-TO-GO <span className="text-primary font-light">7 DAY HOUSES</span>
+            ГОТОВІ <span className="text-primary font-light">7-ДЕННІ БУДИНКИ</span>
           </h2>
           <p className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl text-white/90 mb-1 sm:mb-1.5 md:mb-2 lg:mb-3 xl:mb-4 leading-relaxed px-1 sm:px-2 md:px-0">
-            These homes are <span className="text-primary font-thin">in stock</span> and can be delivered, assembled, and finished on your site fast.
+            Ці моделі <span className="text-primary font-thin">є на складі</span> — швидка доставка, монтаж і завершення робіт на вашій ділянці.
           </p>
         </div>
         
         <div className="text-primary text-xs sm:text-[9px] md:text-[10px] lg:text-xs xl:text-sm 2xl:text-base uppercase tracking-wider mb-1 sm:mb-1.5 md:mb-2 lg:mb-3 xl:mb-4 font-body font-thin text-center w-full px-1 sm:px-0">
-          {inStockHouses.length} DAY HOUSES IN STOCK
+          {inStockHouses.length} МОДЕЛЕЙ НА СКЛАДІ
         </div>
         
         {/* Grid layout - fully responsive */}
@@ -37,9 +39,9 @@ const HouseDesigns: React.FC = () => {
               <div className="p-1.5 sm:p-2 md:p-2.5 lg:p-3 xl:p-4 2xl:p-5 flex-1 flex flex-col justify-between">
                 <div>
                   <div className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl text-primary font-thin mb-0.5 sm:mb-0.5 md:mb-1 font-heading uppercase">{house.name}</div>
-                  <div className="text-white text-xs sm:text-[10px] md:text-xs lg:text-sm xl:text-base mb-0.5 sm:mb-1 md:mb-1.5 font-body font-thin">{house.squareFeet} ft² • {house.type}</div>
+                  <div className="text-white text-xs sm:text-[10px] md:text-xs lg:text-sm xl:text-base mb-0.5 sm:mb-1 md:mb-1.5 font-body font-thin">{formatAreaSqm(getHouseTotalAreaSqm(house))} • {house.type}</div>
                 </div>
-                <div className="text-white text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-thin font-body">£{house.price.toLocaleString()}</div>
+                <div className="text-white text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-thin font-body">{formatUsdFromUah(getHousePrice(house))}</div>
               </div>
             </Link>
           );
@@ -50,7 +52,7 @@ const HouseDesigns: React.FC = () => {
           variant="yellow"
           className="px-3 sm:px-4 md:px-5 lg:px-6 xl:px-8 2xl:px-10 py-1.5 sm:py-2 md:py-2.5 lg:py-3 xl:py-4 text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg font-thin w-full lg:w-auto mt-4 sm:mt-6 md:mt-8"
         >
-          Reserve Your 7 Day House Now
+          Забронювати 7-денний будинок
         </AnimatedButton>
       </div>
     </section>

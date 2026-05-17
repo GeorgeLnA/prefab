@@ -44,7 +44,7 @@ export function RequestFormModal({ params, onClose }: RequestFormModalProps) {
       onClose();
       navigate('/thanks');
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Something went wrong');
+      setError(err instanceof Error ? err.message : 'Щось пішло не так');
     } finally {
       setSubmitting(false);
     }
@@ -52,10 +52,10 @@ export function RequestFormModal({ params, onClose }: RequestFormModalProps) {
 
   const title =
     requestType === 'floor_plan'
-      ? 'Request Floor Plan'
+      ? 'Запит на планування'
       : context
-        ? `Request Quote: ${context}`
-        : 'Request Quote';
+        ? `Комерційна пропозиція: ${context}`
+        : 'Запит комерційної пропозиції';
 
   return (
     <div
@@ -73,7 +73,7 @@ export function RequestFormModal({ params, onClose }: RequestFormModalProps) {
             type="button"
             onClick={onClose}
             className="p-2 text-gray-500 hover:text-gray-900 rounded-lg touch-manipulation"
-            aria-label="Close"
+            aria-label="Закрити"
           >
             <span className="text-xl leading-none">×</span>
           </button>
@@ -81,7 +81,7 @@ export function RequestFormModal({ params, onClose }: RequestFormModalProps) {
         <form onSubmit={handleSubmit} className="space-y-3 pb-4">
             <div>
               <label htmlFor="request-name" className="block text-xs font-medium text-gray-600 mb-1">
-                Name *
+                Ім’я *
               </label>
               <input
                 id="request-name"
@@ -93,7 +93,7 @@ export function RequestFormModal({ params, onClose }: RequestFormModalProps) {
                   'w-full px-3 py-2 border border-gray-300 rounded-lg text-sm',
                   'focus:ring-2 focus:ring-primary focus:border-transparent'
                 )}
-                placeholder="Your name"
+                placeholder="Ваше ім’я"
               />
             </div>
             <div>
@@ -110,12 +110,12 @@ export function RequestFormModal({ params, onClose }: RequestFormModalProps) {
                   'w-full px-3 py-2 border border-gray-300 rounded-lg text-sm',
                   'focus:ring-2 focus:ring-primary focus:border-transparent'
                 )}
-                placeholder="your@email.com"
+                placeholder="email@приклад.com"
               />
             </div>
             <div>
               <label htmlFor="request-phone" className="block text-xs font-medium text-gray-600 mb-1">
-                Phone
+                Телефон
               </label>
               <input
                 id="request-phone"
@@ -126,12 +126,12 @@ export function RequestFormModal({ params, onClose }: RequestFormModalProps) {
                   'w-full px-3 py-2 border border-gray-300 rounded-lg text-sm',
                   'focus:ring-2 focus:ring-primary focus:border-transparent'
                 )}
-                placeholder="+44 123 456 7890"
+                placeholder="+380 00 000 0000"
               />
             </div>
             <div>
               <label htmlFor="request-message" className="block text-xs font-medium text-gray-600 mb-1">
-                Message
+                Повідомлення
               </label>
               <textarea
                 id="request-message"
@@ -142,7 +142,7 @@ export function RequestFormModal({ params, onClose }: RequestFormModalProps) {
                   'w-full px-3 py-2 border border-gray-300 rounded-lg text-sm resize-none',
                   'focus:ring-2 focus:ring-primary focus:border-transparent'
                 )}
-                placeholder="Any details about your request…"
+                placeholder="Деталі вашого запиту…"
               />
             </div>
             {error && <p className="text-sm text-red-600">{error}</p>}
@@ -152,7 +152,7 @@ export function RequestFormModal({ params, onClose }: RequestFormModalProps) {
                 onClick={onClose}
                 className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-sm font-thin text-gray-700 hover:bg-gray-50 touch-manipulation"
               >
-                Cancel
+                Скасувати
               </button>
               <button
                 type="submit"
@@ -162,7 +162,7 @@ export function RequestFormModal({ params, onClose }: RequestFormModalProps) {
                   'hover:bg-primary/90 disabled:opacity-50 touch-manipulation'
                 )}
               >
-                {submitting ? 'Sending…' : 'Submit'}
+                {submitting ? 'Надсилаємо…' : 'Надіслати'}
               </button>
             </div>
           </form>

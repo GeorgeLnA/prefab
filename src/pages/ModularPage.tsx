@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { houseData } from '../data/houses';
+import { getHouseTotalAreaSqm, houseData } from '../data/houses';
 import SEO from '../components/SEO';
 import { buildKeywords } from '../data/seo-keywords';
+import { getHousePrice, isModularOneStorey, isModularTwoStorey } from '../lib/skandy-nordy-pricing';
+import { formatAreaSqm, formatUsdFromUah } from '../lib/utils';
 import { AnimatedButton } from '../components/ui/animated-button';
 import { ExpandingButton } from '../components/ui/expanding-button';
 
 type SortOption = 'name' | 'size' | 'price';
 type StoreyFilter = 'all' | '1' | '2';
-
-const isOneStorey = (house: { type?: string }) =>
-  house.type === 'SINGLE-STOREY';
-const isTwoStorey = (house: { type?: string }) =>
-  house.type === 'TWO-STOREY' || house.type === '1.5-STOREY';
 
 const ModularPage: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -23,13 +20,13 @@ const ModularPage: React.FC = () => {
   // Filter only Modular category houses, apply storey filter, then sort (ascending)
   const modularHouses = React.useMemo(() => {
     let filtered = houseData.filter(house => house.category === 'MODULAR');
-    if (storeyFilter === '1') filtered = filtered.filter(isOneStorey);
-    if (storeyFilter === '2') filtered = filtered.filter(isTwoStorey);
+    if (storeyFilter === '1') filtered = filtered.filter(isModularOneStorey);
+    if (storeyFilter === '2') filtered = filtered.filter(isModularTwoStorey);
     const sorted = [...filtered].sort((a, b) => {
       let cmp = 0;
       if (sortBy === 'name') cmp = (a.name || '').localeCompare(b.name || '');
-      if (sortBy === 'size') cmp = (a.squareFeet || 0) - (b.squareFeet || 0);
-      if (sortBy === 'price') cmp = (a.price || 0) - (b.price || 0);
+      if (sortBy === 'size') cmp = getHouseTotalAreaSqm(a) - getHouseTotalAreaSqm(b);
+      if (sortBy === 'price') cmp = getHousePrice(a) - getHousePrice(b);
       return cmp;
     });
     return sorted;
@@ -60,10 +57,10 @@ const ModularPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Modular Homes - Flexible Prefab Living"
-        description="Modular prefab homes UK: customizable, expandable designs. Oxford, London, Oxfordshire. Design your own prefabricated house. Flexible living."
+        title="Модульні будинки — гнучкі рішення | Prefab Homes"
+        description="Модульні будинки Prefab Homes в Україні: адаптивні проєкти, розширення, орієнтовні ціни в доларах США. Підбір моделей X10, X23, X40 та інші."
         url="/modular"
-        keywords={buildKeywords('modular homes UK, modular prefab houses Oxford London, expandable prefab homes, customizable prefabricated houses, X10 X23 X40 modular')}
+        keywords={buildKeywords('модульний будинок Україна, збірний дім, розширюваний проєкт, Prefab Homes modular, каталог модулів')}
       />
       <div>
       {/* Hero Section */}
@@ -84,18 +81,17 @@ const ModularPage: React.FC = () => {
           <div className="w-full px-4 sm:px-5">
             <div className="w-full">
               <h1 className="text-5xl md:text-6xl font-heading font-thin text-white mb-6 leading-tight">
-                Flexible Living
+                Гнучке планування
               </h1>
               <p className="text-white text-xl font-body font-normal mb-8 leading-relaxed">
-                Modular construction for customizable living. Expandable designs that grow with your needs, 
-                .
+                Модульна система дозволяє підлаштувати дім під ваш спосіб життя та масштабувати проєкт у майбутньому.
               </p>
               <div className="flex flex-row items-center gap-3 flex-nowrap">
                 <a 
                   href="/contact" 
                   className="inline-flex items-center justify-center border border-white text-white px-8 py-3 font-thin text-sm sm:text-base md:text-lg md:hover:bg-white md:hover:text-gray-900 transition-colors duration-200 rounded-lg leading-none whitespace-nowrap shrink-0"
                 >
-                  Plan Your Modules
+                  Обговорити модулі
                 </a>
                 <AnimatedButton
                   asLink={true}
@@ -103,7 +99,7 @@ const ModularPage: React.FC = () => {
                   variant="yellow"
                   className="inline-flex items-center justify-center px-8 py-3 font-thin text-sm sm:text-base md:text-lg leading-none whitespace-nowrap shrink-0"
                 >
-                  Design Yourself
+                  Спроєктувати самостійно
                 </AnimatedButton>
               </div>
             </div>
@@ -115,15 +111,15 @@ const ModularPage: React.FC = () => {
       <section id="models" className="pt-8 md:pt-20 pb-20 bg-white">
         <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Flexible Designs</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Гнучкі проєкти</h2>
             <p className="text-lg sm:text-xl font-body font-normal text-gray-900">
-              Each model can be customized and expanded to meet your specific requirements.
+              Кожну модель можна адаптувати та доповнювати модулями відповідно до ваших потреб.
             </p>
           </div>
 
           <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-gray-700 font-body font-normal">Filter</span>
+              <span className="text-gray-700 font-body font-normal">Фільтр</span>
               {(['all', '1', '2'] as const).map((value) => (
                 <button
                   key={value}
@@ -135,12 +131,12 @@ const ModularPage: React.FC = () => {
                       : 'border border-gray-300 bg-white hover:bg-gray-50'
                   }`}
                 >
-                  {value === 'all' ? 'All' : value === '1' ? '1 storey' : '2 storey'}
+                  {value === 'all' ? 'Усі' : value === '1' ? '1 поверх' : '2 поверхи'}
                 </button>
               ))}
             </div>
             <div className="flex flex-wrap items-center gap-3">
-              <span className="text-gray-700 font-body font-normal">Sort by</span>
+              <span className="text-gray-700 font-body font-normal">Сортування</span>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortOption)}
@@ -149,9 +145,9 @@ const ModularPage: React.FC = () => {
                   backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`
                 }}
               >
-                <option value="name">Name</option>
-                <option value="size">Size (ft²)</option>
-                <option value="price">Price</option>
+                <option value="name">Назва</option>
+                <option value="size">Площа (м²)</option>
+                <option value="price">Ціна</option>
               </select>
             </div>
           </div>
@@ -183,10 +179,10 @@ const ModularPage: React.FC = () => {
                       </h3>
                       <div className="flex items-center justify-between text-sm mb-4">
                         <span className="text-gray-900">
-                          {house.squareFeet} ft² • {house.type}
+                          {formatAreaSqm(getHouseTotalAreaSqm(house))} • {house.type}
                         </span>
                         <span className="text-primary font-thin">
-                          £{house.price.toLocaleString()}
+                          {formatUsdFromUah(getHousePrice(house))}
                         </span>
                       </div>
                       <div className="mt-auto">
@@ -194,7 +190,7 @@ const ModularPage: React.FC = () => {
                           to={`/house/${houseMatch?.slug || ''}`}
                           className="w-full bg-primary text-white py-3 px-4"
                         >
-                          View Details
+                          Детальніше
                         </ExpandingButton>
                       </div>
                     </div>
@@ -214,11 +210,10 @@ const ModularPage: React.FC = () => {
         <div className="w-full px-4 sm:px-5">
           <div className="text-center w-full">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-white mb-4 sm:mb-6 leading-tight">
-              Design Yourself
+              Створіть проєкт під себе
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-white/90 font-body font-normal mb-6 sm:mb-8 md:mb-10 leading-relaxed">
-              Want something truly unique? Use our modular system to design your own home, 
-              tailored to your lifestyle and vision. Expandable, customizable, and built to grow with you.
+              Скористайтеся модульною системою: планування під ваш стиль життя, можливість розширення та чіткі терміни виробництва.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <AnimatedButton
@@ -227,7 +222,7 @@ const ModularPage: React.FC = () => {
                 variant="white"
                 className="px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
               >
-                Start Designing
+                Розпочати проєктування
               </AnimatedButton>
             </div>
           </div>
@@ -238,9 +233,9 @@ const ModularPage: React.FC = () => {
       <section className="pt-8 md:pt-20 pb-20 bg-white">
         <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Modular Home Flexibility</h2>
+            <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Переваги модульного дому</h2>
             <p className="text-xl text-gray-900 font-body font-normal">
-              Our Modular Home collection offers flexible, customizable living spaces that adapt to your lifestyle and needs.
+              Колекція модульних проєктів — це свобода планування та зрозуміла логіка нарощування площі.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -250,8 +245,8 @@ const ModularPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
                 </svg>
               </div>
-              <h3 className="text-xl font-heading font-thin mb-3">Expandable Design</h3>
-              <p className="text-gray-900 font-body font-normal">Easily add modules as your needs change</p>
+              <h3 className="text-xl font-heading font-thin mb-3">Можливість розширення</h3>
+              <p className="text-gray-900 font-body font-normal">Додавайте модулі, коли змінюються потреби родини</p>
             </div>
             <div className="text-center group flex flex-col items-center">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300 shrink-0">
@@ -259,8 +254,8 @@ const ModularPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-heading font-thin mb-3">Cost Effective</h3>
-              <p className="text-gray-900 font-body font-normal">Start smaller and expand when budget allows, maximizing value</p>
+              <h3 className="text-xl font-heading font-thin mb-3">Економічність</h3>
+              <p className="text-gray-900 font-body font-normal">Почніть з потрібного обсягу та інвестуйте в розширення поступово</p>
             </div>
             <div className="text-center group flex flex-col items-center">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300 shrink-0">
@@ -268,8 +263,8 @@ const ModularPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-heading font-thin mb-3">Quick Assembly</h3>
-              <p className="text-gray-900 font-body font-normal">Faster construction with precision-engineered components</p>
+              <h3 className="text-xl font-heading font-thin mb-3">Швидкий монтаж</h3>
+              <p className="text-gray-900 font-body font-normal">Заводська точність прискорює збірку на ділянці</p>
             </div>
           </div>
         </div>
@@ -281,9 +276,9 @@ const ModularPage: React.FC = () => {
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
         <div className="w-full px-4 sm:px-5 text-center">
-          <h2 className="text-4xl font-heading font-thin text-white mb-6">Build Your Future, One Module at a Time</h2>
+          <h2 className="text-4xl font-heading font-thin text-white mb-6">Будуйте поетапно — модуль за модулем</h2>
           <p className="text-xl text-white/90 font-body font-normal mb-8">
-            Start with what you need today and expand tomorrow with our flexible modular construction system.
+            Почніть із потрібної площі сьогодні й розширюйтесь завтра завдяки гнучкій модульній технології.
           </p>
           <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
             <AnimatedButton
@@ -292,7 +287,7 @@ const ModularPage: React.FC = () => {
               variant={isScrolled ? "greyToWhite" : "greyToYellow"}
               className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
-              Schedule Viewing
+              Замовити перегляд
             </AnimatedButton>
             <AnimatedButton
               asLink={true}
@@ -300,7 +295,7 @@ const ModularPage: React.FC = () => {
               variant={isScrolled ? "whiteToGrey" : "whiteOnYellow"}
               className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
-              View All Models
+              Усі моделі
             </AnimatedButton>
           </div>
         </div>
@@ -321,7 +316,7 @@ const ModularPage: React.FC = () => {
             </button>
             <img 
               src={selectedImage} 
-              alt="Modular house design"
+              alt="Модульний будинок — візуалізація"
               className="max-w-full max-h-full object-contain"
             />
           </div>

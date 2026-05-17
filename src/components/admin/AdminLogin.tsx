@@ -19,26 +19,26 @@ export function AdminLogin({ className }: AdminLoginProps) {
     if (login(password)) {
       setLoading(false);
     } else {
-      setError('Invalid password');
+      setError('Невірний пароль');
       setLoading(false);
     }
   };
 
   return (
     <div className={cn('w-full px-4 sm:px-5 py-8', className)}>
-      <h1 className="text-xl font-heading font-light text-gray-900 mb-2">Admin</h1>
-      <p className="text-sm text-gray-600 mb-6">Enter password to continue.</p>
+      <h1 className="text-xl font-heading font-light text-gray-900 mb-2">Адмін-панель</h1>
+      <p className="text-sm text-gray-600 mb-6">Введіть пароль, щоб продовжити.</p>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="admin-password" className="sr-only">
-            Password
+            Пароль
           </label>
           <input
             id="admin-password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
+            placeholder="Пароль"
             className="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-transparent"
             autoComplete="current-password"
             autoFocus
@@ -50,7 +50,7 @@ export function AdminLogin({ className }: AdminLoginProps) {
           disabled={loading}
           className="w-full bg-primary text-black px-4 py-3 rounded-lg font-thin hover:bg-primary/90 transition-colors disabled:opacity-50 touch-manipulation"
         >
-          Log in
+          Увійти
         </button>
       </form>
     </div>

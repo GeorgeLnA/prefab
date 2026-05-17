@@ -2,26 +2,27 @@ import React from 'react';
 import HomeSmoothScroll from '../components/ui/home-smooth-scroll';
 import SEO from '../components/SEO';
 import { buildKeywords } from '../data/seo-keywords';
+import { SITE_EMAIL, SITE_ORIGIN, SITE_PHONE_DISPLAY } from '../lib/utils';
 
 const HomePage: React.FC = () => {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "PREFAB HOMES UK",
-    "url": "https://prefabhomes.co.uk",
-    "logo": "https://prefabhomes.co.uk/sharp_logo_high_res.png",
-    "description": "High-performance prefab homes engineered for efficiency. Highly energy efficient design, rapid 3-5 day assembly, and sustainable construction.",
+    "name": "Prefab Homes",
+    "url": SITE_ORIGIN,
+    "logo": `${SITE_ORIGIN}/sharp_logo_high_res.png`,
+    "description": "Високоефективні модульні та каркасні будинки Prefab Homes: енергоефективність, швидкий монтаж і якість заводського виробництва в Україні.",
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+44 7495788669",
+      "telephone": SITE_PHONE_DISPLAY,
       "contactType": "Customer Service",
-      "email": "prefabhomes.uk@gmail.com",
-      "areaServed": "GB",
-      "availableLanguage": "English"
+      "email": SITE_EMAIL,
+      "areaServed": "UA",
+      "availableLanguage": "Ukrainian"
     },
     "address": {
       "@type": "PostalAddress",
-      "addressCountry": "GB"
+      "addressCountry": "UA"
     },
     "sameAs": [
       "https://www.facebook.com/prefabhomes",
@@ -33,11 +34,11 @@ const HomePage: React.FC = () => {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "PREFAB HOMES UK",
-    "url": "https://prefabhomes.co.uk",
+    "name": "Prefab Homes",
+    "url": SITE_ORIGIN,
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://prefabhomes.co.uk/search?q={search_term_string}",
+      "target": `${SITE_ORIGIN}/search?q={search_term_string}`,
       "query-input": "required name=search_term_string"
     }
   };
@@ -45,10 +46,10 @@ const HomePage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Prefab Homes | High-Performance, Energy Efficient, Built in Days"
-        description="Premium prefab and prefabricated homes in Oxford, UK and nationwide. Highly energy efficient, rapid 3-5 day assembly, sustainable construction. London, Oxfordshire, Thames Valley delivery."
+        title="Prefab Homes | Енергоефективні модульні будинки, швидкий монтаж"
+        description="Prefab Homes — модульні та каркасні будинки в Україні: висока енергоефективність, сучасні матеріали, чіткі терміни. Доставка та монтаж по всій країні."
         url="/"
-        keywords={buildKeywords('prefab homes Oxford, prefabricated houses London, modular homes UK, energy efficient homes, sustainable construction, 7 day house, turnkey prefab', { includeServices: true })}
+        keywords={buildKeywords('Prefab Homes Україна, модульний будинок, каркасний будинок під ключ, SIP, енергоефективний дім', { includeServices: true })}
         structuredData={[organizationSchema, websiteSchema]}
       />
       <HomeSmoothScroll />

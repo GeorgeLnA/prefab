@@ -8,10 +8,10 @@ const SmartChoice: React.FC = () => {
         {/* Text Section - Full width, centered */}
         <div className="w-full mb-4 sm:mb-6 md:mb-8 lg:mb-8 xl:mb-10 2xl:mb-12">
           <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-light text-white mb-2 sm:mb-3 md:mb-4 lg:mb-5 xl:mb-6 leading-tight drop-shadow-lg text-center px-1 sm:px-2 md:px-0">
-            The Smart Choice for Modern Living
+            Розумний вибір для сучасного життя
           </h2>
           <p className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl text-white/90 mb-0 leading-relaxed text-center px-1 sm:px-2 md:px-0">
-            Experience the future of home living with advanced automation, energy efficiency, and integrated security. Every home is designed to be intelligent, sustainable, and effortless to control.
+            Майбутнє житла: автоматизація, енергоефективність та інтегрована безпека. Кожен проєкт — розумний, стійкий і зручний у керуванні.
           </p>
         </div>
 
@@ -51,9 +51,9 @@ const SmartChoice: React.FC = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  <h3 className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg font-thin text-white">Home Automation</h3>
+                  <h3 className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg font-thin text-white">Автоматизація дому</h3>
                 </div>
-                <p className="text-xs sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-white/80 leading-snug">Control lighting, climate, and more from your phone or voice assistant.</p>
+                <p className="text-xs sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-white/80 leading-snug">Керуйте освітленням, мікрокліматом та іншим зі смартфона чи голосового помічника.</p>
               </div>
 
               <div className="bg-gray-800/50 p-1.5 sm:p-2 md:p-2.5 lg:p-3 xl:p-4 2xl:p-6 rounded-lg sm:rounded-xl shadow-sm md:hover:shadow-md transition-shadow duration-300">
@@ -63,9 +63,9 @@ const SmartChoice: React.FC = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   </div>
-                  <h3 className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg font-thin text-white">Energy Efficiency</h3>
+                  <h3 className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg font-thin text-white">Енергоефективність</h3>
                 </div>
-                <p className="text-xs sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-white/80 leading-snug">Highly energy efficient design, smart thermostats, and solar-ready design.</p>
+                <p className="text-xs sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-white/80 leading-snug">Ефективні рішення, розумні термостати та готовність до сонячних панелей.</p>
               </div>
 
               <div className="bg-gray-800/50 p-1.5 sm:p-2 md:p-2.5 lg:p-3 xl:p-4 2xl:p-6 rounded-lg sm:rounded-xl shadow-sm md:hover:shadow-md transition-shadow duration-300">
@@ -75,9 +75,9 @@ const SmartChoice: React.FC = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>
                   </div>
-                  <h3 className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg font-thin text-white">Security & Safety</h3>
+                  <h3 className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg font-thin text-white">Безпека</h3>
                 </div>
-                <p className="text-xs sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-white/80 leading-snug">Smart locks, cameras, and sensors for peace of mind.</p>
+                <p className="text-xs sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-white/80 leading-snug">Розумні замки, камери та сенсори для вашого спокою.</p>
               </div>
 
               <div className="bg-gray-800/50 p-1.5 sm:p-2 md:p-2.5 lg:p-3 xl:p-4 2xl:p-6 rounded-lg sm:rounded-xl shadow-sm md:hover:shadow-md transition-shadow duration-300">
@@ -87,9 +87,9 @@ const SmartChoice: React.FC = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
-                  <h3 className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg font-thin text-white">Voice & App Control</h3>
+                  <h3 className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg font-thin text-white">Голос і застосунки</h3>
                 </div>
-                <p className="text-xs sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-white/80 leading-snug">Seamless integration with Alexa, Google Home, and mobile apps.</p>
+                <p className="text-xs sm:text-[10px] md:text-xs lg:text-sm xl:text-base text-white/80 leading-snug">Сумісність з Alexa, Google Home та мобільними застосунками.</p>
               </div>
             </div>
 
@@ -100,7 +100,7 @@ const SmartChoice: React.FC = () => {
                 variant="yellow"
                 className="px-3 sm:px-4 md:px-5 lg:px-6 xl:px-8 2xl:px-10 py-1.5 sm:py-2 md:py-2.5 lg:py-3 xl:py-4 text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg font-thin w-full sm:w-auto"
               >
-                Get a Smart Home Demo
+                Замовити демо розумного дому
               </AnimatedButton>
             </div>
           </div>

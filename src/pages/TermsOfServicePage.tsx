@@ -1,161 +1,133 @@
 import React from 'react';
 import SEO from '../components/SEO';
 import { buildKeywords } from '../data/seo-keywords';
+import { SITE_EMAIL, SITE_PHONE_DISPLAY } from '../lib/utils';
 
 const TermsOfServicePage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Terms of Service - Prefab Homes"
-        description="Terms of Service for Prefab Homes UK. Legal terms for prefab home services. Oxford, London, nationwide. Prefabricated houses modular homes."
+        title="Умови користування — Prefab Homes"
+        description="Публічні умови надання інформації та послуг Prefab Homes на prefabhomes.com.ua."
         url="/terms-of-service"
         noindex={true}
-        keywords={buildKeywords('terms of service Prefab Homes UK, prefab homes terms Oxford London')}
+        keywords={buildKeywords('умови користування prefab homes Україна')}
       />
       <div className="bg-white">
       <div className="pt-20">
-      {/* Hero Section */}
-      <section 
+      <section
         className="py-20 bg-gray-900"
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
         <div className="w-full px-4 sm:px-5">
           <div className="text-center">
-            <h1 className="text-5xl font-light text-white mb-6">Terms of Service</h1>
+            <h1 className="text-5xl font-light text-white mb-6">Умови користування</h1>
             <p className="text-xl text-gray-300">
-              These terms govern your use of our services and establish the legal 
-              framework for our business relationship.
+              Умови регулюють використання сайту та загальні принципи договірних відносин щодо будівельних послуг Prefab Homes.
             </p>
-            <p className="text-gray-400 mt-4">Last updated: January 2025</p>
+            <p className="text-gray-400 mt-4">Оновлено: січень 2025</p>
           </div>
         </div>
       </section>
 
-      {/* Content Section */}
       <section className="py-20 bg-white">
         <div className="w-full px-4 sm:px-5">
           <div className="w-full prose prose-lg">
-            
-            <h2 className="text-2xl font-heading font-semibold text-gray-800 mb-4">1. Acceptance of Terms</h2>
+            <h2 className="text-2xl font-heading font-semibold text-gray-800 mb-4">1. Прийняття умов</h2>
             <p className="text-gray-700 mb-6 font-body font-normal">
-              By accessing and using our website and services, you accept and agree to be bound by 
-              these Terms of Service. If you do not agree to these terms, please do not use our services.
+              Користуючись сайтом і послугами, ви підтверджуєте ознайомлення з цими умовами. Якщо ви з ними не згодні,
+              будь ласка, не використовуйте ресурс.
             </p>
 
-            <h2 className="text-2xl font-heading font-semibold text-gray-800 mb-4">2. Description of Services</h2>
+            <h2 className="text-2xl font-heading font-semibold text-gray-800 mb-4">2. Опис послуг</h2>
             <p className="text-gray-700 mb-6 font-body font-normal">
-              Prefab Homes provides design, manufacturing, and construction services for prefabricated 
-              homes. Our services include:
+              Prefab Homes надає послуги з проєктування, виробництва елементів модульних / prefab-будинків, поставки,
+              монтажу та супроводу проєктів. Фактичний перелік робіт і відповідальність сторін фіксуються окремим договором.
             </p>
             <ul className="list-disc pl-6 mb-6 text-gray-700 font-body font-normal">
-              <li>Custom home design and consultation</li>
-              <li>Factory manufacturing of prefab home components</li>
-              <li>On-site assembly and installation</li>
-              <li>Project management and coordination</li>
-              <li>After-sales support and warranty services</li>
+              <li>консультації та підбір рішень;</li>
+              <li>виробництво конструкцій / модулів на виробництві;</li>
+              <li>монтаж на ділянці замовника;</li>
+              <li>координація проєкту;</li>
+              <li>гарантійний супровід згідно з договором.</li>
             </ul>
 
-            <h2 className="text-2xl font-heading font-semibold text-gray-800 mb-4">3. Ordering and Contracts</h2>
+            <h2 className="text-2xl font-heading font-semibold text-gray-800 mb-4">3. Замовлення та договір</h2>
             <p className="text-gray-700 mb-6 font-body font-normal">
-              All orders are subject to acceptance by Prefab Homes. A separate construction contract 
-              will be executed for each project, which will include:
+              Заявка на сайті не є акцептом договору. Укладення — лише після погодження технічного та комерційного рішення
+              і підписання документів. У договорі зазвичай визначають:
             </p>
             <ul className="list-disc pl-6 mb-6 text-gray-700 font-body font-normal">
-              <li>Detailed project specifications</li>
-              <li>Timeline and delivery schedule</li>
-              <li>Payment terms and schedule</li>
-              <li>Warranty provisions</li>
-              <li>Change order procedures</li>
+              <li>специфікацію об’єкта;</li>
+              <li>календар поставок і робіт;</li>
+              <li>графік платежів;</li>
+              <li>гарантійні зобов’язання;</li>
+              <li>порядок додаткових робіт (протоколи погодження змін).</li>
             </ul>
 
-            <h2 className="text-2xl font-heading font-semibold text-gray-800 mb-4">4. Pricing and Payment</h2>
+            <h2 className="text-2xl font-heading font-semibold text-gray-800 mb-4">4. Ціни та оплата</h2>
             <p className="text-gray-700 mb-6">
-              Prices are subject to change without notice. Payment terms will be specified in your 
-              construction contract. Typical payment schedule includes:
-            </p>
-            <ul className="list-disc pl-6 mb-6 text-gray-700">
-              <li>10% deposit upon contract signing</li>
-              <li>40% at manufacturing commencement</li>
-              <li>40% upon delivery to site</li>
-              <li>10% upon project completion</li>
-            </ul>
-
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">5. Delivery and Installation</h2>
-            <p className="text-gray-700 mb-6">
-              Delivery dates are estimates and may be subject to change due to weather, site conditions, 
-              or other factors beyond our control. Customer is responsible for:
-            </p>
-            <ul className="list-disc pl-6 mb-6 text-gray-700">
-              <li>Site preparation and access</li>
-              <li>Utility connections</li>
-              <li>Required permits and approvals</li>
-              <li>Site safety and security</li>
-            </ul>
-
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">6. Warranties</h2>
-            <p className="text-gray-700 mb-6">
-              We provide the following warranties:
-            </p>
-            <ul className="list-disc pl-6 mb-6 text-gray-700">
-              <li>10-year structural warranty</li>
-              <li>2-year mechanical systems warranty</li>
-              <li>1-year finishes and fixtures warranty</li>
-              <li>Manufacturer warranties on appliances and equipment</li>
-            </ul>
-
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">7. Limitation of Liability</h2>
-            <p className="text-gray-700 mb-6">
-              Our liability is limited to the contract price of your project. We are not liable for 
-              indirect, consequential, or punitive damages. Some jurisdictions do not allow limitation 
-              of liability, so these limitations may not apply to you.
+              Орієнтовні ціни на сайті можуть змінюватися залежно від комплектації, курсу, логістики та навантаження
+              виробництва. Обов’язковими є суми та етапи оплати з підписаного договору.
             </p>
 
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">8. Force Majeure</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">5. Поставка та монтаж</h2>
             <p className="text-gray-700 mb-6">
-              We are not liable for delays or failures due to circumstances beyond our reasonable control, 
-              including but not limited to natural disasters, government actions, labor disputes, or 
-              material shortages.
+              Строки залежать від виробництва, дозволів, погоди та готовності майданчика. Зазвичай замовник готує
+              під’їзд, фундамент згідно з проєктом, підключення комунікацій та отримує дозвільну документацію.
             </p>
 
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">9. Intellectual Property</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">6. Гарантії</h2>
             <p className="text-gray-700 mb-6">
-              All designs, plans, and proprietary information remain the intellectual property of 
-              Prefab Homes. Customers receive a license to use designs for their specific project only.
+              Конкретний строк і обсяг гарантії зазначаються в договорі та паспортах на вироби. Застосовуються також
+              гарантії виробників обладнання.
             </p>
 
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">10. Dispute Resolution</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">7. Обмеження відповідальності</h2>
             <p className="text-gray-700 mb-6">
-              Any disputes will be resolved through binding arbitration in accordance with UK law. 
-              The prevailing party may be entitled to attorney fees and costs.
+              Інформація на сайті має ознайомчий характер. Відповідальність за рішення, прийняті лише на основі сайту
+              без письмового договору, обмежується чинним законодавством України.
             </p>
 
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">11. Termination</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">8. Обставини непереборної сили</h2>
             <p className="text-gray-700 mb-6">
-              Either party may terminate the agreement under certain conditions as specified in the 
-              construction contract. Termination procedures and penalties will be detailed in your 
-              specific contract.
+              Сторони звільняються від відповідальності за простій, спричинений подіями поза розумним контролем:
+              стихійні лиха, воєнний стан, ембарго, зриви ланцюгів постачання тощо — у межах і на строк, передбачені договором та законом.
             </p>
 
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">12. Governing Law</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">9. Інтелектуальна власність</h2>
             <p className="text-gray-700 mb-6">
-              These terms are governed by the laws of England and Wales. Any legal proceedings will 
-              be conducted in the appropriate courts of England and Wales.
+              Проєктна документація, візуалізації та бренд Prefab Homes охороняються законом. Використання поза
+              узгодженим проєктом заборонено.
             </p>
 
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">13. Changes to Terms</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">10. Вирішення спорів</h2>
             <p className="text-gray-700 mb-6">
-              We reserve the right to modify these terms at any time. Changes will be posted on our 
-              website and will be effective immediately upon posting.
+              Спори вирішуються переговорами; за недосягнення згоди — у судовому порядку за місцезнаходженням відповідача
+              або в порядку, визначеному договором, згідно з законодавством України.
             </p>
 
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">14. Contact Information</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">11. Припинення</h2>
             <p className="text-gray-700 mb-6">
-              For questions about these terms, please contact us:
+              Умови розірвання та штрафні наслідки визначаються індивідуальним договором.
             </p>
+
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">12. Застосовне право</h2>
+            <p className="text-gray-700 mb-6">
+              Ці умови та відносини сторін регулюються законодавством України.
+            </p>
+
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">13. Зміни</h2>
+            <p className="text-gray-700 mb-6">
+              Ми можемо оновлювати текст умов; актуальна редакція публікується на цій сторінці.
+            </p>
+
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">14. Контакти</h2>
+            <p className="text-gray-700 mb-6">Питання щодо умов:</p>
             <div className="bg-gray-50 p-6 rounded-lg">
-              <p className="text-gray-700 mb-2"><strong>Email:</strong> prefabhomes.uk@gmail.com</p>
-              <p className="text-gray-700 mb-2"><strong>Phone:</strong> +44 7495788669</p>
-              <p className="text-gray-700"><strong>Address:</strong> 123 Construction Avenue, London, UK SW1A 1AA</p>
+              <p className="text-gray-700 mb-2"><strong>Email:</strong> {SITE_EMAIL}</p>
+              <p className="text-gray-700 mb-2"><strong>Телефон:</strong> {SITE_PHONE_DISPLAY}</p>
+              <p className="text-gray-700"><strong>Регіон роботи:</strong> Україна</p>
             </div>
           </div>
         </div>

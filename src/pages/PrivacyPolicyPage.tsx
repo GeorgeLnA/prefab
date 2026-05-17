@@ -1,131 +1,107 @@
 import React from 'react';
 import SEO from '../components/SEO';
 import { buildKeywords } from '../data/seo-keywords';
+import { SITE_EMAIL, SITE_PHONE_DISPLAY } from '../lib/utils';
 
 const PrivacyPolicyPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Privacy Policy - Prefab Homes"
-        description="Privacy Policy for Prefab Homes UK. How we collect, use, and protect your information. Oxford, London, nationwide. Prefab homes prefabricated houses."
+        title="Політика конфіденційності — Prefab Homes"
+        description="Як Prefab Homes збирає, використовує та захищає персональні дані відвідувачів prefabhomes.com.ua."
         url="/privacy-policy"
         noindex={true}
-        keywords={buildKeywords('privacy policy Prefab Homes UK, prefab homes privacy Oxford London')}
+        keywords={buildKeywords('політика конфіденційності prefab homes Україна, захист даних')}
       />
       <div className="bg-white">
       <div className="pt-20">
-      {/* Hero Section */}
-      <section 
+      <section
         className="py-20 bg-gray-900"
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
         <div className="w-full px-4 sm:px-5">
           <div className="text-center">
-            <h1 className="text-5xl font-light text-white mb-6">Privacy Policy</h1>
+            <h1 className="text-5xl font-light text-white mb-6">Політика конфіденційності</h1>
             <p className="text-xl text-gray-300">
-              Your privacy is important to us. This policy explains how we collect, 
-              use, and protect your personal information.
+              Ми поважаємо вашу приватність. Документ пояснює, які дані ми отримуємо, навіщо їх обробляємо
+              і як їх захищаємо.
             </p>
-            <p className="text-gray-400 mt-4">Last updated: January 2025</p>
+            <p className="text-gray-400 mt-4">Оновлено: січень 2025</p>
           </div>
         </div>
       </section>
 
-      {/* Content Section */}
       <section className="py-20 bg-white">
         <div className="w-full px-4 sm:px-5">
           <div className="w-full prose prose-lg">
-            
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">1. Information We Collect</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">1. Які дані ми збираємо</h2>
             <p className="text-gray-700 mb-6">
-              We collect information you provide directly to us, such as when you create an account, 
-              request a consultation, fill out a form, or communicate with us. This may include:
+              Ми обробляємо інформацію, яку ви надаєте добровільно: звернення через форми, запити консультацій,
+              листування з нами тощо. Це можуть бути:
             </p>
             <ul className="list-disc pl-6 mb-6 text-gray-700">
-              <li>Name, email address, and phone number</li>
-              <li>Project details and preferences</li>
-              <li>Budget and timeline information</li>
-              <li>Communication preferences</li>
-              <li>Any other information you choose to provide</li>
+              <li>ім’я, електронна пошта, номер телефону;</li>
+              <li>опис проєкту, уподобання щодо моделі чи комплектації;</li>
+              <li>орієнтовний бюджет і бажані строки;</li>
+              <li>канали зв’язку, які ви обрали;</li>
+              <li>інші відомості, які ви вказали в повідомленні.</li>
             </ul>
 
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">2. How We Use Your Information</h2>
-            <p className="text-gray-700 mb-6">
-              We use the information we collect to:
-            </p>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">2. Навіщо ми використовуємо дані</h2>
+            <p className="text-gray-700 mb-6">Дані використовуються для:</p>
             <ul className="list-disc pl-6 mb-6 text-gray-700">
-              <li>Provide, maintain, and improve our services</li>
-              <li>Process and fulfill your requests</li>
-              <li>Send you technical notices and support messages</li>
-              <li>Communicate with you about products, services, and events</li>
-              <li>Monitor and analyze trends and usage</li>
-              <li>Detect, investigate, and prevent fraudulent transactions</li>
+              <li>надання та покращення наших послуг (консультації, комерційні пропозиції);</li>
+              <li>обробки ваших запитів і зворотного зв’язку;</li>
+              <li>технічних повідомлень і підтримки;</li>
+              <li>інформування про продукти та події, якщо ви на це погодилися;</li>
             </ul>
 
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">3. Information Sharing</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">3. Передача третім особам</h2>
             <p className="text-gray-700 mb-6">
-              We do not sell, trade, or otherwise transfer your personal information to third parties 
-              without your consent, except as described in this policy. We may share your information:
+              Ми не продаємо персональні дані. Передача можлива лише обмежено — наприклад, підрядникам
+              (хостинг, пошта, аналітика), якщо це потрібно для роботи сайту, а також коли того вимагає закон.
             </p>
+
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">4. Захист даних</h2>
+            <p className="text-gray-700 mb-6">
+              Застосовуємо організаційні та технічні заходи для захисту від несанкціонованого доступу.
+              Передача через Інтернет не може бути абсолютно безризиковою.
+            </p>
+
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">5. Ваші права</h2>
+            <p className="text-gray-700 mb-6">Відповідно до законодавства України про персональні дані ви можете:</p>
             <ul className="list-disc pl-6 mb-6 text-gray-700">
-              <li>With trusted service providers who assist in our operations</li>
-              <li>To comply with legal obligations</li>
-              <li>To protect our rights and safety</li>
-              <li>In connection with a business transfer or merger</li>
+              <li>отримати доступ до своїх даних і вимагати виправлення;</li>
+              <li>вимагати видалення або обмеження обробки в погоджених випадках;</li>
+              <li>відкликати згоду на маркетингові повідомлення.</li>
             </ul>
 
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">4. Data Security</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">6. Файли cookie</h2>
             <p className="text-gray-700 mb-6">
-              We implement appropriate security measures to protect your personal information against 
-              unauthorized access, alteration, disclosure, or destruction. However, no method of 
-              transmission over the internet is 100% secure.
+              Сайт може використовувати cookie для роботи та аналітики. Ви можете змінити налаштування у браузері.
             </p>
 
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">5. Your Rights</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">7. Посилання на сторонні сайти</h2>
             <p className="text-gray-700 mb-6">
-              You have the right to:
-            </p>
-            <ul className="list-disc pl-6 mb-6 text-gray-700">
-              <li>Access and update your personal information</li>
-              <li>Request deletion of your personal information</li>
-              <li>Object to processing of your personal information</li>
-              <li>Request restriction of processing</li>
-              <li>Data portability</li>
-              <li>Withdraw consent at any time</li>
-            </ul>
-
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">6. Cookies and Tracking</h2>
-            <p className="text-gray-700 mb-6">
-              We use cookies and similar tracking technologies to enhance your experience on our website. 
-              You can control cookie settings through your browser preferences.
+              Ми не контролюємо політику конфіденційності зовнішніх ресурсів, на які можуть вести посилання.
             </p>
 
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">7. Third-Party Links</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">8. Діти</h2>
             <p className="text-gray-700 mb-6">
-              Our website may contain links to third-party websites. We are not responsible for the 
-              privacy practices of these external sites.
+              Послуги орієнтовані на дорослих. Ми свідомо не збираємо дані дітей без згоди законних представників.
             </p>
 
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">8. Children's Privacy</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">9. Зміни політики</h2>
             <p className="text-gray-700 mb-6">
-              Our services are not intended for children under 16. We do not knowingly collect 
-              personal information from children under 16.
+              Актуальна версія завжди на цій сторінці. Суттєві зміни можемо підсвітити на сайті або електронною поштою.
             </p>
 
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">9. Changes to This Policy</h2>
-            <p className="text-gray-700 mb-6">
-              We may update this privacy policy from time to time. We will notify you of any 
-              significant changes by posting the new policy on our website.
-            </p>
-
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">10. Contact Us</h2>
-            <p className="text-gray-700 mb-6">
-              If you have any questions about this privacy policy or our data practices, please contact us:
-            </p>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">10. Контакти</h2>
+            <p className="text-gray-700 mb-6">Питання щодо обробки даних:</p>
             <div className="bg-gray-50 p-6 rounded-lg">
-              <p className="text-gray-700 mb-2"><strong>Email:</strong> prefabhomes.uk@gmail.com</p>
-              <p className="text-gray-700 mb-2"><strong>Phone:</strong> +44 7495788669</p>
-              <p className="text-gray-700"><strong>Address:</strong> 123 Construction Avenue, London, UK SW1A 1AA</p>
+              <p className="text-gray-700 mb-2"><strong>Email:</strong> {SITE_EMAIL}</p>
+              <p className="text-gray-700 mb-2"><strong>Телефон:</strong> {SITE_PHONE_DISPLAY}</p>
+              <p className="text-gray-700"><strong>Регіон роботи:</strong> Україна</p>
             </div>
           </div>
         </div>

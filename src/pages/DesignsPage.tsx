@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { houseData, getCategories, getHousesByCategory } from '../data/houses';
+import { getHouseTotalAreaSqm, houseData, getCategories, getHousesByCategory } from '../data/houses';
 import SEO from '../components/SEO';
 import { buildKeywords } from '../data/seo-keywords';
+import { getHousePrice } from '../lib/skandy-nordy-pricing';
+import { formatAreaSqm, formatUsdFromUah } from '../lib/utils';
 
 const DesignsPage: React.FC = () => {
   const navigate = useNavigate();
@@ -24,6 +26,13 @@ const DesignsPage: React.FC = () => {
 
   // Show relevant categories with display names
   const categories = ['ALL', 'Nordy', 'Skandy', 'Modern', 'Modular'];
+  const categoryLabels: Record<string, string> = {
+    ALL: 'Усі',
+    Nordy: 'Nordy',
+    Skandy: 'Skandy',
+    Modern: 'Modern',
+    Modular: 'Modular',
+  };
   
   const filteredHouses = selectedCategory === 'ALL' 
     ? relevantHouses 
@@ -32,10 +41,10 @@ const DesignsPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="House Designs & Models"
-        description="Browse prefab home designs for Oxford, UK and nationwide. Nordy, Skandy, Modern and Modular house models. Specifications, pricing, availability. London, Oxfordshire delivery."
+        title="Каталог проєктів будинків | Prefab Homes"
+        description="Готові проєкти модульних та каркасних будинків Prefab Homes в Україні: Nordy, Skandy, Modern, Modular. Площі, типи, актуальні орієнтовні ціни в доларах США."
         url="/designs"
-        keywords={buildKeywords('prefab house designs UK, modular home models, prefabricated house plans Oxford London, Nordy Skandy Modern Modular, prefab home specifications pricing')}
+        keywords={buildKeywords('каталог модульних будинків, проєкт каркасного дому, Prefab Homes ціни USD, Nordy Skandy Modern')}
       />
       <div className="bg-white">
       <div className="pt-20">
@@ -43,10 +52,9 @@ const DesignsPage: React.FC = () => {
         <div className="w-full px-4 sm:px-5">
           {/* Header */}
           <div className="text-center mb-12 sm:mb-16">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-thin text-gray-800 mb-4 sm:mb-6">House Designs</h1>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-heading font-thin text-gray-800 mb-4 sm:mb-6">Проєкти будинків</h1>
             <p className="text-lg sm:text-xl font-body font-normal text-gray-900">
-              Explore our collection of high-performance prefab homes. Each design combines 
-              modern aesthetics with energy efficiency and sustainable construction.
+              Каталог високоякісних модульних та каркасних рішень: сучасна архітектура, енергоефективність і надійні матеріали.
             </p>
           </div>
 
@@ -62,7 +70,7 @@ const DesignsPage: React.FC = () => {
                     : 'bg-white text-gray-900 md:hover:bg-gray-900 md:hover:text-white'
                 }`}
               >
-                {category}
+                {categoryLabels[category]}
               </button>
             ))}
           </div>
@@ -81,7 +89,7 @@ const DesignsPage: React.FC = () => {
                   <div className="relative overflow-hidden h-32 sm:h-36 md:h-40 lg:h-64 bg-white flex-shrink-0">
                     <img 
                       src={house.imageUrl} 
-                      alt={`${house.name} - ${house.category} prefab home`}
+                      alt={`${house.name} — проєкт ${house.category}`}
                       className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-105"
                       loading="lazy"
                     />
@@ -102,16 +110,16 @@ const DesignsPage: React.FC = () => {
                       {/* Details Grid - Consistent Spacing */}
                       <div className="space-y-1 sm:space-y-1.5 md:space-y-2.5 mb-3 sm:mb-4 md:mb-5">
                         <div className="flex items-center justify-between text-[9px] sm:text-[10px] md:text-xs lg:text-sm">
-                          <span className="text-gray-900">Area</span>
-                          <span className="font-thin text-gray-900">{house.squareFeet} ft²</span>
+                          <span className="text-gray-900">Площа</span>
+                          <span className="font-thin text-gray-900">{formatAreaSqm(getHouseTotalAreaSqm(house))}</span>
                         </div>
                         <div className="flex items-center justify-between text-[9px] sm:text-[10px] md:text-xs lg:text-sm">
-                          <span className="text-gray-900">Type</span>
+                          <span className="text-gray-900">Тип</span>
                           <span className="font-thin text-gray-900">{house.type}</span>
                         </div>
                         <div className="flex items-center justify-between pt-1 sm:pt-2">
-                          <span className="text-gray-900 font-thin text-[9px] sm:text-[10px] md:text-xs lg:text-sm">Price</span>
-                          <span className="font-thin text-primary text-[10px] sm:text-xs md:text-sm lg:text-lg">£{house.price.toLocaleString()}</span>
+                          <span className="text-gray-900 font-thin text-[9px] sm:text-[10px] md:text-xs lg:text-sm">Ціна</span>
+                          <span className="font-thin text-primary text-[10px] sm:text-xs md:text-sm lg:text-lg">{formatUsdFromUah(getHousePrice(house))}</span>
                         </div>
                       </div>
                     </div>
@@ -124,10 +132,10 @@ const DesignsPage: React.FC = () => {
                         className="group/btn relative inline-block w-full bg-gray-900 text-white py-2 sm:py-2.5 md:py-3 px-3 sm:px-4 text-[9px] sm:text-[10px] md:text-xs lg:text-sm font-thin rounded-lg text-center overflow-hidden cursor-pointer"
                       >
                         <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
-                          Schedule Consultation
+                          Записатися на консультацію
                         </span>
                         <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-primary text-black w-full">
-                          <span>Schedule Consultation</span>
+                          <span>Записатися на консультацію</span>
                         </div>
                       </button>
                     </div>
@@ -142,15 +150,15 @@ const DesignsPage: React.FC = () => {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
               <div>
                 <div className="text-4xl font-thin text-primary mb-2">{relevantHouses.length}+</div>
-                <div className="text-gray-900">House Designs</div>
+                <div className="text-gray-900">Проєктів у каталозі</div>
               </div>
               <div>
                 <div className="text-4xl font-thin text-primary mb-2">10</div>
-                <div className="text-gray-900">Year Warranty</div>
+                <div className="text-gray-900">років гарантії на конструктив</div>
               </div>
               <div>
                 <div className="text-4xl font-thin text-primary mb-2">4</div>
-                <div className="text-gray-900">House Categories</div>
+                <div className="text-gray-900">серії будинків</div>
               </div>
             </div>
           </div>

@@ -1,5 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {
+  SITE_EMAIL,
+  SITE_EMAIL_MAILTO,
+  SITE_PHONE_DISPLAY,
+  SITE_PHONE_TEL,
+} from '../lib/utils';
 import { AnimatedButton } from './ui/animated-button';
 
 const Footer: React.FC = () => {
@@ -22,14 +28,14 @@ const Footer: React.FC = () => {
             <div className="mb-4">
               <h3 className="text-lg sm:text-xl md:text-2xl font-light text-primary mb-3">PREFAB HOMES</h3>
               <p className="text-sm sm:text-base text-white font-thin leading-relaxed mb-6 max-w-sm">
-                High-performance prefab homes with precision craftsmanship. Engineered for efficiency, built in days.
+                Модульні та каркасні будинки Prefab Homes: точне виробництво, енергоефективність і швидкий монтаж в Україні.
               </p>
             </div>
-            <div className="flex space-x-4" role="list" aria-label="Social media links">
+            <div className="flex space-x-4" role="list" aria-label="Соціальні мережі">
               <a 
                 href="#" 
                 className="text-white md:hover:text-primary transition-colors duration-300" 
-                aria-label="Follow us on Twitter" 
+                aria-label="Twitter" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >
@@ -40,7 +46,7 @@ const Footer: React.FC = () => {
               <a 
                 href="#" 
                 className="text-white md:hover:text-primary transition-colors duration-300" 
-                aria-label="Follow us on Facebook" 
+                aria-label="Facebook" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >
@@ -51,7 +57,7 @@ const Footer: React.FC = () => {
               <a 
                 href="#" 
                 className="text-white md:hover:text-primary transition-colors duration-300" 
-                aria-label="Follow us on Instagram" 
+                aria-label="Instagram" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >
@@ -62,7 +68,7 @@ const Footer: React.FC = () => {
               <a 
                 href="#" 
                 className="text-white md:hover:text-primary transition-colors duration-300" 
-                aria-label="Follow us on LinkedIn" 
+                aria-label="LinkedIn" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >
@@ -75,36 +81,36 @@ const Footer: React.FC = () => {
           
           {/* Quick Links */}
           <div>
-            <h4 className="text-sm sm:text-base font-light text-primary mb-4 uppercase tracking-wider">Quick Links</h4>
+            <h4 className="text-sm sm:text-base font-light text-primary mb-4 uppercase tracking-wider">Навігація</h4>
                 <ul className="space-y-3">
                   <li>
                 <Link to="/" className="text-sm sm:text-base text-white md:hover:text-primary transition-colors duration-300 font-thin">
-                  Home
+                  Головна
                 </Link>
               </li>
               <li>
                 <Link to="/designs" className="text-sm sm:text-base text-white md:hover:text-primary transition-colors duration-300 font-thin">
-                  Designs
+                  Проєкти
                 </Link>
               </li>
               <li>
                 <Link to="/technology" className="text-sm sm:text-base text-white md:hover:text-primary transition-colors duration-300 font-thin">
-                  Technology
+                  Технології
                     </Link>
                   </li>
                   <li>
                 <Link to="/gallery" className="text-sm sm:text-base text-white md:hover:text-primary transition-colors duration-300 font-thin">
-                  Gallery
+                  Галерея
                     </Link>
                   </li>
                   <li>
                 <Link to="/about" className="text-sm sm:text-base text-white md:hover:text-primary transition-colors duration-300 font-thin">
-                      About Us
+                      Про нас
                     </Link>
                   </li>
                   <li>
                 <Link to="/blog" className="text-sm sm:text-base text-white md:hover:text-primary transition-colors duration-300 font-thin">
-                      Blog
+                      Блог
                     </Link>
                   </li>
                 </ul>
@@ -112,7 +118,7 @@ const Footer: React.FC = () => {
               
           {/* House Types */}
           <div>
-            <h4 className="text-sm sm:text-base font-light text-primary mb-4 uppercase tracking-wider">House Types</h4>
+            <h4 className="text-sm sm:text-base font-light text-primary mb-4 uppercase tracking-wider">Серії будинків</h4>
             <ul className="space-y-3">
               <li>
                 <Link to="/skandy-nordy" className="text-sm sm:text-base text-white md:hover:text-primary transition-colors duration-300 font-thin">
@@ -141,7 +147,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <Link to="/modular" className="text-sm sm:text-base text-white md:hover:text-primary transition-colors duration-300 font-thin">
-                  Modular Home
+                  Модульні будинки
                 </Link>
               </li>
             </ul>
@@ -149,28 +155,28 @@ const Footer: React.FC = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-sm sm:text-base font-light text-primary mb-4 uppercase tracking-wider">Contact</h4>
+            <h4 className="text-sm sm:text-base font-light text-primary mb-4 uppercase tracking-wider">Контакти</h4>
             <ul className="space-y-4">
               <li>
                 <a 
-                  href="tel:+447495788669" 
+                  href={SITE_PHONE_TEL} 
                   className="text-sm sm:text-base text-primary md:hover:text-primary/80 transition-colors duration-300 font-thin block"
                 >
-                  +44 7495788669
+                  {SITE_PHONE_DISPLAY}
                 </a>
               </li>
               <li>
                 <a 
-                  href="mailto:prefabhomes.uk@gmail.com" 
+                  href={SITE_EMAIL_MAILTO} 
                   className="text-sm sm:text-base text-white md:hover:text-primary transition-colors duration-300 font-thin block"
                 >
-                  prefabhomes.uk@gmail.com
+                  {SITE_EMAIL}
                 </a>
               </li>
               <li className="pt-2">
                 <p className="text-sm sm:text-base text-white font-thin">
-                  Mon-Fri: 8:00-17:00<br />
-                  Sat: 10:00-16:00
+                  Пн–Пт: 8:00–17:00<br />
+                  Сб: 10:00–16:00
                 </p>
               </li>
               <li className="pt-4 w-full">
@@ -180,7 +186,7 @@ const Footer: React.FC = () => {
                   variant="yellow"
                   className="w-full text-sm sm:text-base px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 whitespace-nowrap"
                 >
-                  Schedule Consultation
+                  Консультація
                 </AnimatedButton>
               </li>
             </ul>
@@ -191,32 +197,32 @@ const Footer: React.FC = () => {
         <div className="mt-20 sm:mt-24 md:mt-28 lg:mt-32 border-t border-gray-800 pt-8 sm:pt-10 md:pt-12 pb-8 sm:pb-10 md:pb-12">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs sm:text-sm text-white font-thin">
-              &copy; {new Date().getFullYear()} Prefab Homes. All rights reserved.
+              © {new Date().getFullYear()} Prefab Homes. Усі права захищені.
             </p>
             <div className="flex flex-wrap gap-4 sm:gap-6">
               <Link 
                 to="/privacy-policy" 
                 className="text-xs sm:text-sm text-white md:hover:text-primary transition-colors duration-300 font-thin"
               >
-                Privacy Policy
+                Політика конфіденційності
               </Link>
               <Link 
                 to="/terms-of-service" 
                 className="text-xs sm:text-sm text-white md:hover:text-primary transition-colors duration-300 font-thin"
               >
-                Terms of Service
+                Умови користування
               </Link>
               <Link 
                 to="/faq" 
                 className="text-xs sm:text-sm text-white md:hover:text-primary transition-colors duration-300 font-thin"
               >
-                FAQ
+                Запитання та відповіді
               </Link>
               <Link 
                 to="/admin" 
                 className="text-xs sm:text-sm text-white md:hover:text-primary transition-colors duration-300 font-thin"
               >
-                Admin
+                Адмін
               </Link>
             </div>
           </div>

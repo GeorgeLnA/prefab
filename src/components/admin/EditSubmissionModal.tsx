@@ -10,7 +10,6 @@ function formatPayloadKey(key: string): string {
     .trim();
 }
 
-/** Design form (5-step) submission payload: base, size, budget/timeline, details, contact. */
 function DesignRequestDetails({ payload }: { payload: Record<string, unknown> }) {
   const skipKeys = new Set(['name', 'email', 'phone', 'message', 'budget']);
   const entries = Object.entries(payload).filter(([k]) => !skipKeys.has(k));
@@ -19,7 +18,7 @@ function DesignRequestDetails({ payload }: { payload: Record<string, unknown> })
   return (
     <div className="border border-gray-200 rounded-lg bg-gray-50 overflow-hidden">
       <div className="px-3 py-2 bg-gray-100 border-b border-gray-200">
-        <h3 className="text-sm font-medium text-gray-700">Design request details</h3>
+        <h3 className="text-sm font-medium text-gray-700">Деталі запиту на дизайн</h3>
       </div>
       <dl className="divide-y divide-gray-200">
         {entries.map(([key, value]) => {
@@ -27,7 +26,7 @@ function DesignRequestDetails({ payload }: { payload: Record<string, unknown> })
             value === null || value === undefined
               ? '—'
               : typeof value === 'boolean'
-                ? value ? 'Yes' : 'No'
+                ? value ? 'Так' : 'Ні'
                 : typeof value === 'object'
                   ? JSON.stringify(value)
                   : String(value);
@@ -99,7 +98,7 @@ export function EditSubmissionModal({
       });
       onClose();
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to save');
+      setError(err instanceof Error ? err.message : 'Не вдалося зберегти');
     } finally {
       setSaving(false);
     }
@@ -115,20 +114,20 @@ export function EditSubmissionModal({
       <div className="bg-white rounded-lg shadow-xl w-full max-h-[90vh] overflow-y-auto px-4 sm:px-5">
         <div className="sticky top-0 bg-white border-b py-3 flex justify-between items-center">
           <h2 id="edit-modal-title" className="text-lg font-heading font-light text-gray-900">
-            Edit submission
+            Редагувати заявку
           </h2>
           <button
             type="button"
             onClick={onClose}
             className="p-2 text-gray-500 hover:text-gray-900 rounded-lg touch-manipulation"
-            aria-label="Close"
+            aria-label="Закрити"
           >
             <span className="text-xl leading-none">×</span>
           </button>
         </div>
         <form onSubmit={handleSubmit} className="space-y-3">
           <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">Name</label>
+            <label className="block text-xs font-medium text-gray-600 mb-1">Ім’я</label>
             <input
               type="text"
               value={name}
@@ -154,7 +153,7 @@ export function EditSubmissionModal({
             />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">Phone</label>
+            <label className="block text-xs font-medium text-gray-600 mb-1">Телефон</label>
             <input
               type="text"
               value={phone}
@@ -166,7 +165,7 @@ export function EditSubmissionModal({
             />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">Message</label>
+            <label className="block text-xs font-medium text-gray-600 mb-1">Повідомлення</label>
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
@@ -178,7 +177,7 @@ export function EditSubmissionModal({
             />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">Project type</label>
+            <label className="block text-xs font-medium text-gray-600 mb-1">Тип проєкту</label>
             <input
               type="text"
               value={projectType}
@@ -190,7 +189,7 @@ export function EditSubmissionModal({
             />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">Budget</label>
+            <label className="block text-xs font-medium text-gray-600 mb-1">Бюджет</label>
             <input
               type="text"
               value={budget}
@@ -202,7 +201,7 @@ export function EditSubmissionModal({
             />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">Source (slug)</label>
+            <label className="block text-xs font-medium text-gray-600 mb-1">Джерело (slug)</label>
             <input
               type="text"
               value={sourceSlug}
@@ -214,7 +213,7 @@ export function EditSubmissionModal({
             />
           </div>
           <div>
-            <label className="block text-xs font-medium text-gray-600 mb-1">Context</label>
+            <label className="block text-xs font-medium text-gray-600 mb-1">Контекст</label>
             <input
               type="text"
               value={context}
@@ -237,14 +236,14 @@ export function EditSubmissionModal({
               onClick={onClose}
               className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-sm font-thin text-gray-700 hover:bg-gray-50 touch-manipulation"
             >
-              Cancel
+              Скасувати
             </button>
             <button
               type="submit"
               disabled={saving}
               className="flex-1 px-4 py-2 bg-primary text-black rounded-lg text-sm font-thin hover:bg-primary/90 disabled:opacity-50 touch-manipulation"
             >
-              {saving ? 'Saving…' : 'Save'}
+              {saving ? 'Збереження…' : 'Зберегти'}
             </button>
           </div>
         </form>

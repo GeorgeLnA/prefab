@@ -142,7 +142,7 @@ const Header: React.FC = () => {
       isScrollingDown ? '-translate-y-full' : 'translate-y-0'
     }`}>
       <div className="w-full px-4 sm:px-5">
-      <nav className={`bg-white rounded-xl sm:rounded-2xl shadow-lg transition-all duration-300 w-full relative group`} role="navigation" aria-label="Main navigation">
+      <nav className={`bg-white rounded-xl sm:rounded-2xl shadow-lg transition-all duration-300 w-full relative group`} role="navigation" aria-label="Головне меню">
         <div className="px-4 sm:px-5">
           <div className="flex items-center justify-between h-14 sm:h-16 md:h-16 lg:h-20">
             {/* Logo */}
@@ -151,12 +151,12 @@ const Header: React.FC = () => {
                 to="/" 
                 onClick={handleLogoClick} 
                 className="flex items-center group"
-                aria-label="Prefab Homes - Go to homepage"
+                aria-label="Prefab Homes — на головну"
               >
                 <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
                   <img 
                     src="/sharp_logo_high_res.png" 
-                    alt="Prefab Homes Logo - Engineered for Efficiency" 
+                    alt="Логотип Prefab Homes" 
                     className="h-6 w-auto sm:h-7 md:h-8 lg:h-9 flex-shrink-0"
                     width="auto"
                     height="auto"
@@ -166,7 +166,7 @@ const Header: React.FC = () => {
                       PREFAB HOMES
                     </span>
                     <span className="text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-wider sm:tracking-widest font-medium transition-colors duration-200 text-gray-900 md:group-hover:opacity-70 leading-tight">
-                      Engineered for Efficiency
+                      Інженерія та ефективність
                     </span>
                   </div>
                 </div>
@@ -178,17 +178,17 @@ const Header: React.FC = () => {
               <ul className="flex items-center gap-2 md:gap-3 lg:gap-4 xl:gap-5 2xl:gap-6">
                 <li>
                   <NavbarItem as="a" href="/" className="text-gray-900 text-[10px] md:text-xs lg:text-sm xl:text-base">
-                    Home
+                    Головна
                   </NavbarItem>
                 </li>
                 <li>
                   <NavbarItem as="a" href="/technology" className="text-gray-900 text-[10px] md:text-xs lg:text-sm xl:text-base">
-                    Technology
+                    Технології
                   </NavbarItem>
                 </li>
                 <li>
                   <NavbarItem as="a" href="/designs" className="text-gray-900 text-[10px] md:text-xs lg:text-sm xl:text-base">
-                    Designs
+                    Проєкти
                   </NavbarItem>
                 </li>
                 <li 
@@ -197,7 +197,7 @@ const Header: React.FC = () => {
                   onMouseLeave={() => setHouseTypesDropdownOpen(false)}
                 >
                   <NavbarItem className="text-gray-900 text-[10px] md:text-xs lg:text-sm xl:text-base">
-                    House Types
+                    Типи будинків
                     <svg className="w-3 h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
@@ -205,17 +205,17 @@ const Header: React.FC = () => {
                 </li>
                 <li>
                   <NavbarItem as="a" href="/gallery" className="text-gray-900 text-[10px] md:text-xs lg:text-sm xl:text-base">
-                    Gallery
+                    Галерея
                   </NavbarItem>
                 </li>
                 <li>
                   <NavbarItem as="a" href="/contact" className="text-gray-900 text-[10px] md:text-xs lg:text-sm xl:text-base">
-                    Contact
+                    Контакти
                   </NavbarItem>
                 </li>
                 <li>
                   <NavbarItem as="a" href="/blog" className="text-gray-900 text-[10px] md:text-xs lg:text-sm xl:text-base">
-                    Blog
+                    Блог
                   </NavbarItem>
                 </li>
               </ul>
@@ -224,8 +224,8 @@ const Header: React.FC = () => {
             {/* Desktop Action Buttons */}
             <div className="hidden md:flex items-center gap-1.5 md:gap-2 lg:gap-2 xl:gap-3">
               <Button variant="primary" href="/contact" className="text-[9px] md:text-[10px] lg:text-xs xl:text-sm px-2 md:px-3 lg:px-4 py-1.5 md:py-2 lg:py-2 xl:py-2.5 whitespace-nowrap">
-                <span className="hidden xl:inline">Schedule Consultation</span>
-                <span className="xl:hidden">Consultation</span>
+                <span className="hidden xl:inline">Записатися на консультацію</span>
+                <span className="xl:hidden">Консультація</span>
               </Button>
             </div>
 
@@ -233,12 +233,12 @@ const Header: React.FC = () => {
             <button 
               className="md:hidden flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-2 text-xs sm:text-sm font-thin text-gray-900 active:opacity-70 transition-opacity bg-transparent border-none cursor-pointer min-h-[44px] min-w-[44px]"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-label={mobileMenuOpen ? "Закрити меню" : "Відкрити меню"}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-menu"
               style={{ touchAction: 'manipulation' }}
             >
-              <span className="hidden sm:inline">Menu</span>
+              <span className="hidden sm:inline">Меню</span>
               <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
@@ -256,7 +256,7 @@ const Header: React.FC = () => {
         >
           <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] lg:grid-cols-[240px_1fr] xl:grid-cols-[280px_1fr] 2xl:grid-cols-[320px_1fr] gap-4 md:gap-5 lg:gap-6 xl:gap-8">
             <div className="flex flex-col">
-              <h3 className="text-xs sm:text-sm md:text-base font-thin text-gray-900 mb-3 md:mb-4">House Types</h3>
+              <h3 className="text-xs sm:text-sm md:text-base font-thin text-gray-900 mb-3 md:mb-4">Типи будинків</h3>
               <ul className="space-y-1.5 md:space-y-2 flex-1">
                 {houseTypes.map((type) => {
                   const isComingSoon = false;
@@ -268,7 +268,7 @@ const Header: React.FC = () => {
                           onClick={(e) => e.preventDefault()}
                           className="block px-3 md:px-4 py-2 md:py-2.5 text-xs sm:text-sm md:text-base transition-colors duration-200 rounded-lg text-gray-900 opacity-60 cursor-not-allowed"
                         >
-                          {type.name} <span className="text-[10px] md:text-xs text-primary">(Coming Soon)</span>
+                          {type.name} <span className="text-[10px] md:text-xs text-primary">(незабаром)</span>
                         </div>
                       </li>
                     );
@@ -311,7 +311,7 @@ const Header: React.FC = () => {
                       : 'bg-primary text-black shadow-lg md:hover:shadow-xl'
                   }`}
                 >
-                  Modular Home
+                  Модульні будинки
                 </Link>
               </div>
             </div>
@@ -362,7 +362,7 @@ const Header: React.FC = () => {
                       {isComingSoon && (
                         <div className="absolute inset-0 flex items-center justify-center z-20">
                           <div className="bg-white/95 text-gray-900 py-2 px-4 sm:py-2.5 sm:px-5 md:py-3 md:px-6 text-xs sm:text-sm md:text-base font-thin rounded-lg shadow-lg">
-                            Coming Soon
+                            Незабаром
                           </div>
                         </div>
                       )}
@@ -417,11 +417,11 @@ const Header: React.FC = () => {
         }`}>
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 sticky top-0 bg-white z-10">
-              <h2 id="mobile-menu-title" className="text-base font-thin text-gray-900">Menu</h2>
+              <h2 id="mobile-menu-title" className="text-base font-thin text-gray-900">Меню</h2>
               <button
                 onClick={() => setMobileMenuOpen(false)}
                 className="p-2 text-gray-900 rounded-lg active:bg-gray-100 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
-                aria-label="Close menu"
+                aria-label="Закрити меню"
               >
                 <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -438,7 +438,7 @@ const Header: React.FC = () => {
                     onClick={() => setMobileMenuOpen(false)}
                     className="block w-full px-4 py-3 text-base font-thin text-gray-900 rounded-lg active:bg-gray-100 transition-colors"
                   >
-                    Home
+                    Головна
                   </Link>
                 </li>
                 <li>
@@ -447,7 +447,7 @@ const Header: React.FC = () => {
                     onClick={() => setMobileMenuOpen(false)}
                     className="block w-full px-4 py-3 text-base font-thin text-gray-900 rounded-lg active:bg-gray-100 transition-colors"
                   >
-                    Technology
+                    Технології
                   </Link>
                 </li>
                 <li>
@@ -456,7 +456,7 @@ const Header: React.FC = () => {
                     onClick={() => setMobileMenuOpen(false)}
                     className="block w-full px-4 py-3 text-base font-thin text-gray-900 rounded-lg active:bg-gray-100 transition-colors"
                   >
-                    Designs
+                    Проєкти
                   </Link>
                 </li>
                 <li>
@@ -464,7 +464,7 @@ const Header: React.FC = () => {
                     onClick={handleMobileHouseTypesToggle}
                     className="flex items-center justify-between w-full px-4 py-3 text-base font-thin text-gray-900 rounded-lg active:bg-gray-100 transition-colors"
                   >
-                    <span>House Types</span>
+                    <span>Типи будинків</span>
                     <svg 
                       className={`w-5 h-5 transition-transform duration-200 ${mobileHouseTypesOpen ? 'rotate-90' : ''}`}
                       viewBox="0 0 24 24" 
@@ -494,7 +494,7 @@ const Header: React.FC = () => {
                                 className="block w-full px-4 py-2.5 text-sm text-gray-700 rounded-lg opacity-60 relative"
                               >
                                 <span>{type.name}</span>
-                                <span className="ml-2 text-xs text-primary font-thin">(Coming Soon)</span>
+                                <span className="ml-2 text-xs text-primary font-thin">(незабаром)</span>
                               </div>
                             </li>
                           );
@@ -525,7 +525,7 @@ const Header: React.FC = () => {
                         }}
                         className="block w-full px-4 py-3 text-sm font-thin bg-primary text-black rounded-lg relative text-center shadow-lg"
                       >
-                        <span>Modular Home</span>
+                        <span>Модульні будинки</span>
                       </Link>
                     </div>
                   </div>
@@ -536,7 +536,7 @@ const Header: React.FC = () => {
                     onClick={() => setMobileMenuOpen(false)}
                     className="block w-full px-4 py-3 text-base font-thin text-gray-900 rounded-lg active:bg-gray-100 transition-colors"
                   >
-                    Gallery
+                    Галерея
                   </Link>
                 </li>
                 <li>
@@ -545,7 +545,7 @@ const Header: React.FC = () => {
                     onClick={() => setMobileMenuOpen(false)}
                     className="block w-full px-4 py-3 text-base font-thin text-gray-900 rounded-lg active:bg-gray-100 transition-colors"
                   >
-                    Contact
+                    Контакти
                   </Link>
                 </li>
                 <li>
@@ -554,7 +554,7 @@ const Header: React.FC = () => {
                     onClick={() => setMobileMenuOpen(false)}
                     className="block w-full px-4 py-3 text-base font-thin text-gray-900 rounded-lg active:bg-gray-100 transition-colors"
                   >
-                    Blog
+                    Блог
                   </Link>
                 </li>
               </ul>
@@ -567,7 +567,7 @@ const Header: React.FC = () => {
                 href="/contact" 
                 className="block w-full text-base px-4 py-3 text-center"
               >
-                Schedule Consultation
+                Записатися на консультацію
               </Button>
             </div>
           </div>

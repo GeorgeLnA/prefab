@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://prefabhomes.co.uk/sitemap.xml
+Sitemap: https://prefabhomes.com.ua/sitemap.xml
 
 # Disallow admin and private areas
 Disallow: /admin/

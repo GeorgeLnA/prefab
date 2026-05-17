@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { houseData } from '../data/houses';
+import { getHouseTotalAreaSqm, houseData } from '../data/houses';
 import SEO from '../components/SEO';
 import { buildKeywords } from '../data/seo-keywords';
+import { formatAreaSqm, formatUsdFromUah } from '../lib/utils';
 import { AnimatedButton } from '../components/ui/animated-button';
 import { ExpandingButton } from '../components/ui/expanding-button';
 
@@ -38,10 +39,10 @@ const SmartPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Smart Homes - Intelligent Prefab Living"
-        description="Smart prefab homes UK: home automation, energy efficient. Oxford, London, Oxfordshire. Intelligent prefabricated houses. Future of living."
+        title="Smart — розумні модульні будинки"
+        description="Розумні модульні будинки: автоматизація, енергоефективність. Prefab Homes Україна. Технології для комфортного житла."
         url="/smart"
-        keywords={buildKeywords('smart prefab homes UK, intelligent prefabricated houses Oxford London, home automation prefab, energy efficient smart homes')}
+        keywords={buildKeywords('розумний модульний будинок Україна, home automation prefab, енергоефективні smart homes')}
       />
       <div>
       {/* Hero Section */}
@@ -62,11 +63,10 @@ const SmartPage: React.FC = () => {
           <div className="w-full px-4 sm:px-5">
             <div className="max-w-2xl">
               <h1 className="text-5xl md:text-6xl font-heading font-thin text-white mb-6 leading-tight">
-                Intelligent Living
+                Розумне житло
               </h1>
               <p className="text-white text-xl font-body font-normal mb-8 leading-relaxed">
-                Advanced home automation and energy efficiency. Experience the future of living 
-                with AI-powered systems.
+                Просунута автоматизація та енергоефективність — житло майбутнього з інтелектуальними системами.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <AnimatedButton
@@ -75,7 +75,7 @@ const SmartPage: React.FC = () => {
                   variant="yellow"
                   className="px-8 py-3 w-full sm:w-auto text-center"
                 >
-                  Schedule Consultation
+                  Записатися на консультацію
                 </AnimatedButton>
               </div>
             </div>
@@ -87,9 +87,9 @@ const SmartPage: React.FC = () => {
       <section id="models" className="pt-8 md:pt-20 pb-20 bg-white">
         <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Intelligent Designs</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Розумні проєкти</h2>
             <p className="text-lg sm:text-xl font-body font-normal text-gray-900">
-              Each model features integrated smart technology and energy-efficient systems.
+              У кожній моделі — інтегровані smart-технології та енергоефективні системи.
             </p>
           </div>
 
@@ -120,10 +120,10 @@ const SmartPage: React.FC = () => {
                       </h3>
                       <div className="flex items-center justify-between text-sm mb-4">
                         <span className="text-gray-900">
-                          {house.squareFeet} ft² • {house.type}
+                          {formatAreaSqm(getHouseTotalAreaSqm(house))} • {house.type}
                         </span>
                         <span className="text-primary font-thin">
-                          £{house.price.toLocaleString()}
+                          {formatUsdFromUah(house.price)}
                         </span>
                       </div>
                       <div className="mt-auto">
@@ -131,7 +131,7 @@ const SmartPage: React.FC = () => {
                           to={`/house/${houseMatch?.slug || ''}`}
                           className="w-full bg-primary text-white py-3 px-4"
                         >
-                          View Details
+                          Детальніше
                         </ExpandingButton>
                       </div>
                     </div>
@@ -148,9 +148,9 @@ const SmartPage: React.FC = () => {
         <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
             {/* Removed colored heading */}
-            <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Smart Home Advantages</h2>
+            <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Переваги smart-дому</h2>
             <p className="text-xl text-gray-900 font-body font-normal">
-              Our Smart homes integrate cutting-edge technology with sustainable design for unparalleled comfort, efficiency, and convenience.
+              Будинки Smart поєднують сучасні технології та стійкий дизайн для комфорту, економії та зручності керування.
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
@@ -160,8 +160,8 @@ const SmartPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-heading font-thin mb-3">Smart Lighting</h3>
-              <p className="text-gray-900 font-body font-normal">Automated lighting with mood controls and energy optimization</p>
+              <h3 className="text-xl font-heading font-thin mb-3">Розумне освітлення</h3>
+              <p className="text-gray-900 font-body font-normal">Автоматичне світло з режимами настрою та економією енергії</p>
             </div>
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
@@ -169,8 +169,8 @@ const SmartPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-heading font-thin mb-3">Climate Control</h3>
-              <p className="text-gray-900 font-body font-normal">AI-powered HVAC systems for optimal comfort and efficiency</p>
+              <h3 className="text-xl font-heading font-thin mb-3">Клімат-контроль</h3>
+              <p className="text-gray-900 font-body font-normal">Розумні системи ОВК для комфорту та ефективності</p>
             </div>
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
@@ -178,8 +178,8 @@ const SmartPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-heading font-thin mb-3">Security System</h3>
-              <p className="text-gray-900 font-body font-normal">Advanced security with smart locks and surveillance integration</p>
+              <h3 className="text-xl font-heading font-thin mb-3">Безпека</h3>
+              <p className="text-gray-900 font-body font-normal">Сучасні замки, камери та інтегровані системи охорони</p>
             </div>
           </div>
         </div>
@@ -191,9 +191,9 @@ const SmartPage: React.FC = () => {
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
         <div className="w-full px-4 sm:px-5 text-center">
-          <h2 className="text-4xl font-heading font-thin text-white mb-6">Ready for the Future of Living?</h2>
+          <h2 className="text-4xl font-heading font-thin text-white mb-6">Готові до житла майбутнього?</h2>
           <p className="text-xl text-white/90 font-body font-normal mb-8">
-            Experience the convenience and efficiency of smart home technology with our intelligent prefab designs.
+            Спробуйте зручність та ефективність smart-технологій у наших розумних модульних проєктах.
           </p>
           <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
             <AnimatedButton
@@ -202,7 +202,7 @@ const SmartPage: React.FC = () => {
               variant="whiteOnYellow"
               className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
-              Schedule Demo
+              Замовити демо
             </AnimatedButton>
             <AnimatedButton
               asLink={true}
@@ -210,7 +210,7 @@ const SmartPage: React.FC = () => {
               variant={isScrolled ? "whiteToGrey" : "whiteOnYellow"}
               className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
-              View All Models
+              Усі моделі
             </AnimatedButton>
           </div>
         </div>
@@ -231,7 +231,7 @@ const SmartPage: React.FC = () => {
             </button>
             <img 
               src={selectedImage} 
-              alt="Smart house design"
+              alt="Проєкт smart-будинку"
               className="max-w-full max-h-full object-contain"
             />
           </div>

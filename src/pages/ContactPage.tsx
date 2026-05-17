@@ -5,6 +5,13 @@ import { insertContact } from '../lib/submission-insert';
 import { houseData } from '../data/houses';
 import SEO from '../components/SEO';
 import { buildKeywords } from '../data/seo-keywords';
+import {
+  formatUsdFromUah,
+  SITE_EMAIL,
+  SITE_EMAIL_MAILTO,
+  SITE_PHONE_DISPLAY,
+  SITE_PHONE_TEL,
+} from '../lib/utils';
 
 const ContactPage: React.FC = () => {
   const navigate = useNavigate();
@@ -43,7 +50,7 @@ const ContactPage: React.FC = () => {
       if (error) throw error;
       navigate('/thanks');
     } catch (err) {
-      setSubmitError(err instanceof Error ? err.message : 'Submission failed');
+      setSubmitError(err instanceof Error ? err.message : 'Не вдалося надіслати форму');
     } finally {
       setSubmitting(false);
     }
@@ -52,47 +59,44 @@ const ContactPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Contact Us"
-        description="Contact Prefab Homes for Oxford, London and UK. Schedule a consultation, request a quote, discuss your prefab home project. Expert team ready to help."
+        title="Зв’язатися з Prefab Homes"
+        description="Контакти Prefab Homes Україна: консультація, пропозиція щодо модульного або каркасного будинку, супровід проєкту. prefabhomes.com.ua"
         url="/contact"
-        keywords={buildKeywords('contact prefab homes, prefab home quote UK, consultation Oxford London, request quote prefabricated house, Prefab Homes contact', { includeServices: true })}
+        keywords={buildKeywords('контакт Prefab Homes, пропозиція модульний будинок, консультація будівництво Україна, запит кошторис', { includeServices: true })}
       />
       <div>
-      <section 
+      <section
         className="py-32 bg-gray-900 relative overflow-hidden"
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
         <div className="w-full px-4 sm:px-5 relative">
           <div className="text-center">
-            <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">GET IN TOUCH</div>
+            <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">ЗВ’ЯЗОК</div>
             <h1 className="text-5xl md:text-6xl font-heading font-light text-white mb-6 leading-tight">
-              Let's Build Your Dream Home
+              Побудуємо ваш наступний дім разом
             </h1>
             <p className="text-xl text-white leading-relaxed font-body font-normal">
-              Ready to start your prefab home journey? Our expert team is here to guide you 
-              through every step of the process.
+              Розкажіть про ділянку, бажану площу та строки — команда Prefab Homes ґрунтовно відповість і запропонує наступні кроки.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Contact Form & Info Section */}
       <section className="pt-8 md:pt-20 pb-20 bg-white">
         <div className="w-full px-4 sm:px-5">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            {/* Contact Form */}
             <div>
               <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg" data-contact-form-card>
-                <h2 className="text-2xl sm:text-3xl font-heading font-thin text-gray-800 mb-3 sm:mb-4">Start Your Project</h2>
+                <h2 className="text-2xl sm:text-3xl font-heading font-thin text-gray-800 mb-3 sm:mb-4">Почати проєкт</h2>
                 <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8 font-body font-normal leading-relaxed">
-                  Fill out the form below and we&apos;ll get back to you within 24 hours to discuss your project.
+                  Заповніть форму — ми відповімо протягом 24 годин і уточнимо деталі.
                 </p>
 
                 <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-thin text-gray-700 mb-1.5 sm:mb-2">
-                        Full Name *
+                        ПІБ *
                       </label>
                       <input
                         type="text"
@@ -102,12 +106,12 @@ const ContactPage: React.FC = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         className="w-full px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-sm sm:text-base"
-                        placeholder="Your full name"
+                        placeholder="Ваше ім’я та прізвище"
                       />
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-thin text-gray-700 mb-1.5 sm:mb-2">
-                        Email Address *
+                        Електронна пошта *
                       </label>
                       <input
                         type="email"
@@ -117,7 +121,7 @@ const ContactPage: React.FC = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         className="w-full px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-sm sm:text-base"
-                        placeholder="your@email.com"
+                        placeholder="you@example.com"
                       />
                     </div>
                   </div>
@@ -125,7 +129,7 @@ const ContactPage: React.FC = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     <div>
                       <label htmlFor="phone" className="block text-sm font-thin text-gray-700 mb-1.5 sm:mb-2">
-                        Phone Number
+                        Телефон
                       </label>
                       <input
                         type="tel"
@@ -134,12 +138,12 @@ const ContactPage: React.FC = () => {
                         value={formData.phone}
                         onChange={handleInputChange}
                         className="w-full px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-sm sm:text-base"
-                        placeholder="+44 123 456 7890"
+                        placeholder="+380 67 245 9977"
                       />
                     </div>
                     <div>
                       <label htmlFor="budget" className="block text-sm font-thin text-gray-700 mb-1.5 sm:mb-2">
-                        Budget Range
+                        Орієнтовний бюджет (USD)
                       </label>
                       <div className="relative">
                         <select
@@ -149,13 +153,13 @@ const ContactPage: React.FC = () => {
                           onChange={handleInputChange}
                           className="w-full pl-4 pr-10 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-sm sm:text-base bg-white appearance-none"
                         >
-                          <option value="">Select budget range</option>
-                          <option value="100k-less">£100,000 or less</option>
-                          <option value="100k-250k">£100,000 - £250,000</option>
-                          <option value="250-300k">£250,000 - £300,000</option>
-                          <option value="300-400k">£300,000 - £400,000</option>
-                          <option value="400-500k">£400,000 - £500,000</option>
-                          <option value="500k+">£500,000+</option>
+                          <option value="">Оберіть діапазон</option>
+                          <option value="100k-less">до {formatUsdFromUah(6_000_000)}</option>
+                          <option value="100k-250k">{formatUsdFromUah(6_000_000)}–{formatUsdFromUah(15_000_000)}</option>
+                          <option value="250-300k">{formatUsdFromUah(15_000_000)}–{formatUsdFromUah(18_000_000)}</option>
+                          <option value="300-400k">{formatUsdFromUah(18_000_000)}–{formatUsdFromUah(24_000_000)}</option>
+                          <option value="400-500k">{formatUsdFromUah(24_000_000)}–{formatUsdFromUah(30_000_000)}</option>
+                          <option value="500k+">понад {formatUsdFromUah(30_000_000)}</option>
                         </select>
                         <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
                           <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -168,7 +172,7 @@ const ContactPage: React.FC = () => {
 
                   <div>
                     <label htmlFor="projectType" className="block text-sm font-thin text-gray-700 mb-1.5 sm:mb-2">
-                      House that caught your eye
+                      Цікава модель
                     </label>
                     <div className="relative">
                       <select
@@ -178,8 +182,8 @@ const ContactPage: React.FC = () => {
                         onChange={handleInputChange}
                         className="w-full pl-4 pr-10 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-sm sm:text-base bg-white appearance-none"
                       >
-                        <option value="">Select a house model</option>
-                        <option value="Custom Design">Custom Design</option>
+                        <option value="">Оберіть проєкт</option>
+                        <option value="Custom Design">Індивідуальний проєкт</option>
                         <optgroup label="Skandy">
                           {houseData.filter(h => h.name.startsWith('SKANDY')).map(h => (
                             <option key={h.slug} value={h.name}>{h.name}</option>
@@ -200,7 +204,7 @@ const ContactPage: React.FC = () => {
                             <option key={h.slug} value={h.name}>{h.name}</option>
                           ))}
                         </optgroup>
-                        <option value="Not sure">Not sure</option>
+                        <option value="Not sure">Ще не визначився</option>
                       </select>
                       <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
                         <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -212,7 +216,7 @@ const ContactPage: React.FC = () => {
 
                   <div>
                     <label htmlFor="message" className="block text-sm font-thin text-gray-700 mb-1.5 sm:mb-2">
-                      Project Details
+                      Деталі проєкту
                     </label>
                     <textarea
                       id="message"
@@ -221,7 +225,7 @@ const ContactPage: React.FC = () => {
                       value={formData.message}
                       onChange={handleInputChange}
                       className="w-full px-4 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-sm sm:text-base resize-none"
-                      placeholder="Tell us about your project, timeline, location, and any specific requirements..."
+                      placeholder="Розкажіть про ділянку, бажаний термін, особливі вимоги до планування або комплектації…"
                     ></textarea>
                   </div>
 
@@ -233,15 +237,13 @@ const ContactPage: React.FC = () => {
                     className="w-full px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base disabled:opacity-50"
                     disabled={submitting}
                   >
-                    {submitting ? 'Sending…' : 'Send Message'}
+                    {submitting ? 'Надсилаємо…' : 'Надіслати повідомлення'}
                   </AnimatedButton>
                 </form>
               </div>
             </div>
 
-            {/* Contact Information */}
             <div className="space-y-8">
-              {/* Phone */}
               <div className="bg-white p-8 rounded-lg">
                 <div className="flex items-start">
                   <div className="bg-primary/10 p-3 rounded-lg mr-6">
@@ -250,20 +252,19 @@ const ContactPage: React.FC = () => {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-xl font-light text-gray-800 mb-2 font-heading">Call Us</h3>
+                    <h3 className="text-xl font-light text-gray-800 mb-2 font-heading">Телефон</h3>
                     <p className="text-gray-900 mb-2 font-body font-normal">
-                      <a href="tel:+447495788669" className="text-primary hover:text-primary-hover transition-colors">
-                        +44 7495788669
+                      <a href={SITE_PHONE_TEL} className="text-primary hover:text-primary-hover transition-colors">
+                        {SITE_PHONE_DISPLAY}
                       </a>
                     </p>
                     <p className="text-sm text-gray-900 font-body font-medium">
-                      Monday - Friday: 8:00 AM - 6:00 PM
+                      Пн–Пт: 8:00–18:00
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* Email */}
               <div className="bg-white p-8 rounded-lg">
                 <div className="flex items-start">
                   <div className="bg-primary/10 p-3 rounded-lg mr-6">
@@ -272,30 +273,29 @@ const ContactPage: React.FC = () => {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-xl font-light text-gray-800 mb-2 font-heading">Email Us</h3>
+                    <h3 className="text-xl font-light text-gray-800 mb-2 font-heading">Електронна пошта</h3>
                     <p className="text-gray-900 mb-2 font-body font-normal">
-                      <a href="mailto:prefabhomes.uk@gmail.com" className="text-primary hover:text-primary-hover transition-colors">
-                        prefabhomes.uk@gmail.com
+                      <a href={SITE_EMAIL_MAILTO} className="text-primary hover:text-primary-hover transition-colors">
+                        {SITE_EMAIL}
                       </a>
                     </p>
                     <p className="text-sm text-gray-900 font-body font-medium">
-                      We respond within 24 hours
+                      Відповідаємо протягом 24 годин
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* Process Timeline */}
               <div className="bg-primary/5 p-8 rounded-lg">
-                <h3 className="text-xl font-light text-gray-800 mb-6 font-heading">What Happens Next?</h3>
+                <h3 className="text-xl font-light text-gray-800 mb-6 font-heading">Що далі?</h3>
                 <div className="space-y-4">
                   <div className="flex items-start">
                     <div className="bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
                       <span className="text-sm font-bold">1</span>
                     </div>
                     <div>
-                      <h4 className="font-light text-gray-800 font-heading">Initial Consultation</h4>
-                      <p className="text-gray-900 text-sm font-body font-normal">We'll discuss your vision, requirements, and timeline</p>
+                      <h4 className="font-light text-gray-800 font-heading">Перша розмова</h4>
+                      <p className="text-gray-900 text-sm font-body font-normal">Уточнюємо задачу, бюджет і терміни</p>
                     </div>
                   </div>
                   <div className="flex items-start">
@@ -303,8 +303,8 @@ const ContactPage: React.FC = () => {
                       <span className="text-sm font-bold">2</span>
                     </div>
                     <div>
-                      <h4 className="font-light text-gray-800 font-heading">Design & Quote</h4>
-                      <p className="text-gray-900 text-sm font-body font-normal">Custom design proposal with detailed pricing</p>
+                      <h4 className="font-light text-gray-800 font-heading">Проєкт і пропозиція</h4>
+                      <p className="text-gray-900 text-sm font-body font-normal">Готуємо варіант комплектації та орієнтовний кошторис</p>
                     </div>
                   </div>
                   <div className="flex items-start">
@@ -312,8 +312,8 @@ const ContactPage: React.FC = () => {
                       <span className="text-sm font-bold">3</span>
                     </div>
                     <div>
-                      <h4 className="font-light text-gray-800 font-heading">Project Start</h4>
-                      <p className="text-gray-900 text-sm font-body font-normal">Begin manufacturing and site preparation</p>
+                      <h4 className="font-light text-gray-800 font-heading">Старт виробництва</h4>
+                      <p className="text-gray-900 text-sm font-body font-normal">Погоджуємо договір і запускаємо виготовлення комплекту</p>
                     </div>
                   </div>
                 </div>

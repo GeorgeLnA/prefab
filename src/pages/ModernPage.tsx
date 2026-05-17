@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { houseData } from '../data/houses';
+import { getHouseTotalAreaSqm, houseData } from '../data/houses';
+import { getHousePrice } from '../lib/skandy-nordy-pricing';
 import SEO from '../components/SEO';
 import { buildKeywords } from '../data/seo-keywords';
+import { formatAreaSqm, formatUsdFromUah } from '../lib/utils';
 import { AnimatedButton } from '../components/ui/animated-button';
 import { ExpandingButton } from '../components/ui/expanding-button';
 
@@ -13,9 +15,6 @@ const ModernPage: React.FC = () => {
   // Filter only Modern category houses
   const modernHouses = houseData.filter(house => house.category === 'MODERN');
   
-  // Get MODERN 120 for hero section
-  const modern120 = houseData.find(house => house.slug === 'modern-120');
-
   // Scroll to top on component mount
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -41,10 +40,10 @@ const ModernPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Modern Collection - Contemporary Prefab Homes"
-        description="Modern prefab homes UK: sleek design, premium materials. Oxford, London, Oxfordshire. Contemporary prefabricated houses. View models and pricing."
+        title="Modern — сучасні модульні будинки"
+        description="Сучасні модульні будинки: витончений дизайн, якісні матеріали. Доставка по Україні. Колекція Modern."
         url="/modern"
-        keywords={buildKeywords('modern prefab homes UK, contemporary prefabricated houses Oxford London, sleek prefab design, premium prefab homes, Modern collection prefab')}
+        keywords={buildKeywords('сучасні модульні будинки Україна, contemporary prefab Київ, преміум модульні')}
       />
       <div>
         {/* Hero Section */}
@@ -67,10 +66,10 @@ const ModernPage: React.FC = () => {
           <div className="w-full px-4 sm:px-5">
             <div className="w-full">
               <h1 className="text-5xl md:text-6xl font-heading font-thin text-white mb-6 leading-tight">
-                {modern120?.name || 'Contemporary Excellence'}
+                Сучасна досконалість
               </h1>
               <p className="text-white text-xl font-body font-normal mb-8 leading-relaxed">
-                {modern120?.description || 'Sleek modern design with cutting-edge features. Premium materials and sophisticated aesthetics for contemporary living.'}
+                Витончений сучасний дизайн, якісні матеріали та естетика для життя в стилі contemporary.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <AnimatedButton
@@ -79,7 +78,7 @@ const ModernPage: React.FC = () => {
                   variant="yellow"
                   className="px-8 py-3 w-full sm:w-auto text-center"
                 >
-                  Schedule Consultation
+                  Записатися на консультацію
                 </AnimatedButton>
               </div>
             </div>
@@ -91,9 +90,9 @@ const ModernPage: React.FC = () => {
       <section id="models" className="pt-8 md:pt-20 pb-20 bg-white">
         <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Contemporary Designs</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Сучасні рішення</h2>
             <p className="text-lg sm:text-xl font-body font-normal text-gray-900">
-              Sleek contemporary designs with sophisticated architectural solutions.
+              Витончені плани з архітектурною виразністю та продуманими деталями.
             </p>
           </div>
 
@@ -124,10 +123,10 @@ const ModernPage: React.FC = () => {
                       </h3>
                       <div className="flex items-center justify-between text-sm mb-4">
                         <span className="text-gray-900">
-                          {house.squareFeet} ft² • {house.type}
+                          {formatAreaSqm(getHouseTotalAreaSqm(house))} • {house.type}
                         </span>
                         <span className="text-primary font-thin">
-                          £{house.price.toLocaleString()}
+                          {formatUsdFromUah(getHousePrice(house))}
                         </span>
                       </div>
                       <div className="mt-auto">
@@ -135,7 +134,7 @@ const ModernPage: React.FC = () => {
                           to={`/house/${houseMatch?.slug || ''}`}
                           className="w-full bg-primary text-white py-3 px-4"
                         >
-                          View Details
+                          Детальніше
                         </ExpandingButton>
                       </div>
                     </div>
@@ -152,9 +151,9 @@ const ModernPage: React.FC = () => {
         <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
             {/* Removed colored heading */}
-            <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Sophisticated Living</h2>
+            <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Витончене житло</h2>
             <p className="text-xl text-gray-900 font-body font-normal">
-              Our Modern collection represents the pinnacle of contemporary architecture, combining sleek aesthetics with premium functionality.
+              Колекція Modern — поєднання сучасної естетики та преміальної функціональності.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -164,8 +163,8 @@ const ModernPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-heading font-thin mb-3">Sleek Design</h3>
-              <p className="text-gray-900 font-body font-normal">Clean lines and sophisticated aesthetics for contemporary living</p>
+              <h3 className="text-xl font-heading font-thin mb-3">Чіткий дизайн</h3>
+              <p className="text-gray-900 font-body font-normal">Чисті лінії та витончена естетика для сучасного життя</p>
             </div>
             <div className="text-center group flex flex-col items-center">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300 shrink-0">
@@ -173,8 +172,8 @@ const ModernPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-heading font-thin mb-3">Premium Amenities</h3>
-              <p className="text-gray-900">State-of-the-art features and luxury finishes throughout</p>
+              <h3 className="text-xl font-heading font-thin mb-3">Преміальні зручності</h3>
+              <p className="text-gray-900">Сучасне оснащення та якісні фініші на всій площі</p>
             </div>
             <div className="text-center group flex flex-col items-center">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300 shrink-0">
@@ -182,8 +181,8 @@ const ModernPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
               </div>
-              <h3 className="text-xl font-heading font-thin mb-3">Premium Materials</h3>
-              <p className="text-gray-900">High-quality materials and finishes for lasting elegance</p>
+              <h3 className="text-xl font-heading font-thin mb-3">Якісні матеріали</h3>
+              <p className="text-gray-900">Надійні матеріали та обробка для довговічної елегантності</p>
             </div>
           </div>
         </div>
@@ -195,9 +194,9 @@ const ModernPage: React.FC = () => {
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
         <div className="w-full px-4 sm:px-5 text-center">
-          <h2 className="text-4xl font-heading font-thin text-white mb-6">Experience Modern Luxury</h2>
+          <h2 className="text-4xl font-heading font-thin text-white mb-6">Сучасна розкіш</h2>
           <p className="text-xl text-white/90 font-body font-normal mb-8">
-            Discover the perfect blend of contemporary design and sophisticated living with our Modern collection.
+            Ідеальне поєднання сучасного дизайну та витонченого комфорту в колекції Modern.
           </p>
           <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
             <AnimatedButton
@@ -206,7 +205,7 @@ const ModernPage: React.FC = () => {
               variant={isScrolled ? "greyToWhite" : "greyToYellow"}
               className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
-              Schedule Viewing
+              Запланувати перегляд
             </AnimatedButton>
             <AnimatedButton
               asLink={true}
@@ -214,7 +213,7 @@ const ModernPage: React.FC = () => {
               variant={isScrolled ? "whiteToGrey" : "whiteOnYellow"}
               className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
-              View All Models
+              Усі моделі
             </AnimatedButton>
           </div>
         </div>
@@ -235,7 +234,7 @@ const ModernPage: React.FC = () => {
             </button>
             <img 
               src={selectedImage} 
-              alt="Modern house design"
+              alt="Проєкт сучасного будинку"
               className="max-w-full max-h-full object-contain"
             />
           </div>

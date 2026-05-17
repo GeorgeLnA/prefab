@@ -8,257 +8,257 @@ const GalleryPage: React.FC = () => {
   const caseStudies = [
     {
       id: 21,
-      title: 'Modern Nordic Exterior',
-      category: 'EXTERIORS',
+      title: 'Сучасний скандинавський фасад',
+      category: 'ФАСАДИ',
       type: 'image' as const,
       thumbnail: '/gallery/SK_ND 21 Large.jpeg',
       fullSrc: '/gallery/SK_ND 21 Large.jpeg',
-      description: 'Modern Nordic prefab home exterior',
+      description: 'Фасад модульного будинку в сучасному скандинавському стилі',
       details: {
-        size: '1,500 sq ft',
+        size: '1,500 фт²',
         completion: '2024',
         type: 'Skandy',
-        location: 'UK'
+        location: 'Україна'
       }
     },
     {
       id: 20,
-      title: 'Scandinavian Home Exterior',
-      category: 'EXTERIORS',
+      title: 'Фасад скандинавського будинку',
+      category: 'ФАСАДИ',
       type: 'image' as const,
       thumbnail: '/gallery/SK_ND 20 Large.jpeg',
       fullSrc: '/gallery/SK_ND 20 Large.jpeg',
-      description: 'Scandinavian prefab home exterior',
+      description: 'Зовнішній вигляд модульного будинку в скандинавському стилі',
       details: {
-        size: '1,600 sq ft',
+        size: '1,600 фт²',
         completion: '2024',
         type: 'Skandy',
-        location: 'UK'
+        location: 'Україна'
       }
     },
     {
       id: 19,
-      title: 'Nordic Exterior Design',
-      category: 'EXTERIORS',
+      title: 'Північний дизайн фасаду',
+      category: 'ФАСАДИ',
       type: 'image' as const,
       thumbnail: '/gallery/SK_ND 19 Large.jpeg',
       fullSrc: '/gallery/SK_ND 19 Large.jpeg',
-      description: 'Nordic prefab home exterior',
+      description: 'Фасад модульного будинку в північному стилі',
       details: {
-        size: '1,400 sq ft',
+        size: '1,400 фт²',
         completion: '2024',
         type: 'Skandy',
-        location: 'UK'
+        location: 'Україна'
       }
     },
     {
       id: 18,
-      title: 'Modern Scandinavian Exterior',
-      category: 'EXTERIORS',
+      title: 'Сучасний скандинавський фасад',
+      category: 'ФАСАДИ',
       type: 'image' as const,
       thumbnail: '/gallery/SK_ND 18 Large.jpeg',
       fullSrc: '/gallery/SK_ND 18 Large.jpeg',
-      description: 'Modern Scandinavian prefab home exterior',
+      description: 'Сучасний фасад скандинавського модульного будинку',
       details: {
-        size: '1,500 sq ft',
+        size: '1,500 фт²',
         completion: '2024',
         type: 'Skandy',
-        location: 'UK'
+        location: 'Україна'
       }
     },
     {
       id: 14,
-      title: 'Scandinavian Living Space',
-      category: 'INTERIORS',
+      title: 'Скандинавська житлова зона',
+      category: 'ІНТЕР’ЄРИ',
       type: 'image' as const,
       thumbnail: '/gallery/SK_ND 14 Large.jpeg',
       fullSrc: '/gallery/SK_ND 14 Large.jpeg',
-      description: 'Scandinavian interior design',
+      description: 'Інтер’єр у скандинавському стилі',
       details: {
-        size: '1,500 sq ft',
+        size: '1,500 фт²',
         completion: '2024',
         type: 'Skandy',
-        location: 'UK'
+        location: 'Україна'
       }
     },
     {
       id: 13,
-      title: 'Modern Nordic Home',
-      category: 'COMPLETED PROJECTS',
+      title: 'Сучасний північний будинок',
+      category: 'ЗАВЕРШЕНІ ПРОЄКТИ',
       type: 'image' as const,
       thumbnail: '/gallery/SK_ND 13 Large.jpeg',
       fullSrc: '/gallery/SK_ND 13 Large.jpeg',
-      description: 'Modern Nordic prefab home',
+      description: 'Сучасний модульний будинок у північному стилі',
       details: {
-        size: '1,700 sq ft',
+        size: '1,700 фт²',
         completion: '2024',
         type: 'Skandy',
-        location: 'UK'
+        location: 'Україна'
       }
     },
     {
       id: 12,
-      title: 'Scandinavian Prefab Design',
-      category: 'COMPLETED PROJECTS',
+      title: 'Скандинавський модульний дизайн',
+      category: 'ЗАВЕРШЕНІ ПРОЄКТИ',
       type: 'image' as const,
       thumbnail: '/gallery/SK_ND 12 Large.jpeg',
       fullSrc: '/gallery/SK_ND 12 Large.jpeg',
-      description: 'Scandinavian prefab home',
+      description: 'Модульний будинок у скандинавському стилі',
       details: {
-        size: '1,400 sq ft',
+        size: '1,400 фт²',
         completion: '2024',
         type: 'Skandy',
-        location: 'UK'
+        location: 'Україна'
       }
     },
     {
       id: 11,
-      title: 'Nordic Design Excellence',
-      category: 'COMPLETED PROJECTS',
+      title: 'Досконалість північного дизайну',
+      category: 'ЗАВЕРШЕНІ ПРОЄКТИ',
       type: 'image' as const,
       thumbnail: '/gallery/SK_ND 11 Large.jpeg',
       fullSrc: '/gallery/SK_ND 11 Large.jpeg',
-      description: 'Nordic prefab home design',
+      description: 'Дизайн модульного будинку в північному стилі',
       details: {
-        size: '1,500 sq ft',
+        size: '1,500 фт²',
         completion: '2024',
         type: 'Skandy',
-        location: 'UK'
+        location: 'Україна'
       }
     },
     {
       id: 10,
-      title: 'Scandinavian Modern Home',
-      category: 'COMPLETED PROJECTS',
+      title: 'Сучасний скандинавський будинок',
+      category: 'ЗАВЕРШЕНІ ПРОЄКТИ',
       type: 'image' as const,
       thumbnail: '/gallery/SK_ND 10 Large.jpeg',
       fullSrc: '/gallery/SK_ND 10 Large.jpeg',
-      description: 'Modern Scandinavian prefab home',
+      description: 'Сучасний скандинавський модульний будинок',
       details: {
-        size: '1,600 sq ft',
+        size: '1,600 фт²',
         completion: '2024',
         type: 'Skandy',
-        location: 'UK'
+        location: 'Україна'
       }
     },
     {
       id: 9,
-      title: 'Nordic Prefab Home',
-      category: 'COMPLETED PROJECTS',
+      title: 'Північний модульний будинок',
+      category: 'ЗАВЕРШЕНІ ПРОЄКТИ',
       type: 'image' as const,
       thumbnail: '/gallery/SK_ND 9 Large.jpeg',
       fullSrc: '/gallery/SK_ND 9 Large.jpeg',
-      description: 'Nordic prefab home',
+      description: 'Модульний будинок у північному стилі',
       details: {
-        size: '1,400 sq ft',
+        size: '1,400 фт²',
         completion: '2024',
         type: 'Skandy',
-        location: 'UK'
+        location: 'Україна'
       }
     },
     {
       id: 7,
-      title: 'Scandinavian Architecture',
-      category: 'COMPLETED PROJECTS',
+      title: 'Скандинавська архітектура',
+      category: 'ЗАВЕРШЕНІ ПРОЄКТИ',
       type: 'image' as const,
       thumbnail: '/gallery/SK_ND 7 Large.jpeg',
       fullSrc: '/gallery/SK_ND 7 Large.jpeg',
-      description: 'Scandinavian prefab home design',
+      description: 'Архітектура та дизайн скандинавського модульного будинку',
       details: {
-        size: '1,300 sq ft',
+        size: '1,300 фт²',
         completion: '2024',
         type: 'Skandy',
-        location: 'UK'
+        location: 'Україна'
       }
     },
     {
       id: 6,
-      title: 'Modern Scandinavian Home',
-      category: 'COMPLETED PROJECTS',
+      title: 'Сучасний скандинавський будинок — варіант',
+      category: 'ЗАВЕРШЕНІ ПРОЄКТИ',
       type: 'image' as const,
       thumbnail: '/gallery/SK_ND 6 Large.jpeg',
       fullSrc: '/gallery/SK_ND 6 Large.jpeg',
-      description: 'Modern Scandinavian prefab home',
+      description: 'Сучасний скандинавський модульний будинок',
       details: {
-        size: '1,500 sq ft',
+        size: '1,500 фт²',
         completion: '2024',
         type: 'Skandy',
-        location: 'UK'
+        location: 'Україна'
       }
     },
     {
       id: 5,
-      title: 'Nordic Design Home',
-      category: 'COMPLETED PROJECTS',
+      title: 'Будинок у північному стилі',
+      category: 'ЗАВЕРШЕНІ ПРОЄКТИ',
       type: 'image' as const,
       thumbnail: '/gallery/SK_ND 5 Large.jpeg',
       fullSrc: '/gallery/SK_ND 5 Large.jpeg',
-      description: 'Nordic prefab home',
+      description: 'Модульний будинок у північному стилі',
       details: {
-        size: '1,400 sq ft',
+        size: '1,400 фт²',
         completion: '2024',
         type: 'Skandy',
-        location: 'UK'
+        location: 'Україна'
       }
     },
     {
       id: 4,
-      title: 'Scandinavian Living',
-      category: 'COMPLETED PROJECTS',
+      title: 'Скандинавське житло',
+      category: 'ЗАВЕРШЕНІ ПРОЄКТИ',
       type: 'image' as const,
       thumbnail: '/gallery/SK_ND 4 Large.jpeg',
       fullSrc: '/gallery/SK_ND 4 Large.jpeg',
-      description: 'Scandinavian prefab home',
+      description: 'Модульний будинок у скандинавському стилі',
       details: {
-        size: '1,600 sq ft',
+        size: '1,600 фт²',
         completion: '2024',
         type: 'Skandy',
-        location: 'UK'
+        location: 'Україна'
       }
     },
     {
       id: 3,
-      title: 'Modern Prefab Home',
-      category: 'COMPLETED PROJECTS',
+      title: 'Сучасний модульний будинок',
+      category: 'ЗАВЕРШЕНІ ПРОЄКТИ',
       type: 'image' as const,
       thumbnail: '/gallery/SK_ND 3 Large.jpeg',
       fullSrc: '/gallery/SK_ND 3 Large.jpeg',
-      description: 'Contemporary prefab home',
+      description: 'Сучасний модульний будинок',
       details: {
-        size: '1,300 sq ft',
+        size: '1,300 фт²',
         completion: '2024',
         type: 'Skandy',
-        location: 'UK'
+        location: 'Україна'
       }
     },
     {
       id: 2,
-      title: 'Nordic Architecture',
-      category: 'COMPLETED PROJECTS',
+      title: 'Північна архітектура',
+      category: 'ЗАВЕРШЕНІ ПРОЄКТИ',
       type: 'image' as const,
       thumbnail: '/gallery/SK_ND 2 Large.jpeg',
       fullSrc: '/gallery/SK_ND 2 Large.jpeg',
-      description: 'Nordic-inspired prefab home design',
+      description: 'Дизайн модульного будинку в дусі північної архітектури',
       details: {
-        size: '1,500 sq ft',
+        size: '1,500 фт²',
         completion: '2024',
         type: 'Skandy',
-        location: 'UK'
+        location: 'Україна'
       }
     },
     {
       id: 1,
-      title: 'Scandinavian Home Design',
-      category: 'COMPLETED PROJECTS',
+      title: 'Дизайн скандинавського будинку',
+      category: 'ЗАВЕРШЕНІ ПРОЄКТИ',
       type: 'image' as const,
       thumbnail: '/gallery/SK_ND 1 Large.jpeg',
       fullSrc: '/gallery/SK_ND 1 Large.jpeg',
-      description: 'Modern Scandinavian prefab home',
+      description: 'Сучасний скандинавський модульний будинок',
       details: {
-        size: '1,400 sq ft',
+        size: '1,400 фт²',
         completion: '2024',
         type: 'Skandy',
-        location: 'UK'
+        location: 'Україна'
       }
     }
   ];
@@ -315,10 +315,10 @@ const GalleryPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Gallery - Prefab Homes"
-        description="Gallery of completed prefab home projects across UK. Case studies, photos, videos. Oxford, London, Oxfordshire prefab homes. Quality and craftsmanship."
+        title="Галерея — Prefab Homes"
+        description="Галерея реалізованих модульних проєктів в Україні: фото, відео, кейси. Якість та майстерність Prefab Homes."
         url="/gallery"
-        keywords={buildKeywords('prefab home gallery UK, prefabricated house case studies Oxford London, modular home photos, completed prefab projects, prefab home portfolio')}
+        keywords={buildKeywords('галерея модульних будинків Україна, prefab портфоліо, фото модульні Київ')}
       />
       <div className="bg-white">
       <div className="pt-20">
@@ -326,9 +326,9 @@ const GalleryPage: React.FC = () => {
         <div className="w-full px-4 sm:px-5">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-light text-black mb-6 leading-tight text-center">Case Studies & Gallery</h1>
+            <h1 className="text-4xl md:text-5xl font-light text-black mb-6 leading-tight text-center">Кейси та галерея</h1>
             <p className="text-xl text-black/90 mb-6 leading-relaxed text-center">
-              Explore real projects, construction processes, and the quality craftsmanship that goes into every Prefab Home. See our work in action.
+              Реальні об’єкти, етапи будівництва та рівень виконання кожного проєкту Prefab Homes. Подивіться наші роботи.
             </p>
           </div>
 
@@ -340,14 +340,14 @@ const GalleryPage: React.FC = () => {
                 <div className="relative w-full lg:w-2/5 h-80 lg:h-auto overflow-hidden flex-shrink-0">
                   <img 
                     src="/gallery/pdfs/thumbs/188 Large.jpeg" 
-                    alt="Featured Portfolio Sample"
+                    alt="Обкладинка портфоліо"
                     className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110"
                     loading="lazy"
                   />
                   {/* Featured Badge */}
                   <div className="absolute top-4 left-4 z-10">
                     <div className="bg-primary text-black py-2 px-4 text-sm font-thin rounded-lg uppercase tracking-wide shadow-lg">
-                      Featured Portfolio
+                      Обране портфоліо
                     </div>
                   </div>
                 </div>
@@ -355,20 +355,20 @@ const GalleryPage: React.FC = () => {
                 <div className="w-full lg:w-3/5 p-8 md:p-12 flex flex-col justify-center">
                   <div>
                     <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-thin text-gray-900 mb-4">
-                      Modular Home 188m²
+                      Модульний будинок 188 м²
                     </h3>
                     <p className="text-gray-900 font-body font-normal mb-6 leading-relaxed text-lg">
-                      A comprehensive showcase of our diverse portfolio featuring multiple prefab home projects. This sample collection includes detailed case studies, design specifications, construction processes, and final results across different home series and sizes.
+                      Зведений огляд портфоліо з різними серіями модульних будинків: кейси, параметри, етапи будівництва та результат по завершенні.
                     </p>
                     <div className="flex flex-wrap gap-2 mb-6">
                       <span className="text-sm font-thin bg-primary/10 text-gray-900 px-4 py-2 rounded-full">
-                        Complete Portfolio
+                        Повне портфоліо
                       </span>
                       <span className="text-sm font-thin bg-primary/10 text-gray-900 px-4 py-2 rounded-full">
-                        Multiple Projects
+                        Кілька проєктів
                       </span>
                       <span className="text-sm font-thin bg-primary/10 text-gray-900 px-4 py-2 rounded-full">
-                        Detailed Documentation
+                        Документація
                       </span>
                     </div>
                   </div>
@@ -379,10 +379,10 @@ const GalleryPage: React.FC = () => {
                     className="group/btn relative inline-block w-full sm:w-auto overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-3 sm:py-4 px-8 sm:px-12 text-base sm:text-lg"
                   >
                     <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap">
-                      View Case Study
+                      Переглянути кейс
                     </span>
                     <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white">
-                      <span>View Case Study</span>
+                      <span>Переглянути кейс</span>
                     </div>
                   </a>
                 </div>
@@ -393,14 +393,14 @@ const GalleryPage: React.FC = () => {
           {/* Portfolio Cases Section */}
           <div className="mb-20">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 auto-rows-fr">
-              {/* Portfolio Case 1 - Modern Home */}
+              {/* Portfolio Case 1 - Сучасний будинок */}
               <div className="bg-white rounded-xl shadow-lg md:hover:shadow-2xl transition-all duration-300 overflow-hidden group h-full flex flex-col">
                 <div className="flex flex-col md:flex-row h-full">
                   {/* Thumbnail */}
                   <div className="relative w-full md:w-1/2 h-64 md:h-full overflow-hidden flex-shrink-0">
                     <img 
                       src="/gallery/pdfs/thumbs/160 Large.jpeg" 
-                      alt="Modern Home 160 m² Case Study"
+                      alt="Сучасний будинок 160 m², кейс"
                       className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110"
                       loading="lazy"
                     />
@@ -409,20 +409,20 @@ const GalleryPage: React.FC = () => {
                   <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between min-h-[280px]">
                     <div>
                       <h3 className="text-xl md:text-2xl font-heading font-thin text-gray-900 mb-3">
-                        Modern Home 160 m²
+                        Сучасний будинок 160 m²
                       </h3>
                       <p className="text-gray-900 font-body font-normal mb-4 leading-relaxed">
-                        Comprehensive case study documenting a modern prefab home project featuring contemporary design, energy-efficient SIP construction, and spacious living areas.
+                        Кейс: сучасний модульний будинок із SIP-конструкцією, великими житловими зонами та енергоефективним рішенням.
                       </p>
                       <div className="flex flex-wrap gap-2 mb-4">
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
-                          Modern Series
+                          Серія Modern
                         </span>
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
                           160 m²
                         </span>
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
-                          SIP Construction
+                          SIP-конструкція
                         </span>
                       </div>
                     </div>
@@ -433,24 +433,24 @@ const GalleryPage: React.FC = () => {
                       className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
                     >
                       <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
-                        View Case Study
+                        Переглянути кейс
                       </span>
                       <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
-                        <span>View Case Study</span>
+                        <span>Переглянути кейс</span>
                       </div>
                     </a>
                   </div>
                 </div>
               </div>
 
-              {/* Portfolio Case 2 - Modular Home 180 m² */}
+              {/* Portfolio Case 2 - Modульний будинок 180 m² */}
               <div className="bg-white rounded-xl shadow-lg md:hover:shadow-2xl transition-all duration-300 overflow-hidden group h-full flex flex-col">
                 <div className="flex flex-col md:flex-row h-full">
                   {/* Thumbnail */}
                   <div className="relative w-full md:w-1/2 h-64 md:h-full overflow-hidden flex-shrink-0">
                     <img 
                       src="/gallery/pdfs/thumbs/124 Large.jpeg" 
-                      alt="Modular Home 180 m² Case Study"
+                      alt="Modульний будинок 180 m², кейс"
                       className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110"
                       loading="lazy"
                     />
@@ -459,20 +459,20 @@ const GalleryPage: React.FC = () => {
                   <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between min-h-[280px]">
                     <div>
                       <h3 className="text-xl md:text-2xl font-heading font-thin text-gray-900 mb-3">
-                        Modular Home 180 m²
+                        Modульний будинок 180 m²
                       </h3>
                       <p className="text-gray-900 font-body font-normal mb-4 leading-relaxed">
-                        Detailed documentation of a spacious modular prefab home project, showcasing flexible design, efficient construction methods, and premium finishes.
+                        Документація просторого модульного проєкту: гнучке планування, ефективний монтаж і преміальні фініші.
                       </p>
                       <div className="flex flex-wrap gap-2 mb-4">
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
-                          Modular Series
+                          Серія Modular
                         </span>
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
                           180 m²
                         </span>
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
-                          Flexible Design
+                          Гнучкий дизайн
                         </span>
                       </div>
                     </div>
@@ -483,24 +483,24 @@ const GalleryPage: React.FC = () => {
                       className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
                     >
                       <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
-                        View Case Study
+                        Переглянути кейс
                       </span>
                       <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
-                        <span>View Case Study</span>
+                        <span>Переглянути кейс</span>
                       </div>
                     </a>
                   </div>
                 </div>
               </div>
 
-              {/* Portfolio Case 3 - Modular Home 220 m² */}
+              {/* Portfolio Case 3 - Modульний будинок 220 m² */}
               <div className="bg-white rounded-xl shadow-lg md:hover:shadow-2xl transition-all duration-300 overflow-hidden group h-full flex flex-col">
                 <div className="flex flex-col md:flex-row h-full">
                   {/* Thumbnail */}
                   <div className="relative w-full md:w-1/2 h-64 md:h-full overflow-hidden flex-shrink-0">
                     <img 
                       src="/gallery/pdfs/thumbs/220 Large.jpeg" 
-                      alt="Modular Home 220 m² Case Study"
+                      alt="Modульний будинок 220 m², кейс"
                       className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110"
                       loading="lazy"
                     />
@@ -509,20 +509,20 @@ const GalleryPage: React.FC = () => {
                   <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between min-h-[280px]">
                     <div>
                       <h3 className="text-xl md:text-2xl font-heading font-thin text-gray-900 mb-3">
-                        Modular Home 220 m²
+                        Modульний будинок 220 m²
                       </h3>
                       <p className="text-gray-900 font-body font-normal mb-4 leading-relaxed">
-                        Extensive case study of a large modular prefab home featuring premium finishes, spacious layouts, and advanced construction techniques.
+                        Великий модульний будинок: преміальні фініші, просторі плани та сучасні технології будівництва.
                       </p>
                       <div className="flex flex-wrap gap-2 mb-4">
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
-                          Modular Series
+                          Серія Modular
                         </span>
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
                           220 m²
                         </span>
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
-                          Premium Design
+                          Преміум-дизайн
                         </span>
                       </div>
                     </div>
@@ -533,24 +533,24 @@ const GalleryPage: React.FC = () => {
                       className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
                     >
                       <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
-                        View Case Study
+                        Переглянути кейс
                       </span>
                       <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
-                        <span>View Case Study</span>
+                        <span>Переглянути кейс</span>
                       </div>
                     </a>
                   </div>
                 </div>
               </div>
 
-              {/* Portfolio Case 4 - Modular Home 170 m² */}
+              {/* Portfolio Case 4 - Modульний будинок 170 m² */}
               <div className="bg-white rounded-xl shadow-lg md:hover:shadow-2xl transition-all duration-300 overflow-hidden group h-full flex flex-col">
                 <div className="flex flex-col md:flex-row h-full">
                   {/* Thumbnail */}
                   <div className="relative w-full md:w-1/2 h-64 md:h-full overflow-hidden flex-shrink-0">
                     <img 
                       src="/gallery/pdfs/thumbs/170 Large.jpeg" 
-                      alt="Modular Home 170 m² Case Study"
+                      alt="Modульний будинок 170 m², кейс"
                       className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110"
                       loading="lazy"
                     />
@@ -559,20 +559,20 @@ const GalleryPage: React.FC = () => {
                   <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between min-h-[280px]">
                     <div>
                       <h3 className="text-xl md:text-2xl font-heading font-thin text-gray-900 mb-3">
-                        Modular Home 170 m²
+                        Modульний будинок 170 m²
                       </h3>
                       <p className="text-gray-900 font-body font-normal mb-4 leading-relaxed">
-                        Comprehensive documentation of a well-designed modular prefab home project with modern amenities and efficient space planning.
+                        Повна документація продуманого модульного проєкту з сучасними зручностями та ефективним плануванням простору.
                       </p>
                       <div className="flex flex-wrap gap-2 mb-4">
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
-                          Modular Series
+                          Серія Modular
                         </span>
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
                           170 m²
                         </span>
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
-                          Modern Amenities
+                          Сучасні зручності
                         </span>
                       </div>
                     </div>
@@ -583,24 +583,24 @@ const GalleryPage: React.FC = () => {
                       className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
                     >
                       <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
-                        View Case Study
+                        Переглянути кейс
                       </span>
                       <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
-                        <span>View Case Study</span>
+                        <span>Переглянути кейс</span>
                       </div>
                     </a>
                   </div>
                 </div>
               </div>
 
-              {/* Portfolio Case 5 - Modular Home 165 m² */}
+              {/* Portfolio Case 5 - Modульний будинок 165 m² */}
               <div className="bg-white rounded-xl shadow-lg md:hover:shadow-2xl transition-all duration-300 overflow-hidden group h-full flex flex-col">
                 <div className="flex flex-col md:flex-row h-full">
                   {/* Thumbnail */}
                   <div className="relative w-full md:w-1/2 h-64 md:h-full overflow-hidden flex-shrink-0">
                     <img 
                       src="/gallery/pdfs/thumbs/165 Large.jpeg" 
-                      alt="Modular Home 165 m² Case Study"
+                      alt="Modульний будинок 165 m², кейс"
                       className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110"
                       loading="lazy"
                     />
@@ -609,20 +609,20 @@ const GalleryPage: React.FC = () => {
                   <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between min-h-[280px]">
                     <div>
                       <h3 className="text-xl md:text-2xl font-heading font-thin text-gray-900 mb-3">
-                        Modular Home 165 m²
+                        Modульний будинок 165 m²
                       </h3>
                       <p className="text-gray-900 font-body font-normal mb-4 leading-relaxed">
-                        Detailed case study of a mid-size modular prefab home featuring contemporary design, energy efficiency, and quality craftsmanship.
+                        Кейс середнього розміру: сучасний дизайн, енергоефективність і якісне виконання робіт.
                       </p>
                       <div className="flex flex-wrap gap-2 mb-4">
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
-                          Modular Series
+                          Серія Modular
                         </span>
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
                           165 m²
                         </span>
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
-                          Energy Efficient
+                          Енергоефективність
                         </span>
                       </div>
                     </div>
@@ -633,24 +633,24 @@ const GalleryPage: React.FC = () => {
                       className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
                     >
                       <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
-                        View Case Study
+                        Переглянути кейс
                       </span>
                       <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
-                        <span>View Case Study</span>
+                        <span>Переглянути кейс</span>
                       </div>
                     </a>
                   </div>
                 </div>
               </div>
 
-              {/* Portfolio Case 6 - Modular Home 124 m² */}
+              {/* Portfolio Case 6 - Modульний будинок 124 m² */}
               <div className="bg-white rounded-xl shadow-lg md:hover:shadow-2xl transition-all duration-300 overflow-hidden group h-full flex flex-col">
                 <div className="flex flex-col md:flex-row h-full">
                   {/* Thumbnail */}
                   <div className="relative w-full md:w-1/2 h-64 md:h-full overflow-hidden flex-shrink-0">
                     <img 
                       src="/gallery/pdfs/thumbs/180 Large.jpeg" 
-                      alt="Modular Home 124 m² Case Study"
+                      alt="Modульний будинок 124 m², кейс"
                       className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110"
                       loading="lazy"
                     />
@@ -659,20 +659,20 @@ const GalleryPage: React.FC = () => {
                   <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between min-h-[280px]">
                     <div>
                       <h3 className="text-xl md:text-2xl font-heading font-thin text-gray-900 mb-3">
-                        Modular Home 124 m²
+                        Modульний будинок 124 m²
                       </h3>
                       <p className="text-gray-900 font-body font-normal mb-4 leading-relaxed">
-                        Case study documenting a compact modular prefab home project with efficient space utilization and modern design principles.
+                        Компактний модульний будинок: раціональне використання площі та сучасні принципи планування.
                       </p>
                       <div className="flex flex-wrap gap-2 mb-4">
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
-                          Modular Series
+                          Серія Modular
                         </span>
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
                           124 m²
                         </span>
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
-                          Compact Design
+                          Компактний дизайн
                         </span>
                       </div>
                     </div>
@@ -683,24 +683,24 @@ const GalleryPage: React.FC = () => {
                       className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
                     >
                       <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
-                        View Case Study
+                        Переглянути кейс
                       </span>
                       <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
-                        <span>View Case Study</span>
+                        <span>Переглянути кейс</span>
                       </div>
                     </a>
                   </div>
                 </div>
               </div>
 
-              {/* Portfolio Case 7 - Modular Home 106 m² */}
+              {/* Portfolio Case 7 - Modульний будинок 106 m² */}
               <div className="bg-white rounded-xl shadow-lg md:hover:shadow-2xl transition-all duration-300 overflow-hidden group h-full flex flex-col">
                 <div className="flex flex-col md:flex-row h-full">
                   {/* Thumbnail */}
                   <div className="relative w-full md:w-1/2 h-64 md:h-full overflow-hidden flex-shrink-0">
                     <img 
                       src="/gallery/pdfs/thumbs/106 Large.jpeg" 
-                      alt="Modular Home 106 m² Case Study"
+                      alt="Modульний будинок 106 m², кейс"
                       className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110"
                       loading="lazy"
                     />
@@ -709,20 +709,20 @@ const GalleryPage: React.FC = () => {
                   <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between min-h-[280px]">
                     <div>
                       <h3 className="text-xl md:text-2xl font-heading font-thin text-gray-900 mb-3">
-                        Modular Home 106 m²
+                        Modульний будинок 106 m²
                       </h3>
                       <p className="text-gray-900 font-body font-normal mb-4 leading-relaxed">
-                        Comprehensive documentation of a compact modular prefab home featuring smart design solutions and efficient construction.
+                        Документація компактного модульного будинку: розумні планувальні рішення та швидкий монтаж.
                       </p>
                       <div className="flex flex-wrap gap-2 mb-4">
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
-                          Modular Series
+                          Серія Modular
                         </span>
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
                           106 m²
                         </span>
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
-                          Smart Design
+                          Розумне планування
                         </span>
                       </div>
                     </div>
@@ -733,24 +733,24 @@ const GalleryPage: React.FC = () => {
                       className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
                     >
                       <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
-                        View Case Study
+                        Переглянути кейс
                       </span>
                       <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
-                        <span>View Case Study</span>
+                        <span>Переглянути кейс</span>
                       </div>
                     </a>
                   </div>
                 </div>
               </div>
 
-              {/* Portfolio Case 8 - Modular Home 99 m² */}
+              {/* Portfolio Case 8 - Modульний будинок 99 m² */}
               <div className="bg-white rounded-xl shadow-lg md:hover:shadow-2xl transition-all duration-300 overflow-hidden group h-full flex flex-col">
                 <div className="flex flex-col md:flex-row h-full">
                   {/* Thumbnail */}
                   <div className="relative w-full md:w-1/2 h-64 md:h-full overflow-hidden flex-shrink-0">
                     <img 
                       src="/gallery/pdfs/thumbs/99 Large.jpeg" 
-                      alt="Modular Home 99 m² Case Study"
+                      alt="Modульний будинок 99 m², кейс"
                       className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-110"
                       loading="lazy"
                     />
@@ -759,20 +759,20 @@ const GalleryPage: React.FC = () => {
                   <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between min-h-[280px]">
                     <div>
                       <h3 className="text-xl md:text-2xl font-heading font-thin text-gray-900 mb-3">
-                        Modular Home 99 m²
+                        Modульний будинок 99 m²
                       </h3>
                       <p className="text-gray-900 font-body font-normal mb-4 leading-relaxed">
-                        Case study of a compact modular prefab home project demonstrating efficient space planning and modern prefab construction methods.
+                        Компактний модульний проєкт: ефективне зонування та сучасні методи prefab-будівництва.
                       </p>
                       <div className="flex flex-wrap gap-2 mb-4">
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
-                          Modular Series
+                          Серія Modular
                         </span>
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
                           99 m²
                         </span>
                         <span className="text-xs font-thin bg-primary/10 text-gray-900 px-3 py-1 rounded-full">
-                          Efficient Planning
+                          Ефективне планування
                         </span>
                       </div>
                     </div>
@@ -783,10 +783,10 @@ const GalleryPage: React.FC = () => {
                       className="group/btn relative block w-full overflow-hidden text-center rounded-lg font-thin bg-primary text-black py-2.5 sm:py-3 px-4 sm:px-6 text-sm sm:text-base"
                     >
                       <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap w-full">
-                        View Case Study
+                        Переглянути кейс
                       </span>
                       <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white w-full">
-                        <span>View Case Study</span>
+                        <span>Переглянути кейс</span>
                       </div>
                     </a>
                   </div>
@@ -799,10 +799,10 @@ const GalleryPage: React.FC = () => {
           <div className="mb-16">
             <div className="bg-gradient-to-br from-primary to-primary-dark rounded-xl shadow-lg p-8 md:p-12 text-center">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-thin text-white mb-4">
-                View Our Complete Portfolio
+                Повне портфоліо проєктів
               </h2>
               <p className="text-white/90 text-lg md:text-xl font-body font-normal mb-8 leading-relaxed">
-                Access our comprehensive collection of case studies, featuring detailed documentation of completed projects across all our home series.
+                Завантажте збірник кейсів із детальним описом реалізованих об’єктів усіх серій.
               </p>
               <a
                 href="/gallery/pdfs/PREFAB HOMES PORTFOLIO_compressed.pdf"
@@ -811,10 +811,10 @@ const GalleryPage: React.FC = () => {
                 className="group/btn relative inline-block overflow-hidden text-center rounded-lg font-thin bg-white text-black py-3 sm:py-4 px-8 sm:px-12 text-base sm:text-lg md:text-xl"
               >
                 <span className="translate-y-0 md:group-hover/btn:-translate-y-full md:group-hover/btn:opacity-0 transition-all duration-300 inline-block whitespace-nowrap">
-                  View Full Portfolio
+                  Повне портфоліо
                 </span>
                 <div className="flex items-center absolute left-0 top-0 h-full w-full justify-center translate-y-full opacity-0 md:group-hover/btn:translate-y-0 md:group-hover/btn:opacity-100 transition-all duration-300 rounded-lg z-10 whitespace-nowrap bg-gray-900 text-white">
-                  <span>View Full Portfolio</span>
+                  <span>Повне портфоліо</span>
                 </div>
               </a>
             </div>
@@ -835,13 +835,13 @@ const GalleryPage: React.FC = () => {
                         openLightbox(index);
                       }
                     }}
-                    aria-label={`View ${study.type === 'video' ? 'video' : 'full image'} of ${study.title}`}
+                    aria-label={`Відкрити ${study.type === 'video' ? 'відео' : 'зображення'}: ${study.title}`}
               >
                 {/* Image Section - Fixed Height */}
                 <div className="relative overflow-hidden h-32 sm:h-36 md:h-40 lg:h-64 bg-white flex-shrink-0">
                   <img 
                     src={study.thumbnail} 
-                    alt={`${study.title} - ${study.category} case study ${study.type === 'video' ? 'video' : 'photo'}`}
+                    alt={`${study.title} — ${study.category}, ${study.type === 'video' ? 'відео' : 'фото'}`}
                     className="w-full h-full object-cover transition-transform duration-500 md:group-hover:scale-105"
                     loading="lazy"
                   />
@@ -869,15 +869,15 @@ const GalleryPage: React.FC = () => {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
               <div>
                 <div className="text-4xl font-thin text-primary mb-2">150+</div>
-                <div className="text-gray-900">Completed Projects</div>
+                <div className="text-gray-900">Завершені об’єкти</div>
               </div>
               <div>
                 <div className="text-4xl font-thin text-primary mb-2">98%</div>
-                <div className="text-gray-900">Client Satisfaction</div>
+                <div className="text-gray-900">Задоволеність клієнтів</div>
               </div>
               <div>
                 <div className="text-4xl font-thin text-primary mb-2">4.2</div>
-                <div className="text-gray-900">Avg. Assembly Days</div>
+                <div className="text-gray-900">Середньо днів монтажу</div>
               </div>
             </div>
           </div>
@@ -890,7 +890,7 @@ const GalleryPage: React.FC = () => {
             onClick={closeLightbox}
             role="dialog"
             aria-modal="true"
-            aria-label="Media viewer"
+            aria-label="Переглядач медіа"
           >
             <div 
               className="relative max-w-6xl max-h-full w-full"
@@ -900,7 +900,7 @@ const GalleryPage: React.FC = () => {
               <button
                 onClick={closeLightbox}
                 className="absolute top-4 right-4 text-white text-4xl hover:text-gray-300 transition-colors z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black rounded"
-                aria-label="Close media viewer"
+                aria-label="Закрити переглядач"
               >
                 &times;
               </button>
@@ -913,7 +913,7 @@ const GalleryPage: React.FC = () => {
                     goToPrevious();
                   }}
                   className="absolute left-4 top-1/2 -translate-y-1/2 text-white text-4xl md:text-5xl hover:text-gray-300 transition-colors z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black rounded p-2"
-                  aria-label="Previous image"
+                  aria-label="Попереднє зображення"
                 >
                   &#8249;
                 </button>
@@ -927,7 +927,7 @@ const GalleryPage: React.FC = () => {
                     goToNext();
                   }}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-4xl md:text-5xl hover:text-gray-300 transition-colors z-10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black rounded p-2"
-                  aria-label="Next image"
+                  aria-label="Наступне зображення"
                 >
                   &#8250;
                 </button>
@@ -936,7 +936,7 @@ const GalleryPage: React.FC = () => {
               {currentMedia.type === 'image' ? (
                 <img 
                   src={currentMedia.fullSrc} 
-                  alt="Case study - enlarged view"
+                  alt="Кейс — збільшене зображення"
                   className="max-w-full max-h-full object-contain"
                 />
               ) : (
@@ -946,8 +946,8 @@ const GalleryPage: React.FC = () => {
                     className="absolute inset-0 w-full h-full"
                     frameBorder="0"
                     allowFullScreen
-                    title="Case study video"
-                    aria-label="Case study video player"
+                    title="Відео з кейсу"
+                    aria-label="Відеоплеєр кейсу"
                   />
                 </div>
               )}

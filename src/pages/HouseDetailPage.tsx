@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { houseData, getHouseBySlug } from '../data/houses';
+import { getHouseBySlug, getHouseTotalAreaSqm, houseData } from '../data/houses';
 import { AnimatedButton } from '../components/ui/animated-button';
 import { useRequestModal } from '../contexts/RequestModalContext';
 import SEO from '../components/SEO';
 import { buildKeywords } from '../data/seo-keywords';
+import { getHousePrice } from '../lib/skandy-nordy-pricing';
+import { formatAreaSqm, formatUsdFromUah, getUahPerUsd, SITE_ORIGIN } from '../lib/utils';
 
 const HouseDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -21,10 +23,10 @@ const HouseDetailPage: React.FC = () => {
     return (
       <div className="pt-20 min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-heading font-thin text-gray-900 mb-4">House Not Found</h1>
-          <p className="text-gray-900 mb-8">The house you're looking for doesn't exist.</p>
+          <h1 className="text-4xl font-heading font-thin text-gray-900 mb-4">Будинок не знайдено</h1>
+          <p className="text-gray-900 mb-8">Шуканий проєкт не існує.</p>
           <Link to="/gallery" className="bg-primary text-white px-6 py-3 font-thin hover:bg-primary-hover transition-colors rounded-lg">
-            Back to Gallery
+            До галереї
           </Link>
         </div>
       </div>
@@ -89,30 +91,32 @@ const HouseDetailPage: React.FC = () => {
 
   const specifications = {
     dimensions: {
-      'Total Area': `${house.squareFeet} ft² (${house.squareMeters} m²)`,
-      'Living Area': `${Math.round(house.squareFeet * 0.85)} ft²`,
-      'Bedrooms': house.type === 'BUNGALOWS' ? '3' : '4',
-      'Bathrooms': house.type === 'BUNGALOWS' ? '2' : '3',
-      'Garage': 'Double garage included'
+      'Загальна площа': formatAreaSqm(getHouseTotalAreaSqm(house)),
+      'Житлова площа': house.livingArea
+        ? formatAreaSqm(house.livingArea.meters)
+        : formatAreaSqm(getHouseTotalAreaSqm(house)),
+      'Спальні': house.type === 'БУНГАЛО' ? '3' : '4',
+      'Ванні кімнати': house.type === 'БУНГАЛО' ? '2' : '3',
+      'Гараж': 'Подвійний гараж у комплекті'
     },
     construction: {
-      'Wall System': 'Insulated timber frame',
-      'Insulation': 'Triple-layer thermal barrier',
-      'Windows': 'Triple-glazed, argon-filled',
-      'Roof': 'Metal standing seam',
-      'Foundation': 'Concrete slab or basement'
+      'Система стін': 'Утеплений дерев’яний каркас',
+      'Утеплення': 'Тришаровий теплоізоляційний контур',
+      'Вікна': 'Трискляні пакети з аргоном',
+      'Покрівля': 'Фальцева металева покрівля',
+      'Фундамент': 'Монолітна плита або підвал'
     },
     energy: {
-      'Heating System': 'Heat pump with underfloor heating',
-      'Ventilation': 'Mechanical ventilation with heat recovery',
-      'Solar Ready': 'Pre-wired for solar panels',
-      'Annual Energy Cost': '£400-600'
+      'Опалення': 'Тепловий насос і «тепла підлога»',
+      'Вентиляція': 'Механічна вентиляція з рекуперацією тепла',
+      'Сонячні панелі': 'Передбачено підключення сонячних модулів',
+      'Орієнтовні річні витрати на енергію': `${formatUsdFromUah(24_000)}–${formatUsdFromUah(35_000)} на рік (орієнтир)`
     },
     features: {
-      'Smart Home': 'Integrated automation system',
-      'Kitchen': 'Premium fitted kitchen included',
-      'Flooring': 'Engineered hardwood throughout',
-      'Warranty': '10-year structural warranty'
+      'Розумний дім': 'Інтегрована система автоматизації',
+      'Кухня': 'Преміальна вбудована кухня в комплекті',
+      'Підлогове покриття': 'Інженерна дошка по всьому дому',
+      'Гарантія': '10 років структурної гарантії'
     }
   };
 
@@ -122,16 +126,16 @@ const HouseDetailPage: React.FC = () => {
     "@type": "Product",
     "name": house.name,
     "description": house.description,
-    "image": `https://prefabhomes.co.uk${house.imageUrl}`,
+    "image": `${SITE_ORIGIN}${house.imageUrl}`,
     "brand": {
       "@type": "Brand",
       "name": "Prefab Homes"
     },
     "offers": {
       "@type": "Offer",
-      "url": `https://prefabhomes.co.uk/house/${house.slug}`,
-      "priceCurrency": "GBP",
-      "price": house.price,
+      "url": `${SITE_ORIGIN}/house/${house.slug}`,
+      "priceCurrency": "USD",
+      "price": Math.round(getHousePrice(house) / getUahPerUsd()),
       "availability": house.inStock ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
       "seller": {
         "@type": "Organization",
@@ -146,22 +150,17 @@ const HouseDetailPage: React.FC = () => {
     "additionalProperty": [
       {
         "@type": "PropertyValue",
-        "name": "Square Feet",
-        "value": `${house.squareFeet} ft²`
+        "name": "Площа",
+        "value": formatAreaSqm(getHouseTotalAreaSqm(house))
       },
       {
         "@type": "PropertyValue",
-        "name": "Square Meters",
-        "value": `${house.squareMeters} m²`
-      },
-      {
-        "@type": "PropertyValue",
-        "name": "Category",
+        "name": "Категорія",
         "value": house.category
       },
       {
         "@type": "PropertyValue",
-        "name": "Type",
+        "name": "Тип",
         "value": house.type
       }
     ]
@@ -174,20 +173,20 @@ const HouseDetailPage: React.FC = () => {
       {
         "@type": "ListItem",
         "position": 1,
-        "name": "Home",
-        "item": "https://prefabhomes.co.uk/"
+        "name": "Головна",
+        "item": `${SITE_ORIGIN}/`
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Gallery",
-        "item": "https://prefabhomes.co.uk/gallery"
+        "name": "Галерея",
+        "item": `${SITE_ORIGIN}/gallery`
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": house.name,
-        "item": `https://prefabhomes.co.uk/house/${house.slug}`
+        "item": `${SITE_ORIGIN}/house/${house.slug}`
       }
     ]
   } : null;
@@ -195,12 +194,12 @@ const HouseDetailPage: React.FC = () => {
   return (
     <>
       <SEO
-        title={house ? `${house.name} - ${house.category} Prefab Home` : 'House Details'}
-        description={house ? `${house.name} - ${house.description}. ${house.squareFeet} ft², £${house.price.toLocaleString()}. Prefab home UK, Oxford, London, Oxfordshire.` : 'View house details'}
+        title={house ? `${house.name} — ${house.category} | Prefab Homes` : 'Проєкт будинку'}
+        description={house ? `${house.name} — ${house.description} ${formatAreaSqm(getHouseTotalAreaSqm(house))}, від ${formatUsdFromUah(getHousePrice(house))}. Модульні та каркасні будинки в Україні від Prefab Homes.` : 'Деталі проєкту'}
         url={house ? `/house/${house.slug}` : '/house'}
         image={house?.imageUrl}
         type="product"
-        keywords={house ? buildKeywords(`${house.name}, ${house.category} prefab home UK, prefabricated house Oxford London, ${house.squareFeet} sq ft, £${house.price}, modular house`) : undefined}
+        keywords={house ? buildKeywords(`${house.name}, ${house.category} модульний будинок Україна, каркасний будинок Prefab Homes, ${getHouseTotalAreaSqm(house)} м², ${formatUsdFromUah(getHousePrice(house))}`) : undefined}
         structuredData={house ? [productSchema, breadcrumbSchema].filter(Boolean) : undefined}
       />
       <div className="bg-white">
@@ -213,14 +212,14 @@ const HouseDetailPage: React.FC = () => {
               {/* Left Column - Images */}
               <div className="lg:col-span-2 space-y-4 sm:space-y-5">
               {/* Main Image */}
-                <div role="tabpanel" aria-label={`Main image view ${activeImageIndex + 1}`}>
+                <div role="tabpanel" aria-label={`Головне зображення ${activeImageIndex + 1}`}>
                   <div 
                     className="relative overflow-hidden rounded-lg shadow-lg cursor-pointer"
                     onClick={() => openLightbox(activeImageIndex)}
                   >
                     <img 
                       src={houseImages[activeImageIndex]} 
-                      alt={`${house.name} - Main view ${activeImageIndex + 1} of ${houseImages.length}`}
+                      alt={`${house.name} — основний вигляд ${activeImageIndex + 1} з ${houseImages.length}`}
                       className="w-full aspect-video object-cover"
                       loading="lazy"
                     />
@@ -228,7 +227,7 @@ const HouseDetailPage: React.FC = () => {
               </div>
               
               {/* Thumbnail Gallery */}
-                <div className="flex flex-nowrap gap-2 sm:gap-2.5 overflow-x-auto scrollbar-hide -ml-1 sm:-ml-2 pr-6 sm:pr-8 py-3" role="tablist" aria-label="House image gallery">
+                <div className="flex flex-nowrap gap-2 sm:gap-2.5 overflow-x-auto scrollbar-hide -ml-1 sm:-ml-2 pr-6 sm:pr-8 py-3" role="tablist" aria-label="Галерея зображень будинку">
                 {houseImages.map((image, index) => (
                   <div key={index} className="flex-shrink-0 w-[calc(25%-0.4rem)] sm:w-[calc(20%-0.5rem)] min-w-[80px] sm:min-w-[80px] px-2">
                   <button
@@ -240,12 +239,12 @@ const HouseDetailPage: React.FC = () => {
                     }`}
                     role="tab"
                     aria-selected={activeImageIndex === index}
-                    aria-label={`View image ${index + 1} of ${houseImages.length} for ${house.name}`}
+                    aria-label={`Переглянути зображення ${index + 1} з ${houseImages.length}, ${house.name}`}
                     tabIndex={activeImageIndex === index ? 0 : -1}
                   >
                     <img 
                       src={image} 
-                      alt={`${house.name} view ${index + 1}`}
+                      alt={`${house.name}, зображення ${index + 1}`}
                         className="w-full h-full object-cover transition-opacity duration-200"
                       loading="lazy"
                     />
@@ -260,7 +259,7 @@ const HouseDetailPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={goToPrevGalleryImage}
-                    aria-label="Previous image"
+                    aria-label="Попереднє зображення"
                     className="p-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400 transition-colors touch-manipulation"
                   >
                     <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -273,7 +272,7 @@ const HouseDetailPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={goToNextGalleryImage}
-                    aria-label="Next image"
+                    aria-label="Наступне зображення"
                     className="p-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400 transition-colors touch-manipulation"
                   >
                     <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -295,20 +294,20 @@ const HouseDetailPage: React.FC = () => {
                 <div className="grid grid-cols-2 gap-4 sm:gap-5">
                   <div className="bg-white shadow-md rounded-lg p-4 sm:p-5">
                     <div className="text-xl sm:text-2xl lg:text-2xl font-thin text-primary mb-1.5 sm:mb-2 break-words">
-                      {house.livingArea ? `${house.livingArea.feet} ft²` : `${house.squareFeet} ft²`}
+                      {formatAreaSqm(getHouseTotalAreaSqm(house))}
                 </div>
-                    <div className="text-xs sm:text-sm text-gray-600 font-body font-normal leading-tight">Total Living Area</div>
+                    <div className="text-xs sm:text-sm text-gray-600 font-body font-normal leading-tight">Загальна площа</div>
                 </div>
                   <div className="bg-white shadow-md rounded-lg p-4 sm:p-5">
-                    <div className="text-xl sm:text-2xl lg:text-2xl font-thin text-primary mb-1.5 sm:mb-2 break-words">£{house.price.toLocaleString()}</div>
-                    <div className="text-xs sm:text-sm text-gray-600 font-body font-normal leading-tight">Price</div>
+                    <div className="text-xl sm:text-2xl lg:text-2xl font-thin text-primary mb-1.5 sm:mb-2 break-words">{formatUsdFromUah(getHousePrice(house))}</div>
+                    <div className="text-xs sm:text-sm text-gray-600 font-body font-normal leading-tight">Ціна</div>
                 </div>
               </div>
 
               {/* Key Features */}
                 {house.keyFeatures && house.keyFeatures.length > 0 && (
                   <div>
-                    <h3 className="text-xl sm:text-2xl font-heading font-thin mb-4 sm:mb-5 text-gray-900">Key Features</h3>
+                    <h3 className="text-xl sm:text-2xl font-heading font-thin mb-4 sm:mb-5 text-gray-900">Ключові переваги</h3>
                     <ul className="space-y-3 sm:space-y-4">
                       {house.keyFeatures.map((feature, index) => (
                         <li key={index} className="flex items-start gap-3">
@@ -329,7 +328,7 @@ const HouseDetailPage: React.FC = () => {
                   className="px-6 sm:px-8 py-3 sm:py-3.5 font-thin w-full text-center text-sm sm:text-base"
                   onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug })}
                 >
-                  Request Quote
+                  Запит на комерційну пропозицію
                 </AnimatedButton>
                 </div>
               </div>
@@ -343,10 +342,10 @@ const HouseDetailPage: React.FC = () => {
               <div className="flex overflow-x-auto scrollbar-hide -mx-4 sm:mx-0 px-4 sm:px-0">
                 <div className="flex gap-1 sm:gap-0 min-w-full sm:min-w-0">
                   {[
-                    { id: 'overview', label: 'Overview' },
-                    { id: 'specifications', label: 'Specifications' },
-                    { id: 'floorplan', label: 'Floor Plan' },
-                    { id: 'customization', label: 'Customization' }
+                    { id: 'overview', label: 'Огляд' },
+                    { id: 'specifications', label: 'Характеристики' },
+                    { id: 'floorplan', label: 'План поверху' },
+                    { id: 'customization', label: 'Додаткові опції' }
                   ].map((tab) => (
                     <button
                       key={tab.id}
@@ -369,7 +368,7 @@ const HouseDetailPage: React.FC = () => {
               {activeTab === 'overview' && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                   <div>
-                    <h3 className="text-2xl font-heading font-thin mb-6">About {house.name}</h3>
+                    <h3 className="text-2xl font-heading font-thin mb-6">Про {house.name}</h3>
                     {house.about ? (
                       <div className="text-gray-900 font-body font-normal whitespace-pre-line">
                         {house.about.split('\n').map((paragraph, index) => (
@@ -379,24 +378,21 @@ const HouseDetailPage: React.FC = () => {
                     ) : (
                       <>
                     <p className="text-gray-900 mb-6 font-body font-normal">
-                      The {house.name} represents the pinnacle of modern prefab home design, combining 
-                      exceptional energy efficiency with contemporary aesthetics. This {house.type.toLowerCase()} 
-                      design maximizes living space while maintaining the highest standards of construction quality.
+                      {house.name} — це сучасний модульний дім, що поєднує енергоефективність, естетику та надійність. 
+                      Тип {house.type.toLowerCase()} дозволяє максимально ефективно використати площу при збереженні високої якості будівництва.
                     </p>
                     <p className="text-gray-900 mb-6 font-body font-normal">
-                      Built to Passive House standards, this home delivers unparalleled energy performance, 
-                      reducing heating costs by up to 90% compared to conventional homes. The integrated 
-                      smart home system provides complete control over lighting, climate, and security.
+                      Конструкція розрахована на низькі витрати на опалення та комфортний мікроклімат круглий рік. 
+                      Передбачено місце під «розумний дім» для керування освітленням, кліматом і безпекою.
                     </p>
                     <p className="text-gray-900 font-body font-normal">
-                      With factory precision construction and on-site assembly in just 3-5 days, you can 
-                      move into your dream home faster than ever before, without compromising on quality or performance.
+                      Завдяки заводській точності та швидкому монтажу на ділянці ви отримуєте готовий до житла дім у стислі терміни — без компромісів щодо якості.
                     </p>
                       </>
                     )}
                   </div>
                   <div>
-                    <h3 className="text-2xl font-heading font-thin mb-6">What's Included</h3>
+                    <h3 className="text-2xl font-heading font-thin mb-6">Що входить у вартість</h3>
                     {house.whatsIncluded && house.whatsIncluded.length > 0 ? (
                       <ul className="space-y-3 mb-8">
                         {house.whatsIncluded.map((item, index) => (
@@ -415,35 +411,35 @@ const HouseDetailPage: React.FC = () => {
                       <ul className="space-y-3 mb-8">
                       <li className="flex items-start">
                         <span className="text-primary mr-3">•</span>
-                        <span>Complete structural shell with premium insulation</span>
+                        <span>Повний несучий каркас і багатошарове утеплення</span>
                       </li>
                       <li className="flex items-start">
                         <span className="text-primary mr-3">•</span>
-                        <span>Triple-glazed windows and exterior doors</span>
+                        <span>Трискляні вікна та зовнішні двері</span>
                       </li>
                       <li className="flex items-start">
                         <span className="text-primary mr-3">•</span>
-                        <span>Mechanical ventilation with heat recovery</span>
+                        <span>Механічна вентиляція з рекуперацією тепла</span>
                       </li>
                       <li className="flex items-start">
                         <span className="text-primary mr-3">•</span>
-                        <span>Premium fitted kitchen with appliances</span>
+                        <span>Преміальна вбудована кухня з технікою</span>
                       </li>
                       <li className="flex items-start">
                         <span className="text-primary mr-3">•</span>
-                        <span>Complete bathroom suites</span>
+                        <span>Повні комплекти санвузлів</span>
                       </li>
                       <li className="flex items-start">
                         <span className="text-primary mr-3">•</span>
-                        <span>Engineered hardwood flooring throughout</span>
+                        <span>Інженерна підлога по всьому дому</span>
                       </li>
                       <li className="flex items-start">
                         <span className="text-primary mr-3">•</span>
-                        <span>Smart home automation system</span>
+                        <span>Система розумного дому</span>
                       </li>
                       <li className="flex items-start">
                         <span className="text-primary mr-3">•</span>
-                        <span>Professional installation and commissioning</span>
+                        <span>Монтаж, налагодження та передача об’єкта</span>
                       </li>
                     </ul>
                     )}
@@ -455,7 +451,7 @@ const HouseDetailPage: React.FC = () => {
                           onClick={() => setNotIncludedOpen(!notIncludedOpen)}
                           className="flex items-center justify-between w-full text-left mb-4"
                         >
-                          <h3 className="text-2xl font-heading font-thin">What's Not Included</h3>
+                          <h3 className="text-2xl font-heading font-thin">Що не входить у вартість</h3>
                           <svg
                             className={`w-5 h-5 text-gray-600 transition-transform duration-200 ${
                               notIncludedOpen ? 'rotate-180' : ''
@@ -492,47 +488,47 @@ const HouseDetailPage: React.FC = () => {
                 <div className="space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8">
                   {house.dimensions && (
                     <div className="bg-white shadow-sm border border-gray-100 rounded-lg p-5 sm:p-6 md:p-7 lg:p-8">
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-heading font-thin mb-5 sm:mb-6 text-primary border-b border-gray-200 pb-3 sm:pb-4">Dimensions</h3>
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-heading font-thin mb-5 sm:mb-6 text-primary border-b border-gray-200 pb-3 sm:pb-4">Розміри</h3>
                       <dl className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                         {house.dimensions.totalArea && (
                           <div className="flex flex-col gap-1 sm:gap-2">
-                            <dt className="text-sm sm:text-base font-medium text-gray-700">Total Area:</dt>
-                            <dd className="text-sm sm:text-base font-thin text-gray-900">{house.dimensions.totalArea.feet} ft² ({house.dimensions.totalArea.meters} m²)</dd>
+                            <dt className="text-sm sm:text-base font-medium text-gray-700">Загальна площа:</dt>
+                            <dd className="text-sm sm:text-base font-thin text-gray-900">{formatAreaSqm(getHouseTotalAreaSqm(house))}</dd>
                           </div>
                         )}
                         {house.dimensions.livingArea && (
                           <div className="flex flex-col gap-1 sm:gap-2">
-                            <dt className="text-sm sm:text-base font-medium text-gray-700">Living Area:</dt>
-                            <dd className="text-sm sm:text-base font-thin text-gray-900">{house.dimensions.livingArea.feet} ft² ({house.dimensions.livingArea.meters} m²)</dd>
+                            <dt className="text-sm sm:text-base font-medium text-gray-700">Житлова площа:</dt>
+                            <dd className="text-sm sm:text-base font-thin text-gray-900">{formatAreaSqm(house.dimensions.livingArea.meters)}</dd>
                           </div>
                         )}
                         {house.dimensions.coveredTerrace && (
                           <div className="flex flex-col gap-1 sm:gap-2">
-                            <dt className="text-sm sm:text-base font-medium text-gray-700">Covered Terrace:</dt>
-                            <dd className="text-sm sm:text-base font-thin text-gray-900">{house.dimensions.coveredTerrace.feet} ft² ({house.dimensions.coveredTerrace.meters} m²)</dd>
+                            <dt className="text-sm sm:text-base font-medium text-gray-700">Накрита тераса:</dt>
+                            <dd className="text-sm sm:text-base font-thin text-gray-900">{formatAreaSqm(house.dimensions.coveredTerrace.meters)}</dd>
                           </div>
                         )}
                         {house.dimensions.bedrooms && (
                           <div className="flex flex-col gap-1 sm:gap-2">
-                            <dt className="text-sm sm:text-base font-medium text-gray-700">Bedrooms:</dt>
+                            <dt className="text-sm sm:text-base font-medium text-gray-700">Спальні:</dt>
                             <dd className="text-sm sm:text-base font-thin text-gray-900">{house.dimensions.bedrooms}</dd>
                           </div>
                         )}
                         {house.dimensions.bathrooms && (
                           <div className="flex flex-col gap-1 sm:gap-2">
-                            <dt className="text-sm sm:text-base font-medium text-gray-700">Bathrooms:</dt>
+                            <dt className="text-sm sm:text-base font-medium text-gray-700">Ванні кімнати:</dt>
                             <dd className="text-sm sm:text-base font-thin text-gray-900">{String(house.dimensions.bathrooms)}</dd>
                           </div>
                         )}
                         {house.dimensions.overallSize && (
                           <div className="flex flex-col gap-1 sm:gap-2">
-                            <dt className="text-sm sm:text-base font-medium text-gray-700">Overall Size:</dt>
+                            <dt className="text-sm sm:text-base font-medium text-gray-700">Габарити:</dt>
                             <dd className="text-sm sm:text-base font-thin text-gray-900">{house.dimensions.overallSize}</dd>
                           </div>
                         )}
                         {house.dimensions.walkInWardrobes && (
                           <div className="flex flex-col gap-1 sm:gap-2">
-                            <dt className="text-sm sm:text-base font-medium text-gray-700">Walk-in Wardrobes:</dt>
+                            <dt className="text-sm sm:text-base font-medium text-gray-700">Гардеробні:</dt>
                             <dd className="text-sm sm:text-base font-thin text-gray-900">{house.dimensions.walkInWardrobes}</dd>
                           </div>
                         )}
@@ -541,35 +537,35 @@ const HouseDetailPage: React.FC = () => {
                   )}
                   {house.construction && (
                     <div className="bg-white shadow-sm border border-gray-100 rounded-lg p-5 sm:p-6 md:p-7 lg:p-8">
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-heading font-thin mb-5 sm:mb-6 text-primary border-b border-gray-200 pb-3 sm:pb-4">Construction</h3>
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-heading font-thin mb-5 sm:mb-6 text-primary border-b border-gray-200 pb-3 sm:pb-4">Будівництво</h3>
                       <dl className="space-y-4 sm:space-y-5">
                         {house.construction.wallSystem && (
                           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-2 pb-4 sm:pb-5 border-b border-gray-100 last:border-b-0 last:pb-0">
-                            <dt className="text-sm sm:text-base font-medium text-gray-700 sm:min-w-[140px]">Wall System:</dt>
+                            <dt className="text-sm sm:text-base font-medium text-gray-700 sm:min-w-[140px]">Система стін:</dt>
                             <dd className="text-sm sm:text-base font-thin text-gray-900 text-left sm:text-right flex-1">{house.construction.wallSystem}</dd>
                           </div>
                         )}
                         {house.construction.insulation && (
                           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-2 pb-4 sm:pb-5 border-b border-gray-100 last:border-b-0 last:pb-0">
-                            <dt className="text-sm sm:text-base font-medium text-gray-700 sm:min-w-[140px]">Insulation:</dt>
+                            <dt className="text-sm sm:text-base font-medium text-gray-700 sm:min-w-[140px]">Утеплення:</dt>
                             <dd className="text-sm sm:text-base font-thin text-gray-900 text-left sm:text-right flex-1">{house.construction.insulation}</dd>
                           </div>
                         )}
                         {house.construction.windows && (
                           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-2 pb-4 sm:pb-5 border-b border-gray-100 last:border-b-0 last:pb-0">
-                            <dt className="text-sm sm:text-base font-medium text-gray-700 sm:min-w-[140px]">Windows:</dt>
+                            <dt className="text-sm sm:text-base font-medium text-gray-700 sm:min-w-[140px]">Вікна:</dt>
                             <dd className="text-sm sm:text-base font-thin text-gray-900 text-left sm:text-right flex-1">{house.construction.windows}</dd>
                           </div>
                         )}
                         {house.construction.roof && (
                           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-2 pb-4 sm:pb-5 border-b border-gray-100 last:border-b-0 last:pb-0">
-                            <dt className="text-sm sm:text-base font-medium text-gray-700 sm:min-w-[140px]">Roof:</dt>
+                            <dt className="text-sm sm:text-base font-medium text-gray-700 sm:min-w-[140px]">Покрівля:</dt>
                             <dd className="text-sm sm:text-base font-thin text-gray-900 text-left sm:text-right flex-1">{house.construction.roof}</dd>
                           </div>
                         )}
                         {house.construction.foundation && (
                           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-2 pb-4 sm:pb-5 border-b border-gray-100 last:border-b-0 last:pb-0">
-                            <dt className="text-sm sm:text-base font-medium text-gray-700 sm:min-w-[140px]">Foundation:</dt>
+                            <dt className="text-sm sm:text-base font-medium text-gray-700 sm:min-w-[140px]">Фундамент:</dt>
                             <dd className="text-sm sm:text-base font-thin text-gray-900 text-left sm:text-right flex-1">{house.construction.foundation}</dd>
                           </div>
                         )}
@@ -579,7 +575,7 @@ const HouseDetailPage: React.FC = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
                     {house.energyEnvironment && house.energyEnvironment.length > 0 && (
                       <div className="bg-white shadow-sm border border-gray-100 rounded-lg p-5 sm:p-6 md:p-7 lg:p-8">
-                        <h3 className="text-lg sm:text-xl md:text-2xl font-heading font-thin mb-5 sm:mb-6 text-primary border-b border-gray-200 pb-3 sm:pb-4">Energy & Environment</h3>
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-heading font-thin mb-5 sm:mb-6 text-primary border-b border-gray-200 pb-3 sm:pb-4">Енергетика та екологія</h3>
                         <ul className="space-y-3 sm:space-y-3.5">
                           {house.energyEnvironment.map((item, index) => (
                             <li key={index} className="flex items-start gap-2.5 sm:gap-3 pb-3 sm:pb-4 border-b border-gray-100 last:border-b-0 last:pb-0">
@@ -594,7 +590,7 @@ const HouseDetailPage: React.FC = () => {
                     )}
                     {house.features && house.features.length > 0 && (
                       <div className="bg-white shadow-sm border border-gray-100 rounded-lg p-5 sm:p-6 md:p-7 lg:p-8">
-                        <h3 className="text-lg sm:text-xl md:text-2xl font-heading font-thin mb-5 sm:mb-6 text-primary border-b border-gray-200 pb-3 sm:pb-4">Features</h3>
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-heading font-thin mb-5 sm:mb-6 text-primary border-b border-gray-200 pb-3 sm:pb-4">Особливості</h3>
                         <ul className="space-y-3 sm:space-y-3.5">
                           {house.features.map((item, index) => (
                             <li key={index} className="flex items-start gap-2.5 sm:gap-3 pb-3 sm:pb-4 border-b border-gray-100 last:border-b-0 last:pb-0">
@@ -614,7 +610,7 @@ const HouseDetailPage: React.FC = () => {
                   {Object.entries(specifications).map(([category, specs]) => (
                         <div key={category} className="bg-white shadow-sm border border-gray-100 rounded-lg p-5 sm:p-6 md:p-7 lg:p-8">
                           <h3 className="text-lg sm:text-xl md:text-2xl font-heading font-thin mb-5 sm:mb-6 text-primary border-b border-gray-200 pb-3 sm:pb-4 capitalize">
-                        {category === 'energy' ? 'Energy & Environment' : category}
+                        {category === 'energy' ? 'Енергетика та екологія' : category === 'dimensions' ? 'Розміри' : category === 'construction' ? 'Будівництво' : category === 'features' ? 'Особливості' : category}
                       </h3>
                           <dl className="space-y-3 sm:space-y-4">
                         {Object.entries(specs).map(([key, value]) => (
@@ -639,13 +635,13 @@ const HouseDetailPage: React.FC = () => {
                           <div key={index} className="bg-white rounded-lg overflow-hidden shadow-sm">
                             <div className="p-4 sm:p-6 border-b border-gray-200">
                               <h4 className="text-lg sm:text-xl font-heading font-thin text-gray-900">
-                                {house.floorPlans && house.floorPlans.length > 1 ? `Version ${index + 1}` : 'Floor Plan'}
+                                {house.floorPlans && house.floorPlans.length > 1 ? `Варіант ${index + 1}` : 'План поверху'}
                               </h4>
                             </div>
                             <div className="relative w-full overflow-hidden">
                               <img
                                 src={floorPlan}
-                                alt={`${house.name} Floor Plan ${index + 1}`}
+                                alt={`${house.name} — план поверху ${index + 1}`}
                                 className="w-full h-auto object-contain"
                                 style={{ display: 'block' }}
                               />
@@ -657,16 +653,16 @@ const HouseDetailPage: React.FC = () => {
                 <div className="text-center">
                   <div className="bg-white p-12 rounded-lg mb-6">
                     <div className="text-6xl text-gray-900 mb-4">📐</div>
-                    <h3 className="text-2xl font-heading font-thin mb-4">Floor Plan Coming Soon</h3>
+                    <h3 className="text-2xl font-heading font-thin mb-4">План поверху незабаром</h3>
                     <p className="text-gray-900 mb-6">
-                      Detailed architectural drawings and 3D floor plans are being prepared for this model.
+                      Для цієї моделі готуються детальні архітектурні креслення та плани.
                     </p>
                     <button
                       type="button"
                       className="bg-primary text-white px-6 py-3 font-thin hover:bg-primary-hover transition-colors rounded-lg touch-manipulation"
-                      onClick={() => house && openRequestModal({ requestType: 'floor_plan', sourceSlug: house.slug, context: 'Floor Plan' })}
+                      onClick={() => house && openRequestModal({ requestType: 'floor_plan', sourceSlug: house.slug, context: 'План поверху' })}
                     >
-                      Request Floor Plan
+                      Замовити план поверху
                     </button>
                   </div>
                     </div>
@@ -678,83 +674,83 @@ const HouseDetailPage: React.FC = () => {
                 <div>
                   {/* Add-On Options */}
                   <div>
-                    <h3 className="text-2xl font-heading font-thin mb-6">Available Add-Ons</h3>
+                    <h3 className="text-2xl font-heading font-thin mb-6">Додаткові опції</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="bg-white border border-gray-200 rounded-lg p-4 md:p-5">
-                        <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Sanitary Ware & Bathroom Equipment</h4>
-                        <p className="text-sm text-gray-600 font-body font-normal mb-3">WC, shower, taps, boiler, cabinets and all bathroom fixtures</p>
+                        <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Сантехніка та обладнання ванних</h4>
+                        <p className="text-sm text-gray-600 font-body font-normal mb-3">Унітаз, душова зона, змішувачі, бойлер, шафи та все необхідне для ванних кімнат</p>
                         <AnimatedButton
                           variant="yellowOnWhite"
                           className="px-4 py-2 text-sm font-thin w-full sm:w-auto touch-manipulation"
-                          onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug, context: 'Sanitary Ware & Bathroom Equipment' })}
+                          onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug, context: 'Сантехніка та обладнання ванних' })}
                         >
-                          Request Quote
+                          Запит на комерційну пропозицію
                         </AnimatedButton>
                       </div>
                       <div className="bg-white border border-gray-200 rounded-lg p-4 md:p-5">
-                        <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Heating & Ventilation Systems</h4>
-                        <p className="text-sm text-gray-600 font-body font-normal mb-3">ASHP, radiators, underfloor heating, MVHR or any HVAC equipment</p>
+                        <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Опалення та вентиляція</h4>
+                        <p className="text-sm text-gray-600 font-body font-normal mb-3">Теплові насоси, радіатори, «тепла підлога», рекуператори та інше HVAC-обладнання</p>
                         <AnimatedButton
                           variant="yellowOnWhite"
                           className="px-4 py-2 text-sm font-thin w-full sm:w-auto touch-manipulation"
-                          onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug, context: 'Heating & Ventilation Systems' })}
+                          onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug, context: 'Опалення та вентиляція' })}
                         >
-                          Request Quote
+                          Запит на комерційну пропозицію
                         </AnimatedButton>
                       </div>
                       <div className="bg-white border border-gray-200 rounded-lg p-4 md:p-5">
-                        <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Fire Safety Systems</h4>
-                        <p className="text-sm text-gray-600 font-body font-normal mb-3">Smoke detectors, heat detectors, fire alarm panels and emergency lighting</p>
+                        <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Системи протипожежного захисту</h4>
+                        <p className="text-sm text-gray-600 font-body font-normal mb-3">Димові та теплові датчики, пожежна сигналізація, аварійне освітлення</p>
                         <AnimatedButton
                           variant="yellowOnWhite"
                           className="px-4 py-2 text-sm font-thin w-full sm:w-auto touch-manipulation"
-                          onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug, context: 'Fire Safety Systems' })}
+                          onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug, context: 'Системи протипожежного захисту' })}
                         >
-                          Request Quote
+                          Запит на комерційну пропозицію
                         </AnimatedButton>
                       </div>
                       <div className="bg-white border border-gray-200 rounded-lg p-4 md:p-5">
-                        <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Foundations</h4>
-                        <p className="text-sm text-gray-600 font-body font-normal mb-3">Supply and installation of screw-pile foundations or any concrete foundation system</p>
+                        <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Фундаменти</h4>
+                        <p className="text-sm text-gray-600 font-body font-normal mb-3">Поставка та монтаж гвинтових опор або інших бетонних рішень під фундамент</p>
                         <AnimatedButton
                           variant="yellowOnWhite"
                           className="px-4 py-2 text-sm font-thin w-full sm:w-auto touch-manipulation"
-                          onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug, context: 'Foundations' })}
+                          onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug, context: 'Фундаменти' })}
                         >
-                          Request Quote
+                          Запит на комерційну пропозицію
                         </AnimatedButton>
                       </div>
                       <div className="bg-white border border-gray-200 rounded-lg p-4 md:p-5">
-                        <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Mechanical Lifting Equipment</h4>
-                        <p className="text-sm text-gray-600 font-body font-normal mb-3">Crane hire, telehandlers, fall-arrest systems and scaffolding</p>
+                        <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Підйомне обладнання</h4>
+                        <p className="text-sm text-gray-600 font-body font-normal mb-3">Оренда кранів, телескопічних навантажувачів, систем запобігання падінню, риштування</p>
                         <AnimatedButton
                           variant="yellowOnWhite"
                           className="px-4 py-2 text-sm font-thin w-full sm:w-auto touch-manipulation"
-                          onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug, context: 'Mechanical Lifting Equipment' })}
+                          onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug, context: 'Підйомне обладнання' })}
                         >
-                          Request Quote
+                          Запит на комерційну пропозицію
                         </AnimatedButton>
                       </div>
                       <div className="bg-white border border-gray-200 rounded-lg p-4 md:p-5">
-                        <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Planning Permission & Regulatory Fees</h4>
-                        <p className="text-sm text-gray-600 font-body font-normal mb-3">Submission, architectural fees, engineering approvals and associated documentation</p>
+                        <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Дозвільна документація та збори</h4>
+                        <p className="text-sm text-gray-600 font-body font-normal mb-3">Подання документів, архітектурні та інженерні послуги, погодження та супровідна документація</p>
                         <AnimatedButton
                           variant="yellowOnWhite"
                           className="px-4 py-2 text-sm font-thin w-full sm:w-auto touch-manipulation"
-                          onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug, context: 'Planning Permission & Regulatory Fees' })}
+                          onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug, context: 'Дозвільна документація та збори' })}
                         >
-                          Request Quote
+                          Запит на комерційну пропозицію
                         </AnimatedButton>
                       </div>
                       <div className="bg-white border border-gray-200 rounded-lg p-4 md:p-5 md:col-span-2">
-                        <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">External Utilities & Site Works</h4>
-                        <p className="text-sm text-gray-600 font-body font-normal mb-3">Groundworks, external drainage, mains connection for water, electricity or sewage</p>
+                        <h4 className="text-lg font-heading font-thin mb-2 text-gray-900">Зовнішні мережі та підготовка ділянки</h4>
+                        <p className="text-sm text-gray-600 font-body font-normal mb-3">Земляні роботи, зовнішній дренаж, підключення води, електроенергії та каналізації</p>
                         <AnimatedButton
                           variant="yellowOnWhite"
                           className="px-4 py-2 text-sm font-thin w-full sm:w-auto touch-manipulation"
-                          onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug, context: 'External Utilities & Site Works' })}
+                          onClick={() => house && openRequestModal({ requestType: 'quote', sourceSlug: house.slug, context: 'Зовнішні мережі та підготовка ділянки' })}
                         >
-                          Request Quote
+                          Запит на комерційну пропозицію
                         </AnimatedButton>
                       </div>
                     </div>
@@ -767,7 +763,7 @@ const HouseDetailPage: React.FC = () => {
                       variant="yellowOnWhite"
                       className="px-8 py-3 font-thin"
                     >
-                      Schedule Consultation
+                      Записатися на консультацію
                     </AnimatedButton>
                   </div>
                 </div>
@@ -777,7 +773,7 @@ const HouseDetailPage: React.FC = () => {
 
           {/* Related Houses */}
           <div className="mt-20 pt-16 border-t">
-            <h3 className="text-3xl font-light text-gray-900 mb-8">Similar Designs</h3>
+            <h3 className="text-3xl font-light text-gray-900 mb-8">Схожі проєкти</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {houseData.filter((h) => h.category === house.category && h.slug !== house.slug).slice(0, 3).map((relatedHouse, index) => (
                 <Link key={index} to={`/house/${relatedHouse.slug}`} className="group cursor-pointer">
@@ -789,8 +785,8 @@ const HouseDetailPage: React.FC = () => {
                     />
                   </div>
                   <h4 className="text-xl font-thin text-gray-900 mb-2">{relatedHouse.name}</h4>
-                  <p className="text-gray-900 mb-2">{relatedHouse.squareFeet} ft² • {relatedHouse.type}</p>
-                  <p className="text-primary font-thin">£{relatedHouse.price.toLocaleString()}</p>
+                  <p className="text-gray-900 mb-2">{formatAreaSqm(getHouseTotalAreaSqm(relatedHouse))} • {relatedHouse.type}</p>
+                  <p className="text-primary font-thin">{formatUsdFromUah(getHousePrice(relatedHouse))}</p>
                 </Link>
               ))}
             </div>
@@ -813,7 +809,7 @@ const HouseDetailPage: React.FC = () => {
         >
           <img 
             src={houseImages[lightboxImageIndex]} 
-            alt={`${house.name} - Full screen view ${lightboxImageIndex + 1} of ${houseImages.length}`}
+            alt={`${house.name} — повноекранний перегляд ${lightboxImageIndex + 1} з ${houseImages.length}`}
             className="max-w-full max-h-full w-auto h-auto object-contain"
           />
         </div>
@@ -831,7 +827,7 @@ const HouseDetailPage: React.FC = () => {
                 prevImage();
               }}
               className="text-white hover:text-gray-300 transition-colors duration-200 p-1 sm:p-2"
-              aria-label="Previous image"
+              aria-label="Попереднє зображення"
             >
               <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -854,7 +850,7 @@ const HouseDetailPage: React.FC = () => {
                 nextImage();
               }}
               className="text-white hover:text-gray-300 transition-colors duration-200 p-1 sm:p-2"
-              aria-label="Next image"
+              aria-label="Наступне зображення"
             >
               <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -866,7 +862,7 @@ const HouseDetailPage: React.FC = () => {
           <button
             onClick={closeLightbox}
             className="text-white hover:text-gray-300 transition-colors duration-200 p-1 sm:p-2 ml-2 sm:ml-3 border-l border-white/20 pl-3 sm:pl-4"
-            aria-label="Close lightbox"
+            aria-label="Закрити перегляд"
           >
             <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

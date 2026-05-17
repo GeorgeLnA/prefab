@@ -6,9 +6,9 @@ import SEO from '../components/SEO';
 const NotFoundPage: React.FC = () => {
   return (
     <>
-      <SEO 
-        title="404 - Page Not Found"
-        description="The page you're looking for doesn't exist. Return to our homepage to explore our prefab homes."
+      <SEO
+        title="404 — сторінку не знайдено"
+        description="Сторінку не знайдено на prefabhomes.com.ua. Поверніться на головну або перегляньте каталог проєктів."
         noindex={true}
       />
       <div className="min-h-screen flex items-center justify-center bg-white">
@@ -16,11 +16,10 @@ const NotFoundPage: React.FC = () => {
           <div className="w-full">
             <h1 className="mb-6">
               <span className="block text-9xl font-heading font-thin text-primary mb-4">404</span>
-              <span className="block text-4xl md:text-5xl font-heading font-thin text-gray-900">Page Not Found</span>
+              <span className="block text-4xl md:text-5xl font-heading font-thin text-gray-900">Сторінку не знайдено</span>
             </h1>
             <p className="text-xl text-gray-600 mb-10 font-body font-normal leading-relaxed">
-              The page you're looking for doesn't exist or has been moved. 
-              Let's get you back on track.
+              Можливо, посилання застаріло або сторінку перенесено. Повернімося до каталогу.
             </p>
             <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
               <AnimatedButton
@@ -29,7 +28,7 @@ const NotFoundPage: React.FC = () => {
                 variant="yellowOnWhite"
                 className="shrink-0 px-8 py-4 font-thin text-base text-center"
               >
-                Go to Homepage
+                На головну
               </AnimatedButton>
               <AnimatedButton
                 asLink={true}
@@ -37,32 +36,32 @@ const NotFoundPage: React.FC = () => {
                 variant="white"
                 className="shrink-0 px-8 py-4 font-thin text-base text-center"
               >
-                Browse Designs
+                Каталог проєктів
               </AnimatedButton>
             </div>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
               <div>
-                <h3 className="font-heading font-thin text-gray-900 mb-3">Popular Pages</h3>
+                <h3 className="font-heading font-thin text-gray-900 mb-3">Популярні розділи</h3>
                 <ul className="space-y-2">
                   <li>
                     <Link to="/designs" className="text-gray-600 hover:text-primary transition-colors font-body font-normal">
-                      → Designs
+                      → Проєкти
                     </Link>
                   </li>
                   <li>
                     <Link to="/technology" className="text-gray-600 hover:text-primary transition-colors font-body font-normal">
-                      → Technology
+                      → Технології
                     </Link>
                   </li>
                   <li>
                     <Link to="/contact" className="text-gray-600 hover:text-primary transition-colors font-body font-normal">
-                      → Contact
+                      → Контакти
                     </Link>
                   </li>
                 </ul>
               </div>
               <div>
-                <h3 className="font-heading font-thin text-gray-900 mb-3">House Types</h3>
+                <h3 className="font-heading font-thin text-gray-900 mb-3">Серії</h3>
                 <ul className="space-y-2">
                   <li>
                     <Link to="/skandy-nordy" className="text-gray-600 hover:text-primary transition-colors font-body font-normal">
@@ -76,27 +75,27 @@ const NotFoundPage: React.FC = () => {
                   </li>
                   <li>
                     <Link to="/modular" className="text-gray-600 hover:text-primary transition-colors font-body font-normal">
-                      → Modular Home
+                      → Модульні будинки
                     </Link>
                   </li>
                 </ul>
               </div>
               <div>
-                <h3 className="font-heading font-thin text-gray-900 mb-3">Resources</h3>
+                <h3 className="font-heading font-thin text-gray-900 mb-3">Корисне</h3>
                 <ul className="space-y-2">
                   <li>
                     <Link to="/blog" className="text-gray-600 hover:text-primary transition-colors font-body font-normal">
-                      → Blog
+                      → Блог
                     </Link>
                   </li>
                   <li>
                     <Link to="/faq" className="text-gray-600 hover:text-primary transition-colors font-body font-normal">
-                      → FAQ
+                      → Питання та відповіді
                     </Link>
                   </li>
                   <li>
                     <Link to="/about" className="text-gray-600 hover:text-primary transition-colors font-body font-normal">
-                      → About
+                      → Про нас
                     </Link>
                   </li>
                 </ul>
@@ -110,4 +109,3 @@ const NotFoundPage: React.FC = () => {
 };
 
 export default NotFoundPage;
-

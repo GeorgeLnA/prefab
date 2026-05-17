@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { houseData } from '../data/houses';
+import { getHouseTotalAreaSqm, houseData } from '../data/houses';
 import SEO from '../components/SEO';
 import { buildKeywords } from '../data/seo-keywords';
+import { formatAreaSqm, formatUsdFromUah } from '../lib/utils';
 import { AnimatedButton } from '../components/ui/animated-button';
 import { ExpandingButton } from '../components/ui/expanding-button';
 
@@ -33,10 +34,10 @@ const LoungePage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Lounge Collection - Spacious Open-Plan Prefab Homes"
-        description="Lounge prefab homes UK: open-plan living, premium comfort. Oxford, London delivery. Spacious prefabricated houses. Modern design."
+        title="Lounge — просторі модульні будинки з відкритим плануванням"
+        description="Колекція Lounge: відкриті плани, преміальний комфорт. Доставка по Україні. Сучасні модульні рішення."
         url="/lounge"
-        keywords={buildKeywords('Lounge prefab homes UK, open-plan prefabricated houses Oxford London, spacious prefab homes, Lounge collection prefab')}
+        keywords={buildKeywords('Lounge модульні будинки, open plan prefab Україна, просторі модульні Київ')}
       />
       <div className="bg-white">
       <div className="pt-20">
@@ -48,14 +49,13 @@ const LoungePage: React.FC = () => {
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative w-full px-4 sm:px-5 h-full flex items-center">
           <div className="text-white">
-            <h1 className="text-5xl font-heading font-thin mb-4">Lounge Collection</h1>
+            <h1 className="text-5xl font-heading font-thin mb-4">Колекція Lounge</h1>
             <p className="text-xl font-body font-normal mb-6 max-w-2xl">
-              Spacious open-plan living with premium comfort features. Our Lounge series 
-              combines relaxation with modern design for the ultimate living experience.
+              Просторе відкрите планування та преміальний комфорт. Серія Lounge поєднує відпочинок і сучасний дизайн для повноцінного життя.
             </p>
             <div className="flex items-center space-x-4">
               <span className="bg-white text-primary px-4 py-2 font-thin rounded-lg">
-                {loungeHouses.length} Models Available
+                {loungeHouses.length} моделей у наявності
               </span>
             </div>
           </div>
@@ -66,9 +66,9 @@ const LoungePage: React.FC = () => {
       <section className="pt-8 md:pt-20 pb-20 bg-white">
         <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Lounge Models</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Моделі Lounge</h2>
             <p className="text-lg sm:text-xl font-body font-normal text-gray-900">
-              Discover our range of Lounge models, each designed to provide the perfect balance of comfort, style, and functionality.
+              Оберіть модель Lounge з оптимальним балансом комфорту, стилю та практичності.
             </p>
           </div>
 
@@ -100,10 +100,10 @@ const LoungePage: React.FC = () => {
                       </h3>
                       <div className="flex items-center justify-between text-sm mb-4">
                         <span className="text-gray-900">
-                          {house.squareFeet} ft² • {house.type}
+                          {formatAreaSqm(getHouseTotalAreaSqm(house))} • {house.type}
                         </span>
                         <span className="text-primary font-thin">
-                          £{house.price.toLocaleString()}
+                          {formatUsdFromUah(house.price)}
                         </span>
                       </div>
                       <div className="mt-auto">
@@ -111,7 +111,7 @@ const LoungePage: React.FC = () => {
                           to={`/house/${houseMatch?.slug || ''}`}
                           className="w-full bg-primary text-white py-3 px-4"
                       >
-                        View Details
+                        Детальніше
                       </ExpandingButton>
                     </div>
                   </div>
@@ -128,9 +128,9 @@ const LoungePage: React.FC = () => {
         <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
             {/* Removed colored heading */}
-            <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Lounge Living</h2>
+            <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Lounge-життя</h2>
             <p className="text-xl font-body font-normal text-gray-900">
-              Our Lounge collection combines open-plan living, premium finishes, and energy efficiency for the ultimate in comfort and style.
+              Колекція Lounge поєднує відкриті плани, якісні фініші та енергоефективність для максимального комфорту.
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
@@ -140,8 +140,8 @@ const LoungePage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2V7z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-heading font-thin mb-3">Open-Plan Design</h3>
-              <p className="text-gray-900 font-body font-normal">Spacious layouts that maximize natural light and create seamless living spaces</p>
+              <h3 className="text-xl font-heading font-thin mb-3">Відкрите планування</h3>
+              <p className="text-gray-900 font-body font-normal">Максимум світла та плавні переходи між зонами</p>
             </div>
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
@@ -149,8 +149,8 @@ const LoungePage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-heading font-thin mb-3">Premium Finishes</h3>
-              <p className="text-gray-900 font-body font-normal">High-quality materials and finishes throughout for lasting beauty and comfort</p>
+              <h3 className="text-xl font-heading font-thin mb-3">Преміальні фініші</h3>
+              <p className="text-gray-900 font-body font-normal">Якісні матеріали та обробка для довговічної краси</p>
             </div>
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
@@ -158,8 +158,8 @@ const LoungePage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-heading font-thin mb-3">Energy Efficient</h3>
-              <p className="text-gray-900 font-body font-normal">Passive House certified designs for minimal environmental impact and low running costs</p>
+              <h3 className="text-xl font-heading font-thin mb-3">Енергоефективність</h3>
+              <p className="text-gray-900 font-body font-normal">Рішення з низьким енергоспоживанням та витратами на утримання</p>
             </div>
           </div>
         </div>
@@ -171,10 +171,9 @@ const LoungePage: React.FC = () => {
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
         <div className="w-full px-4 sm:px-5 text-center">
-          <h2 className="text-4xl font-heading font-thin text-white mb-6">Experience Lounge Living</h2>
+          <h2 className="text-4xl font-heading font-thin text-white mb-6">Спробуйте Lounge</h2>
           <p className="text-xl text-white/90 font-body font-normal mb-8">
-            Contact our design team to customize your perfect Lounge model or schedule a consultation 
-            to explore all available options.
+            Зв’яжіться з нашою командою, щоб адаптувати модель Lounge під вас або записатися на консультацію та переглянути варіанти.
           </p>
           <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
             <AnimatedButton
@@ -183,7 +182,7 @@ const LoungePage: React.FC = () => {
               variant={isScrolled ? "greyToWhite" : "greyToYellow"}
               className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
-              Schedule Viewing
+              Запланувати перегляд
             </AnimatedButton>
             <AnimatedButton
               asLink={true}
@@ -191,7 +190,7 @@ const LoungePage: React.FC = () => {
               variant={isScrolled ? "whiteToGrey" : "whiteOnYellow"}
               className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
-              View All Models
+              Усі моделі
             </AnimatedButton>
           </div>
         </div>
@@ -212,7 +211,7 @@ const LoungePage: React.FC = () => {
             </button>
             <img 
               src={selectedImage} 
-              alt="Lounge house design"
+              alt="Проєкт будинку Lounge"
               className="max-w-full max-h-full object-contain"
             />
           </div>

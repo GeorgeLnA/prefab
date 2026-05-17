@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { houseData, getHousesByCategory } from '../data/houses';
+import { getHouseTotalAreaSqm, houseData, getHousesByCategory } from '../data/houses';
 import { insertDesignRequest } from '../lib/submission-insert';
 import SEO from '../components/SEO';
 import { buildKeywords } from '../data/seo-keywords';
+import { formatAreaSqm, formatUsdAmount, usdToUah } from '../lib/utils';
 
 const DesignFormPage: React.FC = () => {
   const navigate = useNavigate();
@@ -57,6 +58,37 @@ const DesignFormPage: React.FC = () => {
     'Modular': 'MODULAR',
   };
   const designSeriesOptions = ['ALL', 'Nordy', 'Skandy', 'Modern', 'Modular'];
+  const designSeriesLabels: Record<string, string> = {
+    ALL: 'Усі серії',
+    Nordy: 'Nordy',
+    Skandy: 'Skandy',
+    Modern: 'Modern',
+    Modular: 'Modular',
+  };
+  const sizeLabelUk: Record<string, string> = {
+    Small: 'Компактний',
+    Medium: 'Середній',
+    Large: 'Просторий',
+    'Extra Large': 'Максимальний',
+  };
+  const timelineUk: Record<string, string> = {
+    ASAP: 'Якомога швидше',
+    '1-3 months': '1–3 місяці',
+    '3-6 months': '3–6 місяців',
+    '6-12 months': '6–12 місяців',
+    '12+ months': 'Понад 12 місяців',
+  };
+  const financingUk: Record<string, string> = {
+    Cash: 'Власні кошти',
+    Mortgage: 'Іпотека / кредит',
+    Financing: 'Розтермінування',
+    Mixed: 'Змішана схема',
+  };
+  const woodUk: Record<string, string> = {
+    Pine: 'Сосна',
+    Oak: 'Дуб',
+    Cedar: 'Кедр',
+  };
   const [selectedSeries, setSelectedSeries] = useState<string>('ALL');
 
   const basesForSelection =
@@ -84,10 +116,10 @@ const DesignFormPage: React.FC = () => {
   const [submitting, setSubmitting] = useState(false);
 
   const nextStepLabels: Record<number, string> = {
-    1: 'Next: Design Details →',
-    2: 'Next: Budget & Timeline →',
-    3: 'Next: Additional Details →',
-    4: 'Next: Contact Information →',
+    1: 'Далі: параметри дому →',
+    2: 'Далі: бюджет і строки →',
+    3: 'Далі: додатково →',
+    4: 'Далі: контакти →',
   };
   const showNavBar = step <= 5;
   const canProceedStep1 = step === 1 ? !!formData.selectedBase : true;
@@ -102,13 +134,13 @@ const DesignFormPage: React.FC = () => {
         email: formData.email,
         phone: formData.phone || undefined,
         message: [formData.additionalComments, formData.specialRequirements].filter(Boolean).join('\n\n') || undefined,
-        budget: formData.budget || undefined,
+        budget: formData.budget ? String(usdToUah(Number(formData.budget))) : undefined,
         payload: formData as unknown as Record<string, unknown>,
       });
       if (error) throw error;
       navigate('/thanks');
     } catch (err) {
-      setSubmitError(err instanceof Error ? err.message : 'Submission failed');
+      setSubmitError(err instanceof Error ? err.message : 'Не вдалося надіслати');
     } finally {
       setSubmitting(false);
     }
@@ -117,26 +149,26 @@ const DesignFormPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Design Your Modular Home - Custom Prefab Home Builder"
-        description="Design your modular prefab home online. Custom size, rooms, materials. UK wide. Oxford, London, Oxfordshire. Instant quote. Create your dream prefab home."
+        title="Спроєктуйте модульний дім — конструктор Prefab Homes"
+        description="Онлайн-підбір базового проєкту модульного будинку в Україні: площа, планування, бюджет у доларах США. Prefab Homes — швидкий запит пропозиції."
         url="/design-form"
-        keywords={buildKeywords('design modular home UK, custom prefab home builder Oxford London, prefabricated house design, modular home configurator, instant quote prefab', { includeServices: true })}
+        keywords={buildKeywords('конструктор модульного будинку, індивідуальний каркасний дім, пропозиція ціна USD, проєкт будинку Україна', { includeServices: true })}
       />
       <div className="bg-white">
       <div className="pt-28 sm:pt-32 md:pt-36 lg:pt-40 pb-24 sm:pb-28 min-h-screen bg-gray-50">
       <div className="w-full px-4 sm:px-5">
         <div className="w-full">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-thin text-primary mb-4">DESIGN YOUR DREAM HOME</h1>
-          <p className="text-xl text-gray-600">Let's create something amazing together</p>
+          <h1 className="text-4xl font-thin text-primary mb-4">СПРОЄКТУЙТЕ СВІЙ ДІМ</h1>
+          <p className="text-xl text-gray-600">Крок за кроком — від базової моделі до запиту пропозиції</p>
         </div>
 
         <div className="bg-white rounded-xl shadow-lg p-8">
           {/* Step 1: House Base Selection */}
           {step === 1 && (
             <div>
-              <h2 className="text-3xl font-thin text-gray-800 mb-2">Choose Your House Base</h2>
-              <p className="text-gray-600 mb-6">Select a foundation design to start with</p>
+              <h2 className="text-3xl font-thin text-gray-800 mb-2">Оберіть базову модель</h2>
+              <p className="text-gray-600 mb-6">Стартовий проєкт, який далі налаштуємо під вас</p>
 
               {/* Series filter */}
               <div className="flex flex-wrap gap-2 sm:gap-3 mb-6">
@@ -151,7 +183,7 @@ const DesignFormPage: React.FC = () => {
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                   >
-                    {series}
+                    {designSeriesLabels[series]}
                   </button>
                 ))}
               </div>
@@ -171,7 +203,7 @@ const DesignFormPage: React.FC = () => {
                     <img src={house.imageUrl} alt={house.name} className="w-full h-48 object-cover" />
                     <div className="p-4">
                       <div className="font-thin text-lg mb-1">{house.name}</div>
-                      <div className="text-gray-500 text-sm">{house.squareFeet} ft² • {house.type}</div>
+                      <div className="text-gray-500 text-sm">{formatAreaSqm(getHouseTotalAreaSqm(house))} • {house.type}</div>
                     </div>
                   </button>
                 ))}
@@ -182,40 +214,40 @@ const DesignFormPage: React.FC = () => {
           {/* Step 2: Design & Size */}
           {step === 2 && (
             <div>
-              <h2 className="text-3xl font-thin text-gray-800 mb-2">Design & Size Details</h2>
-              <p className="text-gray-600 mb-8">Customize the layout and dimensions</p>
+              <h2 className="text-3xl font-thin text-gray-800 mb-2">Планування та площа</h2>
+              <p className="text-gray-600 mb-8">Уточніть бажаний формат дому</p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div>
-                  <label className="block text-sm font-thin text-gray-700 mb-2">House Size</label>
+                  <label className="block text-sm font-thin text-gray-700 mb-2">Категорія площі</label>
                   <select 
                     value={formData.size} 
                     onChange={(e) => handleInputChange('size', e.target.value)}
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent"
                   >
-                    <option value="Small">Small (538-861 ft² / 50-80 m²)</option>
-                    <option value="Medium">Medium (861-1292 ft² / 80-120 m²)</option>
-                    <option value="Large">Large (1292-1938 ft² / 120-180 m²)</option>
-                    <option value="Extra Large">Extra Large (1938+ ft² / 180+ m²)</option>
+                    <option value="Small">Компактний (50–80 м²)</option>
+                    <option value="Medium">Середній (80–120 м²)</option>
+                    <option value="Large">Просторий (120–180 м²)</option>
+                    <option value="Extra Large">Максимальний (180+ м²)</option>
                   </select>
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-thin text-gray-700 mb-2">Number of Floors</label>
+                  <label className="block text-sm font-thin text-gray-700 mb-2">Кількість поверхів</label>
                   <select 
                     value={formData.floors} 
                     onChange={(e) => handleInputChange('floors', Number(e.target.value))}
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent"
                   >
-                    <option value={1}>1 Floor</option>
-                    <option value={1.5}>1.5 Floors</option>
-                    <option value={2}>2 Floors</option>
-                    <option value={3}>3 Floors</option>
+                    <option value={1}>1 поверх</option>
+                    <option value={1.5}>1,5 поверхи</option>
+                    <option value={2}>2 поверхи</option>
+                    <option value={3}>3 поверхи</option>
                   </select>
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-thin text-gray-700 mb-2">Bedrooms</label>
+                  <label className="block text-sm font-thin text-gray-700 mb-2">Спальні</label>
                   <input
                     type="number"
                     min={1}
@@ -227,7 +259,7 @@ const DesignFormPage: React.FC = () => {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-thin text-gray-700 mb-2">Bathrooms</label>
+                  <label className="block text-sm font-thin text-gray-700 mb-2">Ванні кімнати</label>
                   <input
                     type="number"
                     min={1}
@@ -244,15 +276,15 @@ const DesignFormPage: React.FC = () => {
           {/* Step 3: Budget & Timeline */}
           {step === 3 && (
             <div>
-              <h2 className="text-3xl font-thin text-gray-800 mb-2">Budget & Timeline</h2>
-              <p className="text-gray-600 mb-8">Tell us about your budget and preferred timeline</p>
+              <h2 className="text-3xl font-thin text-gray-800 mb-2">Бюджет і строки</h2>
+              <p className="text-gray-600 mb-8">Вкажіть орієнтири — уточнимо під час дзвінка</p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div>
-                  <label className="block text-sm font-thin text-gray-700 mb-2">Budget Range (£)</label>
+                  <label className="block text-sm font-thin text-gray-700 mb-2">Орієнтовний бюджет (USD)</label>
                   <input
                     type="number"
-                    placeholder="e.g. 250000"
+                    placeholder="наприклад 285000"
                     value={formData.budget}
                     onChange={(e) => handleInputChange('budget', e.target.value)}
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -260,39 +292,39 @@ const DesignFormPage: React.FC = () => {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-thin text-gray-700 mb-2">Preferred Timeline</label>
+                  <label className="block text-sm font-thin text-gray-700 mb-2">Бажані строки</label>
                   <select 
                     value={formData.timeline} 
                     onChange={(e) => handleInputChange('timeline', e.target.value)}
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent"
                   >
-                    <option value="ASAP">ASAP (Rush order)</option>
-                    <option value="1-3 months">1-3 months</option>
-                    <option value="3-6 months">3-6 months</option>
-                    <option value="6-12 months">6-12 months</option>
-                    <option value="12+ months">12+ months</option>
+                    <option value="ASAP">Якомога швидше</option>
+                    <option value="1-3 months">1–3 місяці</option>
+                    <option value="3-6 months">3–6 місяців</option>
+                    <option value="6-12 months">6–12 місяців</option>
+                    <option value="12+ months">Понад 12 місяців</option>
                   </select>
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-thin text-gray-700 mb-2">Financing Method</label>
+                  <label className="block text-sm font-thin text-gray-700 mb-2">Оплата / фінансування</label>
                   <select 
                     value={formData.financing} 
                     onChange={(e) => handleInputChange('financing', e.target.value)}
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent"
                   >
-                    <option value="Cash">Cash Payment</option>
-                    <option value="Mortgage">Mortgage</option>
-                    <option value="Financing">Company Financing</option>
-                    <option value="Mixed">Mixed Payment</option>
+                    <option value="Cash">Оплата з власних коштів</option>
+                    <option value="Mortgage">Іпотека / кредит</option>
+                    <option value="Financing">Розтермінування від компанії</option>
+                    <option value="Mixed">Змішана схема</option>
                   </select>
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-thin text-gray-700 mb-2">Project Location</label>
+                  <label className="block text-sm font-thin text-gray-700 mb-2">Локація проєкту</label>
                   <input
                     type="text"
-                    placeholder="City, Region"
+                    placeholder="Місто, область"
                     value={formData.location}
                     onChange={(e) => handleInputChange('location', e.target.value)}
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -300,30 +332,30 @@ const DesignFormPage: React.FC = () => {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-thin text-gray-700 mb-2">Site Type</label>
+                  <label className="block text-sm font-thin text-gray-700 mb-2">Рельєф ділянки</label>
                   <select 
                     value={formData.siteType} 
                     onChange={(e) => handleInputChange('siteType', e.target.value)}
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent"
                   >
-                    <option value="Flat">Flat Ground</option>
-                    <option value="Sloped">Sloped Ground</option>
-                    <option value="Uneven">Uneven Terrain</option>
-                    <option value="Waterfront">Waterfront</option>
+                    <option value="Flat">Рівна ділянка</option>
+                    <option value="Sloped">Похила</option>
+                    <option value="Uneven">Нерівний рельєф</option>
+                    <option value="Waterfront">Біля водойми</option>
                   </select>
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-thin text-gray-700 mb-2">Utilities Status</label>
+                  <label className="block text-sm font-thin text-gray-700 mb-2">Комунікації на ділянці</label>
                   <select 
                     value={formData.utilities} 
                     onChange={(e) => handleInputChange('utilities', e.target.value)}
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent"
                   >
-                    <option value="Available">All Available</option>
-                    <option value="Partial">Partially Available</option>
-                    <option value="None">None Available</option>
-                    <option value="Unknown">Unknown</option>
+                    <option value="Available">Усі підведені</option>
+                    <option value="Partial">Частково</option>
+                    <option value="None">Відсутні</option>
+                    <option value="Unknown">Потрібна оцінка</option>
                   </select>
                 </div>
               </div>
@@ -333,15 +365,15 @@ const DesignFormPage: React.FC = () => {
           {/* Step 4: Additional Details */}
           {step === 4 && (
             <div>
-              <h2 className="text-3xl font-thin text-gray-800 mb-2">Additional Details</h2>
-              <p className="text-gray-600 mb-8">Share any special requirements or comments</p>
+              <h2 className="text-3xl font-thin text-gray-800 mb-2">Додаткові побажання</h2>
+              <p className="text-gray-600 mb-8">Опціонально — допоможе точніше підготувати пропозицію</p>
               
               <div className="space-y-6 mb-8">
                 <div>
-                  <label className="block text-sm font-thin text-gray-700 mb-2">Special Requirements</label>
+                  <label className="block text-sm font-thin text-gray-700 mb-2">Особливі вимоги</label>
                   <textarea
                     rows={4}
-                    placeholder="Any accessibility needs, special features, or specific requirements..."
+                    placeholder="Бар’єрність, додаткові приміщення, нестандартні інженерні рішення…"
                     value={formData.specialRequirements}
                     onChange={(e) => handleInputChange('specialRequirements', e.target.value)}
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -349,10 +381,10 @@ const DesignFormPage: React.FC = () => {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-thin text-gray-700 mb-2">Additional Comments</label>
+                  <label className="block text-sm font-thin text-gray-700 mb-2">Коментарі</label>
                   <textarea
                     rows={4}
-                    placeholder="Tell us more about your vision, preferences, or any other details..."
+                    placeholder="Стиль, бажані матеріали, референси тощо"
                     value={formData.additionalComments}
                     onChange={(e) => handleInputChange('additionalComments', e.target.value)}
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -365,12 +397,12 @@ const DesignFormPage: React.FC = () => {
           {/* Step 5: Contact Information & Summary */}
           {step === 5 && (
             <div>
-              <h2 className="text-3xl font-thin text-gray-800 mb-2">Contact Information</h2>
-              <p className="text-gray-600 mb-8">How can we reach you?</p>
+              <h2 className="text-3xl font-thin text-gray-800 mb-2">Контакти</h2>
+              <p className="text-gray-600 mb-8">Як з вами зв’язатися</p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div>
-                  <label className="block text-sm font-thin text-gray-700 mb-2">Full Name *</label>
+                  <label className="block text-sm font-thin text-gray-700 mb-2">ПІБ *</label>
                   <input
                     type="text"
                     required
@@ -381,7 +413,7 @@ const DesignFormPage: React.FC = () => {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-thin text-gray-700 mb-2">Email Address *</label>
+                  <label className="block text-sm font-thin text-gray-700 mb-2">Електронна пошта *</label>
                   <input
                     type="email"
                     required
@@ -392,7 +424,7 @@ const DesignFormPage: React.FC = () => {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-thin text-gray-700 mb-2">Phone Number *</label>
+                  <label className="block text-sm font-thin text-gray-700 mb-2">Телефон *</label>
                   <input
                     type="tel"
                     required
@@ -403,23 +435,23 @@ const DesignFormPage: React.FC = () => {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-thin text-gray-700 mb-2">Preferred Contact Method</label>
+                  <label className="block text-sm font-thin text-gray-700 mb-2">Зручний канал зв’язку</label>
                   <select 
                     value={formData.preferredContact} 
                     onChange={(e) => handleInputChange('preferredContact', e.target.value)}
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent"
                   >
-                    <option value="Email">Email</option>
-                    <option value="Phone">Phone</option>
-                    <option value="Both">Both</option>
+                    <option value="Email">Електронна пошта</option>
+                    <option value="Phone">Телефон</option>
+                    <option value="Both">Обидва</option>
                   </select>
                 </div>
                 
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-thin text-gray-700 mb-2">Address</label>
+                  <label className="block text-sm font-thin text-gray-700 mb-2">Адреса (за потреби)</label>
                   <input
                     type="text"
-                    placeholder="Your current address"
+                    placeholder="Поштова адреса для листування"
                     value={formData.address}
                     onChange={(e) => handleInputChange('address', e.target.value)}
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -429,20 +461,20 @@ const DesignFormPage: React.FC = () => {
               
               {/* Summary */}
               <div className="bg-gray-50 rounded-xl p-6 mb-8">
-                <h3 className="text-xl font-thin text-gray-800 mb-4">Project Summary</h3>
+                <h3 className="text-xl font-thin text-gray-800 mb-4">Підсумок заявки</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                  <div><strong>Base Design:</strong> {formData.selectedBase}</div>
-                  <div><strong>Size:</strong> {formData.size}</div>
-                  <div><strong>Floors:</strong> {formData.floors}</div>
-                  <div><strong>Bedrooms:</strong> {formData.rooms}</div>
-                  <div><strong>Bathrooms:</strong> {formData.bathrooms}</div>
-                  <div><strong>Wood Type:</strong> {formData.woodType}</div>
-                  <div><strong>Budget:</strong> £{formData.budget ? Number(formData.budget).toLocaleString() : 'Not specified'}</div>
-                  <div><strong>Timeline:</strong> {formData.timeline}</div>
-                  <div><strong>Location:</strong> {formData.location || 'Not specified'}</div>
-                  <div><strong>Smart Home:</strong> {formData.smartHome ? 'Yes' : 'No'}</div>
-                  <div><strong>Solar Panels:</strong> {formData.solarPanels ? 'Yes' : 'No'}</div>
-                  <div><strong>Financing:</strong> {formData.financing}</div>
+                  <div><strong>Базова модель:</strong> {formData.selectedBase || '—'}</div>
+                  <div><strong>Категорія площі:</strong> {sizeLabelUk[formData.size] ?? formData.size}</div>
+                  <div><strong>Поверхів:</strong> {formData.floors}</div>
+                  <div><strong>Спальні:</strong> {formData.rooms}</div>
+                  <div><strong>Ванні:</strong> {formData.bathrooms}</div>
+                  <div><strong>Деревина (за замовч.):</strong> {woodUk[formData.woodType] ?? formData.woodType}</div>
+                  <div><strong>Бюджет:</strong> {formData.budget ? formatUsdAmount(Number(formData.budget)) : 'Не вказано'}</div>
+                  <div><strong>Строки:</strong> {timelineUk[formData.timeline] ?? formData.timeline}</div>
+                  <div><strong>Локація:</strong> {formData.location || 'Не вказано'}</div>
+                  <div><strong>Розумний дім:</strong> {formData.smartHome ? 'Так' : 'Ні'}</div>
+                  <div><strong>Сонячні панелі:</strong> {formData.solarPanels ? 'Так' : 'Ні'}</div>
+                  <div><strong>Оплата:</strong> {financingUk[formData.financing] ?? formData.financing}</div>
                 </div>
               </div>
               
@@ -465,7 +497,7 @@ const DesignFormPage: React.FC = () => {
                 onClick={prevStep}
                 className="px-5 py-2.5 rounded-lg text-sm font-thin bg-gray-200 text-gray-800 hover:bg-gray-300 transition-colors"
               >
-                ← Back
+                ← Назад
               </button>
             )}
             {step < 5 ? (
@@ -484,13 +516,13 @@ const DesignFormPage: React.FC = () => {
                 disabled={submitting || !canSubmitStep5}
                 className="px-6 py-2.5 rounded-lg text-sm font-thin bg-primary text-black hover:bg-primary/90 disabled:opacity-50 disabled:pointer-events-none transition-colors"
               >
-                {submitting ? 'Sending…' : 'Submit Design Request'}
+                {submitting ? 'Надсилаємо…' : 'Надіслати запит'}
               </button>
             )}
             </div>
             <div className="flex flex-col items-stretch min-w-0 flex-1 ml-4">
               <div className="flex items-center justify-end gap-2 text-sm">
-                <span className="text-gray-500">{Math.round((step / 5) * 100)}% Complete</span>
+                <span className="text-gray-500">{Math.round((step / 5) * 100)}% виконано</span>
               </div>
               <div className="w-full mt-1.5 bg-gray-200 rounded-full h-1.5 overflow-hidden">
                 <div

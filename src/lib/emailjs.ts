@@ -1,4 +1,6 @@
 import emailjs from '@emailjs/browser';
+import { formTypeLabelUk } from '@/lib/form-type-labels';
+import { SITE_ORIGIN } from '@/lib/utils';
 
 const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
@@ -37,21 +39,25 @@ export function isEmailJsConfigured(): boolean {
  * - to_email (admin recipient)
  *
  * Submission fields (use in your HTML):
- * - form_type     e.g. "contact" | "design_request" | "quote" | "floor_plan"
- * - name          sender name
- * - email         sender email
- * - phone         sender phone or "—"
- * - message       message body or "—"
- * - project_type  (contact) or "—"
- * - budget        (contact/design) or "—"
- * - source_slug   (quote/floor_plan) or "—"
- * - context       (quote/floor_plan) or "—"
- * - payload_preview  (design_request: human-readable details, HTML-safe) or "—"
- * - submitted_at  friendly date/time string
+ * - form_type        internal slug: "contact" | "design_request" | "quote" | "floor_plan"
+ * - form_type_label  same type, Ukrainian label for humans (duplicate in template if needed)
+ * - site_url         public site origin (footer link), e.g. https://prefabhomes.com.ua
+ * - name             Ім'я
+ * - email            Email
+ * - phone            Телефон or "—"
+ * - message          Повідомлення or "—"
+ * - project_type     (контакт) or "—"
+ * - budget           or "—"
+ * - source_slug      (quote/floor_plan) or "—"
+ * - context          or "—"
+ * - payload_preview  (design_request: HTML-safe lines) or "—"
+ * - submitted_at     дата/час у форматі uk-UA
  */
 export type AdminTemplateParams = {
   to_email: string;
   form_type: string;
+  form_type_label: string;
+  site_url: string;
   name: string;
   email: string;
   phone: string;
@@ -66,9 +72,18 @@ export type AdminTemplateParams = {
 
 function buildAdminParams(partial: Partial<AdminTemplateParams>): AdminTemplateParams {
   const def = (v: string | undefined) => (v != null && v !== '' ? String(v) : '—');
+  const formType = partial.form_type != null && partial.form_type !== '' ? String(partial.form_type) : '';
+  const formTypeLabel =
+    partial.form_type_label != null && partial.form_type_label !== ''
+      ? String(partial.form_type_label)
+      : formType
+        ? formTypeLabelUk(formType)
+        : '—';
   return {
     to_email: def(partial.to_email) || adminEmail || '—',
-    form_type: def(partial.form_type),
+    form_type: formType ? formType : def(partial.form_type),
+    form_type_label: formTypeLabel,
+    site_url: partial.site_url != null && partial.site_url !== '' ? String(partial.site_url) : SITE_ORIGIN,
     name: def(partial.name),
     email: def(partial.email),
     phone: def(partial.phone),
@@ -123,7 +138,7 @@ function formatPayloadForEmail(payload: Record<string, unknown>): string {
       value === null || value === undefined
         ? '—'
         : typeof value === 'boolean'
-          ? value ? 'Yes' : 'No'
+          ? value ? 'Так' : 'Ні'
           : typeof value === 'object'
             ? escapeHtml(JSON.stringify(value))
             : escapeHtml(String(value));
@@ -154,6 +169,7 @@ export function sendAdminNotificationForSubmission(data: {
       : '—';
   sendAdminNotification({
     form_type: data.form_type,
+    form_type_label: formTypeLabelUk(data.form_type),
     name: data.name,
     email: data.email,
     phone: data.phone ?? '—',
@@ -163,7 +179,7 @@ export function sendAdminNotificationForSubmission(data: {
     source_slug: data.source_slug ?? '—',
     context: data.context ?? '—',
     payload_preview: payloadPreview,
-    submitted_at: new Date().toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }),
+    submitted_at: new Date().toLocaleString('uk-UA', { dateStyle: 'medium', timeStyle: 'short' }),
   });
 }
 

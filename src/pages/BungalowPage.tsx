@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { houseData } from '../data/houses';
+import { getHouseTotalAreaSqm, houseData } from '../data/houses';
 import SEO from '../components/SEO';
 import { buildKeywords } from '../data/seo-keywords';
+import { formatAreaSqm, formatUsdFromUah } from '../lib/utils';
 import { AnimatedButton } from '../components/ui/animated-button';
 import { ExpandingButton } from '../components/ui/expanding-button';
 
@@ -38,10 +39,10 @@ const BungalowPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Bungalow Collection - Single-Story Prefab Homes"
-        description="Bungalow prefab homes UK: single-storey, accessible. Oxford, London, Oxfordshire. Prefabricated bungalow houses. Comfortable living."
+        title="Колекція бунгало — одноповерхові модульні будинки"
+        description="Модульні бунгало в Україні: один поверх, доступність. Київ, Львів, доставка. Готові рішення для комфортного життя."
         url="/bungalow"
-        keywords={buildKeywords('bungalow prefab homes UK, single-storey prefabricated houses Oxford London, accessible prefab bungalow, bungalow prefab')}
+        keywords={buildKeywords('бунгало модульні Україна, одноповерхові prefab Київ, доступні модульні будинки')}
       />
       <div>
       {/* Hero Section */}
@@ -62,11 +63,10 @@ const BungalowPage: React.FC = () => {
           <div className="w-full px-4 sm:px-5">
             <div className="w-full">
               <h1 className="text-5xl md:text-6xl font-heading font-thin text-white mb-6 leading-tight">
-                Single-Storey Living
+                Життя на одному рівні
               </h1>
               <p className="text-white text-xl font-body font-normal mb-8 leading-relaxed">
-                Spacious single-storey bungalows with open plan living and accessible design. 
-                Perfect for comfortable family living.
+                Просторі одноповерхові бунгало з відкритим плануванням і продуманою доступністю — ідеально для сімейного комфорту.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <AnimatedButton
@@ -75,7 +75,7 @@ const BungalowPage: React.FC = () => {
                   variant="yellow"
                   className="px-8 py-3 w-full sm:w-auto text-center"
                 >
-                  Schedule Consultation
+                  Записатися на консультацію
                 </AnimatedButton>
               </div>
             </div>
@@ -87,9 +87,9 @@ const BungalowPage: React.FC = () => {
       <section id="models" className="pt-8 md:pt-20 pb-20 bg-white">
         <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Spacious Designs</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Просторі рішення</h2>
             <p className="text-lg sm:text-xl font-body font-normal text-gray-900">
-              Single-storey bungalows designed for comfortable and accessible family living.
+              Одноповерхові бунгало для комфортного та доступного сімейного життя.
             </p>
           </div>
 
@@ -120,10 +120,10 @@ const BungalowPage: React.FC = () => {
                       </h3>
                       <div className="flex items-center justify-between text-sm mb-4">
                         <span className="text-gray-900">
-                          {house.squareFeet} ft² • {house.type}
+                          {formatAreaSqm(getHouseTotalAreaSqm(house))} • {house.type}
                         </span>
                         <span className="text-primary font-thin">
-                          £{house.price.toLocaleString()}
+                          {formatUsdFromUah(house.price)}
                         </span>
                       </div>
                       <div className="mt-auto">
@@ -131,7 +131,7 @@ const BungalowPage: React.FC = () => {
                           to={`/house/${houseMatch?.slug || ''}`}
                           className="w-full bg-primary text-white py-3 px-4"
                         >
-                          View Details
+                          Детальніше
                         </ExpandingButton>
                       </div>
                     </div>
@@ -148,9 +148,9 @@ const BungalowPage: React.FC = () => {
         <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
             {/* Removed colored heading */}
-            <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Accessible Comfort</h2>
+            <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Доступний комфорт</h2>
             <p className="text-xl font-body font-normal text-gray-900">
-              Our Bungalow collection offers spacious single-storey living with open plan designs and accessibility features for comfortable family life.
+              Колекція бунгало — просторе одноповерхове життя, відкриті планування та зручність для всієї родини.
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
@@ -160,8 +160,8 @@ const BungalowPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
               </div>
-              <h3 className="text-xl font-heading font-thin mb-3">Single-Storey</h3>
-              <p className="text-gray-900 font-body font-normal">No stairs, easy navigation and accessible design</p>
+              <h3 className="text-xl font-heading font-thin mb-3">Один поверх</h3>
+              <p className="text-gray-900 font-body font-normal">Без сходів, зручна навігація та доступний дизайн</p>
             </div>
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
@@ -169,8 +169,8 @@ const BungalowPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-heading font-thin mb-3">Open Plan</h3>
-              <p className="text-gray-900">Spacious layouts with seamless flow between rooms</p>
+              <h3 className="text-xl font-heading font-thin mb-3">Відкрите планування</h3>
+              <p className="text-gray-900">Просторі плани з плавним переходом між зонами</p>
             </div>
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
@@ -178,8 +178,8 @@ const BungalowPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-heading font-thin mb-3">Family Friendly</h3>
-              <p className="text-gray-900">Perfect for families with children and elderly members</p>
+              <h3 className="text-xl font-heading font-thin mb-3">Для родини</h3>
+              <p className="text-gray-900">Зручно для дітей і людей похилого віку</p>
             </div>
           </div>
         </div>
@@ -191,9 +191,9 @@ const BungalowPage: React.FC = () => {
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
         <div className="w-full px-4 sm:px-5 text-center">
-          <h2 className="text-4xl font-heading font-thin text-white mb-6">Experience Bungalow Living</h2>
+          <h2 className="text-4xl font-heading font-thin text-white mb-6">Відчуйте бунгало-життя</h2>
           <p className="text-xl text-white/90 font-body font-normal mb-8">
-            Experience the comfort and accessibility of single-storey living with our spacious bungalow designs.
+            Комфорт і доступність одноповерхових планувань у наших просторих бунгало.
           </p>
           <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
             <AnimatedButton
@@ -202,7 +202,7 @@ const BungalowPage: React.FC = () => {
               variant={isScrolled ? "greyToWhite" : "greyToYellow"}
               className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
-              Schedule Viewing
+              Запланувати перегляд
             </AnimatedButton>
             <AnimatedButton
               asLink={true}
@@ -210,7 +210,7 @@ const BungalowPage: React.FC = () => {
               variant={isScrolled ? "whiteToGrey" : "whiteOnYellow"}
               className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
-              View All Models
+              Усі моделі
             </AnimatedButton>
           </div>
         </div>
@@ -231,7 +231,7 @@ const BungalowPage: React.FC = () => {
             </button>
             <img 
               src={selectedImage} 
-              alt="Bungalow house design"
+              alt="Проєкт бунгало"
               className="max-w-full max-h-full object-contain"
             />
           </div>

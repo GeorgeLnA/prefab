@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { SITE_ORIGIN } from '../lib/utils';
 
 interface SEOProps {
   title?: string;
@@ -16,10 +17,10 @@ interface SEOProps {
 }
 
 const SEO: React.FC<SEOProps> = ({
-  title = 'Prefab Homes | High-Performance, Energy Efficient, Built in Days',
-  description = 'Discover premium prefab homes engineered for efficiency. Highly energy efficient design, rapid 3-5 day assembly, and sustainable construction.',
+  title = 'Prefab Homes | Високоякісні модульні будинки та енергоефективність',
+  description = 'Модульні та каркасні будинки Prefab Homes: енергоефективність, швидкий монтаж і чіткі рішення для житла в Україні.',
   image = '/sharp_logo_high_res.png',
-  url = 'https://prefabhomes.co.uk',
+  url = '/',
   type = 'website',
   noindex = false,
   keywords,
@@ -29,14 +30,14 @@ const SEO: React.FC<SEOProps> = ({
   structuredData,
 }) => {
   const fullTitle = title.includes('Prefab Homes') ? title : `${title} | Prefab Homes`;
-  const fullUrl = url.startsWith('http') ? url : `https://prefabhomes.co.uk${url}`;
-  const fullImage = image.startsWith('http') ? image : `https://prefabhomes.co.uk${image}`;
+  const fullUrl = url.startsWith('http') ? url : `${SITE_ORIGIN}${url}`;
+  const fullImage = image.startsWith('http') ? image : `${SITE_ORIGIN}${image}`;
 
   return (
     <Helmet>
       {/* Basic Meta Tags */}
       <title>{fullTitle}</title>
-      <meta name="application-name" content="PREFAB HOMES UK" />
+      <meta name="application-name" content="Prefab Homes" />
       <meta name="description" content={description} />
       {noindex && <meta name="robots" content="noindex, nofollow" />}
       
@@ -49,9 +50,8 @@ const SEO: React.FC<SEOProps> = ({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={fullImage} />
-      <meta property="og:site_name" content="PREFAB HOMES UK" />
-      <meta property="og:locale" content="en_GB" />
-      <meta property="og:locale:alternate" content="en_US" />
+      <meta property="og:site_name" content="Prefab Homes" />
+      <meta property="og:locale" content="uk_UA" />
       
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -68,8 +68,8 @@ const SEO: React.FC<SEOProps> = ({
       {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
       
       {/* Language */}
-      <meta httpEquiv="content-language" content="en-GB" />
-      <link rel="alternate" hrefLang="en-GB" href={fullUrl} />
+      <meta httpEquiv="content-language" content="uk" />
+      <link rel="alternate" hrefLang="uk-UA" href={fullUrl} />
       
       {/* Structured Data */}
       {structuredData && (

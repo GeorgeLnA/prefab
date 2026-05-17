@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { houseData } from '../data/houses';
+import { getHouseTotalAreaSqm, houseData } from '../data/houses';
 import SEO from '../components/SEO';
 import { buildKeywords } from '../data/seo-keywords';
+import { formatAreaSqm, formatUsdFromUah } from '../lib/utils';
 import { AnimatedButton } from '../components/ui/animated-button';
 import { ExpandingButton } from '../components/ui/expanding-button';
 
@@ -38,10 +39,10 @@ const ModernBPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Modern-B Collection - Contemporary Prefab Homes"
-        description="Modern-B prefab homes UK: bold contemporary design, premium features. Oxford, London delivery. Prefabricated houses with striking architecture."
+        title="Modern-B — смілива сучасна архітектура"
+        description="Колекція Modern-B: виразні форми, преміальні рішення. Модульні будинки з характерною архітектурою. Доставка по Україні."
         url="/modern-b"
-        keywords={buildKeywords('Modern-B prefab homes UK, contemporary prefabricated houses Oxford London, bold prefab design, architectural prefab homes')}
+        keywords={buildKeywords('Modern-B модульні Україна, сучасна архітектура prefab, дизайнерські модульні')}
       />
       <div>
       {/* Hero Section */}
@@ -62,11 +63,10 @@ const ModernBPage: React.FC = () => {
           <div className="w-full px-4 sm:px-5">
             <div className="max-w-2xl">
               <h1 className="text-5xl md:text-6xl font-heading font-thin text-white mb-6 leading-tight">
-                Bold Architecture
+                Смілива архітектура
               </h1>
               <p className="text-white text-xl font-body font-normal mb-8 leading-relaxed">
-                Contemporary architecture with bold design elements. Striking facades and innovative 
-                solutions for the modern lifestyle.
+                Сучасна архітектура з виразними акцентами, характерними фасадами та інноваційними рішеннями для активного способу життя.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <AnimatedButton
@@ -75,7 +75,7 @@ const ModernBPage: React.FC = () => {
                   variant="yellow"
                   className="px-8 py-3 w-full sm:w-auto text-center"
                 >
-                  Schedule Consultation
+                  Записатися на консультацію
                 </AnimatedButton>
               </div>
             </div>
@@ -87,9 +87,9 @@ const ModernBPage: React.FC = () => {
       <section id="models" className="pt-8 md:pt-20 pb-20 bg-white">
         <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Contemporary Innovation</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-thin text-gray-900 mb-4 sm:mb-6">Сучасні інновації</h2>
             <p className="text-lg sm:text-xl font-body font-normal text-gray-900">
-              Bold contemporary architecture with innovative design solutions.
+              Сміла архітектура та інноваційні планувальні рішення.
             </p>
           </div>
 
@@ -120,10 +120,10 @@ const ModernBPage: React.FC = () => {
                       </h3>
                       <div className="flex items-center justify-between text-sm mb-4">
                         <span className="text-gray-900">
-                          {house.squareFeet} ft² • {house.type}
+                          {formatAreaSqm(getHouseTotalAreaSqm(house))} • {house.type}
                         </span>
                         <span className="text-primary font-thin">
-                          £{house.price.toLocaleString()}
+                          {formatUsdFromUah(house.price)}
                         </span>
                       </div>
                       <div className="mt-auto">
@@ -131,7 +131,7 @@ const ModernBPage: React.FC = () => {
                           to={`/house/${houseMatch?.slug || ''}`}
                           className="w-full bg-primary text-white py-3 px-4"
                         >
-                          View Details
+                          Детальніше
                         </ExpandingButton>
                       </div>
                     </div>
@@ -148,9 +148,9 @@ const ModernBPage: React.FC = () => {
         <div className="w-full px-4 sm:px-5">
           <div className="text-center mb-16">
             {/* Removed colored heading */}
-            <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Architectural Innovation</h2>
+            <h2 className="text-4xl font-heading font-thin text-gray-800 mb-6">Архітектурні інновації</h2>
             <p className="text-xl text-gray-900 font-body font-normal">
-              Our Modern-B collection pushes the boundaries of contemporary design with striking architectural elements and innovative features.
+              Колекція Modern-B розширює межі сучасного дизайну завдяки виразним формам та продуманим деталям.
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
@@ -160,8 +160,8 @@ const ModernBPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
               </div>
-              <h3 className="text-xl font-thin mb-3">Bold Architecture</h3>
-              <p className="text-gray-900">Striking contemporary designs that make a statement</p>
+              <h3 className="text-xl font-thin mb-3">Сміла архітектура</h3>
+              <p className="text-gray-900">Виразні сучасні форми, що привертають увагу</p>
             </div>
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
@@ -169,8 +169,8 @@ const ModernBPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-thin mb-3">Contemporary Style</h3>
-              <p className="text-gray-900">Modern aesthetics with cutting-edge design principles</p>
+              <h3 className="text-xl font-thin mb-3">Сучасний стиль</h3>
+              <p className="text-gray-900">Актуальна естетика та передові принципи планування</p>
             </div>
             <div className="text-center group">
               <div className="bg-primary/10 w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-6 md:group-hover:bg-primary md:group-hover:text-white transition-all duration-300">
@@ -178,8 +178,8 @@ const ModernBPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-thin mb-3">Unique Features</h3>
-              <p className="text-gray-900">Distinctive architectural elements and premium materials</p>
+              <h3 className="text-xl font-thin mb-3">Унікальні акценти</h3>
+              <p className="text-gray-900">Характерні архітектурні елементи та преміальні матеріали</p>
             </div>
           </div>
         </div>
@@ -191,9 +191,9 @@ const ModernBPage: React.FC = () => {
         style={{ width: '100vw', marginLeft: '50%', transform: 'translateX(-50%)', maxWidth: 'none' }}
       >
         <div className="w-full px-4 sm:px-5 text-center">
-          <h2 className="text-4xl font-heading font-thin text-white mb-6">Experience Bold Modern Living</h2>
+          <h2 className="text-4xl font-heading font-thin text-white mb-6">Сміле сучасне житло</h2>
           <p className="text-xl text-white/90 font-body font-normal mb-8">
-            Experience contemporary architecture at its finest with our Modern-B collection's striking designs and innovative features.
+            Колекція Modern-B — виразна архітектура та інновації для тих, хто цінує характер і сучасність.
           </p>
           <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
             <AnimatedButton
@@ -202,7 +202,7 @@ const ModernBPage: React.FC = () => {
               variant={isScrolled ? "greyToWhite" : "greyToYellow"}
               className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
-              Schedule Viewing
+              Запланувати перегляд
             </AnimatedButton>
             <AnimatedButton
               asLink={true}
@@ -210,7 +210,7 @@ const ModernBPage: React.FC = () => {
               variant={isScrolled ? "whiteToGrey" : "whiteOnYellow"}
               className="shrink-0 px-6 sm:px-8 py-3 sm:py-4 font-thin text-sm sm:text-base md:text-lg text-center"
             >
-              View All Models
+              Усі моделі
             </AnimatedButton>
           </div>
         </div>
@@ -231,7 +231,7 @@ const ModernBPage: React.FC = () => {
             </button>
             <img 
               src={selectedImage} 
-              alt="Modern-B house design"
+              alt="Проєкт будинку Modern-B"
               className="max-w-full max-h-full object-contain"
             />
           </div>

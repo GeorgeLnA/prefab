@@ -1,151 +1,11 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO';
 import { buildKeywords } from '../data/seo-keywords';
+import { blogPosts } from '../data/blog-posts';
 import { InteractiveHoverButton } from '../components/ui/interactive-hover-button';
-
-interface BlogPost {
-  id: number;
-  title: string;
-  excerpt: string;
-  date: string;
-  readTime: string;
-  category: string;
-  image: string;
-  contentImage?: string;
-  content: string;
-}
 
 const BlogPage: React.FC = () => {
   const [selectedPost, setSelectedPost] = useState<number | null>(null);
-
-  const blogPosts: BlogPost[] = [
-    {
-      id: 1,
-      title: "The Real-Life Benefits of an Energy-Efficient Home",
-      excerpt: "Energy efficiency has become more than a buzzword in modern construction—it's a necessity. Discover the real benefits beyond just saving money.",
-      date: "March 15, 2024",
-      readTime: "5 min read",
-      category: "Energy Efficiency",
-      image: "/SKANDY/SKANDY 96_1_4K Large.jpeg",
-      contentImage: "/SKANDY/SKANDY 96_2_2K Large.jpeg",
-      content: `Energy efficiency has become more than a buzzword in modern construction—it's a necessity. As energy prices continue to rise and environmental concerns grow, homeowners are looking for better ways to build. But what exactly makes an energy-efficient home different? And why are so many people choosing this route?
-
-In my years working with prefab homes, I've seen firsthand how much of a difference energy efficiency makes—not just in terms of money saved, but in quality of life. The concept goes beyond insulation and smart meters. It's a combination of thoughtful design, high-performance materials, and a long-term view on comfort and sustainability.
-
-Let's start with the basics: an energy-efficient home is designed to use as little energy as possible for heating, cooling, and daily operations. This usually begins with the building envelope—the walls, floors, roof, windows, and doors. Using advanced materials like Structural Insulated Panels (SIPs), builders can create airtight, well-insulated structures that minimize heat loss in winter and keep the interior cool in summer.
-
-But the benefits don't stop at lower utility bills. A tightly sealed and well-ventilated home means fewer drafts, less moisture buildup, and improved air quality. Families often notice that their energy-efficient homes are quieter, too—outside noise is significantly reduced thanks to thicker, more insulated walls.
-
-There's also a financial upside. While building an energy-efficient home may have slightly higher upfront costs due to specialized materials and systems, the investment pays off over time. Owners report significantly lower energy bills, fewer repairs due to moisture or mold issues, and higher resale value when it's time to move.
-
-In countries with cold winters and hot summers—like here in Eastern Europe—having a home that naturally maintains a stable indoor climate makes a world of difference. You're not just reducing your carbon footprint; you're improving your daily living experience.
-
-Energy efficiency is no longer a luxury—it's becoming the standard. And with today's prefab technologies, it's easier and more accessible than ever.`
-    },
-    {
-      id: 2,
-      title: "SIP Technology: The Future of Efficient, Strong, and Fast Building",
-      excerpt: "Discover how Structural Insulated Panels are revolutionizing construction with superior strength, efficiency, and speed.",
-      date: "March 12, 2024",
-      readTime: "6 min read",
-      category: "Technology",
-      image: "/SKANDY/SKANDY 100_1Final 2k Large.jpeg",
-      contentImage: "/SKANDY/SKANDY 100_2Final 2k Large.jpeg",
-      content: `When I first encountered SIP construction, I was skeptical. Coming from a background in traditional wood-frame building, I didn't understand how something as simple as a panel could replace so many structural elements. But after just a few projects, I was convinced. SIPs are one of the most efficient and innovative technologies to enter the construction world in the past few decades.
-
-SIP stands for Structural Insulated Panel. At first glance, it looks like a thick, solid board. But it's much more than that. Each SIP is made of an insulating foam core sandwiched between two rigid boards, usually oriented strand board (OSB). This simple configuration creates a panel that is both lightweight and incredibly strong.
-
-One of the most impressive things about SIPs is how quickly a structure can be assembled. A building that would take months with traditional methods can be raised in just a few weeks—or even days—when using SIP panels. Because they're manufactured in a factory under controlled conditions, there's minimal on-site adjustment required. Everything fits together with surprising precision, which helps avoid delays and mistakes.
-
-What really sets SIPs apart, however, is their performance. The insulation value is much higher than conventional wall systems. This means lower heating and cooling requirements, fewer drafts, and a more comfortable indoor environment year-round. I've seen homeowners report 50% or more savings on their energy bills compared to similar-sized homes built with traditional materials.
-
-Durability is another benefit. Despite their light weight, SIPs are incredibly strong and resilient. Many SIP homes have performed well in extreme weather conditions—something increasingly important as we face more climate-related events. Whether it's high winds, heavy snow, or moisture, SIPs offer solid resistance and long-term stability.
-
-From a design perspective, SIPs offer flexibility as well. They can be used in small cabins, large homes, and even commercial buildings. Architects love them for their clean lines and minimalist potential, while builders appreciate the speed and efficiency.
-
-In short, SIP technology is not just a passing trend. It's a smart response to modern construction challenges, and it's redefining the way we think about building.`
-    },
-    {
-      id: 3,
-      title: "SIP Construction Methods: Exploring the Different Ways to Build Smarter",
-      excerpt: "Learn about the various SIP construction approaches and find the method that best suits your project goals and timeline.",
-      date: "March 10, 2024",
-      readTime: "7 min read",
-      category: "Construction",
-      image: "/MODULAR/x6/snapedit_1697141569457 Large.jpeg",
-      contentImage: "/SKANDY/SKANDY 130 1_2K Large.jpeg",
-      content: `If you've decided to build with SIPs, you've already made a great choice. But what many people don't realize is that there are several different ways to approach SIP construction, depending on your goals, timeline, and budget. Over the years, I've worked on a variety of SIP projects, and each one followed a slightly different path—even though they all started with the same core technology.
-
-The first and most straightforward method is using SIP kits. These are pre-manufactured panel sets that are delivered to your building site ready to assemble. It's a great option for people who want to manage part of the process themselves or work with a smaller crew. Everything comes labeled and pre-cut, and it's almost like assembling a life-sized puzzle. While it still requires construction knowledge, it significantly reduces the time and effort needed compared to building from raw materials.
-
-Another popular approach is the hybrid system. Here, the main structural elements—typically the walls and roof—are made from SIPs, while other parts of the building use more conventional techniques. This can be a good compromise if you're working with a particular design or need to manage costs. For example, combining SIP walls with a traditional truss roof can save money while still delivering energy performance where it matters most.
-
-Finally, there's the full-service or turnkey SIP build. This is what many prefab companies (including ours) specialize in. It means we take care of everything—from design and panel manufacturing to on-site construction and finishing work. It's the fastest and most stress-free way to build with SIPs, especially for clients who want reliability and a clear project timeline. In most cases, a fully built SIP home can be completed in a fraction of the time it would take using other methods.
-
-Choosing the right method depends on your level of involvement, budget, and desired timeline. But whichever route you choose, the advantages remain the same: strong, energy-efficient construction that will last for decades.
-
-SIP building is not only about how the panels are made—it's about how you use them. And in the right hands, SIPs open the door to faster, greener, smarter homes that are ready for the future.`
-    },
-    {
-      id: 4,
-      title: "Modular Home vs Traditional Construction: A Complete Comparison",
-      excerpt: "Exploring the key differences between modular and traditional construction methods, from cost to quality to timeline.",
-      date: "March 8, 2024",
-      readTime: "8 min read",
-      category: "Construction",
-      image: "/MODULAR/x1/snapedit_1696349707941 Large.jpeg",
-      contentImage: "/SKANDY/Skandy 80_1 Large.jpeg",
-      content: `When considering a new home, one of the biggest decisions you'll face is choosing between modular and traditional construction. Both methods have their advantages, but understanding the differences can help you make the best choice for your situation.
-
-**Construction Timeline**
-Perhaps the most significant advantage of modular construction is speed. While traditional homes can take 6-12 months to complete, modular homes are typically finished in 3-4 months. This is because much of the construction happens simultaneously—while your foundation is being prepared, your home is being built in the factory.
-
-**Quality Control**
-Factory construction offers superior quality control. In our controlled environment, materials are protected from weather, and each component is built to exact specifications. Traditional construction, while offering more customization during the build, is subject to weather delays and on-site variables that can affect quality.
-
-**Cost Considerations**
-Modular construction often provides better cost predictability. Factory efficiency and bulk purchasing power typically result in 10-20% cost savings compared to traditional construction. However, traditional construction may offer more flexibility in material choices and design changes during the build process.
-
-**Design Flexibility**
-While traditional construction offers unlimited customization, modern modular construction has come a long way. Today's modular homes can be highly customized, with options for unique layouts, premium finishes, and architectural details that rival traditional construction.
-
-**Environmental Impact**
-Modular construction is inherently more sustainable. Factory construction produces less waste, uses materials more efficiently, and the controlled environment allows for better insulation and air sealing, resulting in more energy-efficient homes.
-
-The choice between modular and traditional construction ultimately depends on your priorities: speed, cost predictability, and environmental considerations favor modular, while unlimited customization and traditional building methods favor conventional construction.`
-    },
-    {
-      id: 5,
-      title: "Smart Home Technology: The Future of Prefab Living",
-      excerpt: "How integrated smart home systems are revolutionizing the prefab industry and creating homes that adapt to your lifestyle.",
-      date: "March 5, 2024",
-      readTime: "6 min read",
-      category: "Technology",
-      image: "/SKANDY/SKANDY 70 1.jpeg",
-      contentImage: "/SKANDY/SKANDY 120_ 2 4K Large.jpeg",
-      content: `The integration of smart home technology in prefab construction represents a perfect marriage of efficiency and innovation. As homes become more connected, prefab construction offers unique advantages for implementing comprehensive smart home systems.
-
-**Factory Integration Advantages**
-Installing smart home systems during factory construction ensures perfect integration. Wiring, sensors, and control systems can be installed with precision that's difficult to achieve in traditional on-site construction. This results in cleaner installations, better performance, and fewer issues down the road.
-
-**Energy Management**
-Smart homes excel at energy management, automatically adjusting heating, cooling, and lighting based on occupancy and preferences. When combined with the superior insulation and air sealing of modern prefab homes, these systems can reduce energy consumption by up to 30%.
-
-**Security and Monitoring**
-Integrated security systems provide comprehensive monitoring and control. From smart locks and cameras to environmental sensors that detect water leaks or air quality issues, these systems provide peace of mind and can prevent costly damage.
-
-**Convenience and Comfort**
-Voice control, automated lighting, and climate systems that learn your preferences create a living experience that adapts to your lifestyle. Imagine arriving home to find your house at the perfect temperature, with lights adjusted to your preferred settings.
-
-**Future-Proofing**
-Smart home systems are designed to evolve. Regular software updates add new features and capabilities, ensuring your home stays current with the latest technology without requiring hardware changes.
-
-**Return on Investment**
-While smart home systems require an initial investment, they typically pay for themselves through energy savings, increased home value, and reduced insurance costs. Many insurance companies offer discounts for homes with integrated security and monitoring systems.
-
-The future of prefab living is smart, connected, and responsive to our needs. As technology continues to advance, these integrated systems will become even more sophisticated, making our homes not just places to live, but intelligent partners in our daily lives.`
-    }
-  ];
 
   const openPost = (postId: number) => {
     setSelectedPost(postId);
@@ -160,10 +20,10 @@ The future of prefab living is smart, connected, and responsive to our needs. As
   return (
     <>
       <SEO
-        title="Prefab Homes Blog"
-        description="Prefab homes blog UK: insights, trends, expert advice. Prefabricated houses, energy efficiency, Oxford, London. Construction and modern living."
+        title="Блог Prefab Homes"
+        description="Статті про модульні будинки, SIP, енергоефективність та розумні технології. Експертні матеріали Prefab Homes Україна."
         url="/blog"
-        keywords={buildKeywords('prefab homes blog UK, prefabricated house advice Oxford London, modular home insights, prefab construction trends')}
+        keywords={buildKeywords('блог модульні будинки Україна, SIP статті, prefab поради, енергоефективне житло')}
       />
       <div className="bg-white">
       <div>
@@ -175,20 +35,19 @@ The future of prefab living is smart, connected, and responsive to our needs. As
         <div className="absolute inset-0">
           <img
             src="/SKANDY/SKANDY 120_ 1. 4K Large.jpeg"
-            alt="Prefab homes"
+            alt="Модульні будинки Prefab Homes"
             className="w-full h-full object-cover opacity-30"
           />
           <div className="absolute inset-0 bg-gray-900/70" />
         </div>
         <div className="w-full px-4 sm:px-5 relative z-10">
           <div className="text-center">
-            <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">INSIGHTS & EXPERTISE</div>
+            <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">ІНСАЙТИ ТА ЕКСПЕРТИЗА</div>
             <h1 className="text-5xl md:text-6xl font-heading font-light text-white mb-6 leading-tight">
-              Prefab Homes Blog
+              Блог Prefab Homes
             </h1>
             <p className="text-xl text-gray-300 leading-relaxed font-body font-normal">
-              Discover the latest insights, trends, and expert advice in prefab construction, 
-              energy efficiency, and modern living.
+              Новини галузі, тренди та практичні поради щодо модульного будівництва, енергоефективності й сучасного житла.
             </p>
           </div>
         </div>
@@ -230,7 +89,7 @@ The future of prefab living is smart, connected, and responsive to our needs. As
                       }`}
                     >
                       <div className="bg-primary text-white py-3 px-6 rounded-lg font-medium">
-                        Read Full Article
+                        Читати повністю
                       </div>
                     </div>
                   </div>
@@ -254,7 +113,7 @@ The future of prefab living is smart, connected, and responsive to our needs. As
                     </p>
                     
                     <div className="mt-6 flex items-center text-primary font-medium group-hover:text-primary-dark transition-colors duration-300">
-                      <span>Read More</span>
+                      <span>Читати далі</span>
                       <svg className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
@@ -325,7 +184,7 @@ The future of prefab living is smart, connected, and responsive to our needs. As
                             className="w-full h-auto object-cover"
                           />
                           <figcaption className="text-sm text-gray-500 mt-2 text-center font-body">
-                            Prefab home by Prefab Homes
+                            Модульний будинок — Prefab Homes
                           </figcaption>
                         </figure>
                       )}
@@ -337,7 +196,7 @@ The future of prefab living is smart, connected, and responsive to our needs. As
               {/* Close */}
               <div className="mt-12 pt-8 border-t border-gray-200 flex justify-center items-center">
                 <InteractiveHoverButton
-                  text="Close Article"
+                  text="Закрити статтю"
                   onClick={closePost}
                   className="bg-primary text-white px-6 py-2"
                 />

@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import type { Submission, SubmissionUpdate } from '../../types/submissions';
 import { useSubmissions } from '../../hooks/useSubmissions';
 import { EditSubmissionModal } from './EditSubmissionModal';
+import { FORM_TYPE_LABELS_UK } from '../../lib/form-type-labels';
 import { cn } from '../../lib/utils';
 
 function formatDate(iso: string) {
   try {
     const d = new Date(iso);
-    return d.toLocaleString(undefined, {
+    return d.toLocaleString('uk-UA', {
       dateStyle: 'short',
       timeStyle: 'short',
     });
@@ -24,11 +25,12 @@ function FormTypeBadge({ formType }: { formType: string }) {
     floor_plan: 'bg-purple-100 text-purple-800',
   };
   const c = colors[formType] ?? 'bg-gray-100 text-gray-800';
+  const label = FORM_TYPE_LABELS_UK[formType] ?? formType.replaceAll('_', ' ');
   return (
     <span
       className={cn('inline-block px-2 py-0.5 rounded text-xs font-medium', c)}
     >
-      {formType.replace('_', ' ')}
+      {label}
     </span>
   );
 }
@@ -46,7 +48,7 @@ export function SubmissionsList() {
   const [deleting, setDeleting] = useState<string | null>(null);
 
   const handleDelete = async (s: Submission) => {
-    if (!window.confirm(`Delete submission from ${s.name}?`)) return;
+    if (!window.confirm(`Видалити заявку від ${s.name}?`)) return;
     setDeleting(s.id);
     try {
       await remove(s.id);
@@ -65,7 +67,7 @@ export function SubmissionsList() {
   if (loading) {
     return (
       <div className="py-8 text-center text-gray-500 text-sm">
-        Loading submissions…
+        Завантаження заявок…
       </div>
     );
   }
@@ -79,7 +81,7 @@ export function SubmissionsList() {
           onClick={refetch}
           className="px-4 py-2 bg-primary text-black rounded-lg text-sm font-thin hover:bg-primary/90 touch-manipulation"
         >
-          Retry
+          Повторити
         </button>
       </div>
     );
@@ -88,14 +90,13 @@ export function SubmissionsList() {
   if (submissions.length === 0) {
     return (
       <div className="py-8 text-center text-gray-500 text-sm">
-        No submissions yet.
+        Поки немає заявок.
       </div>
     );
   }
 
   return (
     <>
-      {/* Mobile: cards */}
       <div className="md:hidden space-y-3 p-4">
         {submissions.map((s) => (
           <div
@@ -122,7 +123,7 @@ export function SubmissionsList() {
                 onClick={() => setEditing(s)}
                 className="flex-1 px-3 py-2 bg-primary text-black rounded-lg text-xs font-thin hover:bg-primary/90 touch-manipulation"
               >
-                Edit
+                Редагувати
               </button>
               <button
                 type="button"
@@ -130,25 +131,24 @@ export function SubmissionsList() {
                 disabled={deleting === s.id}
                 className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-xs font-thin text-gray-700 hover:bg-gray-50 disabled:opacity-50 touch-manipulation"
               >
-                {deleting === s.id ? '…' : 'Delete'}
+                {deleting === s.id ? '…' : 'Видалити'}
               </button>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Desktop: table */}
       <div className="hidden md:block overflow-x-auto p-4">
         <table className="w-full text-sm border-collapse">
           <thead>
             <tr className="border-b border-gray-200">
-              <th className="text-left py-2 px-3 font-medium text-gray-700">Date</th>
-              <th className="text-left py-2 px-3 font-medium text-gray-700">Type</th>
-              <th className="text-left py-2 px-3 font-medium text-gray-700">Name</th>
+              <th className="text-left py-2 px-3 font-medium text-gray-700">Дата</th>
+              <th className="text-left py-2 px-3 font-medium text-gray-700">Тип</th>
+              <th className="text-left py-2 px-3 font-medium text-gray-700">Ім’я</th>
               <th className="text-left py-2 px-3 font-medium text-gray-700">Email</th>
-              <th className="text-left py-2 px-3 font-medium text-gray-700">Phone</th>
-              <th className="text-left py-2 px-3 font-medium text-gray-700">Message</th>
-              <th className="text-right py-2 px-3 font-medium text-gray-700">Actions</th>
+              <th className="text-left py-2 px-3 font-medium text-gray-700">Телефон</th>
+              <th className="text-left py-2 px-3 font-medium text-gray-700">Повідомлення</th>
+              <th className="text-right py-2 px-3 font-medium text-gray-700">Дії</th>
             </tr>
           </thead>
           <tbody>
@@ -174,7 +174,7 @@ export function SubmissionsList() {
                     onClick={() => setEditing(s)}
                     className="mr-2 px-3 py-1.5 bg-primary text-black rounded text-xs font-thin hover:bg-primary/90 touch-manipulation"
                   >
-                    Edit
+                    Редагувати
                   </button>
                   <button
                     type="button"
@@ -182,7 +182,7 @@ export function SubmissionsList() {
                     disabled={deleting === s.id}
                     className="px-3 py-1.5 border border-gray-300 rounded text-xs font-thin text-gray-700 hover:bg-gray-50 disabled:opacity-50 touch-manipulation"
                   >
-                    {deleting === s.id ? '…' : 'Delete'}
+                    {deleting === s.id ? '…' : 'Видалити'}
                   </button>
                 </td>
               </tr>

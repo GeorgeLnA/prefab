@@ -8,10 +8,10 @@ const ThanksPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Thank You"
-        description="Thank you for getting in touch with Prefab Homes. We've received your message and will get back to you soon."
+        title="Дякуємо"
+        description="Дякуємо за звернення до Prefab Homes. Ми отримали ваше повідомлення і невдовзі відповімо."
         url="/thanks"
-        keywords={buildKeywords('thank you prefab homes, enquiry received', { includeServices: true })}
+        keywords={buildKeywords('заявка Prefab Homes, дякуємо за звернення', { includeServices: true })}
       />
       <div>
         <section
@@ -21,14 +21,13 @@ const ThanksPage: React.FC = () => {
           <div className="w-full px-4 sm:px-5 relative">
             <div className="text-center">
               <div className="text-primary text-sm uppercase tracking-wider mb-4 font-body font-medium">
-                THANK YOU
+                ДЯКУЄМО
               </div>
               <h1 className="text-5xl md:text-6xl font-heading font-light text-white mb-6 leading-tight">
-                We&apos;ve Received Your Message
+                Повідомлення отримано
               </h1>
               <p className="text-xl text-white leading-relaxed font-body font-normal max-w-2xl mx-auto">
-                Our team will get back to you within 24 hours. In the meantime, feel free to explore
-                our designs or contact us if you have any urgent questions.
+                Ми відповімо протягом 24 годин. За потреби ви можете переглянути каталог або написати нам ще раз.
               </p>
             </div>
           </div>
@@ -38,17 +37,17 @@ const ThanksPage: React.FC = () => {
           <div className="w-full px-4 sm:px-5">
             <div className="max-w-2xl mx-auto text-center space-y-8">
               <p className="text-gray-600 font-body font-normal">
-                Thanks for your interest in Prefab Homes. We&apos;ll be in touch soon.
+                Дякуємо за інтерес до Prefab Homes. Ми на зв’язку.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/">
                   <AnimatedButton variant="yellowOnWhite" className="px-6 sm:px-8 py-3 sm:py-4 font-thin">
-                    Back to Home
+                    На головну
                   </AnimatedButton>
                 </Link>
                 <Link to="/contact">
                   <AnimatedButton variant="greyToYellow" className="px-6 sm:px-8 py-3 sm:py-4 font-thin">
-                    Contact Again
+                    Написати ще раз
                   </AnimatedButton>
                 </Link>
               </div>

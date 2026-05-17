@@ -12,7 +12,7 @@ export default function AdminPage() {
   if (!checked) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-sm text-gray-500">Loading…</p>
+        <p className="text-sm text-gray-500">Завантаження…</p>
       </div>
     );
   }
@@ -32,7 +32,7 @@ export default function AdminPage() {
       <div className="w-full px-4 sm:px-5">
         <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <h1 className="text-xl sm:text-2xl font-heading font-light text-gray-900">
-            Submissions
+            Заявки
           </h1>
           <button
             type="button"
@@ -45,7 +45,7 @@ export default function AdminPage() {
               'text-sm font-thin text-gray-700 hover:bg-gray-100 touch-manipulation'
             )}
           >
-            Log out
+            Вийти
           </button>
         </header>
 

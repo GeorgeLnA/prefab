@@ -7,8 +7,8 @@ const houses = [
   {
     name: 'Nordy',
     image: '/nordy-42-3d-1.jpg',
-    subtext: 'Transportable, demountable homes designed for flexible, ancillary use.',
-    explanation: 'Planning permission may not be required in certain cases.'
+    subtext: 'Транспортовані, демонтовані будинки для гнучкого додаткового використання.',
+    explanation: 'У певних випадках будівельний дозвіл може не знадобитися залежно від ділянки та призначення.'
   }
 ];
 
@@ -24,10 +24,10 @@ const NoBuildPermissionSection: React.FC = () => (
   >
     <div className="w-full px-4 sm:px-5 flex flex-col items-center justify-center flex-1 overflow-y-auto">
       <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-light text-black mb-1 sm:mb-1.5 md:mb-2 lg:mb-3 xl:mb-4 leading-tight text-center px-1 sm:px-2 md:px-0">
-        HOUSES WITH <span className="text-primary font-light">NO BUILD PERMISSION</span>
+        БУДИНКИ БЕЗ <span className="text-primary font-light">БУДДОЗВОЛУ</span>
       </h2>
       <p className="text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl text-black/80 mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-14 leading-relaxed text-center px-1 sm:px-2 md:px-0">
-        Some buildings may be installed without planning permission, subject to site conditions and intended use.
+        Частина конструкцій може бути змонтована без містобудівного дозволу — залежно від умов ділянки та призначення об’єкта.
       </p>
       {/* Row of Houses - Fully Responsive */}
       <div className="grid grid-cols-1 gap-4 sm:gap-5 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12 mb-1.5 sm:mb-2 md:mb-2.5 lg:mb-3 xl:mb-4 w-full max-w-xl">
@@ -60,7 +60,7 @@ const NoBuildPermissionSection: React.FC = () => (
         variant="yellowOnWhite"
         className="px-3 sm:px-4 md:px-5 lg:px-6 xl:px-8 2xl:px-10 py-1.5 sm:py-2 md:py-2.5 lg:py-3 xl:py-4 text-sm sm:text-xs md:text-sm lg:text-base xl:text-lg font-thin w-full lg:w-auto mt-4 sm:mt-6 md:mt-8"
       >
-        Explore More
+        Дивитися більше
       </AnimatedButton>
     </div>
   </section>

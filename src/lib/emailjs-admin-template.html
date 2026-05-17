@@ -1,13 +1,13 @@
 <!--
-  EmailJS admin template – paste into EmailJS dashboard.
-  Variables: to_email, form_type, name, email, phone, message, project_type, budget, source_slug, context, payload_preview, submitted_at
-  Design synced with Prefab Homes site: primary #ffbf00, white bg, dark text.
-  Design request submissions: 5-step form (house base, size, budget & timeline, additional details, contact). payload_preview = readable field list.
+  Шаблон листа адміністратору EmailJS — вставити в панелі EmailJS.
+  Змінні: to_email, form_type, form_type_label, site_url, name, email, phone, message,
+  project_type, budget, source_slug, context, payload_preview, submitted_at
+  Стиль як на сайті: основний колір #ffbf00, білий фон, темний текст.
+  Заявки з форми дизайну: payload_preview = перелік полів (HTML).
 -->
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.5;color:#111827;">
   <tr>
     <td style="padding:0;">
-      <!-- Header: brand + primary bar -->
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
         <tr>
           <td style="background-color:#ffbf00;padding:20px 24px;">
@@ -19,75 +19,72 @@
         </tr>
       </table>
 
-      <!-- Main content -->
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width:600px;margin:0 auto;">
         <tr>
           <td style="padding:32px 24px 40px;">
-            <!-- Title -->
             <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom:24px;">
               <tr>
                 <td style="border-bottom:2px solid #ffbf00;padding-bottom:12px;">
-                  <span style="font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:#6b7280;">New submission</span>
-                  <h1 style="margin:4px 0 0;font-size:24px;font-weight:300;color:#111827;">{{form_type}}</h1>
+                  <span style="font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:#6b7280;">Нова заявка</span>
+                  <h1 style="margin:4px 0 0;font-size:24px;font-weight:300;color:#111827;">{{form_type_label}}</h1>
+                  <p style="margin:8px 0 0;font-size:13px;color:#6b7280;">Код типу: <code style="background:#f3f4f6;padding:2px 6px;border-radius:4px;">{{form_type}}</code></p>
                 </td>
               </tr>
             </table>
 
-            <!-- Sender (matches Contact form: Full Name, Email Address, Phone Number) -->
             <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom:24px;">
               <tr>
                 <td style="padding:16px;background-color:#f9fafb;border-radius:8px;">
                   <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
-                    <tr><td style="padding:4px 0;color:#6b7280;font-size:14px;"><strong style="color:#374151;">Full Name</strong> {{name}}</td></tr>
-                    <tr><td style="padding:4px 0;color:#6b7280;font-size:14px;"><strong style="color:#374151;">Email Address</strong> {{email}}</td></tr>
-                    <tr><td style="padding:4px 0;color:#6b7280;font-size:14px;"><strong style="color:#374151;">Phone Number</strong> {{phone}}</td></tr>
-                    <tr><td style="padding:4px 0;color:#6b7280;font-size:14px;"><strong style="color:#374151;">Submitted</strong> {{submitted_at}}</td></tr>
+                    <tr><td style="padding:4px 0;color:#6b7280;font-size:14px;"><strong style="color:#374151;">Повне ім'я</strong> {{name}}</td></tr>
+                    <tr><td style="padding:4px 0;color:#6b7280;font-size:14px;"><strong style="color:#374151;">Електронна пошта</strong> {{email}}</td></tr>
+                    <tr><td style="padding:4px 0;color:#6b7280;font-size:14px;"><strong style="color:#374151;">Телефон</strong> {{phone}}</td></tr>
+                    <tr><td style="padding:4px 0;color:#6b7280;font-size:14px;"><strong style="color:#374151;">Надіслано</strong> {{submitted_at}}</td></tr>
                   </table>
                 </td>
               </tr>
             </table>
 
-            <!-- Project Details (matches Contact form textarea label; optional field) -->
             <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom:24px;">
               <tr>
-                <td style="padding:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:#ffbf00;font-weight:600;">Project Details</td>
+                <td style="padding:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:#ffbf00;font-weight:600;">Деталі проєкту</td>
               </tr>
               <tr>
                 <td style="padding:16px;background-color:#f9fafb;border-left:4px solid #ffbf00;border-radius:0 8px 8px 0;color:#374151;white-space:pre-wrap;">{{message}}</td>
               </tr>
             </table>
 
-            <!-- Form fields (matches Contact: Project Type, Budget Range; Quote/Floor: Source, Context) -->
             <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom:24px;">
               <tr>
-                <td style="padding:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:#ffbf00;font-weight:600;">Form fields</td>
+                <td style="padding:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:#ffbf00;font-weight:600;">Поля форми</td>
               </tr>
               <tr>
                 <td>
                   <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#f9fafb;border-radius:8px;">
-                    <tr><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;"><strong style="color:#374151;">Project Type</strong><br/><span style="color:#6b7280;">{{project_type}}</span></td></tr>
-                    <tr><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;"><strong style="color:#374151;">Budget Range</strong><br/><span style="color:#6b7280;">{{budget}}</span></td></tr>
-                    <tr><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;"><strong style="color:#374151;">Source</strong><br/><span style="color:#6b7280;">{{source_slug}}</span></td></tr>
-                    <tr><td style="padding:12px 16px;"><strong style="color:#374151;">Context</strong><br/><span style="color:#6b7280;">{{context}}</span></td></tr>
+                    <tr><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;"><strong style="color:#374151;">Тип проєкту</strong><br/><span style="color:#6b7280;">{{project_type}}</span></td></tr>
+                    <tr><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;"><strong style="color:#374151;">Бюджет</strong><br/><span style="color:#6b7280;">{{budget}}</span></td></tr>
+                    <tr><td style="padding:12px 16px;border-bottom:1px solid #e5e7eb;"><strong style="color:#374151;">Сторінка / джерело</strong><br/><span style="color:#6b7280;">{{source_slug}}</span></td></tr>
+                    <tr><td style="padding:12px 16px;"><strong style="color:#374151;">Контекст</strong><br/><span style="color:#6b7280;">{{context}}</span></td></tr>
                   </table>
                 </td>
               </tr>
             </table>
 
-            <!-- Design request details (design-form submissions only; human-readable lines) -->
             <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom:0;">
               <tr>
-                <td style="padding:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:#ffbf00;font-weight:600;">Design request details</td>
+                <td style="padding:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:#ffbf00;font-weight:600;">Деталі запиту на дизайн</td>
               </tr>
               <tr>
                 <td style="padding:16px;background-color:#f9fafb;border-left:4px solid #ffbf00;border-radius:0 8px 8px 0;color:#374151;font-size:14px;line-height:1.6;">{{{payload_preview}}}</td>
               </tr>
             </table>
 
-            <!-- Footer -->
             <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:40px;padding-top:24px;border-top:1px solid #e5e7eb;">
               <tr>
-                <td style="font-size:12px;color:#9ca3af;">Prefab Homes · Admin notification</td>
+                <td style="font-size:12px;color:#9ca3af;">
+                  Prefab Homes · Сповіщення для адміністратора<br/>
+                  <a href="{{site_url}}" style="color:#6b7280;text-decoration:underline;">{{site_url}}</a>
+                </td>
               </tr>
             </table>
           </td>
